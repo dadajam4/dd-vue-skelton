@@ -3,17 +3,17 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _26434856 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
-const _49cbe58a = () => import('../pages/getting-started.vue' /* webpackChunkName: "pages/getting-started" */).then(m => m.default || m)
-const _2dac8d7a = () => import('../pages/components/forms.vue' /* webpackChunkName: "pages/components/forms" */).then(m => m.default || m)
-const _89572bcc = () => import('../pages/style/typography.vue' /* webpackChunkName: "pages/style/typography" */).then(m => m.default || m)
-const _3436e94a = () => import('../pages/style/colors.vue' /* webpackChunkName: "pages/style/colors" */).then(m => m.default || m)
-const _448dbd4e = () => import('../pages/layout/grid.vue' /* webpackChunkName: "pages/layout/grid" */).then(m => m.default || m)
-const _34556da9 = () => import('../pages/components/lists.vue' /* webpackChunkName: "pages/components/lists" */).then(m => m.default || m)
-const _44ca6495 = () => import('../pages/components/buttons.vue' /* webpackChunkName: "pages/components/buttons" */).then(m => m.default || m)
-const _521c199e = () => import('../pages/style/content.vue' /* webpackChunkName: "pages/style/content" */).then(m => m.default || m)
-const _224ad988 = () => import('../pages/components/menus.vue' /* webpackChunkName: "pages/components/menus" */).then(m => m.default || m)
-const _55e4562a = () => import('../pages/layout/spacing.vue' /* webpackChunkName: "pages/layout/spacing" */).then(m => m.default || m)
+const _70970305 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
+const _344f786b = () => import('../pages/getting-started.vue' /* webpackChunkName: "pages/getting-started" */).then(m => m.default || m)
+const _92bc97da = () => import('../pages/components/forms.vue' /* webpackChunkName: "pages/components/forms" */).then(m => m.default || m)
+const _ee67362c = () => import('../pages/style/typography.vue' /* webpackChunkName: "pages/style/typography" */).then(m => m.default || m)
+const _bcab23aa = () => import('../pages/style/colors.vue' /* webpackChunkName: "pages/style/colors" */).then(m => m.default || m)
+const _3a18407e = () => import('../pages/layout/grid.vue' /* webpackChunkName: "pages/layout/grid" */).then(m => m.default || m)
+const _01cd6879 = () => import('../pages/components/lists.vue' /* webpackChunkName: "pages/components/lists" */).then(m => m.default || m)
+const _d7a22936 = () => import('../pages/components/buttons.vue' /* webpackChunkName: "pages/components/buttons" */).then(m => m.default || m)
+const _0f1290ce = () => import('../pages/style/content.vue' /* webpackChunkName: "pages/style/content" */).then(m => m.default || m)
+const _207a5750 = () => import('../pages/components/menus.vue' /* webpackChunkName: "pages/components/menus" */).then(m => m.default || m)
+const _9233788a = () => import('../pages/layout/spacing.vue' /* webpackChunkName: "pages/layout/spacing" */).then(m => m.default || m)
 
 
 
@@ -51,57 +51,57 @@ export function createRouter () {
     routes: [
 		{
 			path: "/",
-			component: _26434856,
+			component: _70970305,
 			name: "index"
 		},
 		{
 			path: "/getting-started",
-			component: _49cbe58a,
+			component: _344f786b,
 			name: "getting-started"
 		},
 		{
 			path: "/components/forms",
-			component: _2dac8d7a,
+			component: _92bc97da,
 			name: "components-forms"
 		},
 		{
 			path: "/style/typography",
-			component: _89572bcc,
+			component: _ee67362c,
 			name: "style-typography"
 		},
 		{
 			path: "/style/colors",
-			component: _3436e94a,
+			component: _bcab23aa,
 			name: "style-colors"
 		},
 		{
 			path: "/layout/grid",
-			component: _448dbd4e,
+			component: _3a18407e,
 			name: "layout-grid"
 		},
 		{
 			path: "/components/lists",
-			component: _34556da9,
+			component: _01cd6879,
 			name: "components-lists"
 		},
 		{
 			path: "/components/buttons",
-			component: _44ca6495,
+			component: _d7a22936,
 			name: "components-buttons"
 		},
 		{
 			path: "/style/content",
-			component: _521c199e,
+			component: _0f1290ce,
 			name: "style-content"
 		},
 		{
 			path: "/components/menus",
-			component: _224ad988,
+			component: _207a5750,
 			name: "components-menus"
 		},
 		{
 			path: "/layout/spacing",
-			component: _55e4562a,
+			component: _9233788a,
 			name: "layout-spacing"
 		}
     ],
