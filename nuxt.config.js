@@ -85,10 +85,6 @@ module.exports = {
           },
         },
       });
-
-      // module.rules
-
-      // console.log(JSON.stringify(webpackConfig, null, '  '));
     },
 
     vendor: [

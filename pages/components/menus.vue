@@ -29,7 +29,7 @@
         <h2 class="vc@page__section-header">Absolute position</h2>
 
         <vt@menu offset-y absolute full-width>
-          <vt@card class="portrait" img="/img/portrait/portrait-1.jpg" height="450px" slot="activator"></vt@card>
+          <vt@card class="portrait" img="img/portrait/portrait-1.jpg" height="450px" slot="activator"></vt@card>
           <vt@list>
             <vt@list-tile v-for="item in items" :key="item.title" @click="">
               <vt@list-tile-title>{{ item.title }}</vt@list-tile-title>
@@ -40,7 +40,7 @@
 
       <section id="absolute-position-without-activator" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Absolute position without activator</h2>
-        <vt@card class="portrait" img="/img/portrait/portrait-2.jpg" height="450px" @contextmenu="showMenu1"></vt@card>
+        <vt@card class="portrait" img="img/portrait/portrait-2.jpg" height="450px" @contextmenu="showMenu1"></vt@card>
         <vt@menu offset-y absolute v-model="menu1.show" :position-x="menu1.x" :position-y="menu1.y">
           <vt@list>
             <vt@list-tile v-for="item in items" :key="item.title" @click="">

@@ -52,8 +52,6 @@ function path2relativeTask(task, params = {}) {
           doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
           doc = doc.replace(/(\/?\$\$base\$\$\/?)/g, replaceBase);
         } else {
-          // base:"/$$base$$"
-          // baseURI
           doc = doc.replace(/"\/\$\$base\$\$"/g, `document.baseURI.replace(new RegExp('^' + location.protocol + '//' + location.host), '')`);
           doc = doc.replace(/"\/\$\$base\$\$\//g, `document.baseURI + "`);
         }
