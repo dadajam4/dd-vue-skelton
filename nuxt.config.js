@@ -10,6 +10,7 @@ const webpack = require('webpack');
 module.exports = {
   router: {
     base: '/$$base$$',
+    pathToRegexOptions: {strict: true},
   },
 
   generate: {
@@ -26,7 +27,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'ディスクリプションです' },
     ],
     link: [
-      { rel: 'stylesheet', href: '/css/dd.css' },
+      { rel: 'stylesheet', href: 'css/dd.css' },
     ],
   },
 
