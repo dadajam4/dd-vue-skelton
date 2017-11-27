@@ -12,12 +12,14 @@ function path2relativeTask(task, params = {}) {
       const replaceRe = new RegExp('^' + params.src);
 
       for (let row of list) {
-        const extMatch = row.filename.match(/\.([a-z].*?)$/);
+        const extMatch = row.filename.match(/\.([a-z]+?)$/);
         const ext      = extMatch ? extMatch[1] : null;
         const isHtml   = ext === 'html';
         const isJs     = ext === 'js';
 
-        if (!isHtml && !isJs) continue;
+        if (!isHtml && !isJs) {
+          continue;
+        }
 
         let doc = fs.readFileSync(row.filepath, 'utf-8');
 
