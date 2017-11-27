@@ -45,9 +45,9 @@ function path2relativeTask(task, params = {}) {
           }
         }
 
-        // doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
-        // doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
-        // doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
+        doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
+        doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
+        doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
 
         doc = doc.replace(/(\/?\$\$base\$\$\/?)/g, replaceBase);
 
