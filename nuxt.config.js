@@ -9,7 +9,7 @@ const webpack = require('webpack');
 
 module.exports = {
   router: {
-    base: '/',
+    base: '/$$base$$',
   },
 
   generate: {

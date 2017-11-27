@@ -12,26 +12,26 @@ function path2relativeTask(task, params = {}) {
       const replaceRe = new RegExp('^' + params.src);
 
       for (let row of list) {
-        if (!/\.html$/.test(row.filename)) continue;
+        if (!/\.(html|js)$/.test(row.filename)) continue;
 
         const dirMapStr   = row.dir.replace(replaceRe, '');
         const levelMatchs = dirMapStr.match(/\//g);
         const level       = levelMatchs ? levelMatchs.length : 0;
         const base        = level === 0 ? './' : '../'.repeat(level);
 
-        let html = fs.readFileSync(row.filepath, 'utf-8');
-        const baseTagMatch = html.match(/<base href="(.*?)">/);
-        const htmlTagMatch = html.match(/<html (.*?)>/);
-        const headTagMatch = html.match(/<head (.*?)>/);
+        let doc = fs.readFileSync(row.filepath, 'utf-8');
+        const baseTagMatch = doc.match(/<base href="(.*?)">/);
+        const htmlTagMatch = doc.match(/<html (.*?)>/);
+        const headTagMatch = doc.match(/<head (.*?)>/);
         let replaceBase;
 
         if (baseTagMatch) {
-          html = html.replace(baseTagMatch[0], '');
+          doc = doc.replace(baseTagMatch[0], '');
 
           if (headTagMatch) {
-            html = html.replace(headTagMatch[0], `${headTagMatch[0]}<base href="${base}">`);
-          } else {
-            html = html.replace(htmlTagMatch[0], `${htmlTagMatch[0]}<base href="${base}">`);
+            doc = doc.replace(headTagMatch[0], `${headTagMatch[0]}<base href="${base}">`);
+          } else if (htmlTagMatch) {
+            doc = doc.replace(htmlTagMatch[0], `${htmlTagMatch[0]}<base href="${base}">`);
           }
 
           replaceBase = '';
@@ -39,10 +39,13 @@ function path2relativeTask(task, params = {}) {
           replaceBase = base;
         }
 
-        html = html.replace(/ src="\//g, ` src="${replaceBase}`);
-        html = html.replace(/ href="\//g, ` href="${replaceBase}`);
-        html = html.replace(/url\(\//g, `url(${replaceBase}`);
-        fs.writeFileSync(row.filepath, html);
+        doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
+        doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
+        doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
+
+        doc = doc.replace(/\/?\$\$base\$\$/g, replaceBase);
+
+        fs.writeFileSync(row.filepath, doc);
       }
 
       if (task.notify) {

@@ -22,8 +22,8 @@ const createNext = context => opts => {
   }
   opts.query = stringify(opts.query)
   opts.path = opts.path + (opts.query ? '?' + opts.query : '')
-  if (opts.path.indexOf('http') !== 0 && ('/' !== '/' && opts.path.indexOf('/') !== 0)) {
-    opts.path = urlJoin('/', opts.path)
+  if (opts.path.indexOf('http') !== 0 && ('/$$base$$' !== '/' && opts.path.indexOf('/$$base$$') !== 0)) {
+    opts.path = urlJoin('/$$base$$', opts.path)
   }
   // Avoid loop redirect
   if (opts.path === context.url) {
