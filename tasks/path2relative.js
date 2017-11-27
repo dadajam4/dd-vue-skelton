@@ -19,37 +19,44 @@ function path2relativeTask(task, params = {}) {
 
         if (!isHtml && !isJs) continue;
 
-        let replaceBase = '';
         let doc = fs.readFileSync(row.filepath, 'utf-8');
 
         if (isHtml) {
-          const dirMapStr   = row.dir.replace(replaceRe, '');
-          const levelMatchs = dirMapStr.match(/\//g);
-          const level       = levelMatchs ? levelMatchs.length : 0;
-          const base        = level === 0 ? './' : '../'.repeat(level);
+          let replaceBase = '';
 
-          const baseTagMatch = doc.match(/<base href="(.*?)">/);
-          const htmlTagMatch = doc.match(/<html (.*?)>/);
-          const headTagMatch = doc.match(/<head (.*?)>/);
+          if (isHtml) {
+            const dirMapStr   = row.dir.replace(replaceRe, '');
+            const levelMatchs = dirMapStr.match(/\//g);
+            const level       = levelMatchs ? levelMatchs.length : 0;
+            const base        = level === 0 ? './' : '../'.repeat(level);
 
-          if (baseTagMatch) {
-            doc = doc.replace(baseTagMatch[0], '');
+            const baseTagMatch = doc.match(/<base href="(.*?)">/);
+            const htmlTagMatch = doc.match(/<html (.*?)>/);
+            const headTagMatch = doc.match(/<head (.*?)>/);
 
-            if (headTagMatch) {
-              doc = doc.replace(headTagMatch[0], `${headTagMatch[0]}<base href="${base}">`);
-            } else if (htmlTagMatch) {
-              doc = doc.replace(htmlTagMatch[0], `${htmlTagMatch[0]}<base href="${base}">`);
+            if (baseTagMatch) {
+              doc = doc.replace(baseTagMatch[0], '');
+
+              if (headTagMatch) {
+                doc = doc.replace(headTagMatch[0], `${headTagMatch[0]}<base href="${base}">`);
+              } else if (htmlTagMatch) {
+                doc = doc.replace(htmlTagMatch[0], `${htmlTagMatch[0]}<base href="${base}">`);
+              }
+            } else {
+              replaceBase = base;
             }
-          } else {
-            replaceBase = base;
           }
+
+          doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
+          doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
+          doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
+          doc = doc.replace(/(\/?\$\$base\$\$\/?)/g, replaceBase);
+        } else {
+          // base:"/$$base$$"
+          // baseURI
+          doc = doc.replace(/"\/\$\$base\$\$"/g, `document.baseURI.replace(new RegExp('^' + location.protocol + '//' + location.host), '')`);
+          doc = doc.replace(/"\/\$\$base\$\$\//g, `document.baseURI + "`);
         }
-
-        doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
-        doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
-        doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
-
-        doc = doc.replace(/(\/?\$\$base\$\$\/?)/g, replaceBase);
 
         fs.writeFileSync(row.filepath, doc);
       }
