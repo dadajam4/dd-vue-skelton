@@ -1,0 +1,40 @@
+//
+// Color
+//
+
+@mixin color($key, $important: false) {
+  color: get-color($key) if($important, !important, null);
+}
+
+@mixin background-color($key, $important: false) {
+  background-color: get-color($key) if($important, !important, null);
+}
+
+$suitable-text-color-ammount: 70;
+
+@function get-suitable-text-color(
+  $bg-color,
+  $ammount: $suitable-text-color-ammount,
+  $dark: get-color(text-base),
+  $light: get-color(text-inverted)
+) {
+  @if lightness($bg-color) <= $ammount {
+    @return $light;
+  } @else {
+    @return $dark;
+  }
+}
+
+@mixin suitable-text-color(
+  $bg-color,
+  $ammount: $suitable-text-color-ammount,
+  $dark: get-color(text-base),
+  $light: get-color(text-inverted)
+) {
+  color: get-suitable-text-color(
+    $bg-color: $bg-color,
+    $ammount: $ammount,
+    $dark: $dark,
+    $light: $light
+  );
+}

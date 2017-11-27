@@ -1,0 +1,12 @@
+npm-debug.log
+.DS_Store
+.sass-cache
+node_modules
+.node-version
+*.tmp
+*.sublime-project
+*.sublime-workspace
+
+static/css/**/*
+static/font/**/*
+static/img/**/*

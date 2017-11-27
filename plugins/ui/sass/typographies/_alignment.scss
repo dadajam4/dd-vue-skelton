@@ -1,0 +1,15 @@
+//
+// Alignment
+//
+
+@include mq-each() {
+  $mq-prefix: if($mq-each-target == xs, "", $mq-each-prefix);
+
+  .#{$css-prefix}#{$mq-prefix}text--left   { text-align: left; }
+  .#{$css-prefix}#{$mq-prefix}text--center { text-align: center; }
+  .#{$css-prefix}#{$mq-prefix}text--right  { text-align: right; }
+
+  .#{$css-prefix}#{$mq-prefix}align--top    { vertical-align: top; }
+  .#{$css-prefix}#{$mq-prefix}align--middle { vertical-align: middle; }
+  .#{$css-prefix}#{$mq-prefix}align--bottom { vertical-align: bottom; }
+}

@@ -1,0 +1,221 @@
+//
+// Basic Element
+//
+
+
+
+// //
+// // small
+// //
+// @mixin sel-small {
+//   small, .#{$tpl}small { @content; }
+// }
+
+// @include sel-small {
+//   font-size: 85%;
+// }
+
+
+
+// //
+// // strong
+// //
+// @mixin sel-strong {
+//   strong, .#{$tpl}strong { @content; }
+// }
+
+// @include sel-strong {
+//   font-weight: bold;
+// }
+
+
+
+// //
+// // ac-italic
+// //
+// .#{$tpl}italic {
+//   font-style: italic;
+// }
+
+
+
+// //
+// // ac-em
+// //
+// @mixin sel-em {
+//   em, .#{$tpl}em { @content; }
+// }
+
+// @include sel-em {
+//   font-style: italic;
+// }
+
+
+
+// //
+// // mark
+// //
+// @mixin sel-mark {
+//   mark, .#{$tpl}mark { @content; }
+// }
+
+// @include sel-mark {
+//   padding: .2em;
+//   background-color: $color-layout-mark;
+//   color: $color-typo-base;
+// }
+
+
+
+// //
+// // deleted
+// //
+// @mixin sel-del {
+//   s, strike, del, .#{$tpl}del { @content; }
+// }
+
+// @include sel-del {
+//   text-decoration: line-through;
+// }
+
+
+
+// //
+// // ins
+// //
+// @mixin sel-ins {
+//   ins, .#{$tpl}ins { @content; }
+// }
+
+// @include sel-ins {
+//   text-decoration: underline;
+// }
+
+
+
+// //
+// // underline
+// //
+// @mixin sel-underline {
+//   u, .#{$tpl}u { @content; }
+// }
+
+// @include sel-underline {
+//   text-decoration: underline;
+// }
+
+
+
+// //
+// // code
+// //
+// code {
+//   background: $color-brand-gray-lighter;
+//   padding: 2px 4px;
+//   border-radius: $border-radius-sm;
+// }
+
+// pre {
+//   @include box($padding: $spacing-md, $border-radius: $border-radius-md, $borders: arround);
+//   @include container-colors(neutral);
+//   @include scrollable--x;
+// }
+
+
+
+// //
+// // cite
+// //
+// cite {
+//   font-style: italic;
+// }
+
+
+
+//
+// blockquote
+//
+.#{$css-prefix}blockquote,
+blockquote {
+  @include font-size(lg);
+  margin-bottom: get-space(md);
+  padding: get-space(sm) 0 get-space(sm) get-space(sm);
+  border-left: solid 5px get-color(context-primary);
+  @include font-weight(regular);
+
+  // footer {
+  //   font-size: 80%;
+  //   color: $color-brand-muted;
+  //   @include line-height(md);
+  //   &:before {
+  //     content: '\2014 \00A0';
+  //   }
+  // }
+}
+
+// .#{$tpl}blockquote--reverse {
+//   border-left: 0;
+//   border-right: solid $spacing-xxs $color-brand-gray-light;
+//   text-align: right;
+//   padding: $spacing-xxs $spacing-md;
+//   padding-left: 0;
+
+//   footer {
+//     &:before {
+//       content: "";
+//     }
+
+//     &:after {
+//       content: '\2014 \00A0';
+//     }
+//   }
+// }
+
+
+
+//
+// Paragraphs
+//
+.#{$css-prefix}paragraph,
+p {
+  margin-bottom: get-space(md);
+}
+
+.#{$css-prefix}code,
+code,
+.#{$css-prefix}kbd,
+kbd {
+  display: inline-block;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  font-size: 85%;
+  font-weight: 900;
+
+  &:after,
+  &:before {
+    content: "\00a0";
+    letter-spacing: -1px;
+  }
+}
+
+.#{$css-prefix}code,
+code {
+  @include theme-color(background-light);
+  color: #bd4147;
+  @include elevation(1);
+}
+
+.#{$css-prefix}kbd,
+kbd {
+  @include theme-color(text-darken background-darken);
+}
+
+.#{$css-prefix}text--italic,
+i,
+cite,
+em,
+var,
+address,
+dfn {
+  font-style: italic;
+}

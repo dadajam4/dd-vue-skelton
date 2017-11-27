@@ -1,0 +1,23 @@
+//
+// Form
+//
+
+
+@function get-field($key) {
+  @return map-get($field, $key);
+}
+
+$field: ();
+$field: map-set($field, radius, get-border-radius(field));
+$field: map-set($field, border-width, 1px);
+$field: map-set($field, height, get-button(height-md));
+$field: map-set($field, padding-horizontal, get-space(xs));
+$field: map-set($field, margin-vertical, get-button(margin-vertical));
+$field: map-set($field, margin-horizontal, get-button(margin-horizontal));
+
+@function get-selection-control($key) {
+  @return map-get($selection-control, $key);
+}
+
+$selection-control: ();
+$selection-control: map-set($selection-control, faux-size, 18px);

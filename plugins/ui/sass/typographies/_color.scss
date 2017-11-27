@@ -1,0 +1,9 @@
+//
+// Color
+//
+
+@each $key, $define in $text-colors {
+  .#{$css-prefix}text--#{$key} {
+    color: map-get($define, value);
+  }
+}
