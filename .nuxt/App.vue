@@ -21,7 +21,7 @@ let layouts = {
 let resolvedLayouts = {}
 
 export default {
-  head: {"titleTemplate":"%s - アプリだよ","meta":[{"charset":"utf-8"},{"http-equiv":"X-UA-Compatible","content":"IE=edge"},{"name":"viewport","content":"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.6,user-scalable=yes"},{"name":"format-detection","content":"telephone=no"},{"hid":"description","name":"description","content":"ディスクリプションです"}],"link":[{"rel":"stylesheet","href":"css/dd.css"}],"style":[],"script":[]},
+  head: {"titleTemplate":"%s | dd-skelton","meta":[{"charset":"utf-8"},{"http-equiv":"X-UA-Compatible","content":"IE=edge"},{"name":"viewport","content":"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.6,user-scalable=yes"},{"name":"format-detection","content":"telephone=no"},{"hid":"description","name":"description","content":"ディスクリプションです"}],"link":[{"rel":"stylesheet","href":"/css/dd.css"}],"style":[],"script":[]},
   data: () => ({
     layout: null,
     layoutName: ''

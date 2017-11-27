@@ -10,7 +10,9 @@ function nuxtTask(task, params = {}) {
 
     if (params.command) options.push(params.command);
 
-    const nuxt = spawn('nuxt', options, {shell: true, stdio: 'inherit'});
+    const env = Object.create(process.env);
+    env.NUXT_COMMAND = params.command || 'default';
+    const nuxt = spawn('nuxt', options, {shell: true, stdio: 'inherit', env});
 
     if (params.command) {
       return nuxt.on('close', code => {

@@ -1,16 +1,15 @@
-const config = require('app-root-path').require('/config');
-const path   = require('path');
-const sassSettings     = require(path.join(config.path.config.css, 'sass-settings'));
+const config              = require('app-root-path').require('/config');
+const path                = require('path');
+const sassSettings        = require(path.join(config.path.config.css, 'sass-settings'));
 const babelLoaderSettings = require(path.join(config.path.config.webpack, 'babel-loader-settings'));
-const postcssConfig      = require(path.join(config.path.config.css, 'postcss.config'));
-const webpack = require('webpack');
+const postcssConfig       = require(path.join(config.path.config.css, 'postcss.config'));
+const webpack             = require('webpack');
 
 
 
 module.exports = {
   router: {
-    base: '/$$base$$',
-    pathToRegexOptions: {strict: true},
+    base: process.env.NUXT_COMMAND === 'default' ? '/' : '/$$base$$',
   },
 
   generate: {
@@ -18,7 +17,7 @@ module.exports = {
   },
 
   head: {
-    titleTemplate: '%s - アプリだよ',
+    titleTemplate: '%s | dd-skelton',
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
@@ -27,7 +26,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'ディスクリプションです' },
     ],
     link: [
-      { rel: 'stylesheet', href: 'css/dd.css' },
+      { rel: 'stylesheet', href: (process.env.NUXT_COMMAND === 'default' ? '/' : '') + 'css/dd.css' },
     ],
   },
 
@@ -96,5 +95,5 @@ module.exports = {
   plugins: [
     // '~/plugins/polyfill',
     '~/plugins/ui',
-  ]
+  ],
 }

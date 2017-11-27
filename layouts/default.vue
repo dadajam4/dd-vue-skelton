@@ -1,47 +1,51 @@
 <style lang="scss" scoped>
 
-.my-router-view {
-/*
-  position: absolute;
-*/
-  transition: all .5s cubic-bezier(.55,0,.1,1);
+// .my-router-view {
+// /*
+//   position: absolute;
+// */
+//   transition: all .5s cubic-bezier(.55,0,.1,1);
+// }
+
+// .slide {
+//   $my-ammount: 30px;
+
+//   &-enter {
+//     position: absolute;
+//     opacity: 0;
+//     transform: translate(0, -$my-ammount);
+//   }
+
+//   &-leave-active {
+//     position: absolute;
+//     opacity: 0;
+//     transform: translate(0, $my-ammount);
+//   }
+// }
+
+// .fade {
+//   $my-ammount: 30px;
+
+//   &-enter-active, &-leave-active {
+//     // transition: opacity 1s;
+//   }
+
+//   &-enter, &-leave-to {
+//     position: absolute;
+//     opacity: 0;
+//   }
+// }
+
+.nuxt-container {
+  position: relative;
 }
-
-.slide {
-  $my-ammount: 30px;
-
-  &-enter {
-    position: absolute;
-    opacity: 0;
-    transform: translate(0, -$my-ammount);
-  }
-
-  &-leave-active {
-    position: absolute;
-    opacity: 0;
-    transform: translate(0, $my-ammount);
-  }
-}
-
-.fade {
-  $my-ammount: 30px;
-
-  &-enter-active, &-leave-active {
-    // transition: opacity 1s;
-  }
-
-  &-enter, &-leave-to {
-    position: absolute;
-    opacity: 0;
-  }
-}
-
 </style>
 
 <template>
   <vt@app>
     <app-header @click-toggle-drawer="requestToggleDrawer" />
 
+    <div class="nuxt-container"></div>
     <nuxt/>
 
     <app-drawer v-model="drawer.left" ref="drawerLeft" />

@@ -3,10 +3,12 @@ npm-debug.log
 .sass-cache
 node_modules
 .node-version
+.nuxt
 *.tmp
 *.sublime-project
 *.sublime-workspace
 
+plugins/ui/dist/**/*
 static/css/**/*
 static/font/**/*
 static/img/**/*
