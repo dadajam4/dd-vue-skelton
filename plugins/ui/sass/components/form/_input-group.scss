@@ -20,6 +20,7 @@
     margin-left: .5rem;
     user-select: none;
     cursor: pointer;
+    @include btn-action-reset;
     // white-space: nowrap;
   }
 
@@ -115,6 +116,7 @@
 
   &--tab-focused:not(.#{$css-prefix}radio-group) {
     #{$my}__selection-faux {
+      @include btn-action-reset;
       box-shadow: 0px 0px 5px rgba(get-color(context-primary), 1);
     }
   }

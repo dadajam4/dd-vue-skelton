@@ -5,7 +5,7 @@
   <div>
     <main class="vc@page__container">
       <div class="vc@page__section vc@page__container">
-        <h1>DD Skelton</h1>
+        <h1>DD Vue Skelton</h1>
         <p>Hear is sample text. hear is sample text. </p>
         <div>
           <vt@btn primary to="getting-started">Getting Started</vt@btn>

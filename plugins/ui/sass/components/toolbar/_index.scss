@@ -25,7 +25,7 @@
     height: $toolbar-row-height;
 
     & > * {
-      &:first-child {
+      &:first-child:not(.#{$css-prefix}toolbar__title) {
         margin-left: $page-container-padding / 2;
       }
 

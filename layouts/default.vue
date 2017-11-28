@@ -36,6 +36,9 @@
 //   }
 // }
 
+.my-nuxt {
+  position: relative;
+}
 </style>
 
 <template>
@@ -44,7 +47,7 @@
     header-fixed
   >
     <app-header :title="title" @click-toggle-drawer="requestToggleDrawer" />
-    <nuxt ref="nuxt" />
+    <nuxt class="my-nuxt" ref="nuxt" />
     <app-drawer v-model="drawer" ref="drawer" />
   </vt@app>
 </template>
