@@ -3,7 +3,6 @@
 
 <template>
   <vt@app-header>
-    <vt@toolbar-side-icon @click.stop="onClickToggleDrawer" />
     <vt@toolbar-title>{{title}}</vt@toolbar-title>
     <vt@spacer />
 <!--
@@ -16,6 +15,7 @@
       <a class="vc@toolbar__trigger" href="#">ショップ</a>
     </nav>
 -->
+    <vt@toolbar-side-icon @click.stop="onClickToggleDrawer" />
   </vt@app-header>
 
 </template>

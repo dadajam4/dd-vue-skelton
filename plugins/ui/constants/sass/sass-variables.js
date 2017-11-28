@@ -1,12 +1,4 @@
-// const config         = require('app-root-path').require('/config');
-// const path           = require('path');
-// const publicSettings = require(path.join(config.path.config.dist, 'public-settings'));
-const sassVariables  = {};
-
-
-
-// // Css Prefix
-// sassVariables['css-prefix'] = publicSettings.css.prefix;
+const sassVariables = {};
 
 
 

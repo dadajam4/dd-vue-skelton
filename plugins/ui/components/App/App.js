@@ -59,7 +59,7 @@ export default {
     },
 
     rightDrawerActive() {
-      this.$emit('change-drawer-right-active', this.leftDrawerActive);
+      this.$emit('change-drawer-right-active', this.rightDrawerActive);
     },
 
     leftDrawerStatic() {

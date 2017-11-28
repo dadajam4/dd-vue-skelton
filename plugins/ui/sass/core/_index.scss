@@ -2,6 +2,8 @@
 // Core Styles
 //
 
+$css-prefix: "dd-" !default;
+
 // variables & functions & mixins
 @import "../.tmp/sass-variables";
 @import "./functions/index";

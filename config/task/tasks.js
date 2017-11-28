@@ -1,6 +1,6 @@
-const config         = require('app-root-path').require('/config');
-const path           = require('path');
-const publicSettings = require(path.join(config.path.config.dist, 'public-settings'));
+const config       = require('app-root-path').require('/config');
+const path         = require('path');
+const sassSettings = require(path.join(config.path.config.css, 'sass-settings'));
 
 
 
@@ -34,11 +34,11 @@ module.exports = {
         description: '[ui] SVGアイコンのビルド',
         src: path.join(config.path.plugins.ui, 'assets', 'svg-icon'),
         watch: path.join(config.path.plugins.ui, 'assets', 'svg-icon'),
-        dest: path.join(config.path.plugins.ui, 'dist', 'font', `${publicSettings.css.prefix}icon`),
+        dest: path.join(config.path.plugins.ui, 'dist', 'font', `${sassSettings.prefix}icon`),
         sassDest: path.join(config.path.plugins.ui, 'sass', '.tmp'),
-        fontName: `${publicSettings.css.prefix}icon`,
+        fontName: `${sassSettings.prefix}icon`,
         template: path.join(config.path.plugins.ui, 'config', 'svg', 'svg-icon-template.scss'),
-        fontDir: path.join('..', config.path.public.assets.$names.font, `${publicSettings.css.prefix}icon`),
+        fontDir: path.join('..', config.path.public.assets.$names.font, `${sassSettings.prefix}icon`),
       },
       sassValues: {
         type: 'sassValues',

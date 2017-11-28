@@ -54,7 +54,7 @@
     }
 
     &.#{$css-prefix}app-drawer--right .#{$css-prefix}app-drawer__base {
-      left: -$navigation-drawer-width;
+      right: -$navigation-drawer-width;
     }
   }
 

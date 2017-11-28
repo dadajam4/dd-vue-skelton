@@ -1,4 +1,25 @@
 <style lang="scss" scoped>
+@import "../plugins/ui/sass/core/index";
+.my-logo {
+  border-bottom: solid 1px;
+  @include theme-color(form-divider);
+
+  & > a {
+    color: inherit;
+    font-weight: bold;
+    display: flex;
+    padding-left: 20px;
+    height: $toolbar-row-height;
+    align-items: center;
+    transition: get-transition(primary);
+
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, .1);
+    }
+  }
+}
+
 .my-parent-name,
 .my-child-name {
   &:first-letter {
@@ -8,9 +29,9 @@
 </style>
 
 <template>
-  <vt@app-drawer left static="desktop" v-model="isActive" ref="drawer">
-    <div>
-      <router-link :to="{name: 'index'}">トップ</router-link>
+  <vt@app-drawer right static="desktop" v-model="isActive" ref="drawer">
+    <div class="my-logo">
+      <router-link :to="{name: 'index'}">DD Vue Skelton</router-link>
     </div>
     <vt@list>
       <template v-for="parent, parentIndex in links">
