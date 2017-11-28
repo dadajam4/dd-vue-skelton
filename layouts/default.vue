@@ -36,20 +36,16 @@
 //   }
 // }
 
-.nuxt-container {
-  position: relative;
-}
 </style>
 
 <template>
-  <vt@app>
-    <app-header @click-toggle-drawer="requestToggleDrawer" />
-
-    <div class="nuxt-container"></div>
-    <nuxt/>
-
-    <app-drawer v-model="drawer.left" ref="drawerLeft" />
-
+  <vt@app
+    header
+    header-fixed
+  >
+    <app-header :title="title" @click-toggle-drawer="requestToggleDrawer" />
+    <nuxt ref="nuxt" />
+    <app-drawer v-model="drawer" ref="drawer" />
   </vt@app>
 </template>
 
@@ -67,12 +63,11 @@ export default {
 
   data() {
     return {
-      drawer: {
-        left: false,
-      },
+      drawer: false,
       theme: null,
       isTop: false,
       routeReady: false,
+      title: this.getCurrentTitle(),
     }
   },
 
@@ -81,22 +76,43 @@ export default {
   },
 
 
-  // watch: {
-  //   '$route'(to, from) {
-  //     this.isTop = to.name === 'index';
-  //     this.routerTransitionName = to.name === 'index' || from.name === 'index' ? 'fade' : 'slide';
-  //     this.routeReady = true;
-  //   },
-  // },
-
-  methods: {
-    requestToggleDrawer() {
-      this.drawer.left = !this.drawer.left;
-      this.$refs.drawerLeft.lastRequested = this.drawer.left;
+  watch: {
+    '$route'(to, from) {
+      this.updateTitle();
+      // this.isTop = to.name === 'index';
+      // this.routerTransitionName = to.name === 'index' || from.name === 'index' ? 'fade' : 'slide';
+      // this.routeReady = true;
     },
   },
 
-  created() {
+  methods: {
+    requestToggleDrawer() {
+      this.drawer = !this.drawer;
+      this.$refs.drawer.lastRequested = this.drawer;
+    },
+
+    getCurrentHead() {
+      const currentComponent = this.$route.matched[0] && this.$route.matched[0].components.default;
+      if (currentComponent) {
+        let head;
+
+        if (currentComponent.head) {
+          head = currentComponent.head;
+        } else if (currentComponent.options && currentComponent.options.head) {
+          head = currentComponent.options.head;
+        }
+
+        if (head) return typeof head === 'function' ? head() : head;
+      }
+      return {title: null};
+    },
+
+    getCurrentTitle() { return this.getCurrentHead().title },
+
+    updateTitle() {
+      const currentHead = this.getCurrentHead();
+      this.title = this.getCurrentTitle();
+    },
   },
 }
 </script>

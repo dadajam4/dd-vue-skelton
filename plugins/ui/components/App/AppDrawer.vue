@@ -1,11 +1,11 @@
 <template>
   <nav :class="classes">
-    <vt@overlay :class="`${this.$options.name}__overlay`" v-model="isActive" />
+    <vt@overlay class="vc@app-drawer__overlay" v-model="isActive" />
     <div
-      :class="`${this.$options.name}__base`"
+      class="vc@app-drawer__base"
       v-click-outside="closeConditional"
     >
-      <div :class="`${this.$options.name}__content`">
+      <div class="vc@app-drawer__content">
         <slot />
       </div>
     </div>
@@ -55,12 +55,12 @@ export default {
   computed: {
     classes() {
       return {
-        [this.$options.name]: true,
-        [`${this.$options.name}--left`]: this.left,
-        [`${this.$options.name}--right`]: this.right,
-        [`${this.$options.name}--open`]: this.isActive,
-        [`${this.$options.name}--close`]: !this.isActive,
-        [`${this.$options.name}--static`]: this.isStatic,
+        'vc@app-drawer': true,
+        'vc@app-drawer--left': this.left,
+        'vc@app-drawer--right': this.right,
+        'vc@app-drawer--open': this.isActive,
+        'vc@app-drawer--close': !this.isActive,
+        'vc@app-drawer--static': this.isStatic,
       }
     },
     vec() { return this.left ? 'left' : 'right' },

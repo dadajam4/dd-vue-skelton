@@ -3,7 +3,7 @@ const APP_COMPONENT_NAME = 'vt@app';
 
 
 const appValues = {
-  headerFixed      : false,
+  // headerFixed      : false,
   leftDrawerActive : false,
   leftDrawerStatic : false,
   rightDrawerActive: false,
@@ -37,11 +37,11 @@ export default {
     },
 
     _setupAppListeners() {
-      this._onChangeHeaderFixed = fixed => {
-        this.headerFixed = fixed;
-      }
+      // this._onChangeHeaderFixed = fixed => {
+      //   this.headerFixed = fixed;
+      // }
 
-      this.$_app.$on('change-header-fixed', this._onChangeHeaderFixed);
+      // this.$_app.$on('change-header-fixed', this._onChangeHeaderFixed);
 
       ['left', 'right'].forEach(position => {
         const activeFuncName = `_onChange${this.$ui.h.firstUpper(position)}DrawerActive`,
@@ -61,7 +61,7 @@ export default {
     },
 
     _removeAppListeners() {
-      if (this._onChangeHeaderFixed) this.$_app.$off('change-header-fixed', this._onChangeHeaderFixed);
+      // if (this._onChangeHeaderFixed) this.$_app.$off('change-header-fixed', this._onChangeHeaderFixed);
 
       ['left', 'right'].forEach(position => {
         const activeFuncName = `_onChange${this.$ui.h.firstUpper(position)}DrawerActive`,

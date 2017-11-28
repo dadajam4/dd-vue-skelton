@@ -77,6 +77,7 @@ module.exports = {
         filename: 'dd',
         watch: [
           path.join(config.path.assets.root, 'css'),
+          path.join(config.path.plugins.ui, 'sass'),
         ],
       },
       img: {

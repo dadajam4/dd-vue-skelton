@@ -3,7 +3,7 @@
 //
 
 .#{$css-prefix}app-header {
-  &--fixed {
+  .#{$css-prefix}app--header-fixed & {
     position: fixed;
     @include z-index(app-header);
     top: 0;
@@ -12,11 +12,11 @@
     @include shadow(floating);
   }
 
-  &--drawer-left-active {
+  .#{$css-prefix}app--drawer-left-active & {
     padding-left: $navigation-drawer-width;
   }
 
-  &--drawer-right-active {
+  .#{$css-prefix}app--drawer-right-active & {
     padding-right: $navigation-drawer-width;
   }
 }

@@ -2,9 +2,9 @@
 </style>
 
 <template>
-  <vt@app-header fixed ref="header">
+  <vt@app-header>
     <vt@toolbar-side-icon @click.stop="onClickToggleDrawer" />
-    <vt@toolbar-title>dd-skelton</vt@toolbar-title>
+    <vt@toolbar-title>{{title}}</vt@toolbar-title>
     <vt@spacer />
 <!--
     <nav>
@@ -26,6 +26,7 @@
 
 export default {
   props: {
+    title: String,
   },
 
   data() {
