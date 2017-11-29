@@ -6,11 +6,38 @@
   @return map-get($font-family, $key);
 }
 
-$font-family-sans-serif: Linotte, YuGothic, 'Yu Gothic', 游ゴシック体, 游ゴシック, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', Roboto, メイリオ, Meiryo, 'ＭＳ Ｐゴシック', Osaka, 'MS PGothic', Arial, Helvetica, Verdana, sans-serif;
-$font-family-serif: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "ＭＳ 明朝", serif;
+// 游系はIEでline-height効かないので使わない
+// YuGothic,
+// 'Yu Gothic',
+// 游ゴシック体,
+// 游ゴシック,
+
+$font-family-sans-serif:
+  Linotte,
+  'ヒラギノ角ゴ Pro W3',
+  'Hiragino Kaku Gothic Pro',
+  Roboto,
+  メイリオ,
+  Meiryo,
+  'ＭＳ Ｐゴシック',
+  Osaka,
+  'MS PGothic',
+  Arial,
+  Helvetica,
+  Verdana,
+  sans-serif;
+
+// 游系はIEでline-height効かないので使わない
+// "游明朝",
+// YuMincho,
+$font-family-serif:
+  "Hiragino Mincho ProN",
+  "Hiragino Mincho Pro",
+  "ＭＳ 明朝",
+  serif;
 
 $font-family: ();
 $font-family: map-set($font-family, sans-serif, $font-family-sans-serif);
 $font-family: map-set($font-family, serif     , $font-family-serif);
 $font-family: map-set($font-family, base      , get-font-family(sans-serif));
-$font-family: map-set($font-family, accent    , get-font-family(accent));
+$font-family: map-set($font-family, accent    , get-font-family(serif));

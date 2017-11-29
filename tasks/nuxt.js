@@ -12,6 +12,11 @@ function nuxtTask(task, params = {}) {
 
     const env = Object.create(process.env);
     env.NUXT_COMMAND = params.command || 'default';
+
+    if (env.NUXT_COMMAND === 'default') {
+      options.push('-H 0.0.0.0');
+    }
+
     const nuxt = spawn('nuxt', options, {shell: true, stdio: 'inherit', env});
 
     if (params.command) {

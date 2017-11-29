@@ -54,8 +54,9 @@ function path2relativeTask(task, params = {}) {
           doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
           doc = doc.replace(/(\/?\$\$base\$\$\/?)/g, replaceBase);
         } else {
-          doc = doc.replace(/"\/\$\$base\$\$"/g, `document.baseURI.replace(new RegExp('^' + location.protocol + '//' + location.host), '')`);
-          doc = doc.replace(/"\/\$\$base\$\$\//g, `document.baseURI + "`);
+          const baseURIGetter = `(document.baseURI || document.getElementsByTagName('base')[0].href)`;
+          doc = doc.replace(/"\/\$\$base\$\$"/g, `${baseURIGetter}.replace(new RegExp('^' + location.protocol + '//' + location.host), '')`);
+          doc = doc.replace(/"\/\$\$base\$\$\//g, `${baseURIGetter} + "`);
         }
 
         fs.writeFileSync(row.filepath, doc);

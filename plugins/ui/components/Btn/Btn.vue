@@ -88,11 +88,13 @@ export default {
     },
 
     genContent() {
-      return this.$createElement(
-        'div',
-        { 'class': 'vc@btn__content' },
-        [this.$slots.default]
-      )
+      return this.$createElement('span', {
+        'class': 'vc@btn__content-wrapper',
+      }, [
+        this.$createElement('span', {
+          'class': 'vc@btn__content',
+        }, [this.$slots.default]),
+      ]);
     },
   },
 
