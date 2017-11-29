@@ -46,22 +46,22 @@
     header
     header-fixed
   >
-    <app-header :title="title" @click-toggle-drawer="requestToggleDrawer" v-if="hasNavigation" />
+    <docs-header :title="title" @click-toggle-drawer="requestToggleDrawer" v-if="hasNavigation" />
     <nuxt class="my-nuxt" ref="nuxt" />
-    <app-drawer v-model="drawer" ref="drawer" v-if="hasNavigation" />
+    <docs-drawer v-model="drawer" ref="drawer" v-if="hasNavigation" />
   </vt@app>
 </template>
 
 <script>
-import Header from '../components/Header';
-import Drawer from '../components/Drawer';
+import Header from '../components/docs/Header';
+import Drawer from '../components/docs/Drawer';
 
 
 
 export default {
   components: {
-    'app-header': Header,
-    'app-drawer': Drawer,
+    'docs-header': Header,
+    'docs-drawer': Drawer,
   },
 
   data() {

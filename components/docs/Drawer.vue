@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-@import "../plugins/ui/sass/core/index";
+@import "../../plugins/ui/sass/core/index";
 .my-logo {
   border-bottom: solid 1px;
   @include theme-color(form-divider);
