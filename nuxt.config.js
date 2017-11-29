@@ -63,6 +63,14 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'ディスクリプションです' },
     ],
     link: [
+      { rel: 'icon', type: 'image/vnd.microsoft.icon', href: '/favicon.ico' },
+      { rel: 'shortcut icon', type: 'image/vnd.microsoft.icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', sizes: '152x152', href: '/apple-touch-icon.png' },
+
+      // { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'favicon-32x32.png' },
+      // { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'favicon-16x16.png' },
+
+
       { rel: 'stylesheet', href: (process.env.NUXT_COMMAND === 'default' ? '/' : '') + 'css/dd.css' },
     ],
   },

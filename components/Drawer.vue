@@ -31,7 +31,10 @@
 <template>
   <vt@app-drawer right static="desktop" v-model="isActive" ref="drawer">
     <div class="my-logo">
-      <router-link :to="{name: 'index'}">DD Vue Skelton</router-link>
+      <router-link :to="{name: 'index'}">
+        <img class="vc@m-r--xs" src="img/logo/dd.svg" alt="" width="24">
+        DD Vue Skelton
+      </router-link>
     </div>
     <vt@list>
       <template v-for="parent, parentIndex in links">

@@ -46,9 +46,9 @@
     header
     header-fixed
   >
-    <app-header :title="title" @click-toggle-drawer="requestToggleDrawer" />
+    <app-header :title="title" @click-toggle-drawer="requestToggleDrawer" v-if="hasNavigation" />
     <nuxt class="my-nuxt" ref="nuxt" />
-    <app-drawer v-model="drawer" ref="drawer" />
+    <app-drawer v-model="drawer" ref="drawer" v-if="hasNavigation" />
   </vt@app>
 </template>
 
@@ -65,12 +65,14 @@ export default {
   },
 
   data() {
+    const currentHead = this.getCurrentHead();
     return {
       drawer: false,
       theme: null,
       isTop: false,
       routeReady: false,
-      title: this.getCurrentTitle(),
+      title: currentHead.title,
+      hasNavigation: currentHead.hasNavigation === undefined ? true : currentHead.hasNavigation,
     }
   },
 
@@ -81,7 +83,7 @@ export default {
 
   watch: {
     '$route'(to, from) {
-      this.updateTitle();
+      this.updateHeadInfo();
       // this.isTop = to.name === 'index';
       // this.routerTransitionName = to.name === 'index' || from.name === 'index' ? 'fade' : 'slide';
       // this.routeReady = true;
@@ -94,8 +96,12 @@ export default {
       this.$refs.drawer.lastRequested = this.drawer;
     },
 
+    getCurrentComponent() {
+      return this.$route.matched[0] && this.$route.matched[0].components.default || null;
+    },
+
     getCurrentHead() {
-      const currentComponent = this.$route.matched[0] && this.$route.matched[0].components.default;
+      const currentComponent = this.getCurrentComponent();
       if (currentComponent) {
         let head;
 
@@ -110,11 +116,10 @@ export default {
       return {title: null};
     },
 
-    getCurrentTitle() { return this.getCurrentHead().title },
-
-    updateTitle() {
+    updateHeadInfo() {
       const currentHead = this.getCurrentHead();
-      this.title = this.getCurrentTitle();
+      this.title = currentHead.title;
+      this.hasNavigation = currentHead.hasNavigation === undefined ? true : currentHead.hasNavigation;
     },
   },
 }
