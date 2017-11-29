@@ -1,13 +1,13 @@
 module.exports = {
 
-  // ui
-  ui: [
-    'ui.clean',
+  // core
+  core: [
+    'core.clean',
     [
-      'ui.svgIcon',
-      'ui.sassValues',
+      'core.svgIcon',
+      'core.sassValues',
     ],
-    'ui.sync',
+    // 'core.sync',
   ],
 
   // static
@@ -18,13 +18,13 @@ module.exports = {
   ],
 
   develop: [
-    '@ui',
+    '@core',
     '@static',
     'global.nuxt',
   ],
 
   generate: [
-    '@ui',
+    '@core',
     '@static',
     {name: 'global.nuxt', options: {command: 'generate'}},
     'global.nuxtDistPathResolve',

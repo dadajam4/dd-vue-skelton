@@ -71,7 +71,7 @@ module.exports = {
       // { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'favicon-16x16.png' },
 
 
-      { rel: 'stylesheet', href: (process.env.NUXT_COMMAND === 'default' ? '/' : '') + 'css/dd.css' },
+      { rel: 'stylesheet', href: (process.env.NUXT_COMMAND === 'default' ? '/' : '') + 'css/docs.css' },
     ],
   },
 
@@ -133,12 +133,11 @@ module.exports = {
 
     vendor: [
       'babel-polyfill',
-      '~/plugins/ui',
+      '~/plugins/core',
     ],
   },
 
   plugins: [
-    // '~/plugins/polyfill',
-    '~/plugins/ui',
+    '~/plugins/core',
   ],
 }

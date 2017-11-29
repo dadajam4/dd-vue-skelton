@@ -1,5 +1,5 @@
-import * as helpers from '../../helpers';
-import * as util from '../../util';
+import * as helpers from '../../../helpers';
+import * as util from '../../../util';
 import delay from './delay';
 import nextTickSync from './nextTickSync';
 import nextAnimationFreame from './nextAnimationFreame';

@@ -42,12 +42,14 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: 0;
+    flex-shrink: 10;
   }
 
   @at-root .#{$css-prefix}input-group--right-btn .#{$css-prefix}input-group__input {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: 0;
+    flex-shrink: 10;
   }
 
   @at-root .#{$css-prefix}input-group--focused .#{$css-prefix}input-group__input {

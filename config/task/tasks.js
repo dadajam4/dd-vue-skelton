@@ -20,40 +20,43 @@ module.exports = {
     },
   },
 
-  // ui
-  ui: {
-    name: 'ui',
+  // core
+  core: {
+    name: 'core',
     tasks: {
       clean: {
         type: 'clean',
-        description: '[ui] ファイルの削除',
-        targets: path.join(config.path.plugins.ui, 'dist', '**', '*'),
+        description: '[core] ファイルの削除',
+        targets: [
+          path.join(config.path.static.root, 'font', `${sassSettings.prefix}icon`),
+          path.join(config.path.assets.root, 'css', '.tmp'),
+        ],
       },
       svgIcon: {
         type: 'svgIcon',
-        description: '[ui] SVGアイコンのビルド',
-        src: path.join(config.path.plugins.ui, 'assets', 'svg-icon'),
-        watch: path.join(config.path.plugins.ui, 'assets', 'svg-icon'),
-        dest: path.join(config.path.plugins.ui, 'dist', 'font', `${sassSettings.prefix}icon`),
-        sassDest: path.join(config.path.plugins.ui, 'sass', '.tmp'),
+        description: '[core] SVGアイコンのビルド',
+        src: path.join(config.path.assets.root, 'svg-icon'),
+        watch: path.join(config.path.assets.root, 'svg-icon'),
+        dest: path.join(config.path.static.root, 'font', `${sassSettings.prefix}icon`),
+        sassDest: path.join(config.path.assets.root, 'css', '.tmp'),
         fontName: `${sassSettings.prefix}icon`,
-        template: path.join(config.path.plugins.ui, 'config', 'svg', 'svg-icon-template.scss'),
-        fontDir: path.join('..', config.path.public.assets.$names.font, `${sassSettings.prefix}icon`),
+        template: path.join(config.path.config.root, 'svg', 'svg-icon-template.scss'),
+        fontDir: path.join('../font', `${sassSettings.prefix}icon`),
       },
       sassValues: {
         type: 'sassValues',
-        description: '[ui] sass変数のビルド',
-        src: path.join(config.path.plugins.ui, 'constants', 'sass', 'sass-variables.js'),
-        dest: path.join(config.path.plugins.ui, 'sass', '.tmp'),
-        watch: path.join(config.path.plugins.ui, 'constants', 'sass'),
+        description: '[core] sass変数のビルド',
+        src: path.join(config.path.root, 'constants', 'sass', 'sass-variables.js'),
+        dest: path.join(config.path.assets.root, 'css', '.tmp'),
+        watch: path.join(config.path.root, 'constants', 'sass'),
       },
-      sync: {
-        type: 'sync',
-        description: '[ui] ファイルの同期',
-        src: path.join(config.path.plugins.ui, 'dist', 'font'),
-        dest: path.join(config.path.static.root, 'font'),
-        watch: path.join(config.path.plugins.ui, 'dist', 'font'),
-      },
+      // sync: {
+      //   type: 'sync',
+      //   description: '[core] ファイルの同期',
+      //   src: path.join(config.path.plugins.core, 'dist', 'font'),
+      //   dest: path.join(config.path.static.root, 'font'),
+      //   watch: path.join(config.path.plugins.core, 'dist', 'font'),
+      // },
     },
   },
 
@@ -74,10 +77,10 @@ module.exports = {
         description: '[static] sassのビルド',
         src: path.join(config.path.assets.root, 'css'),
         dest: path.join(config.path.static.root, 'css'),
-        filename: 'dd',
+        filename: 'docs',
         watch: [
           path.join(config.path.assets.root, 'css'),
-          path.join(config.path.plugins.ui, 'sass'),
+          path.join(config.path.plugins.core, 'sass'),
         ],
       },
       img: {

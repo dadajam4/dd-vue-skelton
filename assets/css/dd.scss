@@ -1,43 +1,18 @@
-@import "../../plugins/ui/sass/dd";
-
-// .page {
-//   $my-ammount: 30px;
-
-//   &-enter {
-//     position: absolute;
-//     opacity: 0;
-//     transform: translate(0, -$my-ammount);
-//     // transition: all .5s cubic-bezier(.55,0,.1,1);
-
-//     &-active {
-
-//     }
-//   }
-
-//   &-leave-active {
-//     position: absolute;
-//     opacity: 0;
-//     transform: translate(0, $my-ammount);
-//     transition: all .5s cubic-bezier(.55,0,.1,1);
-//   }
-// }
+@charset "utf-8";
 
 
-// .page-enter-active, .page-leave-to {
-//   transition: opacity .3s;
-//   position: absolute;
-//   width: 100%;
-// }
-// .page-enter, .page-leave-active {
-//   // transition: opacity .3s;
-//   opacity: 0;
-// }
 
-.page-enter-active, .page-leave-active {
-  transition: opacity .5s;
-  position: absolute;
-  width: 100%;
-}
-.page-enter, .page-leave-active {
-  opacity: 0
-}
+// Ready Styles
+@import "./.tmp/dd-icon";
+// @import "dd-sprite";
+
+// Core
+@import "./core/index";
+
+// Basis
+@import "./reset";
+
+@import "./utilities/index";
+@import "./typographies/index";
+@import "./layouts/index";
+@import "./components/index";

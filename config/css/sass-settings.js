@@ -6,7 +6,7 @@ const path   = require('path');
 const sassSettings = {
   prefix: 'dd-',
   includePaths: [
-    path.join(config.path.plugins.ui, 'sass'),
+    path.join(config.path.assets.root, 'css'),
   ],
 };
 

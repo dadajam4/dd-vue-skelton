@@ -1,12 +1,14 @@
-import components from '../components';
-import directives from '../directives';
-import Prototype  from './prototype';
-import Validator  from './validator';
+import '../polyfill';
+import Vue         from 'vue';
+import components  from '../../components';
+import directives  from '../../directives';
+import Prototype   from './prototype';
+import Validator   from './validator';
 import VueScrollTo from 'vue-scrollto';
 
 
 
-export default function Plugin(Vue, opt = {}) {
+function plugin(Vue, opt = {}) {
 
   // plugins
   Vue.use(Prototype, opt);
@@ -25,3 +27,7 @@ export default function Plugin(Vue, opt = {}) {
     Vue.component(component.name, component);
   });
 }
+
+
+
+Vue.use(plugin);

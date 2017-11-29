@@ -29,7 +29,7 @@ const settings = {
 
   plugins: {
     root: 'plugins',
-    ui: 'ui',
+    core: 'core',
   },
 
   src: {
