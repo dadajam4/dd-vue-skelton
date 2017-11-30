@@ -3,6 +3,7 @@
 //
 
 .#{$css-prefix}page {
+  display: block;
   padding-top: 3rem;
   padding-bottom: 6rem;
 
@@ -14,6 +15,7 @@
       padding: 3rem;
       display: flex;
       align-items: center;
+      margin: 0;
 
       &,
       h1,
@@ -31,6 +33,7 @@
 
   &__introduction {
     @include theme-color(text-secondary);
+    margin: 0;
   }
 
   &__section {
@@ -42,6 +45,9 @@
       @include theme-color(text-secondary);
       margin-bottom: 1rem;
 
+      &:first-child {
+        margin-top: 0;
+      }
       // &:first-letter {
       //   text-transform: uppercase;
       // }

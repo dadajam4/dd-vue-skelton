@@ -23,13 +23,14 @@ $color: map-set($color, bg-active-inverted, #000);
 // context colors
 $color: map-set($color, context-primary, #42b983);
 $color: map-set($color, context-secondary, #2c3e50);
-$color: map-set($color, context-success, #34495e);
+$color: map-set($color, context-success, #cddc39);
 $color: map-set($color, context-info, #2973b7);
 $color: map-set($color, context-warning, #e96900);
 $color: map-set($color, context-danger, #f66);
 
 // text colors
-$color: map-set($color, text-base, #34495e);
+// $color: map-set($color, text-base, #34495e);
+$color: map-set($color, text-base, rgba(0, 0, 0, .87));
 $color: map-set($color, text-darken, #fff);
 $color: map-set($color, text-muted, #7f8c8d);
 $color: map-set($color, text-link, get-color(context-primary));

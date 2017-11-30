@@ -178,6 +178,7 @@ blockquote {
 //
 .#{$css-prefix}paragraph,
 p {
+  margin-top: get-space(md);
   margin-bottom: get-space(md);
 }
 
@@ -213,7 +214,7 @@ kbd {
 .#{$css-prefix}text--italic,
 i,
 cite,
-em,
+// em,
 var,
 address,
 dfn {

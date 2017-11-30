@@ -47,6 +47,8 @@
   }
 
   &--selection-controls {
+    margin-top: get-space(xxs);
+    margin-bottom: get-space(xxs);
 
     #{$my}__input {
       &-wrapper {

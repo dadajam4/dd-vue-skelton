@@ -19,6 +19,6 @@ export default {
 
     const defaultSlot = slots().default;
 
-    return h(Btn, d, defaultSlot || [h(Icon, 'bars')]);
+    return h('vt@btn', d, defaultSlot || [h('vt@icon', 'bars')]);
   }
 }
