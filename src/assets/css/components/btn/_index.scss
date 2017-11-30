@@ -10,7 +10,7 @@
     @include font-size(get-button(font-size- + $size));
     $my-height: get-button(height- + $size);
     height: $my-height;
-    line-height: $my-height - $my-border-width * 2;
+    line-height: $my-height - $my-border-width;
   }
 
   @mixin my-icon-size($size) {
@@ -144,11 +144,11 @@
     vertical-align: middle;
 
     &--left {
-      margin-right: get-button(padding-horizontal);
+      margin-right: get-button(icon-margin);
     }
 
     &--right {
-      margin-left: get-button(padding-horizontal);
+      margin-left: get-button(icon-margin);
     }
   }
 
