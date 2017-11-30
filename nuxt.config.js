@@ -8,6 +8,8 @@ const webpack             = require('webpack');
 
 
 module.exports = {
+  srcDir: 'src/',
+
   router: {
     base: process.env.NUXT_COMMAND === 'default' ? '/' : '/$$base$$',
 
@@ -50,7 +52,7 @@ module.exports = {
   },
 
   generate: {
-    dir: config.path.generate.root,
+    dir: config.path.generate,
   },
 
   head: {

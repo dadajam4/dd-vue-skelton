@@ -8,6 +8,6 @@ node_modules
 *.sublime-project
 *.sublime-workspace
 
-static/css/**/*
-static/font/**/*
-static/img/**/*
+src/static/css/**/*
+src/static/font/**/*
+src/static/img/**/*

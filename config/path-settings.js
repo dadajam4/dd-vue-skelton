@@ -5,6 +5,7 @@ const DDPathSetting = require('../lib/dd-path-setting');
 
 const settings = {
   root: path.join(__dirname, '../'),
+
   config: {
     root   : 'config',
     task   : 'task',
@@ -15,57 +16,53 @@ const settings = {
     server : 'server',
   },
 
-  generate: {
-    root: 'docs',
-  },
+  generate: 'docs',
 
-  assets: {
-    root: 'assets',
-  },
+  // assets: {
+  //   root: 'assets',
+  // },
 
-  static: {
-    root: 'static',
-  },
+  // static: {
+  //   root: 'static',
+  // },
 
-  plugins: {
-    root: 'plugins',
-    core: 'core',
-  },
+  // plugins: {
+  //   root: 'plugins',
+  //   core: 'core',
+  // },
 
   src: {
     root: 'src',
-    tmp: {
-      root: '.tmp',
-      sass: 'sass',
-    },
-    constants: {
-      root: 'constants',
-      sass: 'sass',
-    },
-    sprite: 'sprite',
-    svgIcon: 'svg-icon',
-    img: 'img',
-    css: 'css',
-    js: 'js',
-    html: 'html',
-    files: 'files',
-  },
 
-  public: {
-    root: 'public',
-    assets: {
-      root: 'assets',
-      sprite: 'sprite',
-      img: 'img',
-      font: 'font',
-      css: 'css',
-      js: 'js',
+    assets: 'assets',
+    static: 'static',
+
+    plugins: {
+      root: 'plugins',
+      core: 'core',
     },
+
+    // tmp: {
+    //   root: '.tmp',
+    //   sass: 'sass',
+    // },
+    // constants: {
+    //   root: 'constants',
+    //   sass: 'sass',
+    // },
+    // sprite: 'sprite',
+    // svgIcon: 'svg-icon',
+    // img: 'img',
+    // css: 'css',
+    // js: 'js',
+    // html: 'html',
+    // files: 'files',
   },
 
   tasks: {
     root: 'tasks',
   },
+
   lib: {
     root: 'lib',
   },
