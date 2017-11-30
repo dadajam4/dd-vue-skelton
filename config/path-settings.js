@@ -16,24 +16,12 @@ const settings = {
     server : 'server',
   },
 
-  generate: 'docs',
-
-  // assets: {
-  //   root: 'assets',
-  // },
-
-  // static: {
-  //   root: 'static',
-  // },
-
-  // plugins: {
-  //   root: 'plugins',
-  //   core: 'core',
-  // },
+  generate: {
+    root: 'docs',
+  },
 
   src: {
     root: 'src',
-
     assets: 'assets',
     static: 'static',
 
@@ -41,22 +29,6 @@ const settings = {
       root: 'plugins',
       core: 'core',
     },
-
-    // tmp: {
-    //   root: '.tmp',
-    //   sass: 'sass',
-    // },
-    // constants: {
-    //   root: 'constants',
-    //   sass: 'sass',
-    // },
-    // sprite: 'sprite',
-    // svgIcon: 'svg-icon',
-    // img: 'img',
-    // css: 'css',
-    // js: 'js',
-    // html: 'html',
-    // files: 'files',
   },
 
   tasks: {
