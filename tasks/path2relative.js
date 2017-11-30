@@ -8,7 +8,6 @@ const chalk    = require('chalk');
 function path2relativeTask(task, params = {}) {
   return new Promise((resolve, reject) => {
     try {
-      console.log(params.src);
       const list = FileUtil.getPathList(params.src);
       const replaceRe = new RegExp('^' + params.src);
 
