@@ -1,5 +1,5 @@
-import TabFocusable from '../../mixins/tab-focusable';
-import Colorable from '../../mixins/colorable';
+import TabFocusable from '~/mixins/tab-focusable';
+import Colorable from '~/mixins/colorable';
 
 
 

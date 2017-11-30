@@ -1,4 +1,4 @@
-import Routable from '../../mixins/routable';
+import Routable from '~/mixins/routable';
 
 
 

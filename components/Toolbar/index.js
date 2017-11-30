@@ -1,6 +1,6 @@
 import {
   createSimpleFunctional
-} from '../../util';
+} from '~/util';
 
 import Toolbar from './Toolbar';
 import ToolbarSideIcon from './ToolbarSideIcon';

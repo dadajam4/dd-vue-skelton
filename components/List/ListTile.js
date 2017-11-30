@@ -1,6 +1,6 @@
-import Routable from '../../mixins/routable';
-import Toggleable from '../../mixins/toggleable';
-// import Ripple from '../../directives/ripple'
+import Routable from '~/mixins/routable';
+import Toggleable from '~/mixins/toggleable';
+// import Ripple from '~/directives/ripple'
 
 export default {
   name: 'vt@list-tile',

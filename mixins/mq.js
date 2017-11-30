@@ -1,4 +1,4 @@
-import matchMedia from '../manager/matchMedia';
+import matchMedia from '~/manager/matchMedia';
 
 
 

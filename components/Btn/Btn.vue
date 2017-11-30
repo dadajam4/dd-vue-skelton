@@ -1,6 +1,6 @@
 <script>
-import Contextualable from '../../mixins/contextualable';
-import Routable from '../../mixins/routable';
+import Contextualable from '~/mixins/contextualable';
+import Routable from '~/mixins/routable';
 
 
 

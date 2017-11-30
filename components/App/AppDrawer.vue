@@ -15,9 +15,9 @@
 
 
 <script>
-import appMixin from '../../mixins/app';
-import Mq from '../../mixins/mq';
-import ClickOutside from '../../directives/click-outside';
+import appMixin from '~/mixins/app';
+import Mq from '~/mixins/mq';
+import ClickOutside from '~/directives/click-outside';
 
 
 

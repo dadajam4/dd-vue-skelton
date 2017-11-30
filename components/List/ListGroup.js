@@ -1,5 +1,5 @@
-import Bootable from '../../mixins/bootable';
-import Toggleable from '../../mixins/toggleable';
+import Bootable from '~/mixins/bootable';
+import Toggleable from '~/mixins/toggleable';
 
 
 

@@ -1,7 +1,7 @@
 import '../polyfill';
 import Vue         from 'vue';
-import components  from '../../components';
-import directives  from '../../directives';
+import components  from '~/components';
+import directives  from '~/directives';
 import Prototype   from './prototype';
 import Validator   from './validator';
 import VueScrollTo from 'vue-scrollto';

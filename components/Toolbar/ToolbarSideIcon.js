@@ -1,8 +1,3 @@
-import Btn  from '../Btn/Btn';
-import Icon from '../Icon/Icon';
-
-
-
 export default {
   name: 'vt@toolbar-side-icon',
 

@@ -1,5 +1,5 @@
-import appMixin  from '../../mixins/app';
-import Themeable from '../../mixins/themeable';
+import appMixin  from '~/mixins/app';
+import Themeable from '~/mixins/themeable';
 
 
 

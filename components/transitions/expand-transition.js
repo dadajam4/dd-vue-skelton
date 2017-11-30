@@ -1,4 +1,4 @@
-import { addOnceEventListener } from '../../util';
+import { addOnceEventListener } from '~/util';
 
 export default function (expandedParentClass = '') {
   return {

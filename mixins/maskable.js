@@ -13,7 +13,7 @@ import {
   isMaskDelimiter,
   maskText,
   unmaskText,
-} from '../util/mask';
+} from '~/util/mask';
 
 
 

@@ -1,4 +1,4 @@
-import fieldFactory from '../../mixins/Field';
+import fieldFactory from '~/mixins/Field';
 
 
 

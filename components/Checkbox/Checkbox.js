@@ -1,4 +1,4 @@
-import Selectable from '../../mixins/selectable';
+import Selectable from '~/mixins/selectable';
 
 
 

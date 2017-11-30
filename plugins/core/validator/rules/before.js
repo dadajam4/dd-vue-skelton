@@ -1,5 +1,5 @@
 import { isBefore, isEqual } from 'date-fns';
-import { parseDate as parse } from '../../../../util/date';
+import { parseDate as parse } from '~/util/date';
 
 export default (value, [otherValue, inclusion, format]) => {
   if (typeof format === 'undefined') {

@@ -1,9 +1,9 @@
 // Mixins
-import Delayable from '../../mixins/delayable';
-import Dependent from '../../mixins/dependent';
-import Detachable from '../../mixins/detachable';
-import Menuable from '../../mixins/menuable.js';
-import Toggleable from '../../mixins/toggleable';
+import Delayable from '~/mixins/delayable';
+import Dependent from '~/mixins/dependent';
+import Detachable from '~/mixins/detachable';
+import Menuable from '~/mixins/menuable.js';
+import Toggleable from '~/mixins/toggleable';
 
 // Component level mixins
 import Activator from './mixins/menu-activator';
@@ -12,8 +12,8 @@ import Keyable from './mixins/menu-keyable';
 import Position from './mixins/menu-position';
 
 // Directives
-import ClickOutside from '../../directives/click-outside';
-import Resize from '../../directives/resize';
+import ClickOutside from '~/directives/click-outside';
+import Resize from '~/directives/resize';
 
 export default {
   name: 'vt@menu',

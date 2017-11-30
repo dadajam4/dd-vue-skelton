@@ -17,8 +17,8 @@
 
 
 <script>
-import ClickOutside from '../../directives/click-outside';
-import Mq from '../../mixins/mq';
+import ClickOutside from '~/directives/click-outside';
+import Mq from '~/mixins/mq';
 
 
 

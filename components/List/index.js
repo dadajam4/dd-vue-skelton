@@ -1,6 +1,6 @@
 import {
   createSimpleFunctional
-} from '../../util';
+} from '~/util';
 
 
 const ListTileActionText = createSimpleFunctional('list__tile__action-text', 'span');

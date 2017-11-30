@@ -1,6 +1,6 @@
 import {
   createSimpleFunctional
-} from '../../util';
+} from '~/util';
 
 import Container from './Container';
 import Flex from './Flex';

@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import Contextualable from '../../mixins/contextualable';
+import Contextualable from '~/mixins/contextualable';
 
 
 

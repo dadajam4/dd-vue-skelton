@@ -1,5 +1,6 @@
 <style lang="scss" scoped>
-@import "./core/index";
+@import "core/index";
+
 .my-logo {
   border-bottom: solid 1px;
   @include theme-color(form-divider);

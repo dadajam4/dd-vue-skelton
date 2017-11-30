@@ -1,4 +1,4 @@
-// import Ripple from '../directives/ripple';
+// import Ripple from '~/directives/ripple';
 
 
 
