@@ -10,9 +10,7 @@ export default {
   },
 
   computed: {
-    computedColor() {
-      return this.color || this.defaultColor
-    }
+    computedColor() { return this.color || this.defaultColor },
   },
 
   methods: {
@@ -26,9 +24,10 @@ export default {
       if (prop && this[prop]) {
         const parts = this[prop].trim().split(' ');
 
-        let color = parts[0] + '--text';
+        let color = `vc@text--${parts[0]}`;
 
-        if (parts.length > 1) color += ' text--' + parts[1];
+        // @TODO: ???
+        if (parts.length > 1) color += ' vc@text--' + parts[1];
 
         classes[color] = !!this[prop];
       }

@@ -1,0 +1,15 @@
+//
+// Spinner
+//
+
+@function get-spinner($key) {
+  @return map-get($spinner, $key);
+}
+
+$spinner: ();
+$spinner: map-set($spinner, rotate-animation, spinner-rotate 1.4s linear infinite);
+$spinner: map-set($spinner, rotate-dash, spinner-dash 1.4s ease-in-out infinite);
+$spinner: map-set($spinner, intermediate-svg-transition, all .2s ease-in-out);
+$spinner: map-set($spinner, underlay-stroke, rgba(#000, 0.1));
+$spinner: map-set($spinner, overlay-transition, all .6s ease-in-out);
+

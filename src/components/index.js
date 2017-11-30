@@ -13,6 +13,7 @@ import List from './List';
 import Menu from './Menu';
 import Form from './Form';
 import NavigationDrawer from './NavigationDrawer';
+import Progress from './Progress';
 import Toolbar from './Toolbar';
 import Transitions from './transitions';
 
@@ -34,6 +35,7 @@ export default Object.assign({},
   Menu,
   Form,
   NavigationDrawer,
+  Progress,
   Toolbar,
   Transitions,
 );

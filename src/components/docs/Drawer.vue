@@ -160,6 +160,11 @@ const links = [
         path: '/components/menus',
         _filename: 'menus',
       },
+      {
+        name: 'components-progress',
+        path: '/components/progress',
+        _filename: 'progress',
+      },
     ],
   },
 
