@@ -7,11 +7,22 @@ const webpack             = require('webpack');
 
 
 
+const nuxtCommand       = process.env.NUXT_COMMAND;
+const nuxtIsDevelop     = nuxtCommand === 'default';
+const nuxtIsGenerate    = nuxtCommand === 'generate';
+const nuxtIsBuild       = nuxtCommand === 'build';
+const nuxtIsStart       = nuxtCommand === 'start';
+const isBasePathResolve = nuxtIsGenerate;
+const basePathPrefix    = isBasePathResolve ? '' : '/';
+const cacheBuster       = `?v=${new Date().getTime()}`;
+
+
+
 module.exports = {
   srcDir: 'src/',
 
   router: {
-    base: process.env.NUXT_COMMAND === 'default' ? '/' : '/$$base$$',
+    base: isBasePathResolve ? '/$$base$$' : '/',
 
     scrollBehavior: async (to, from, savedPosition) => {
       if (savedPosition) {
@@ -57,13 +68,15 @@ module.exports = {
 
   head: {
     titleTemplate: '%s | dd-vue-skelton',
+
     meta: [
       { charset: 'utf-8' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
-      { name: 'viewport', content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.6,user-scalable=yes' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'description', name: 'description', content: 'ディスクリプションです' },
     ],
+
     link: [
       { rel: 'icon', type: 'image/vnd.microsoft.icon', href: '/favicon.ico' },
       { rel: 'shortcut icon', type: 'image/vnd.microsoft.icon', href: '/favicon.ico' },
@@ -72,8 +85,7 @@ module.exports = {
       // { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'favicon-32x32.png' },
       // { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'favicon-16x16.png' },
 
-
-      { rel: 'stylesheet', href: (process.env.NUXT_COMMAND === 'default' ? '/' : '') + 'css/docs.css' },
+      { rel: 'stylesheet', href: `${basePathPrefix}css/docs.css${cacheBuster}` },
     ],
   },
 
