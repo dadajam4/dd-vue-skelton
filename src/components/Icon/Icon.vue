@@ -13,17 +13,18 @@ export default {
     xl: Boolean,
     left: Boolean,
     right: Boolean,
+    rotate: Boolean,
   },
 
 
 
-  computed: {
-    classes() {
-      return {
-        [this.$options.name]: true,
-      }
-    },
-  },
+  // computed: {
+  //   classes() {
+  //     return {
+  //       'vc@icon': true,
+  //     }
+  //   },
+  // },
 
 
 
@@ -43,12 +44,13 @@ export default {
 
     const classes = {
       [myClassName]                 : true,
-      [myClassName + '-' + iconName]: true,
-      [myClassName + '--lg']    : props.lg,
-      [myClassName + '--md']    : props.md,
-      [myClassName + '--xl']    : props.xl,
-      [myClassName + '--left']  : props.left,
-      [myClassName + '--right'] : props.right,
+      [`${myClassName}-${iconName}`]: true,
+      [`${myClassName}--lg`]        : props.lg,
+      [`${myClassName}--md`]        : props.md,
+      [`${myClassName}--xl`]        : props.xl,
+      [`${myClassName}--left`]      : props.left,
+      [`${myClassName}--right`]     : props.right,
+      [`${myClassName}--rotate`]    : props.rotate,
     }
 
     data.staticClass = data.staticClass || '';

@@ -37,13 +37,15 @@
   }
 
   &__section {
-    padding-top: 3rem;
+    padding-top: 5rem;
 
     &-header {
       @include font-size(xxl);
-      @include font-weight(regular);
+      // @include font-weight(regular);
+      @include font-weight(bold);
       @include theme-color(text-secondary);
       margin-bottom: 1rem;
+      // font-weight: bold;
 
       &:first-child {
         margin-top: 0;

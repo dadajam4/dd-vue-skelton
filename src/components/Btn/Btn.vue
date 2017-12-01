@@ -96,13 +96,30 @@ export default {
         }, [this.$slots.default]),
       ]);
     },
+
+    genLoader() {
+      const children = [];
+
+      if (!this.$slots.loader) {
+        children.push(this.$createElement('vt@spinner', {
+          props: {
+            indeterminate: true,
+            size: 26,
+          },
+        }))
+      } else {
+        children.push(this.$slots.loader);
+      }
+
+      return this.$createElement('span', { 'class': 'vc@btn__loading' }, children);
+    }
   },
 
   render(h) {
     const { tag, data } = this.generateRouteLink();
     const children = [this.genContent()];
     tag === 'button' && (data.attrs.type = this.type);
-    // this.loading && children.push(this.genLoader())
+    this.loading && children.push(this.genLoader());
     return h(tag, data, children);
   },
 }

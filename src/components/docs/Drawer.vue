@@ -115,6 +115,18 @@ const links = [
   },
 
   {
+    name: 'elements',
+    path: '/elements',
+    children: [
+      {
+        name: 'elements-sections',
+        path: '/style/sections',
+        _filename: 'sections',
+      },
+    ],
+  },
+
+  {
     name: 'style',
     path: '/style',
     children: [
