@@ -199,6 +199,15 @@ kbd {
   }
 }
 
+pre {
+  code {
+    &:after,
+    &:before {
+      content: none;
+    }
+  }
+}
+
 .#{$css-prefix}code,
 code {
   @include theme-color(background-light);

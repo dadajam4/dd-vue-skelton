@@ -153,5 +153,6 @@ module.exports = {
 
   plugins: [
     '~/plugins/core',
+    '~/plugins/highlightjs',
   ],
 }
