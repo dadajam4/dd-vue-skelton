@@ -14,8 +14,12 @@
     transition: get-transition(primary);
   }
 
-  pre {
+  &__pre {
     margin: 0!important;
+  }
+
+  &__code {
+    padding: 2.5em 1.5em;
   }
 
   &__btn-source-copy {
@@ -38,7 +42,7 @@
 
   <vt@expand-transition v-if="source">
     <div class="my__source-container" v-show="sourceActive">
-      <pre v-highlightjs="source"><code :class="lang" ref="code"></code></pre>
+      <pre class="my__pre" v-highlightjs="source"><code class="my__code" :class="lang" ref="code"></code></pre>
       <vt@btn class="my__btn-source-copy" icon @click="copy">
         <vt@icon>copy</vt@icon>
       </vt@btn>

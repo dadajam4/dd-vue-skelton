@@ -120,8 +120,18 @@ const links = [
     children: [
       {
         name: 'elements-sections',
-        path: '/style/sections',
+        path: '/elements/sections',
         _filename: 'sections',
+      },
+      {
+        name: 'elements-grouping-content',
+        path: '/elements/sections',
+        _filename: 'grouping-content',
+      },
+      {
+        name: 'elements-text-level-semantics',
+        path: '/elements/text-level-semantics',
+        _filename: 'text-level-semantics',
       },
     ],
   },
@@ -213,6 +223,7 @@ export default {
       links: links,
       iconMap: {
         'getting-started': 'cube',
+        elements  : 'truck',
         components: 'th-large',
         layout    : 'th-list',
         style     : 'columns',

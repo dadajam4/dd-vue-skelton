@@ -190,7 +190,7 @@ kbd {
   border-radius: 3px;
   white-space: pre-wrap;
   font-size: 85%;
-  font-weight: 900;
+  font-weight: get-font-weight(bold);
 
   &:after,
   &:before {
@@ -201,6 +201,10 @@ kbd {
 
 pre {
   code {
+    font-weight: inherit;
+    padding-left: .5em;
+    padding-right: .5em;
+
     &:after,
     &:before {
       content: none;
