@@ -17,7 +17,7 @@ $theme: (
     background-light: get-color(bg-light),
     background-darken: get-color(bg-darken),
     background-active: get-color(bg-active),
-    border: get-color(bg-base),
+    border: get-color(divider),
     form-divider: get-color(form-divider),
   ),
 
@@ -31,7 +31,7 @@ $theme: (
     background-light: get-color(bg-light-inverted),
     background-darken: get-color(bg-darken-inverted),
     background-active: get-color(bg-active-inverted),
-    border: get-color(bg-inverted),
+    border: get-color(divider-inverted),
     form-divider: get-color(form-divider-inverted),
   ),
 );

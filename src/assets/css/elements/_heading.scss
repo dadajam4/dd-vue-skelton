@@ -1,0 +1,66 @@
+//
+// Heading
+//
+
+h1,
+.#{$css-prefix}text--page-title {
+  @include font-size(xxxl);
+  @include font-weight(regular);
+  @include line-height(xs);
+  letter-spacing: -.02em;
+  margin-bottom: get-space(xxl);
+
+  @include mq-min(md) {
+    @include font-size(xxxxl);
+  }
+}
+
+h2,
+.#{$css-prefix}text--section-heading {
+  @include font-size(xxl);
+  @include font-weight(regular);
+  @include line-height(heading);
+  letter-spacing: normal;
+  margin-top: 2.5em;
+  margin-bottom: .5em;
+}
+
+h3,
+.#{$css-prefix}text--section-sub-heading {
+  @include font-size(xl);
+  @include font-weight(regular);
+  @include line-height(heading);
+  letter-spacing: normal;
+  margin-top: 2.5em;
+  margin-bottom: get-space(md);
+}
+
+h4,
+.#{$css-prefix}text--title {
+  @include font-size(xl);
+  @include font-weight(regular);
+  @include line-height(heading);
+  letter-spacing: normal;
+  margin-top: get-space(xl);
+  margin-bottom: get-space(sm);
+}
+
+h5,
+.#{$css-prefix}text--sub-title {
+  @include font-size(lg);
+  @include font-weight(regular);
+  @include line-height(sm);
+  letter-spacing: normal;
+  margin-top: get-space(xl);
+  margin-bottom: get-space(xs);
+}
+
+h6,
+.#{$css-prefix}text--caption {
+  @include font-size(sm);
+  @include font-weight(regular);
+  @include line-height(md);
+  letter-spacing: normal;
+  margin-top: get-space(xl);
+  margin-bottom: get-space(xxs);
+}

@@ -9,6 +9,11 @@
   padding: get-space(xs) 0;
   transition: height .4s cubic-bezier(.4,0,.2,1);
   @include theme-color(background);
+  margin: 0;
+
+  & > li {
+    list-style-type: none;
+  }
 
   &__tile {
     // font-size: 16px;
@@ -140,6 +145,13 @@
     }
 
     &__header {
+      margin: 0;
+      padding: 0;
+
+      & > li {
+        list-style-type: none;
+      }
+
       & > li:first-child {
         cursor: pointer;
 

@@ -1,0 +1,101 @@
+//
+// Basic
+//
+
+
+// link
+a {
+  text-decoration: none;
+}
+
+// strongs
+strong,
+em,
+b,
+.#{$css-prefix}strong {
+  @include font-size(md);
+  @include font-weight(bold);
+  @include line-height(md);
+  letter-spacing: normal;
+}
+
+// small
+small,
+.#{$css-prefix}small {
+  @include font-size(sm);
+}
+
+// strike
+s {
+  text-decoration: line-through;
+}
+
+// quote
+q {
+  quotes: "「" "」" "『" "』";
+  &:before {content: open-quote; }
+  &:after {content: close-quote; }
+}
+
+// defined word
+abbr, dfn {
+  font-style: italic;
+}
+
+abbr[title], dfn[title] {
+  cursor: help;
+  border-bottom: 1px dotted currentColor;
+}
+
+cite {
+  font-style: italic;
+}
+
+// italic
+.#{$css-prefix}italic,
+i {
+  font-style: italic;
+}
+
+
+// edited
+ins {
+  text-decoration: underline;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+// computed
+var {
+  font-style: italic;
+}
+
+code,
+kbd {
+  display: inline-block;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  font-size: 85%;
+  font-weight: get-font-weight(bold);
+
+  &:after,
+  &:before {
+    content: "\00a0";
+    letter-spacing: -1px;
+  }
+}
+
+code {
+  @include theme-color(background-light);
+  color: #bd4147;
+  @include elevation(1);
+}
+
+kbd {
+  @include theme-color(text-darken background-darken);
+}
+
+// styled
+// sup, sub, ruby >>> rest.css

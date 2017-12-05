@@ -4,7 +4,7 @@
 <template>
   <div>
     <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Text-level semantics</h1>
+      <h1 class="vc@page-header__inner vc@page__container">Basic</h1>
     </header>
 
     <main class="vc@page">
@@ -12,8 +12,8 @@
         <p class="vc@page__introduction">テキストの意味を示す要素です。</p>
       </div>
 
-      <section id="basic" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Basic</h2>
+      <section id="link" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Link</h2>
 
         <docs-element-guide name="a" source="{{ddSourceDump.anchor!}}">
           <template slot="overview">
@@ -21,7 +21,7 @@
           </template>
 
           <dd-source id="anchor" immediately>
-            <p>ここに<a href="javascript:void(0);">アンカーリンク</a>が入ります。</p>
+            <p>ここに<a href="javascript:void(0);">ハイパーリンク</a>が入ります。</p>
           </dd-source>
         </docs-element-guide>
       </section>
@@ -59,6 +59,18 @@
           </dd-source>
         </docs-element-guide>
 
+        <docs-element-guide name="b" source="{{ddSourceDump.b!}}">
+          <template slot="overview">
+            文書内のキーワードや製品名など、他と区別したいテキストを表す
+          </template>
+
+          <dd-source id="b" immediately>
+            <p>
+              当軒は<b>注文の多い料理店</b>ですからどうかそこはご承知ください
+            </p>
+          </dd-source>
+        </docs-element-guide>
+
         <docs-element-guide name="small" source="{{ddSourceDump.small!}}">
           <template slot="overview">
             免責・警告・著作権などの注釈や細目を表す
@@ -73,35 +85,8 @@
         </docs-element-guide>
       </section>
 
-      <section id="meaning" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Meaning</h2>
-
-        <docs-element-guide name="s" source="{{ddSourceDump.strike!}}">
-          <template slot="overview">
-            すでに正確ではなくなった内容を表す
-          </template>
-
-          <dd-source id="strike" immediately>
-            <p>缶コーヒーがお買い得！</p>
-            <p><s>通常価格: 1本100円</s></p>
-            <p><strong>特別価格：1本59円！！</strong></p>
-          </dd-source>
-        </docs-element-guide>
-
-        <docs-element-guide name="q" source="{{ddSourceDump.quote!}}">
-          <template slot="overview">
-            引用句・引用文であることを表す
-          </template>
-
-          <dd-source id="quote" immediately>
-            <p><span class="sakusya">夏目漱石</span>の<cite>草枕</cite>は、こんな風に始まります。</p>
-            <blockquote cite="http://www.example.com/kusamakura.html">
-              <p>山路を登りながら、こう考えた。<br>
-              智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。</p>
-            </blockquote>
-            <p>この作品の主人公は30歳の洋画家ですが、世間にあまりなじめていない彼の芸術家らしい生きざまがすでに冒頭で表現されています。</p>
-          </dd-source>
-        </docs-element-guide>
+      <section id="defined" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Defined</h2>
 
         <docs-element-guide name="dfn" source="{{ddSourceDump.dfn!}}">
           <template slot="overview">
@@ -147,6 +132,50 @@
           </dd-source>
         </docs-element-guide>
 
+        <docs-element-guide name="cite" source="{{ddSourceDump.cite!}}">
+          <template slot="overview">
+            作品のタイトルを表す
+          </template>
+
+          <dd-source id="cite" immediately>
+            <p><span class="sakusya">夏目漱石</span>の<cite>草枕</cite>は、こんな風に始まります。</p>
+            <blockquote cite="http://www.example.com/kusamakura.html">
+              <p>山路を登りながら、こう考えた。<br>
+              智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。</p>
+            </blockquote>
+            <p>この作品の主人公は30歳の洋画家ですが、世間にあまりなじめていない彼の芸術家らしい生きざまがすでに冒頭で表現されています。</p>
+          </dd-source>
+        </docs-element-guide>
+      </section>
+
+      <section id="meaning" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Meaning</h2>
+
+        <docs-element-guide name="s" source="{{ddSourceDump.strike!}}">
+          <template slot="overview">
+            すでに正確ではなくなった内容を表す
+          </template>
+
+          <dd-source id="strike" immediately>
+            <p>缶コーヒーがお買い得！</p>
+            <p><s>通常価格: 1本100円</s></p>
+            <p><strong>特別価格：1本59円！！</strong></p>
+          </dd-source>
+        </docs-element-guide>
+
+        <docs-element-guide name="q" source="{{ddSourceDump.quote!}}">
+          <template slot="overview">
+            引用句・引用文であることを表す
+          </template>
+
+          <dd-source id="quote" immediately>
+            <p>夏目漱石の<cite>草枕</cite>の中に出てくる
+            <q cite="http://www.examle.xxx/kusamakura.html">智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。</q>
+            という表現は大変有名です。</p>
+            <p>教科書には<q>ウイリアム・クラーク博士が<q>少年よ大志を抱け</q>と言った</q>と書いてある。</p>
+          </dd-source>
+        </docs-element-guide>
+
         <docs-element-guide name="i" source="{{ddSourceDump.i!}}">
           <template slot="overview">
             声や心の中で思ったことなど、他と区別したいテキストを表す
@@ -160,18 +189,10 @@
             </p>
           </dd-source>
         </docs-element-guide>
+      </section>
 
-        <docs-element-guide name="b" source="{{ddSourceDump.b!}}">
-          <template slot="overview">
-            文書内のキーワードや製品名など、他と区別したいテキストを表す
-          </template>
-
-          <dd-source id="b" immediately>
-            <p>
-              当軒は<b>注文の多い料理店</b>ですからどうかそこはご承知ください
-            </p>
-          </dd-source>
-        </docs-element-guide>
+      <section id="edited" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Edited</h2>
 
         <docs-element-guide name="ins" source="{{ddSourceDump.ins!}}">
           <template slot="overview">
@@ -224,6 +245,9 @@
           </template>
 
           <dd-source id="code" immediately>
+            <p>最初に<code>npm run install</code>してください</p>
+
+            <h6>Example</h6>
             <pre><code class="language-pascal">var i: Integer;
 begin
 i := 1;
@@ -344,7 +368,7 @@ import DocsElementGuide from '~/components/docs/ElementGuide';
 export default {
   head() {
     return {
-      title: 'Text-level semantics',
+      title: 'Basic',
     }
   },
 

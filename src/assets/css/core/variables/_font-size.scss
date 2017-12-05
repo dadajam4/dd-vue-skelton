@@ -28,6 +28,6 @@ $font-size: map-set($font-size, lg     , get-rem(1.125));
 // $font-size: map-set($font-size, xl     , get-rem(1.15));
 $font-size: map-set($font-size, xl    , get-rem(1.25));
 $font-size: map-set($font-size, xxl   , get-rem(1.6));
-$font-size: map-set($font-size, xxxl  , get-rem(2.8125));
-$font-size: map-set($font-size, xxxxl , get-rem(3.5));
+$font-size: map-set($font-size, xxxl  , get-rem(2));
+$font-size: map-set($font-size, xxxxl , get-rem(2.8125));
 $font-size: map-set($font-size, xxxxxl, get-rem(7));

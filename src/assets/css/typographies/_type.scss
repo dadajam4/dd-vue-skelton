@@ -2,168 +2,31 @@
 // Type
 //
 
-h1,
-.#{$css-prefix}text--page-title {
-  @include font-size(xxxxl);
-  @include font-weight(regular);
-  @include line-height(xs);
-  letter-spacing: -.02em;
-  margin-bottom: .5em;
-}
-
-h2,
-.#{$css-prefix}text--section-heading {
-  @include font-size(xxl);
-  @include font-weight(regular);
-  @include line-height(heading);
-  letter-spacing: normal;
-  margin-top: 2.5em;
-  margin-bottom: .5em;
-}
-
-h3,
-.#{$css-prefix}text--section-sub-heading {
-  @include font-size(xl);
-  @include font-weight(regular);
-  @include line-height(heading);
-  letter-spacing: normal;
-  margin-top: 2.5em;
-  margin-bottom: get-space(md);
-}
-
-h4,
-.#{$css-prefix}text--title {
-  @include font-size(xl);
-  @include font-weight(regular);
-  @include line-height(heading);
-  letter-spacing: normal;
-  margin-top: get-space(xl);
-  margin-bottom: get-space(sm);
-}
-
-h5,
-.#{$css-prefix}text--sub-title {
-  @include font-size(lg);
-  @include font-weight(regular);
-  @include line-height(sm);
-  letter-spacing: normal;
-  margin-top: get-space(xl);
-  margin-bottom: get-space(xs);
-}
-
-h6,
-.#{$css-prefix}text--caption {
-  @include font-size(sm);
-  @include font-weight(regular);
-  @include line-height(md);
-  letter-spacing: normal;
-  margin-top: get-space(xl);
-  margin-bottom: get-space(xxs);
-}
-
-strong,
-em,
-b,
-.#{$css-prefix}text--strong-body {
-  @include font-size(md);
-  @include font-weight(bold);
-  @include line-height(md);
-  letter-spacing: normal;
-}
-
-.#{$css-prefix}text--body {
-  @include font-size(md);
-  @include font-weight(regular);
-  @include line-height(md);
-  letter-spacing: normal;
-}
-
-.#{$css-prefix}text--xl {
-  @include font-size(xxxxxxl);
-  @include font-weight(regular);
-  @include line-height(xxs);
-  letter-spacing: -.04em;
-}
-
-.#{$css-prefix}text--lg {
-  @include font-size(xxxxl);
-  @include font-weight(regular);
-  @include line-height(xs);
-  letter-spacing: normal;
-}
-
-small,
-.#{$css-prefix}text--sm {
-  @include font-size(sm);
-  @include font-weight(regular);
-  @include line-height(md);
-  letter-spacing: normal;
-}
 
 
-// h2,
-// .#{$css-prefix}display-3 {
-//   @include font-size(xxxxxl);
+// .#{$css-prefix}text--body {
+//   @include font-size(md);
+//   @include font-weight(regular);
+//   @include line-height(md);
+//   letter-spacing: normal;
+// }
+
+// .#{$css-prefix}text--xl {
+//   @include font-size(xxxxxxl);
+//   @include font-weight(regular);
+//   @include line-height(xxs);
+//   letter-spacing: -.04em;
+// }
+
+// .#{$css-prefix}text--lg {
+//   @include font-size(xxxxl);
 //   @include font-weight(regular);
 //   @include line-height(xs);
-//   letter-spacing: -.02em
-// }
-
-
-// h4,
-// .#{$css-prefix}display-1 {
-//   @include font-size(xxxl);
-//   @include font-weight(regular);
-//   @include line-height(heading);
 //   letter-spacing: normal;
 // }
 
-// h5,
-// .#{$css-prefix}headline {
-//   @include font-size(xxl);
-//   @include font-weight(regular);
-//   @include line-height(heading);
-//   letter-spacing: normal;
-// }
-
-// h6,
-// .#{$css-prefix}title {
-//   @include font-size(xl);
-//   @include font-weight(regular);
-//   @include line-height(heading);
-//   letter-spacing: normal;
-// }
-
-// .#{$css-prefix}subheading {
-//   @include font-size(lg);
-//   @include font-weight(regular);
-//   @include line-height(sm);
-//   letter-spacing: normal;
-// }
-
-// .#{$css-prefix}body-2 {
-//   @include font-size(md);
-//   @include font-weight(bold);
-//   @include line-height(md);
-//   letter-spacing: normal;
-// }
-
-// .#{$css-prefix}body-1 {
-//   @include font-size(md);
-//   @include font-weight(regular);
-//   @include line-height(md);
-//   letter-spacing: normal;
-// }
-
-// .#{$css-prefix}caption {
-//   @include font-size(sm);
-//   @include font-weight(regular);
-//   @include line-height(md);
-//   letter-spacing: normal;
-// }
-
-// small,
-// .#{$css-prefix}small {
+// // small,
+// .#{$css-prefix}text--sm {
 //   @include font-size(sm);
 //   @include font-weight(regular);
 //   @include line-height(md);

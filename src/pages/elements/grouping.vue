@@ -4,7 +4,7 @@
 <template>
   <div>
     <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Grouping content</h1>
+      <h1 class="vc@page-header__inner vc@page__container">Grouping</h1>
     </header>
 
     <main class="vc@page">
@@ -24,6 +24,21 @@
             <p>ユーザー登録をすると、あなた専用にカスタマイズされた操作メニューが表示されます。使い込むほどにコンテンツが最適化され、充実したサービスが得られるようになります。</p>
 
             <p>もし使い方に迷った時は<a href="javascript:void(0);">ユーザーガイド</a>を参照してください。</p>
+          </dd-source>
+        </docs-element-guide>
+
+        <docs-element-guide name="blockquote" source="{{ddSourceDump.blockquote!}}">
+          <template slot="overview">
+            引用・転載セクションであることを表す
+          </template>
+
+          <dd-source id="blockquote" immediately>
+            <p>夏目漱石の<cite>草枕</cite>は、こんな風に始まります。</p>
+            <blockquote cite="http://www.example.com/kusamakura.html">
+              <p>山路を登りながら、こう考えた。<br>
+              智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。</p>
+            </blockquote>
+            <p>この作品の主人公は30歳の洋画家ですが、世間にあまりなじめていない彼の芸術家らしい生きざまがすでに冒頭で表現されています。</p>
           </dd-source>
         </docs-element-guide>
 
@@ -146,9 +161,7 @@
 
           <dd-source id="table" immediately>
             <table>
-              <caption>
-                <strong>お寿司をどこで食べるか？その長所と短所</strong>
-              </caption>
+              <caption>お寿司をどこで食べるか？その長所と短所</caption>
               <thead>
                 <tr>
                   <th>どこで食べるか</th>
@@ -165,35 +178,6 @@
                 <tr>
                   <th>回転寿司</th>
                   <td>値段が良心的、気軽に手に取れる</td>
-                  <td>ネタが解凍もの、休みの日は混む</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <table>
-              <caption>
-                <strong>お寿司をどこで食べるか？その長所と短所</strong>
-                <details>
-                  <summary>このテーブルの説明</summary>
-                  <p>以下のテーブルでは、２番目のカラムに寿司店のタイプが入れられています。その左側にそのようなタイプのお店でお寿司を食べる場合の長所が、右側に短所が入れられています。</p>
-                </details>
-              </caption>
-              <thead>
-                <tr>
-                  <th>長所</th>
-                  <th>どこで食べるか</th>
-                  <th>短所</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>ネタにこだわり、技術が素晴らしい</td>
-                  <th>銀座の高級店</th>
-                  <td>値段が時価で不安、予約が必要</td>
-                </tr>
-                <tr>
-                  <td>値段が良心的、気軽に手に取れる</td>
-                  <th>回転寿司</th>
                   <td>ネタが解凍もの、休みの日は混む</td>
                 </tr>
               </tbody>
@@ -217,6 +201,14 @@
             </figure>
           </dd-source>
         </docs-element-guide>
+
+        <docs-element-guide name="address" source="{{ddSourceDump.address!}}">
+          <dd-source id="address" immediately>
+            <address>
+              このウェブページの作者に連絡を取りたい方は、<a href="mailto:info@dummy.com">info@dummy.com</a>までメールをお送りいただくか、<a href="/dummy/">お問合わせフォーム</a>からメッセージをお送りください。
+            </address>
+          </dd-source>
+        </docs-element-guide>
       </section>
     </main>
   </div>
@@ -230,7 +222,7 @@ import DocsElementGuide from '~/components/docs/ElementGuide';
 export default {
   head() {
     return {
-      title: 'Grouping content',
+      title: 'Grouping',
     }
   },
 

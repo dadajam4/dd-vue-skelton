@@ -4,7 +4,7 @@
 <template>
   <div>
     <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Sections</h1>
+      <h1 class="vc@page-header__inner vc@page__container">Headings</h1>
     </header>
 
     <main class="vc@page">
@@ -12,8 +12,8 @@
         <p class="vc@page__introduction">HTMLの基本的な要素のうち、スタイルを定義している要素の一覧です。</p>
       </div>
 
-      <section id="headings" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Headings</h2>
+      <section id="levels" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Levels</h2>
 
         <docs-element-guide name="h1 - h6" source="{{ddSourceDump.heading!}}">
           <template slot="overview">
@@ -54,17 +54,6 @@
 
       </section>
 
-      <section id="others" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Others</h2>
-
-        <docs-element-guide name="address" source="{{ddSourceDump.address!}}">
-          <dd-source id="address" immediately>
-            <address>
-              このウェブページの作者に連絡を取りたい方は、<a href="mailto:info@dummy.com">info@dummy.com</a>までメールをお送りいただくか、<a href="/dummy/">お問合わせフォーム</a>からメッセージをお送りください。
-            </address>
-          </dd-source>
-        </docs-element-guide>
-      </section>
     </main>
   </div>
 </template>
@@ -77,7 +66,7 @@ import DocsElementGuide from '~/components/docs/ElementGuide';
 export default {
   head() {
     return {
-      title: 'Sections',
+      title: 'Headings',
     }
   },
 

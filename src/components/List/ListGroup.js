@@ -83,7 +83,7 @@ export default {
       ref: 'group',
     }, this.showLazyContent(this.$slots.default));
 
-    const item = h('div', {
+    const item = h('ul', {
       'class': this.classes,
       on: Object.assign({}, { click: this.click }, this.$listeners),
       ref: 'item',

@@ -119,19 +119,19 @@ const links = [
     path: '/elements',
     children: [
       {
-        name: 'elements-sections',
-        path: '/elements/sections',
-        _filename: 'sections',
+        name: 'elements-basic',
+        path: '/elements/basic',
+        _filename: 'basic',
       },
       {
-        name: 'elements-grouping-content',
-        path: '/elements/sections',
-        _filename: 'grouping-content',
+        name: 'elements-grouping',
+        path: '/elements/grouping',
+        _filename: 'grouping',
       },
       {
-        name: 'elements-text-level-semantics',
-        path: '/elements/text-level-semantics',
-        _filename: 'text-level-semantics',
+        name: 'elements-headings',
+        path: '/elements/headings',
+        _filename: 'headings',
       },
     ],
   },
