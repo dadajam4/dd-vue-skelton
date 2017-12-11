@@ -1,49 +1,15 @@
-const path          = require('path');
-const DDPathSetting = require('../lib/dd-path-setting');
+const PathResolver = require('../lib/dd-path-resolver');
 
 
 
 const settings = {
-  root: path.join(__dirname, '../'),
-
-  config: {
-    root   : 'config',
-    task   : 'task',
-    dist   : 'dist',
-    css    : 'css',
-    svg    : 'svg',
-    webpack: 'webpack',
-    server : 'server',
-  },
-
-  generate: {
-    root: 'docs',
-  },
-
-  src: {
-    root: 'src',
-    assets: 'assets',
-    static: 'static',
-
-    plugins: {
-      root: 'plugins',
-      core: 'core',
-    },
-  },
-
-  tasks: {
-    root: 'tasks',
-  },
-
-  lib: {
-    root: 'lib',
-  },
+  generate: 'docs',
 };
 
 
 
 
-const pathSettings = new DDPathSetting(settings);
+const pathSettings = PathResolver(settings);
 
 
 

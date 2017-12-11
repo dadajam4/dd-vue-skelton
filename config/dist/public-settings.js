@@ -1,5 +1,4 @@
 const config = require('app-root-path').require('/config');
-const path   = require('path');
 
 
 

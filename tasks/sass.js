@@ -1,5 +1,4 @@
 const config        = require('app-root-path').require('/config');
-const path          = require('path');
 const Notifier      = require('dd-notifier');
 const gulp          = require('gulp');
 const plumber       = require('gulp-plumber');
@@ -10,16 +9,16 @@ const sourcemaps    = require('gulp-sourcemaps');
 const rename        = require('gulp-rename');
 const size          = require('gulp-size');
 const chalk         = require('chalk');
-const sassSettings  = require(path.join(config.path.config.css, 'sass-settings'));
-const postcssConfig = require(path.join(config.path.config.css, 'postcss.config'));
+const sassSettings  = config.path.require('config/css/sass-settings');
+const postcssConfig = config.path.require('config/css/postcss.config');
 
 
 
 function sassTask(task, params = {}) {
   return new Promise((resolve, reject) => {
-    const ENTRY_PATH    = path.join(params.src, `${params.filename}.scss`),
+    const ENTRY_PATH    = config.path.join(params.src, `${params.filename}.scss`),
           OUT_FILE_NAME = `${params.filename}.css`,
-          OUT_PATH      = path.join(params.dest, OUT_FILE_NAME);
+          OUT_PATH      = config.path.join(params.dest, OUT_FILE_NAME);
 
     const s = size({
       pretty   : true,

@@ -1,6 +1,5 @@
 const config       = require('app-root-path').require('/config');
-const path         = require('path');
-const sassSettings = require(path.join(config.path.config.css, 'sass-settings'));
+const sassSettings = config.path.require('config/css/sass-settings');
 
 
 
@@ -36,7 +35,7 @@ module.exports = function vueCssLoaders(options = {}) {
       if (obj.loader === 'postcss-loader') {
         obj.options = Object.assign({
           config: {
-            path: path.join(config.path.config.css, 'postcss.config.js'),
+            path: config.path('config/css/postcss.config.js'),
           },
         }, obj.options);
       }

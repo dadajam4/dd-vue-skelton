@@ -1,6 +1,5 @@
 const config       = require('app-root-path').require('/config');
-const path         = require('path');
-const sassSettings = require(path.join(config.path.config.css, 'sass-settings'));
+const sassSettings = config.path.require('config/css/sass-settings');
 
 
 
@@ -15,7 +14,7 @@ module.exports = {
       },
       nuxtDistPathResolve: {
         type: 'path2relative',
-        src: config.path.generate.root,
+        src: config.path('generate'),
       },
     },
   },
@@ -28,34 +27,34 @@ module.exports = {
         type: 'clean',
         description: '[core] ファイルの削除',
         targets: [
-          path.join(config.path.src.static, 'font', `${sassSettings.prefix}icon`),
-          path.join(config.path.src.assets, 'css', '.tmp'),
+          config.path(`src/static/font${sassSettings.prefix}icon`),
+          config.path('src/assets/css/.tmp'),
         ],
       },
       svgIcon: {
         type: 'svgIcon',
         description: '[core] SVGアイコンのビルド',
-        src: path.join(config.path.src.assets, 'svg-icon'),
-        watch: path.join(config.path.src.assets, 'svg-icon'),
-        dest: path.join(config.path.src.static, 'font', `${sassSettings.prefix}icon`),
-        sassDest: path.join(config.path.src.assets, 'css', '.tmp'),
+        src: config.path('src/assets/svg-icon'),
+        watch: config.path('src/assets/svg-icon'),
+        dest: config.path(`src/static/font/${sassSettings.prefix}icon`),
+        sassDest: config.path('src/assets/css/.tmp'),
         fontName: `${sassSettings.prefix}icon`,
-        template: path.join(config.path.config.root, 'svg', 'svg-icon-template.scss'),
-        fontDir: path.join('../font', `${sassSettings.prefix}icon`),
+        template: config.path('config/svg/svg-icon-template.scss'),
+        fontDir: config.path.join('../font', `${sassSettings.prefix}icon`),
       },
       sassValues: {
         type: 'sassValues',
         description: '[core] sass変数のビルド',
-        src: path.join(config.path.src.root, 'constants', 'sass', 'sass-variables.js'),
-        dest: path.join(config.path.src.assets, 'css', '.tmp'),
-        watch: path.join(config.path.src.root, 'constants', 'sass'),
+        src: config.path('src/constants/sass/sass-variables.js'),
+        dest: config.path('src/assets/css/.tmp'),
+        watch: config.path('src/constants/sass'),
       },
       // sync: {
       //   type: 'sync',
       //   description: '[core] ファイルの同期',
-      //   src: path.join(config.path.plugins.core, 'dist', 'font'),
-      //   dest: path.join(config.path.static.root, 'font'),
-      //   watch: path.join(config.path.plugins.core, 'dist', 'font'),
+      //   src: config.path('plugins/core/dist/font'),
+      //   dest: config.path('static/font'),
+      //   watch: config.path('plugins/core/dist/font'),
       // },
     },
   },
@@ -68,27 +67,27 @@ module.exports = {
         type: 'clean',
         description: '[static] ファイルの削除',
         targets: [
-          path.join(config.path.src.static, 'css'),
-          path.join(config.path.src.static, 'img'),
+          config.path('src/static/css'),
+          config.path('src/static/img'),
         ],
       },
       sass: {
         type: 'sass',
         description: '[static] sassのビルド',
-        src: path.join(config.path.src.assets, 'css'),
-        dest: path.join(config.path.src.static, 'css'),
+        src: config.path('src/assets/css'),
+        dest: config.path('src/static/css'),
         filename: 'docs',
         watch: [
-          path.join(config.path.src.assets, 'css'),
-          path.join(config.path.src.plugins.core, 'sass'),
+          config.path('src/assets/css'),
+          config.path('src/plugins/core/sass'),
         ],
       },
       img: {
         type: 'imagemin',
         description: '[static] 画像の圧縮',
-        src: path.join(config.path.src.assets, 'img'),
-        dest: path.join(config.path.src.static, 'img'),
-        watch: path.join(config.path.src.assets, 'img'),
+        src: config.path('src/assets/img'),
+        dest: config.path('src/static/img'),
+        watch: config.path('src/assets/img'),
       },
     },
   },

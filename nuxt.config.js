@@ -1,9 +1,8 @@
 const config              = require('app-root-path').require('/config');
-const path                = require('path');
-const sassSettings        = require(path.join(config.path.config.css, 'sass-settings'));
-const babelLoaderSettings = require(path.join(config.path.config.webpack, 'babel-loader-settings'));
-const postcssConfig       = require(path.join(config.path.config.css, 'postcss.config'));
 const webpack             = require('webpack');
+const sassSettings        = config.path.require('config/css/sass-settings');
+const babelLoaderSettings = config.path.require('config/webpack/babel-loader-settings');
+const postcssConfig       = config.path.require('config/css/postcss.config');
 
 
 
@@ -63,7 +62,7 @@ module.exports = {
   },
 
   generate: {
-    dir: config.path.generate.root,
+    dir: config.path('generate'),
   },
 
   head: {
@@ -120,8 +119,8 @@ module.exports = {
     ],
 
     extend(webpackConfig, { isDev, isClient }) {
-      webpackConfig.resolve.modules.push(path.join(config.path.root, 'lib'));
-      webpackConfig.resolveLoader.modules.push(path.join(config.path.root, 'lib'));
+      webpackConfig.resolve.modules.push(config.path('lib'));
+      webpackConfig.resolveLoader.modules.push(config.path('lib'));
 
       const baseRule = webpackConfig.module.rules.find(rule => rule.loader === 'vue-loader');
       ['sass', 'scss'].forEach(name => {

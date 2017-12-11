@@ -1,7 +1,6 @@
 const config        = require('app-root-path').require('/config');
-const path          = require('path');
-const DDTaskManager = require(path.join(config.path.lib.root, 'dd-task-manager'));
-const taskSettings  = require(path.join(config.path.config.task, 'task-settings'));
+const DDTaskManager = config.path.require('lib/dd-task-manager');
+const taskSettings  = config.path.require('config/task/task-settings');
 
 
 
@@ -10,7 +9,7 @@ const flow = argv.f;
 if (!flow) throw new Error('flowが指定されていません。 -f [flow] で指定してください。');
 
 const taskManager = new DDTaskManager(taskSettings, {
-  rootDir: config.path.tasks.root,
+  rootDir: config.path('tasks'),
   watch  : argv.watch,
   notify : {flow: true, task: true},
 });
