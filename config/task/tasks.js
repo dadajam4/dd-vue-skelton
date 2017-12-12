@@ -14,7 +14,7 @@ module.exports = {
       },
       nuxtDistPathResolve: {
         type: 'path2relative',
-        src: config.path('generate'),
+        src: config.path('dist'),
       },
     },
   },

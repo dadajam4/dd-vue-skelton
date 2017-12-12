@@ -62,7 +62,7 @@ module.exports = {
   },
 
   generate: {
-    dir: config.path('generate'),
+    dir: config.path('dist'),
   },
 
   head: {

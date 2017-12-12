@@ -3,7 +3,7 @@ const PathResolver = require('../lib/dd-path-resolver');
 
 
 const settings = {
-  generate: 'docs',
+  dist: 'docs',
 };
 
 
