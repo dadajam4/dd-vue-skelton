@@ -86,40 +86,26 @@ export default {
 
       this.$emit('click', e);
     },
-
-    genContent() {
-      return this.$createElement('span', {
-        'class': 'vc@btn__content-wrapper',
-      }, [
-        this.$createElement('span', {
-          'class': 'vc@btn__content',
-        }, [this.$slots.default]),
-      ]);
-    },
-
-    genLoader() {
-      const children = [];
-
-      if (!this.$slots.loader) {
-        children.push(this.$createElement('vt@spinner', {
-          props: {
-            indeterminate: true,
-            size: 26,
-          },
-        }))
-      } else {
-        children.push(this.$slots.loader);
-      }
-
-      return this.$createElement('span', { 'class': 'vc@btn__loading' }, children);
-    }
   },
 
   render(h) {
     const { tag, data } = this.generateRouteLink();
-    const children = [this.genContent()];
+    const children = [(
+      <span class="vc@btn__content-wrapper">
+        <span class="vc@btn__content">{this.$slots.default}</span>
+      </span>
+    )];
     tag === 'button' && (data.attrs.type = this.type);
-    this.loading && children.push(this.genLoader());
+
+    if (this.loading) {
+      const loader = this.$slots.loader || (<vt-spinner indeterminate={true} size={26}></vt-spinner>);
+      children.push(
+        <span class="vc@btn__loading">
+          {[loader]}
+        </span>
+      );
+    }
+
     return h(tag, data, children);
   },
 }

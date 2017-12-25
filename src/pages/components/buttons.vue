@@ -15,26 +15,26 @@
       <section id="hoge" class="vc@page__section vc@page__container" data-anchor-point>
         <h2>Flat</h2>
         <vt@btn
-          v-for="type in CONTEXT_TYPES"
-          :key="type"
-          v-bind="{[type]: true}"
+          v-for="myType in CONTEXT_TYPES"
+          :key="myType"
+          v-bind="{[myType]: true}"
           flat
-        >{{type}}</vt@btn>
+        >{{myType}}</vt@btn>
 
         <h2>Fill</h2>
         <vt@btn
-          v-for="type in CONTEXT_TYPES"
-          :key="type"
-          v-bind="{[type]: true}"
-        >{{type}}</vt@btn>
+          v-for="myType in CONTEXT_TYPES"
+          :key="myType"
+          v-bind="{[myType]: true}"
+        >{{myType}}</vt@btn>
 
         <h2>Outline</h2>
         <vt@btn
-          v-for="type in CONTEXT_TYPES"
-          :key="type"
-          v-bind="{[type]: true}"
+          v-for="myType in CONTEXT_TYPES"
+          :key="myType"
+          v-bind="{[myType]: true}"
           outline
-        >{{type}}</vt@btn>
+        >{{myType}}</vt@btn>
 
         <h2>Block</h2>
         <vt@btn primary block>Block</vt@btn>
@@ -43,7 +43,7 @@
         <vt@btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
-          v-bind="{[size]: true}"
+          v-bind="{[size]: size !== 'default'}"
           info
         >{{size}}</vt@btn>
 
@@ -51,14 +51,14 @@
         <vt@btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
-          v-bind="{[size]: true}"
+          v-bind="{[size]: size !== 'default'}"
           icon
         ><vt@icon>bars</vt@icon></vt@btn>
 
         <vt@btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
-          v-bind="{[size]: true}"
+          v-bind="{[size]: size !== 'default'}"
           icon
           primary
         ><vt@icon>bars</vt@icon></vt@btn>
@@ -66,7 +66,7 @@
         <vt@btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
-          v-bind="{[size]: true}"
+          v-bind="{[size]: size !== 'default'}"
           icon
           outline
           info
@@ -97,12 +97,12 @@
 
         <h2>Disabled</h2>
         <vt@btn
-          v-for="type in ['flat', 'default', 'outline']"
-          :key="type"
-          v-bind="{[type]: true}"
+          v-for="myType in ['flat', 'default', 'outline']"
+          :key="myType"
+          v-bind="{[myType]: myType !== 'default'}"
           info
           disabled
-        >{{type}}</vt@btn>
+        >{{myType}}</vt@btn>
         <vt@btn
           icon
           disabled

@@ -63,6 +63,7 @@ module.exports = {
 
   generate: {
     dir: config.path('dist'),
+    minify: false,
   },
 
   head: {
