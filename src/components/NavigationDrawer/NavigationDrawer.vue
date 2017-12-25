@@ -18,7 +18,6 @@
 
 <script>
 import ClickOutside from '~/directives/click-outside';
-import Mq from '~/mixins/mq';
 
 
 
@@ -28,8 +27,6 @@ export default {
   directives: {
     ClickOutside,
   },
-
-  mixins: [Mq],
 
   props: {
     value: { required: false },
@@ -76,12 +73,5 @@ export default {
 
     },
   },
-
-  // watch: {
-  //   'mq.desktop'(val) {
-  //     // this.isActive = val;
-  //     // this.$emit('input', val);
-  //   },
-  // },
 }
 </script>

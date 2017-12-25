@@ -10,7 +10,7 @@ export default {
   },
 
   mounted() {
-    this.$ui.u.load(this.initDetach);
+    this.$util.load(this.initDetach);
   },
 
   beforeDestroy() {

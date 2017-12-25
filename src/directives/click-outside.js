@@ -59,7 +59,7 @@ export default {
   name: 'click-outside',
 
   bind (el, binding, v) {
-    v.context.$ui.u.load(() => {
+    v.context.$util.load(() => {
       const onClick = e => directive(e, el, binding, v)
       // iOS does not recognize click events on document
       // or body, this is the entire purpose of the v-app

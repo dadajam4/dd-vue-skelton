@@ -70,9 +70,8 @@ export default {
       set(val) { this.$_app[`${this.vec}DrawerActive`] = val },
     },
 
-    isStatic: {
-      get() { return this[`${this.vec}DrawerStatic`] },
-      set(val) { this.$_app[`${this.vec}DrawerStatic`] = val },
+    isStatic() {
+      return this.static && this.mq[this.static];
     },
   },
 
@@ -105,10 +104,6 @@ export default {
       return !this.permanent && !this.isStatic;
     },
 
-    checkStatic() {
-      this.isStatic = this.mq[this.static];
-    },
-
     clearAppState() {
       this.isActive = false;
       // this.$emit('input', isActive);
@@ -118,18 +113,12 @@ export default {
   created() {
     this.$_app.uses[`${this.vec}Drawer`] = true;
     this.$emit('input', this.isActive);
+  },
 
-    if (this.static) {
-      this.checkStatic();
-
-      this.unWatchMq = this.$watch(`mq.${this.static}`, val => {
-        this.checkStatic();
-      });
-    }
+  mounted() {
   },
 
   beforeDestroy() {
-    if (this.unWatchMq) this.unWatchMq();
     this.clearAppState();
   },
 

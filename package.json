@@ -25,6 +25,7 @@
     "dd-file-util": "^1.0.1",
     "dd-notifier": "^1.0.0",
     "del": "^3.0.0",
+    "element-resize-event": "^2.0.9",
     "este-watch": "^0.1.1",
     "event-stream": "^3.3.4",
     "font-awesome": "^4.7.0",

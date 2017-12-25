@@ -44,8 +44,8 @@ export default {
       // this.$_app.$on('change-header-fixed', this._onChangeHeaderFixed);
 
       ['left', 'right'].forEach(position => {
-        const activeFuncName = `_onChange${this.$ui.h.firstUpper(position)}DrawerActive`,
-              staticFuncName = `_onChange${this.$ui.h.firstUpper(position)}DrawerStatic`;
+        const activeFuncName = `_onChange${this.$helper.firstUpper(position)}DrawerActive`,
+              staticFuncName = `_onChange${this.$helper.firstUpper(position)}DrawerStatic`;
 
         this[activeFuncName] = isActive => {
           this[`${position}DrawerActive`] = isActive;
@@ -64,8 +64,8 @@ export default {
       // if (this._onChangeHeaderFixed) this.$_app.$off('change-header-fixed', this._onChangeHeaderFixed);
 
       ['left', 'right'].forEach(position => {
-        const activeFuncName = `_onChange${this.$ui.h.firstUpper(position)}DrawerActive`,
-              staticFuncName = `_onChange${this.$ui.h.firstUpper(position)}DrawerStatic`;
+        const activeFuncName = `_onChange${this.$helper.firstUpper(position)}DrawerActive`,
+              staticFuncName = `_onChange${this.$helper.firstUpper(position)}DrawerStatic`;
 
         if (this.activeFuncName) this.$_app.$off(`change-drawer-${position}-active`, this[activeFuncName]);
         if (this.staticFuncName) this.$_app.$off(`change-drawer-${position}-static`, this[staticFuncName]);
