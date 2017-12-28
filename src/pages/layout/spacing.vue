@@ -70,6 +70,8 @@ const SPACES = [
 ];
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Spacing',

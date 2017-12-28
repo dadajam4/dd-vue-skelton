@@ -8,6 +8,7 @@ export createJavaScriptTransition from './createJavaScriptTransition';
 export createSimpleTransition from './createSimpleTransition';
 export getObjectValueByPath from './getObjectValueByPath';
 export getZIndex from './getZIndex';
+export waitElementInsert from './waitElementInsert';
 
 
 

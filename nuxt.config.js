@@ -3,6 +3,7 @@ const webpack             = require('webpack');
 const sassSettings        = config.path.require('config/css/sass-settings');
 const babelLoaderSettings = config.path.require('config/webpack/babel-loader-settings');
 const postcssConfig       = config.path.require('config/css/postcss.config');
+const routesResolver      = config.path.require('lib/dd-vue-routes-resolver');
 
 
 
@@ -23,13 +24,15 @@ module.exports = {
   router: {
     base: isBasePathResolve ? '/$$base$$' : '/',
 
+    // extendRoutes: routesResolver,
+
     scrollBehavior: async (to, from, savedPosition) => {
       if (savedPosition) {
-
         // savedPosition is only available for popstate navigations.
         return savedPosition;
       } else {
         const position = {};
+        // let delay = $nuxt.$routeChangeDelay;
         let delay = 500;
 
         // if no children detected
@@ -45,10 +48,18 @@ module.exports = {
 
         // if link has anchor,  scroll to anchor by returning the selector
         if (to.hash) {
-          position.selector = to.hash;
-
-          if (document.querySelector(to.hash)) {
-            delay = 0;
+          if (to.name === from.name && document.querySelector(to.hash)) {
+            $nuxt.$appScrollTo(to.hash);
+            return;
+          } else {
+            const el = await $nuxt.$util.waitElementInsert(to.hash, 100, delay * 2);
+            if (el) {
+              window.scrollTo(0, 0);
+              setTimeout(() => {
+                $nuxt.$appScrollTo(to.hash);
+              }, 10);
+            }
+            return;
           }
         }
 

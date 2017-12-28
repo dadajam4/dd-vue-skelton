@@ -166,6 +166,8 @@ const CONTEXT_TYPES = Object.keys(Contextualable.props);
 
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Button',

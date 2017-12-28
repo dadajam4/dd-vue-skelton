@@ -47,6 +47,8 @@
 <script>
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Content',

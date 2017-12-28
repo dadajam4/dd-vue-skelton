@@ -153,6 +153,8 @@ const EXAMPLES = [
 
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Typography',

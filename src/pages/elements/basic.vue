@@ -363,9 +363,9 @@ end.</code></pre>
 <script>
 import DocsElementGuide from '~/components/docs/ElementGuide';
 
-
-
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Basic',
@@ -379,6 +379,9 @@ export default {
   data() {
     return {
     }
+  },
+
+  mounted() {
   },
 }
 </script>

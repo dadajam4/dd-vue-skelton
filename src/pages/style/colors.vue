@@ -73,6 +73,8 @@ TEXT_COLORS.forEach(color => {
 
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Colors',

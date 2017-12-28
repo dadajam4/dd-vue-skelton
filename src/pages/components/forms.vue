@@ -232,6 +232,8 @@ const INPUT_TYPES = [
 
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Forms',

@@ -10,10 +10,6 @@
 export default {
   name: 'vt@app-header',
 
-  props: {
-    fixed: Boolean,
-  },
-
   data() {
     return {
     }

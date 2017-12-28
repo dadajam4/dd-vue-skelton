@@ -1,0 +1,46 @@
+//
+// Anchor Navi
+//
+
+.#{$css-prefix}anchor-navi {
+  display: block;
+  @include theme-color(background-light);
+  @include font-size(sm);
+
+  &__item {
+    display: flex;
+    padding: .5rem 1rem;
+    align-items: center;
+    justify-content: flex-end;
+
+    @include theme-color(text);
+
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, .05);
+    }
+
+    // &--current {
+    //   background: #f00!important;
+    // }
+  }
+
+  &__icon {
+    display: block;
+    opacity: 0;
+    transition: get-transition(primary);
+
+    .#{$css-prefix}anchor-navi__item--current & {
+      opacity: 1;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-left: .5em;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,18 +1,24 @@
 <template>
   <nav :class="classes" v-if="hasItem">
-    <ul>
-      <li><a href="">アンカーナビ1です</a></li>
-      <li><a href="">アンカーナビ2です</a></li>
-      <li><a href="">アンカーナビ3ですアンカーナビ3ですアンカーナビ3です</a></li>
-      <li><a href="">アンカーナビ4です</a></li>
-      <li><a href="">アンカーナビ5です</a></li>
-    </ul>
+    <router-link
+      class="vc@anchor-navi__item"
+      :class="{'vc@anchor-navi__item--current': item === currentItem}"
+      v-for="item in computedItems"
+      :key="item.id"
+      :to="{hash: item.id}"
+      @click.native.stop="onItemClick(item)"
+    >
+      <span class="vc@anchor-navi__icon"><vt@icon>angle-right</vt@icon></span>
+      <span class="vc@anchor-navi__label">{{item.label}}</span>
+    </router-link>
   </nav>
 </template>
 
 
 
 <script>
+const VISIBLE_PER_AMMOUNT = 0.4;
+
 export default {
   name: 'vt@anchor-navi',
 
@@ -25,6 +31,9 @@ export default {
 
   data() {
     return {
+      routeItems: [],
+      currentId: null,
+      nowWaitScrollDone: false,
     }
   },
 
@@ -39,45 +48,76 @@ export default {
     },
 
     computedItems() {
-      if (this.items) return this.items;
-      const items = [];
-      return items;
+      return this.items ? this.items : this.routeItems;
     },
 
-    hasItem() { !!this.computedItems.length },
+    currentItem() {
+      return this.currentId && this.computedItems.find(item => item.id === this.currentId)
+    },
+
+    hasItem() { return !!this.computedItems.length },
   },
 
   watch: {
-    // $route(to) {
-    //   console.warn(this.$route);
-    // },
+    $route() {
+      this.update();
+    },
+    '$store.state.scroll.top'() {
+      this.updateCurrentId();
+    },
+    '$store.state.scroll.height'() {
+      this.updateCurrentId();
+    },
   },
 
   methods: {
-    startRouteWatch() {
-      this.stopRouteWatch();
-      this._rootWatcher = this.$root.$watch('$route', () => {
-        this.onRouteChange();
-      });
-      this.onRouteChange();
-    },
-    onRouteChange() {
-      if (this.$root.$el) {
-        console.warn(this.$root.$el);
+    update() {
+      if (!this.$appIsScrolling()) {
+        this.updateCurrentId();
       }
+      this.updateRouteItems();
     },
-    stopRouteWatch() {
-      if (this._rootWatcher) this._rootWatcher();
+
+    updateCurrentId() {
+      if (!process.browser || !this.$store.state.scroll.loaded || this.$appIsScrolling()) return;
+
+      const headerHeight = this.$appHeaderHeight();
+      const scrollTop = this.$store.state.scroll.top;
+      const scrollHeight = this.$store.state.scroll.height;
+      const visibleJudgeAmmount = (scrollHeight - headerHeight) * VISIBLE_PER_AMMOUNT;
+      const items = this.computedItems;
+
+      for (let i = items.length - 1; i > -1; i--) {
+        const item = items[i];
+        const el   = document.getElementById(item.id);
+
+        if (el) {
+          const myRect = el.getBoundingClientRect();
+          const myVisibleHeight = scrollHeight - myRect.top;
+
+          if (myVisibleHeight > visibleJudgeAmmount) {
+            this.currentId = item.id;
+            history.pushState({}, '', location.href.replace(/(#.*)?$/, '#' + item.id));
+            return;
+          }
+        }
+      }
+      this.currentId = null;
+    },
+
+    updateRouteItems() {
+      if (this.items) return;
+      this.routeItems = JSON.parse(JSON.stringify(this.$currentRouteAnchors()));
+    },
+
+    onItemClick(item) {
+      this.$util.blurActiveElement();
+      this.currentId = item.id;
     },
   },
 
   created() {
-    this.startRouteWatch();
-  },
-
-  beforeDestroy() {
-    this.stopRouteWatch();
-    console.warn(this);
+    this.update();
   },
 }
 </script>

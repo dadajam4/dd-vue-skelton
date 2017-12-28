@@ -161,6 +161,8 @@
 
 <script>
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Menus',

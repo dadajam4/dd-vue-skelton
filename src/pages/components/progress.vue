@@ -91,6 +91,8 @@ const TEXT_COLORS = [
 
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Progress',

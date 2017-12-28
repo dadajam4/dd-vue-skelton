@@ -64,6 +64,8 @@ import DocsElementGuide from '~/components/docs/ElementGuide';
 
 
 export default {
+  $_anchors,
+
   head() {
     return {
       title: 'Headings',
