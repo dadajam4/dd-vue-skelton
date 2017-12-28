@@ -69,21 +69,25 @@
             </vt@list-tile-action>
           </vt@list-tile>
 
-          <vt@list-tile
-            v-for="child, childIndex in parent.children"
-            :key="childIndex"
-            :to="{name: child.name}"
-          >
-            <vt@list-tile-action>&nbsp;</vt@list-tile-action>
-            <vt@list-tile-content>
-              <vt@list-tile-title class="my-child-name">{{child._filename}}</vt@list-tile-title>
-            </vt@list-tile-content>
-            <vt@list-tile-action>
-  <!--
-              <v-icon>{{ subItem.action }}</v-icon>
-  -->
-            </vt@list-tile-action>
-          </vt@list-tile>
+          <template v-for="child, childIndex in parent.children">
+            <vt@list-tile
+              :key="childIndex"
+              :to="{name: child.name}"
+            >
+              <vt@list-tile-action>&nbsp;</vt@list-tile-action>
+              <vt@list-tile-content>
+                <vt@list-tile-title class="my-child-name">{{child._filename}}</vt@list-tile-title>
+              </vt@list-tile-content>
+              <vt@list-tile-action>
+                <!--
+                <v-icon>{{ subItem.action }}</v-icon>
+                -->
+              </vt@list-tile-action>
+            </vt@list-tile>
+            <li v-if="$route.name === child.name" :key="childIndex + '-anchors'">
+              <vt@anchor-navi></vt@anchor-navi>
+            </li>
+          </template>
   <!--
             <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
               <li v-for="anchor in child._anchors" :key="anchor.id">
