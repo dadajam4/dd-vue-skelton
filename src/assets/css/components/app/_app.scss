@@ -44,9 +44,9 @@
     transition-property: padding-right;
   }
 
-  &--header-fixed {
-    padding-top: $toolbar-row-height;
-  }
+  // &--header-fixed {
+  //   padding-top: $toolbar-row-height;
+  // }
 
   &--drawer-left-static {
     padding-left: $navigation-drawer-width;

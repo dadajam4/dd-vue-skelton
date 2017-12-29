@@ -31,20 +31,6 @@ export default function PrototypePlugin(Vue) {
     return anchors || [];
   }
 
-  Vue.prototype.$appHeaderHeight = function() {
-    let height = 0;
-    const $app = document.querySelector('[data-app]');
-    if (!$app) return height;
-
-    if ($app.classList.contains('dd-app--header-fixed')) {
-      const $header = document.querySelector('.dd-app-header');
-      if ($header) {
-        height = $header.clientHeight;
-      }
-    }
-    return height;
-  }
-
   let appIsScrolling = false;
 
   Vue.prototype.$appIsScrolling = function() {
@@ -99,7 +85,7 @@ export default function PrototypePlugin(Vue) {
       },
     });
 
-    createdOptions.offset -= this.$appHeaderHeight();
+    createdOptions.offset -= this.$store.getters['ui/header/fixedHeight'];
     return this.$scrollTo(el, createdOptions);
   }
 }

@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <vt@app-header fixed>
+  <vt@app-header fixed :hidden="hidden">
     <vt@toolbar-title>{{title}}</vt@toolbar-title>
     <vt@spacer />
 <!--
@@ -27,6 +27,7 @@
 export default {
   props: {
     title: String,
+    hidden: Boolean,
   },
 
   data() {

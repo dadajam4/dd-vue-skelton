@@ -43,7 +43,11 @@
 
 <template>
   <vt@app>
-    <docs-header :title="title" @click-toggle-drawer="requestToggleDrawer" v-if="hasNavigation" />
+    <docs-header
+      :title="title"
+      :hidden="!hasNavigation"
+      @click-toggle-drawer="requestToggleDrawer"
+    />
     <nuxt class="my-nuxt" ref="nuxt" />
     <docs-drawer v-model="drawer" ref="drawer" v-if="hasNavigation" />
   </vt@app>

@@ -1,6 +1,8 @@
-const sassVariables = {};
+let sassVariables = {};
 
-
+// UI Settings
+const uiSettings = require('../../../config/css/ui-settings');
+sassVariables = Object.assign({}, sassVariables, uiSettings);
 
 // Media Query Settings
 const mediaQuerySettings = require('./media-query-settings');

@@ -1,5 +1,5 @@
 <template>
-  <vt@toolbar :class="classes">
+  <vt@toolbar :class="classes" v-if="!hidden">
     <slot />
   </vt@toolbar>
 </template>
@@ -12,6 +12,7 @@ export default {
 
   props: {
     fixed: Boolean,
+    hidden: Boolean,
   },
 
   data() {
@@ -27,8 +28,15 @@ export default {
     },
   },
 
+  watch: {
+    fixed() { this.$store.commit('ui/header/setFixed', this.fixed) },
+    hidden() { this.$store.commit('ui/header/setHidden', this.hidden) },
+  },
+
   created() {
-    this.$store.commit('ui/header/set', {fixed: this.fixed});
+    this.$store.commit('ui/header/set');
+    this.$store.commit('ui/header/setFixed', this.fixed);
+    this.$store.commit('ui/header/setHidden', this.hidden);
   },
 
   beforeDestroy() {

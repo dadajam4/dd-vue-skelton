@@ -43,11 +43,18 @@ export default {
         'vc@app--drawer-right-static': this.$store.state.ui.rightDrawer.active && this.$store.state.ui.rightDrawer.static,
       }, this.themeClasses)
     },
+
+    styles() {
+      return {
+        paddingTop: this.$store.getters['ui/header/fixedHeight'] + 'px',
+      }
+    },
   },
 
   render(h) {
     return h('div', {
       'class': this.classes,
+      style: this.styles,
       attrs: {
         id: this.id,
         'data-app': '',

@@ -81,7 +81,7 @@ export default {
     updateCurrentId() {
       if (!process.browser || !this.$store.state.scroll.loaded || this.$appIsScrolling()) return;
 
-      const headerHeight = this.$appHeaderHeight();
+      const headerHeight = this.$store.getters['ui/header/fixedHeight'];
       const scrollTop = this.$store.state.scroll.top;
       const scrollHeight = this.$store.state.scroll.height;
       const visibleJudgeAmmount = (scrollHeight - headerHeight) * VISIBLE_PER_AMMOUNT;
