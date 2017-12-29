@@ -1,4 +1,3 @@
-import appMixin  from '~/mixins/app';
 import Themeable from '~/mixins/themeable';
 
 
@@ -6,12 +5,9 @@ import Themeable from '~/mixins/themeable';
 export default {
   name: 'vt@app',
 
-  mixins: [appMixin, Themeable],
+  mixins: [Themeable],
 
   props: {
-    header: Boolean,
-    headerFixed: Boolean,
-
     id: {
       type   : String,
       default: 'app'
@@ -21,63 +17,32 @@ export default {
 
   data() {
     return {
-      uses: {
-        leftDrawer: false,
-        rightDrawer: false,
-      },
     }
   },
 
   computed: {
     transitionPropNames() {
       const names = [];
-      this.headerFixed && names.push('top');
-      this.uses.leftDrawer && names.push('left');
-      this.uses.rightDrawer && names.push('right');
+      this.$store.state.ui.header.fixed && names.push('top');
+      this.$store.state.ui.leftDrawer.use && names.push('left');
+      this.$store.state.ui.rightDrawer.use && names.push('right');
       return names;
     },
 
     classes() {
       return Object.assign({
         'vc@app': true,
-        'vc@app--has-header': this.header,
-        'vc@app--has-drawer-left': this.uses.leftDrawer,
-        'vc@app--has-drawer-right': this.uses.rightDrawer,
+        'vc@app--has-header': this.$store.state.ui.header.use,
+        'vc@app--has-drawer-left': this.$store.state.ui.leftDrawer.use,
+        'vc@app--has-drawer-right': this.$store.state.ui.rightDrawer.use,
         [`vc@app--transition-${this.transitionPropNames.join('-')}`]: this.transitionPropNames.length,
-        'vc@app--header-fixed': this.headerFixed,
-        'vc@app--drawer-left-active': this.leftDrawerActive,
-        'vc@app--drawer-right-active': this.rightDrawerActive,
-        'vc@app--drawer-left-static': this.leftDrawerActive && this.leftDrawerStatic,
-        'vc@app--drawer-right-static': this.rightDrawerActive && this.rightDrawerStatic,
+        'vc@app--header-fixed': this.$store.state.ui.header.fixed,
+        'vc@app--drawer-left-active': this.$store.state.ui.leftDrawer.active,
+        'vc@app--drawer-right-active': this.$store.state.ui.rightDrawer.active,
+        'vc@app--drawer-left-static': this.$store.state.ui.leftDrawer.active && this.$store.state.ui.leftDrawer.static,
+        'vc@app--drawer-right-static': this.$store.state.ui.rightDrawer.active && this.$store.state.ui.rightDrawer.static,
       }, this.themeClasses)
     },
-  },
-
-  watch: {
-    leftDrawerActive() {
-      this.$emit('change-drawer-left-active', this.leftDrawerActive);
-    },
-
-    rightDrawerActive() {
-      this.$emit('change-drawer-right-active', this.rightDrawerActive);
-    },
-
-    leftDrawerStatic() {
-      this.$emit('change-drawer-left-static', this.leftDrawerStatic);
-    },
-
-    rightDrawerStatic() {
-      this.$emit('change-drawer-right-static', this.rightDrawerStatic);
-    },
-  },
-
-  methods: {
-  },
-
-  created() {
-  },
-
-  beforeDestroy() {
   },
 
   render(h) {

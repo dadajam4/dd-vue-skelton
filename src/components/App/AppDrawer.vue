@@ -15,7 +15,6 @@
 
 
 <script>
-import appMixin from '~/mixins/app';
 import Mq from '~/mixins/mq';
 import ClickOutside from '~/directives/click-outside';
 
@@ -24,7 +23,7 @@ import ClickOutside from '~/directives/click-outside';
 export default {
   name: 'vt@app-drawer',
 
-  mixins: [appMixin, Mq],
+  mixins: [Mq],
 
   directives: {
     ClickOutside,
@@ -66,13 +65,16 @@ export default {
     vec() { return this.left ? 'left' : 'right' },
 
     isActive: {
-      get() { return this[`${this.vec}DrawerActive`] },
-      set(val) { this.$_app[`${this.vec}DrawerActive`] = val },
+      get() { return this.state.active },
+      set(val) { this.$store.commit(`${this.storePath}setActive`, val) },
     },
 
     isStatic() {
       return this.static && this.mq[this.static];
     },
+
+    state() { return this.$store.state.ui[`${this.vec}Drawer`] },
+    storePath() { return `ui/${this.vec}Drawer/` },
   },
 
   watch: {
@@ -92,6 +94,7 @@ export default {
       } else {
         this.isActive = false;
       }
+      this.$store.commit(`${this.storePath}setStatic`, isStatic);
     },
 
     $route() {
@@ -103,27 +106,21 @@ export default {
     closeConditional() {
       return !this.permanent && !this.isStatic;
     },
-
-    clearAppState() {
-      this.isActive = false;
-      // this.$emit('input', isActive);
-    },
   },
 
   created() {
-    this.$_app.uses[`${this.vec}Drawer`] = true;
     this.$emit('input', this.isActive);
+    this.$store.commit(`${this.storePath}set`);
   },
 
   mounted() {
   },
 
   beforeDestroy() {
-    this.clearAppState();
   },
 
   destroyed() {
-    this.$_app.uses[`${this.vec}Drawer`] = false;
+    this.$store.commit(`${this.storePath}release`);
   },
 }
 </script>

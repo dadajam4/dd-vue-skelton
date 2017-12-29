@@ -9,6 +9,7 @@ export createSimpleTransition from './createSimpleTransition';
 export getObjectValueByPath from './getObjectValueByPath';
 export getZIndex from './getZIndex';
 export waitElementInsert from './waitElementInsert';
+export locationHashChange from './locationHashChange';
 
 
 

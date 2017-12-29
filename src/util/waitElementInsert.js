@@ -1,4 +1,4 @@
-export const waitElementInsert = (query, opts = {}) => {
+export default function waitElementInsert(query, opts = {}) {
   const context  = opts.context  || document;
   const interval = opts.interval || 100;
   const forgo    = opts.forgo    || 1000;

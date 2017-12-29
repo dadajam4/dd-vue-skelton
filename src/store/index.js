@@ -1,6 +1,7 @@
 import Vuex   from 'vuex';
 import scroll from './scroll';
 import mq     from './mq';
+import ui     from './ui';
 
 
 
@@ -9,6 +10,7 @@ const createStore = () => {
     modules: {
       scroll,
       mq,
+      ui,
     },
   });
 

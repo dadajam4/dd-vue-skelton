@@ -10,6 +10,10 @@
 export default {
   name: 'vt@app-header',
 
+  props: {
+    fixed: Boolean,
+  },
+
   data() {
     return {
     }
@@ -24,12 +28,14 @@ export default {
   },
 
   created() {
+    this.$store.commit('ui/header/set', {fixed: this.fixed});
   },
 
   beforeDestroy() {
   },
 
   destroyed() {
+    this.$store.commit('ui/header/release');
   },
 }
 </script>

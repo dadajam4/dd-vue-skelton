@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <vt@app-header>
+  <vt@app-header fixed>
     <vt@toolbar-title>{{title}}</vt@toolbar-title>
     <vt@spacer />
 <!--

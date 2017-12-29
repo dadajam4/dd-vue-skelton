@@ -96,12 +96,17 @@ export default {
           const myVisibleHeight = scrollHeight - myRect.top;
 
           if (myVisibleHeight > visibleJudgeAmmount) {
-            this.currentId = item.id;
-            history.pushState({}, '', location.href.replace(/(#.*)?$/, '#' + item.id));
+            if (this.currentId !== item.id) {
+              this.currentId = item.id;
+              this.$util.locationHashChange(item.id);
+              // history.replaceState({}, '', location.href.replace(/(#.*)?$/, '#' + item.id));
+            }
             return;
           }
         }
       }
+
+      this.$util.locationHashChange();
       this.currentId = null;
     },
 
