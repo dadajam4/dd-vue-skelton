@@ -3,13 +3,18 @@
 //
 
 .#{$css-prefix}app-header {
-  .#{$css-prefix}app--header-fixed & {
+  transition-property: all;
+  transition-duration: get-duration(slowly);
+  transition-timing-function: get-easing(drawer);
+
+  &--fixed {
     position: fixed;
     @include z-index(app-header);
     top: 0;
     left: 0;
     width: 100%;
     @include shadow(floating);
+    // transition-property: top;
   }
 
   .#{$css-prefix}app--drawer-left-active & {
@@ -18,5 +23,11 @@
 
   .#{$css-prefix}app--drawer-right-active & {
     padding-right: $navigation-drawer-width;
+  }
+
+  &--hidden {
+    top: -$toolbar-row-height;
+    // box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    opacity: 0;
   }
 }

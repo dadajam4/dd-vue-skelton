@@ -86,15 +86,8 @@ export default {
       this.$emit('input', isActive);
     },
 
-    isStatic(isStatic) {
-      if (this.isStatic) {
-        if (this.lastRequested || this.lastRequested === null) {
-          this.isActive = true;
-        }
-      } else {
-        this.isActive = false;
-      }
-      this.$store.commit(`${this.storePath}setStatic`, isStatic);
+    isStatic() {
+      this.checkStatic();
     },
 
     $route() {
@@ -106,14 +99,28 @@ export default {
     closeConditional() {
       return !this.permanent && !this.isStatic;
     },
+
+    checkStatic() {
+      if (this.isStatic) {
+        if (this.lastRequested || this.lastRequested === null) {
+          this.isActive = true;
+        }
+      } else {
+        this.isActive = false;
+      }
+      this.$store.commit(`${this.storePath}setStatic`, this.isStatic);
+    },
   },
 
   created() {
+    this.checkStatic();
     this.$emit('input', this.isActive);
     this.$store.commit(`${this.storePath}set`);
+    // this.checkStatic();
   },
 
   mounted() {
+    // this.checkStatic();
   },
 
   beforeDestroy() {
@@ -121,6 +128,7 @@ export default {
 
   destroyed() {
     this.$store.commit(`${this.storePath}release`);
+    this.lastRequested = null;
   },
 }
 </script>

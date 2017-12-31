@@ -62,5 +62,11 @@
     &-pull {
       @include page-container-pull;
     }
+
+    & > .#{$css-prefix}page__section {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
   }
 }

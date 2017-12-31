@@ -1,5 +1,5 @@
 <template>
-  <vt@toolbar :class="classes" v-if="!hidden">
+  <vt@toolbar :class="classes">
     <slot />
   </vt@toolbar>
 </template>
@@ -24,6 +24,8 @@ export default {
     classes() {
       return {
         'vc@app-header': true,
+        'vc@app-header--fixed': this.fixed,
+        'vc@app-header--hidden': this.hidden,
       }
     },
   },

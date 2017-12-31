@@ -1,6 +1,8 @@
 <style lang="scss" scoped>
 
 .my-logo {
+  margin-top: 60px;
+
   img {
     width: 100%;
     max-width: 320px;
@@ -25,6 +27,10 @@
             <vt@icon left>github</vt@icon>
             github
           </vt@btn>
+        </div>
+
+        <div class="vc@text--center">
+          <p v-for="n in 20" :key="n">hogehoge - {{n}}</p>
         </div>
       </div>
     </main>

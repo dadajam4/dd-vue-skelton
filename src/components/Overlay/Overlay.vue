@@ -23,14 +23,14 @@
 export default {
   name: 'vt@overlay',
 
-
   props: {
     value: { required: false },
   },
 
   data() {
     return {
-      isActive: this.value,
+      // isActive: this.value,
+      isActive: false,
     }
   },
 
@@ -39,8 +39,8 @@ export default {
   computed: {
     classes() {
       return {
-        [this.$options.name]: true,
-        [`${this.$options.name}--active`]: this.isActive,
+        'vc@overlay': true,
+        'vc@overlay--active': this.isActive,
       }
     },
   },
@@ -67,6 +67,15 @@ export default {
     // toggle() {
     //   this.isActive = !this.isActive;
     // },
+  },
+
+  created() {
+  },
+
+  mounted() {
+
+    // createdの時にやるとerrorになる
+    this.isActive = this.value;
   },
 }
 </script>
