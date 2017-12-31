@@ -3,7 +3,8 @@
 
 .my-logo {
   border-bottom: solid 1px;
-  @include theme-color(form-divider);
+  @include var(border-color, theme-form-divider);
+  // @include theme-color(form-divider);
 
   & > a {
     color: inherit;

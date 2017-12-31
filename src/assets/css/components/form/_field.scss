@@ -25,7 +25,8 @@
 
   &__prefix,
   &__suffix {
-    @include theme-color(text-secondary);
+    @include var(color, theme-text-secondary);
+    // @include theme-color(text-secondary);
     align-items: center;
     display: inline-flex;
   }

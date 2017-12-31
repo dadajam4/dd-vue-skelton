@@ -12,7 +12,8 @@
     vertical-align: bottom;
     @include font-size(sm);
     transition: get-duration(promptly);
-    @include theme-color(text-secondary);
+    @include var(color, theme-text-secondary);
+    // @include theme-color(text-secondary);
     padding-bottom: .3em;
   }
 
@@ -88,12 +89,14 @@
   }
 
   &__messages {
-    @include theme-color(text-secondary);
+    @include var(color, theme-text-secondary);
+    // @include theme-color(text-secondary);
   }
 
   &__left-icon,
   &__right-icon {
-    @include theme-color(text-secondary);
+    @include var(color, theme-text-secondary);
+    // @include theme-color(text-secondary);
     align-items: center;
     display: inline-flex;
     transition: get-duration(promptly);

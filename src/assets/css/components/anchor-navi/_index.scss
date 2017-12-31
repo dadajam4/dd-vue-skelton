@@ -4,7 +4,8 @@
 
 .#{$css-prefix}anchor-navi {
   display: block;
-  @include theme-color(background-light);
+  @include var(background-color, theme-background-light);
+  // @include theme-color(background-light);
   @include font-size(sm);
 
   &__item {
@@ -13,7 +14,8 @@
     align-items: center;
     justify-content: flex-end;
 
-    @include theme-color(text);
+    @include var(color, theme-text);
+    // @include theme-color(text);
 
     &:hover,
     &:focus {

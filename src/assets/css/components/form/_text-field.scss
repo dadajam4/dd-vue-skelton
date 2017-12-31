@@ -11,7 +11,8 @@
   }
 
   &__counter {
-    @include theme-color(text-secondary);
+    @include var(color, theme-text-secondary);
+    // @include theme-color(text-secondary);
     margin-left: auto;
 
     &--error {
@@ -47,7 +48,8 @@
       &:hover,
       &:focus,
       &--focused {
-        @include theme-color(background-light);
+        @include var(background-color, theme-background-light);
+        // @include theme-color(background-light);
       }
     }
   }

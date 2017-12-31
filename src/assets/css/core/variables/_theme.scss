@@ -9,6 +9,7 @@
 $theme: (
   base: (
     text: get-color(text-base),
+    text-primary: get-color(text-primary),
     text-darken: get-color(text-darken),
     text-secondary: get-color(text-secondary),
     link: get-color(text-link),
@@ -24,6 +25,7 @@ $theme: (
 
   inverted: (
     text: get-color(text-inverted),
+    text-primary: get-color(text-primary-inverted),
     text-darken: get-color(text-darken-inverted),
     text-secondary: get-color(text-secondary-inverted),
     link: get-color(text-link-inverted),
@@ -37,3 +39,10 @@ $theme: (
     highlight: get-color(highlight-inverted),
   ),
 );
+
+@each $key, $val in get-theme(base) {
+  :root {
+    $default-vars: map-set($default-vars, theme-#{$key}, $val);
+    // --theme-#{$key}: $val;
+  }
+}

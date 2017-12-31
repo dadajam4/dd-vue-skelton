@@ -8,7 +8,8 @@
   padding-bottom: 6rem;
 
   &-header {
-    @include theme-color(background-light);
+    @include var(background-color, theme-background-light);
+    // @include theme-color(background-light);
 
     &__inner {
       height: 7.25rem;
@@ -26,13 +27,15 @@
       h6 {
         @include font-size(xxxl);
         @include font-weight(regular);
-        @include theme-color(text-secondary);
+        @include var(color, theme-text-secondary);
+        // @include theme-color(text-secondary);
       }
     }
   }
 
   &__introduction {
-    @include theme-color(text-secondary);
+    @include var(color, theme-text-secondary);
+    // @include theme-color(text-secondary);
     margin: 0;
   }
 
@@ -43,7 +46,8 @@
       @include font-size(xxl);
       // @include font-weight(regular);
       @include font-weight(bold);
-      @include theme-color(text-secondary);
+      @include var(color, theme-text-secondary);
+      // @include theme-color(text-secondary);
       margin-bottom: 1rem;
       // font-weight: bold;
 

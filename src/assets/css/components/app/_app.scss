@@ -3,7 +3,7 @@
 //
 
 .#{$css-prefix}app {
-  @include theme-color();
+  // @include theme-color();
 
   position: relative;
   min-height: 100vh;

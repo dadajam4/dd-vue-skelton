@@ -7,8 +7,9 @@
 
   list-style-type: none;
   padding: get-space(xs) 0;
-  transition: height .4s cubic-bezier(.4,0,.2,1);
-  @include theme-color(background);
+  transition: height .4s cubic-bezier(.4, 0, .2, 1);
+  @include var(background-color, theme-background);
+  // @include theme-color(background);
   margin: 0;
 
   & > li {
@@ -28,7 +29,6 @@
     position: relative;
     user-select: none;
     color: inherit;
-    // @include theme-color(text-inherit);
     @include user-drag(none);
 
     @at-root a#{&} {
@@ -37,7 +37,6 @@
       &:focus,
       &:active {
         color: inherit;
-        // @include theme-color(text-inherit);
       }
     }
 
@@ -50,27 +49,28 @@
         &:hover,
         &:focus,
         &:active {
-          // color: inherit;
-          // @include theme-color(text-inherit);
-          @include theme-color(text);
+          color: inherit;
         }
       }
       // @include theme-color(text);
 
       &:not(.#{$css-prefix}list__tile--active) {
         &:hover {
-          @include theme-color(background-light);
+          @include var(background-color, theme-background-light);
+          // @include theme-color(background-light);
         }
 
         &:active {
-          @include theme-color(background-active);
+          @include var(background-color, theme-background-active);
+          // @include theme-color(background-active);
         }
       }
     }
 
     &--active {
       // @include theme-color(background-active);
-      @include color(text-primary, true);
+      @include var(color, theme-text-primary, true);
+      // @include color(text-primary, true);
     }
 
     &:after {
@@ -136,7 +136,8 @@
     }
 
     &__sub-title {
-      @include theme-color(text-secondary);
+      @include var(color, theme-text-secondary);
+      // @include theme-color(text-secondary);
       @include font-size(sm);
       @include ellipsis;
     }
@@ -169,7 +170,8 @@
         cursor: pointer;
 
         &:hover {
-          @include theme-color(background-light);
+          @include var(background-color, theme-background-light);
+          // @include theme-color(background-light);
         }
       }
 
@@ -183,7 +185,8 @@
         #{$my}__tile {
           &,
           &:hover {
-            @include theme-color(background-active);
+            @include var(background-color, theme-background-active);
+            // @include theme-color(background-active);
           }
           // background: $material-twelve-percent-dark
           &:after {
