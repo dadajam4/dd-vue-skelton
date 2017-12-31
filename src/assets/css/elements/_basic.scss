@@ -97,5 +97,9 @@ kbd {
   @include theme-color(text-darken background-darken);
 }
 
+mark {
+  @include theme-color(highlight);
+}
+
 // styled
 // sup, sub, ruby >>> rest.css

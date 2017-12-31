@@ -71,6 +71,10 @@
   border-color: get-theme-color($theme, form-divider);
 }
 
+@mixin theme-highlight-color($theme) {
+  background-color: get-theme-color($theme, highlight);
+}
+
 $theme-default-props: (
   text,
   link,
@@ -79,6 +83,9 @@ $theme-default-props: (
 );
 
 @mixin theme-apply($theme: base, $props: $theme-default-props) {
+  @if index($props, text-inherit) != null {
+    color: inherit;
+  }
   @if index($props, text) != null {
     @include theme-text-color($theme);
   }
@@ -108,6 +115,9 @@ $theme-default-props: (
   }
   @if index($props, form-divider) != null {
     @include theme-form-divider-color($theme);
+  }
+  @if index($props, highlight) != null {
+    @include theme-highlight-color($theme);
   }
 }
 

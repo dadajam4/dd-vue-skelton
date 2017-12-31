@@ -63,8 +63,12 @@ dt {
   @include font-weight(regular);
   @include line-height(md);
   letter-spacing: normal;
-  margin-top: get-space(xxs);
+  margin-top: get-space(sm);
   margin-bottom: get-space(xxs);
+
+  & + & {
+    margin-top: get-space(xxxs);
+  }
 }
 
 dd {
@@ -90,14 +94,17 @@ blockquote {
       margin-bottom: 0;
     }
   }
-  // footer {
-  //   font-size: 80%;
-  //   color: $color-brand-muted;
-  //   @include line-height(md);
-  //   &:before {
-  //     content: '\2014 \00A0';
-  //   }
-  // }
+
+  footer {
+    font-size: 80%;
+
+    @include theme-color(text-secondary);
+    @include line-height(md);
+
+    &:before {
+      content: '\2014 \00A0';
+    }
+  }
 }
 
 // figure

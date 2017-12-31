@@ -55,6 +55,9 @@ $color: map-set($color, divider-inverted, #f00);
 $color: map-set($color, form-divider, #e3e3e3);
 $color: map-set($color, form-divider-inverted, #616161);
 
+$color: map-set($color, highlight, #ffb85b);
+$color: map-set($color, highlight-inverted, #ffb85b);
+
 $color: map-set($color, overlay, rgba(0, 0, 0, .4));
 
 $context-colors: get-maps-by-search-key(context, $color);

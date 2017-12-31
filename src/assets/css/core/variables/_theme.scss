@@ -19,6 +19,7 @@ $theme: (
     background-active: get-color(bg-active),
     border: get-color(divider),
     form-divider: get-color(form-divider),
+    highlight: get-color(highlight),
   ),
 
   inverted: (
@@ -33,5 +34,6 @@ $theme: (
     background-active: get-color(bg-active-inverted),
     border: get-color(divider-inverted),
     form-divider: get-color(form-divider-inverted),
+    highlight: get-color(highlight-inverted),
   ),
 );

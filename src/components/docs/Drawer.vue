@@ -50,6 +50,8 @@
           <vt@list-tile-content>
             <vt@list-tile-title class="my-parent-name">{{parent.name}}</vt@list-tile-title>
           </vt@list-tile-content>
+          <vt@list-tile-action>
+          </vt@list-tile-action>
         </vt@list-tile>
 
         <vt@list-group

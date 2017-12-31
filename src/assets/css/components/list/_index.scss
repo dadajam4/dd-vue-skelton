@@ -28,6 +28,7 @@
     position: relative;
     user-select: none;
     color: inherit;
+    // @include theme-color(text-inherit);
     @include user-drag(none);
 
     @at-root a#{&} {
@@ -36,13 +37,25 @@
       &:focus,
       &:active {
         color: inherit;
+        // @include theme-color(text-inherit);
       }
     }
 
     &--link {
       cursor: pointer;
       transition: get-duration(promptly);
-      @include theme-color(text);
+
+      @at-root a#{&} {
+        &,
+        &:hover,
+        &:focus,
+        &:active {
+          // color: inherit;
+          // @include theme-color(text-inherit);
+          @include theme-color(text);
+        }
+      }
+      // @include theme-color(text);
 
       &:not(.#{$css-prefix}list__tile--active) {
         &:hover {

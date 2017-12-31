@@ -33,10 +33,11 @@
           </template>
 
           <dd-source id="blockquote" immediately>
-            <p>夏目漱石の<cite>草枕</cite>は、こんな風に始まります。</p>
+            <p>夏目漱石の<cite title="草枕">草枕</cite>は、こんな風に始まります。</p>
             <blockquote cite="http://www.example.com/kusamakura.html">
               <p>山路を登りながら、こう考えた。<br>
               智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。</p>
+              <footer>この記事の出典 <cite title="草枕">草枕</cite></footer>
             </blockquote>
             <p>この作品の主人公は30歳の洋画家ですが、世間にあまりなじめていない彼の芸術家らしい生きざまがすでに冒頭で表現されています。</p>
           </dd-source>

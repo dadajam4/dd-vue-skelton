@@ -245,7 +245,7 @@
           </template>
 
           <dd-source id="code" immediately>
-            <p>最初に<code>npm run install</code>してください</p>
+            <p>最初に <code>npm run install</code> してください</p>
 
             <h6>Example</h6>
             <pre><code class="language-pascal">var i: Integer;
@@ -283,9 +283,9 @@ end.</code></pre>
           </template>
 
           <dd-source id="kbd" immediately>
-            <p><kbd>Shift</kbd>という文字列を入力してください。</p>
-            <p><kbd><kbd>Shift</kbd></kbd>キーを１回押してください。</p>
-            <p><kbd><kbd>S</kbd><kbd>h</kbd><kbd>i</kbd><kbd>f</kbd><kbd>t</kbd></kbd>と５つのキーを順に１回ずつ押してください。</p>
+            <p><kbd>Shift</kbd> という文字列を入力してください。</p>
+            <p><kbd><kbd>Shift</kbd></kbd> キーを１回押してください。</p>
+            <p><kbd><kbd>S</kbd><kbd>h</kbd><kbd>i</kbd><kbd>f</kbd><kbd>t</kbd></kbd> と５つのキーを順に１回ずつ押してください。</p>
           </dd-source>
         </docs-element-guide>
       </section>
