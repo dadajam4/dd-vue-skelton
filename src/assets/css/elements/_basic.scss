@@ -22,7 +22,7 @@ b,
 // small
 small,
 .#{$css-prefix}small {
-  @include font-size(sm);
+  @include font-size(xs);
 }
 
 // strike

@@ -170,6 +170,11 @@ const links = [
     path: '/components',
     children: [
       {
+        name: 'components-alerts',
+        path: '/components/alerts',
+        _filename: 'alerts',
+      },
+      {
         name: 'components-forms',
         path: '/components/forms',
         _filename: 'forms',

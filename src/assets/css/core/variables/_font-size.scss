@@ -21,8 +21,9 @@ $html-base-font-size-per: ($html-base-font-size / 16px) * 100%;
 
 $font-size: ();
 $font-size: map-set($font-size, base   , get-rem());
-$font-size: map-set($font-size, xs     , get-rem(.625));
-$font-size: map-set($font-size, sm     , get-rem(.75));
+$font-size: map-set($font-size, xxs    , get-rem(.625));
+$font-size: map-set($font-size, xs     , get-rem(.75));
+$font-size: map-set($font-size, sm     , get-rem(.875));
 $font-size: map-set($font-size, md     , get-rem());
 $font-size: map-set($font-size, lg     , get-rem(1.125));
 // $font-size: map-set($font-size, xl     , get-rem(1.15));

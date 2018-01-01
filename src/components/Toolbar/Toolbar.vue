@@ -9,11 +9,13 @@
 
 
 <script>
-
+import Colorable from '~/mixins/colorable';
 
 
 export default {
   name: 'vt@toolbar',
+
+  mixins: [Colorable],
 
   props: {
   },
@@ -22,10 +24,11 @@ export default {
 
   computed: {
     classes() {
-      return {
-        [this.$options.name]: true,
-      }
+      return this.addBackgroundColorClassChecks({
+        'vc@toolbar': true,
+      });
     },
+
     contentClasses() {
       return {
         'vc@toolbar__content': true,

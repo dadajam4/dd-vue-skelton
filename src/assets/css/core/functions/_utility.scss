@@ -132,17 +132,6 @@
   }
 }
 
-// // Effect Fading
-// @mixin effect-fade($targets: ":hover", $prop: opacity, $value: 0.75, $duration: $duration-promptly) {
-//   transition: $prop $duration;
-
-//   @each $target in $targets {
-//     &#{$target} {
-//       #{$prop}: $value;
-//     }
-//   }
-// }
-
 // Set User Drag
 @mixin user-drag($drag) {
   -webkit-user-drag: $drag;

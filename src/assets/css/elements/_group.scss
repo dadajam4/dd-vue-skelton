@@ -59,7 +59,7 @@ dl {
 
 dt {
   display: block;
-  @include font-size(sm);
+  @include font-size(xs);
   @include font-weight(regular);
   @include line-height(md);
   letter-spacing: normal;
@@ -98,7 +98,7 @@ blockquote {
   footer {
     font-size: 80%;
 
-    @include var(color, theme-text-secondary);
+    @include var(color, theme-text-muted);
     @include line-height(md);
 
     &:before {
@@ -120,7 +120,7 @@ figure {
 
 figcaption {
   display: block;
-  @include font-size(sm);
+  @include font-size(xs);
   @include font-weight(regular);
   @include line-height(md);
   margin-top: get-space(xxs);
@@ -141,12 +141,12 @@ table {
   max-width: 100%;
   border: 0;
 
-  @include font-size(sm);
+  @include font-size(xs);
 }
 
 caption {
   display: table-caption;
-  @include font-size(sm);
+  @include font-size(xs);
   @include font-weight(regular);
   @include line-height(md);
   margin-top: get-space(xxs);

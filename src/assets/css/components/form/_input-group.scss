@@ -10,7 +10,7 @@
   &__label {
     display: inline-block;
     vertical-align: bottom;
-    @include font-size(sm);
+    @include font-size(xs);
     transition: get-duration(promptly);
     @include var(color, theme-text-secondary);
     padding-bottom: .3em;
@@ -80,7 +80,7 @@
     position: relative;
     width: 100%;
     padding-top: 4px;
-    @include font-size(sm);
+    @include font-size(xs);
 
     .#{$css-prefix}list__tile__action & {
       display: none;

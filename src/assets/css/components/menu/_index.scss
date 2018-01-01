@@ -23,6 +23,7 @@
     align-items: center;
     cursor: pointer;
     position: relative;
+    @include remove-tap-highlight;
 
     input[readonly] {
       cursor: pointer;

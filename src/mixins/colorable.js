@@ -16,7 +16,7 @@ export default {
   methods: {
     addBackgroundColorClassChecks(classes = {}, prop = 'computedColor') {
       if (prop && this[prop]) {
-        classes[this[prop]] = true;
+        classes[`vc@${this[prop]}`] = true;
       }
       return classes;
     },

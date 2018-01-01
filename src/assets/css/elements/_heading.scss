@@ -57,7 +57,7 @@ h5,
 
 h6,
 .#{$css-prefix}text--caption {
-  @include font-size(sm);
+  @include font-size(xs);
   @include font-weight(regular);
   @include line-height(md);
   letter-spacing: normal;

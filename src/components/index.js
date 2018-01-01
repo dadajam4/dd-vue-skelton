@@ -1,4 +1,5 @@
 import App from './App';
+import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
 import TextField from './TextField';
@@ -22,6 +23,7 @@ import Transitions from './transitions';
 
 export default Object.assign({},
   App,
+  Alert,
   Avatar,
   Card,
   TextField,

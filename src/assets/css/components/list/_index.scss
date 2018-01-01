@@ -132,7 +132,7 @@
 
     &__sub-title {
       @include var(color, theme-text-secondary);
-      @include font-size(sm);
+      @include font-size(xs);
       @include ellipsis;
     }
   }

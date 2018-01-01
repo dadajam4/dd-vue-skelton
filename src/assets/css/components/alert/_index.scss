@@ -1,0 +1,47 @@
+//
+// Alert
+//
+
+.#{$css-prefix}alert {
+  border-color: rgba(0,0,0,.12)!important;
+  border-width: 4px 0 0;
+  border-style: solid;
+  // border: solid 1px;
+  // border-radius: $alert-border-radius
+  // border-width: $alert-border-width
+  // border-style: solid
+  // color: #fff
+  display: flex;
+  // font-size: $alert-font-size
+  // margin: $alert-margin
+  // padding: $alert-padding
+  position: relative;
+  transition: get-transition(primary);
+  @include font-size(sm);
+  margin: 4px auto;
+  padding: 16px;
+
+  &__icon {
+    align-self: center;
+    @include font-size(lg);
+    margin-right: 16px;
+  }
+
+  &__body {
+    align-self: center;
+    flex: 1 1;
+  }
+
+  &__dismissible {
+    display: block;
+    cursor: pointer;
+    align-self: flex-start;
+    text-decoration: none;
+    @include remove-tap-highlight;
+    @include user-drag(none);
+    user-select: none;
+    @include font-size(lg);
+    margin-left: 16px;
+    color: inherit!important;
+  }
+}

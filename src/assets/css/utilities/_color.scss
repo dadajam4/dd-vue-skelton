@@ -5,7 +5,7 @@
 @each $key, $define in $context-colors {
   .#{$css-prefix}#{$key} {
     $my-background-color: map-get($define, value);
-    background-color: $my-background-color;
+    background-color: $my-background-color!important;
     @include suitable-text-color($my-background-color);
   }
 }
