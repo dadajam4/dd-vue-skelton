@@ -27,7 +27,6 @@
   flex: 0 1 auto;
   @include font-weight(regular);
   margin: get-button(margin-vertical) get-button(margin-horizontal);
-  // transition: .3s cubic-bezier(.25,.8,.5,1),color 1ms;
   border-radius: get-button(radius);
   border: $my-border-width solid transparent;
   position: relative;
@@ -49,38 +48,34 @@
     padding: 0 get-button(padding-horizontal);
     white-space: nowrap;
     transition: get-transition(primary);
+  }
 
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      border-radius: inherit;
-      color: inherit;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      opacity: .12;
-      transition: get-duration(promptly);
-    }
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: inherit;
+    color: inherit;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .12;
+    transition: get-duration(promptly);
   }
 
   &:hover,
   // &:active,
   &:focus {
-    .#{$css-prefix}btn__content {
-      &:before {
-        background-color: currentColor;
-      }
+    &:before {
+      background-color: currentColor;
     }
   }
 
   &:active {
-    .#{$css-prefix}btn__content {
-      &:after {
-        background-color: rgba(0, 0, 0, .5);
-      }
+    &:after {
+      background-color: rgba(0, 0, 0, .5);
     }
   }
 
@@ -160,14 +155,12 @@
   }
 
   &#{&}--disabled {
-    @include color(text-muted);
+    color: get-color(text-muted) !important;
     pointer-events: none;
 
-    $my-bg-color: get-color(bg-muted);
-
     &:not(.#{$css-prefix}btn--icon) {
-      background-color: $my-bg-color!important;
-      border-color: $my-bg-color!important;
+      background-color: get-color(background-muted) !important;
+      border-color: get-color(background-muted) !important;
     }
   }
 

@@ -9,7 +9,6 @@
 
   &-header {
     @include var(background-color, theme-background-light);
-    // @include theme-color(background-light);
 
     &__inner {
       height: 7.25rem;
@@ -28,14 +27,12 @@
         @include font-size(xxxl);
         @include font-weight(regular);
         @include var(color, theme-text-secondary);
-        // @include theme-color(text-secondary);
       }
     }
   }
 
   &__introduction {
     @include var(color, theme-text-secondary);
-    // @include theme-color(text-secondary);
     margin: 0;
   }
 
@@ -47,7 +44,6 @@
       // @include font-weight(regular);
       @include font-weight(bold);
       @include var(color, theme-text-secondary);
-      // @include theme-color(text-secondary);
       margin-bottom: 1rem;
       // font-weight: bold;
 

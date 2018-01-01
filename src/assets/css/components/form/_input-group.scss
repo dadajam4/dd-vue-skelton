@@ -13,7 +13,6 @@
     @include font-size(sm);
     transition: get-duration(promptly);
     @include var(color, theme-text-secondary);
-    // @include theme-color(text-secondary);
     padding-bottom: .3em;
   }
 
@@ -90,13 +89,11 @@
 
   &__messages {
     @include var(color, theme-text-secondary);
-    // @include theme-color(text-secondary);
   }
 
   &__left-icon,
   &__right-icon {
     @include var(color, theme-text-secondary);
-    // @include theme-color(text-secondary);
     align-items: center;
     display: inline-flex;
     transition: get-duration(promptly);
@@ -115,7 +112,7 @@
     // #{$my}__selection-label,
     #{$my}__left-icon,
     #{$my}__right-icon {
-      @include color(text-primary);
+      @include var(color, theme-text-primary);
     }
   }
 
@@ -132,7 +129,7 @@
     #{$my}__messages,
     #{$my}__left-icon,
     #{$my}__right-icon {
-      @include color(text-danger);
+      @include var(color, theme-text-danger);
     }
 
     // #{$my}__selection-faux {
@@ -143,12 +140,12 @@
   &--disabled {
     #{$my}__label,
     #{$my}__selection-label {
-      @include color(text-muted);
+      @include var(color, theme-text-muted);
       pointer-events: none;
     }
 
     #{$my}__selection-faux {
-      @include color(text-muted);
+      @include var(color, theme-text-muted);
       pointer-events: none;
     }
   }

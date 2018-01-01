@@ -9,7 +9,6 @@
   padding: get-space(xs) 0;
   transition: height .4s cubic-bezier(.4, 0, .2, 1);
   @include var(background-color, theme-background);
-  // @include theme-color(background);
   margin: 0;
 
   & > li {
@@ -31,14 +30,15 @@
     color: inherit;
     @include user-drag(none);
 
-    @at-root a#{&} {
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        color: inherit;
-      }
-    }
+    color: inherit;
+    // @at-root a#{&} {
+    //   &,
+    //   &:hover,
+    //   &:focus,
+    //   &:active {
+    //     color: inherit;
+    //   }
+    // }
 
     &--link {
       cursor: pointer;
@@ -52,25 +52,20 @@
           color: inherit;
         }
       }
-      // @include theme-color(text);
 
       &:not(.#{$css-prefix}list__tile--active) {
         &:hover {
           @include var(background-color, theme-background-light);
-          // @include theme-color(background-light);
         }
 
         &:active {
           @include var(background-color, theme-background-active);
-          // @include theme-color(background-active);
         }
       }
     }
 
     &--active {
-      // @include theme-color(background-active);
       @include var(color, theme-text-primary, true);
-      // @include color(text-primary, true);
     }
 
     &:after {
@@ -82,7 +77,7 @@
       opacity: 0;
       width: 100%;
       transition: get-transition(primary);
-      background-color: get-color(bg-active);
+      @include var(background-color, theme-background-active);
     }
 
     & > * {
@@ -137,7 +132,6 @@
 
     &__sub-title {
       @include var(color, theme-text-secondary);
-      // @include theme-color(text-secondary);
       @include font-size(sm);
       @include ellipsis;
     }
@@ -155,7 +149,7 @@
       height: 1px;
       opacity: 0;
       width: 100%;
-      background-color: get-color(bg-active);
+      @include var(background, theme-background-active);
     }
 
     &__header {
@@ -171,7 +165,6 @@
 
         &:hover {
           @include var(background-color, theme-background-light);
-          // @include theme-color(background-light);
         }
       }
 
@@ -186,9 +179,8 @@
           &,
           &:hover {
             @include var(background-color, theme-background-active);
-            // @include theme-color(background-active);
           }
-          // background: $material-twelve-percent-dark
+
           &:after {
             opacity: 1;
           }

@@ -4,7 +4,6 @@
 
 .#{$css-prefix}toolbar {
   @include var(background-color, theme-background);
-  // @include theme-color(background);
   transition: padding get-duration(slowly) get-easing(drawer);
   @include elevation(4);
 

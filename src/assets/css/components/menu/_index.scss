@@ -51,7 +51,8 @@
     &--dropdown {
       border-top-left-radius: 0;
       border-top-right-radius: 0;
-      border-top: 1px solid get-color(divider);
+      border-top: 1px solid;
+      @include var(border-color, theme-divider);
     }
 
     & > .#{$css-prefix}card {

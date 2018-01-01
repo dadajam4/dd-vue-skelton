@@ -9,33 +9,53 @@
 $theme: (
   base: (
     text: get-color(text-base),
-    text-primary: get-color(text-primary),
     text-darken: get-color(text-darken),
+    text-muted: get-color(text-muted),
+    text-primary: get-color(text-primary),
     text-secondary: get-color(text-secondary),
+    text-success: get-color(text-success),
+    text-info: get-color(text-info),
+    text-warning: get-color(text-warning),
+    text-danger: get-color(text-danger),
+
     link: get-color(text-link),
     link-hover: get-color(text-link-hover),
-    background: get-color(bg-base),
-    background-light: get-color(bg-light),
-    background-darken: get-color(bg-darken),
-    background-active: get-color(bg-active),
-    border: get-color(divider),
+
+    background: get-color(background-base),
+    background-light: get-color(background-light),
+    background-darken: get-color(background-darken),
+    background-active: get-color(background-active),
+    background-muted: get-color(background-muted),
+
+    divider: get-color(divider),
     form-divider: get-color(form-divider),
+
     highlight: get-color(highlight),
   ),
 
   inverted: (
     text: get-color(text-inverted),
-    text-primary: get-color(text-primary-inverted),
     text-darken: get-color(text-darken-inverted),
+    text-muted: get-color(text-muted-inverted),
+    text-primary: get-color(text-primary-inverted),
     text-secondary: get-color(text-secondary-inverted),
+    text-success: get-color(text-success-inverted),
+    text-info: get-color(text-info-inverted),
+    text-warning: get-color(text-warning-inverted),
+    text-danger: get-color(text-danger-inverted),
+
     link: get-color(text-link-inverted),
     link-hover: get-color(text-link-hover-inverted),
-    background: get-color(bg-inverted),
-    background-light: get-color(bg-light-inverted),
-    background-darken: get-color(bg-darken-inverted),
-    background-active: get-color(bg-active-inverted),
-    border: get-color(divider-inverted),
+
+    background: get-color(background-inverted),
+    background-light: get-color(background-light-inverted),
+    background-darken: get-color(background-darken-inverted),
+    background-active: get-color(background-active-inverted),
+    background-muted: get-color(background-muted-inverted),
+
+    divider: get-color(divider-inverted),
     form-divider: get-color(form-divider-inverted),
+
     highlight: get-color(highlight-inverted),
   ),
 );
@@ -43,6 +63,5 @@ $theme: (
 @each $key, $val in get-theme(base) {
   :root {
     $default-vars: map-set($default-vars, theme-#{$key}, $val);
-    // --theme-#{$key}: $val;
   }
 }

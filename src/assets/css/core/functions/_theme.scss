@@ -2,18 +2,16 @@
 // Theme
 //
 
-@function get-theme-color($theme: base, $prop: null) {
-  @return map-get(get-theme($theme), $prop);
-}
-
-@mixin theme($name) {
+@mixin theme-vars($name) {
   @each $key, $val in get-theme($name) {
     --theme-#{$key}: $val;
   }
+}
 
+@mixin theme-apply() {
   @include var(color, theme-text);
   @include var(background-color, theme-background);
-  @include var(border-color, theme-border);
+  @include var(border-color, theme-divider);
 
   a {
     @include var(color, theme-link);
@@ -24,126 +22,10 @@
       @include var(color, theme-link-hover);
     }
   }
-
-  // $sel: ".#{$css-prefix}theme--#{$key}";
-
-  // @if $key == base {
-  //   &,
-  //   #{$sel} &,
-  //   &#{$sel} {
-  //     @content;
-  //   }
-  // } @else {
-  //   #{$sel} &,
-  //   &#{$sel} {
-  //     @content;
-  //   }
-  // }
 }
 
-// @mixin theme-text-color($theme) {
-//   color: get-theme-color($theme, text);
-// }
-
-// @mixin theme-text-darken-color($theme) {
-//   color: get-theme-color($theme, text-darken);
-// }
-
-// @mixin theme-text-secondary-color($theme) {
-//   color: get-theme-color($theme, text-secondary);
-// }
-
-// @mixin theme-link-color($theme) {
-//   a {
-//     color: get-theme-color($theme, link);
-
-//     &:hover,
-//     &:focus,
-//     &:active {
-//       color: get-theme-color($theme, link-hover);
-//     }
-//   }
-// }
-
-// @mixin theme-background-color($theme) {
-//   background-color: get-theme-color($theme, background);
-// }
-
-// @mixin theme-background-light-color($theme) {
-//   background-color: get-theme-color($theme, background-light);
-// }
-
-// @mixin theme-background-darken-color($theme) {
-//   background-color: get-theme-color($theme, background-darken);
-// }
-
-// @mixin theme-background-active-color($theme) {
-//   background-color: get-theme-color($theme, background-active);
-// }
-
-// @mixin theme-border-color($theme) {
-//   border-color: get-theme-color($theme, border);
-// }
-
-// @mixin theme-form-divider-color($theme) {
-//   border-color: get-theme-color($theme, form-divider);
-// }
-
-// @mixin theme-highlight-color($theme) {
-//   background-color: get-theme-color($theme, highlight);
-// }
-
-// $theme-default-props: (
-//   text,
-//   link,
-//   background,
-//   border,
-// );
-
-// @mixin theme-apply($theme: base, $props: $theme-default-props) {
-//   @if index($props, text-inherit) != null {
-//     color: inherit;
-//   }
-//   @if index($props, text) != null {
-//     @include theme-text-color($theme);
-//   }
-//   @if index($props, text-darken) != null {
-//     @include theme-text-darken-color($theme);
-//   }
-//   @if index($props, text-secondary) != null {
-//     @include theme-text-secondary-color($theme);
-//   }
-//   @if index($props, link) != null {
-//     @include theme-link-color($theme);
-//   }
-//   @if index($props, background) != null {
-//     @include theme-background-color($theme);
-//   }
-//   @if index($props, background-light) != null {
-//     @include theme-background-light-color($theme);
-//   }
-//   @if index($props, background-darken) != null {
-//     @include theme-background-darken-color($theme);
-//   }
-//   @if index($props, background-active) != null {
-//     @include theme-background-active-color($theme);
-//   }
-//   @if index($props, border) != null {
-//     @include theme-border-color($theme);
-//   }
-//   @if index($props, form-divider) != null {
-//     @include theme-form-divider-color($theme);
-//   }
-//   @if index($props, highlight) != null {
-//     @include theme-highlight-color($theme);
-//   }
-// }
-
-// @mixin theme-color($props: $theme-default-props) {
-//   @each $theme in inverted, base {
-//     @include theme($theme) {
-//       @include theme-apply($theme, $props);
-//     }
-//   }
-// }
+@mixin theme($name) {
+  @include theme-vars($name);
+  @include theme-apply;
+}
 
