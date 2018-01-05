@@ -15,7 +15,7 @@ hr {
   height: 1px;
   margin: get-space(md) 0;
   border-top: solid 1px currentColor;
-  @include var(border-color, theme-divider);
+  @include theme-color(border-color, divider);
   padding: 0;
 }
 
@@ -82,7 +82,8 @@ blockquote {
   @include font-size(lg);
   margin: get-space(xl) 0 get-space(lg);
   padding: get-space(sm) 0 get-space(sm) get-space(sm);
-  border-left: solid 5px get-color(context-primary);
+  border-left: solid 5px;
+  @include theme-color(border-left-color, context-primary);
   @include font-weight(regular);
 
   & > * {
@@ -98,7 +99,7 @@ blockquote {
   footer {
     font-size: 80%;
 
-    @include var(color, theme-text-muted);
+    @include theme-color(color, text-muted);
     @include line-height(md);
 
     &:before {
@@ -135,7 +136,7 @@ address {
 // table
 table {
   display: table;
-  @include var(background-color, theme-background);
+  @include theme-color(background-color, background);
   border-radius: 2px;
   border-collapse: collapse;
   max-width: 100%;
@@ -170,7 +171,7 @@ td {
 
 thead {
   border-bottom: solid 1px;
-  @include var(border-color, theme-divider);
+  @include theme-color(color, divider);
 
   th {
     white-space: nowrap;
@@ -184,11 +185,11 @@ tbody {
 
     &:not(:last-child) {
       border-bottom: solid 1px;
-      @include var(border-color, theme-divider);
+      @include theme-color(border-color, divider);
     }
 
     &:hover {
-      @include var(background-color, theme-background-light);
+      @include theme-color(background-color, background-light);
     }
   }
 }

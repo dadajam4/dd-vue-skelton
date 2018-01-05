@@ -71,22 +71,9 @@
 </template>
 
 <script>
-const TEXT_COLORS = [
-  'base',
-  'muted',
-  'link',
-  'link-hover',
-  'primary',
-  'secondary',
-  'success',
-  'info',
-  'warning',
-  'danger',
-  // 'inverted',
-  // 'secondary-inverted',
-  // 'link-inverted',
-  // 'link-hover-inverted',
-];
+import themes from '~~/config/css/themes';
+
+const TEXT_COLORS = themes['color-keys'].text;
 
 
 
@@ -107,7 +94,7 @@ export default {
         {color: 'base', rotate: 360},
         {color: 'primary', rotate: -90},
         {color: 'warning', rotate: 90},
-        {color: 'danger', rotate: 180},
+        {color: 'error', rotate: 180},
       ],
     }
   },

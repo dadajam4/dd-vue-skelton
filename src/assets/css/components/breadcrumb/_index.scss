@@ -1,0 +1,31 @@
+//
+// Breadcrumb
+//
+
+.#{$css-prefix}breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: get-space(md) get-space(sm);
+  padding: 0;
+
+  & > li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    @include font-size(sm);
+  }
+
+  &__divider {
+    margin: 0 1em;
+    @include theme-color(color, text-muted);
+  }
+
+  &__item {
+    &--disabled {
+      @include theme-color(color, text-muted, true);
+      pointer-events: none;
+    }
+  }
+}

@@ -17,6 +17,11 @@ module.exports = {
     'static.img',
   ],
 
+  'develop:static': [
+    '@core',
+    '@static',
+  ],
+
   develop: [
     '@core',
     '@static',

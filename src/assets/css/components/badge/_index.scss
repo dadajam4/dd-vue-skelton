@@ -1,0 +1,76 @@
+//
+// Badge
+//
+
+.#{$css-prefix}badge {
+  $my-min-size: get-badge(min-size);
+  $my-overlap-offset: $my-min-size / 2;
+
+  display: inline-block;
+  position: relative;
+
+
+  &__badge {
+    @include btn-action-reset;
+    appearance: none;
+    border: 0;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    @include font-size(get-badge(font-size));
+    line-height: 1;
+    border-radius: 100%;
+    min-width: $my-min-size;
+    min-height: $my-min-size;
+    padding: 2px;
+    top: -($my-min-size / 2);
+    right: -($my-min-size);
+    transition: get-transition(primary);
+    @include theme-color(color, text-inverted);
+
+    &--clickable {
+      cursor: pointer;
+    }
+
+    .#{$css-prefix}icon {
+      @include font-size(get-badge(icon-font-size));
+    }
+  }
+
+  &--overlap {
+    .#{$css-prefix}badge__badge {
+      top: -($my-overlap-offset / 2);
+      right: -$my-overlap-offset;
+    }
+
+    &.#{$css-prefix}badge--left {
+      .#{$css-prefix}badge__badge {
+        left: -$my-overlap-offset;
+        right: initial;
+      }
+    }
+
+    &.#{$css-prefix}badge--bottom {
+      .#{$css-prefix}badge__badge {
+        bottom: -($my-overlap-offset / 2);
+        top: initial;
+      }
+    }
+  }
+
+  &--left {
+    .#{$css-prefix}badge__badge {
+      left: -($my-min-size);
+      right: initial;
+    }
+  }
+
+  &--bottom {
+    .#{$css-prefix}badge__badge {
+      bottom: -($my-min-size / 2);
+      top: initial;
+    }
+  }
+}

@@ -4,7 +4,7 @@
 
 .#{$css-prefix}toolbar {
   position: relative;
-  @include var(background-color, theme-background);
+  @include theme-color(background-color, background);
   transition: padding get-duration(slowly) get-easing(drawer);
   @include elevation(4);
 
@@ -46,7 +46,7 @@
     &--active,
     &:hover,
     &:focus {
-      border-color: get-color(context-primary);
+      @include theme-color(border-color, context-primary);
     }
   }
 }

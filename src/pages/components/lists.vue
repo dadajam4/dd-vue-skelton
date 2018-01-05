@@ -16,7 +16,7 @@
         <h2 class="vc@page__section-header">Basic</h2>
 
         <vt@card>
-          <vt@toolbar color="secondary">
+          <vt@toolbar info>
             <vt@toolbar-side-icon></vt@toolbar-side-icon>
             <vt@toolbar-title>これはツールバーです。これはツールバーです。これはツールバーです。</vt@toolbar-title>
             <vt@spacer></vt@spacer>

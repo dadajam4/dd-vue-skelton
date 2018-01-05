@@ -31,6 +31,7 @@
   border: $my-border-width solid transparent;
   position: relative;
   text-transform: uppercase;
+  // @include theme-color(color, text-inverted);
 
   &__content {
     &-wrapper {
@@ -95,27 +96,6 @@
     margin-right: 0;
   }
 
-  // context color
-  background: transparent;
-  @each $key, $define in $context-colors {
-    &#{&}--#{$key} {
-      $bg-color: map-get($define, value);
-      background: $bg-color;
-      border-color: $bg-color;
-
-      &,
-      &:hover,
-      &:focus,
-      &:active {
-        @include suitable-text-color($bg-color);
-      }
-    }
-  }
-
-  &--outline {
-    border-color: currentColor;
-  }
-
   &--icon {
     // background: transparent;
     // box-shadow: none!important;
@@ -155,12 +135,12 @@
   }
 
   &#{&}--disabled {
-    color: get-color(text-muted) !important;
+    @include theme-color(color, context-muted-text, true);
     pointer-events: none;
 
     &:not(.#{$css-prefix}btn--icon) {
-      background-color: get-color(background-muted) !important;
-      border-color: get-color(background-muted) !important;
+      @include theme-color(background-color, context-muted, true);
+      @include theme-color(border-color, context-muted-border, true);
     }
   }
 

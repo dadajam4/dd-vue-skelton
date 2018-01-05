@@ -12,7 +12,7 @@
     vertical-align: bottom;
     @include font-size(xs);
     transition: get-duration(promptly);
-    @include var(color, theme-text-secondary);
+    @include theme-color(color, text-secondary);
     padding-bottom: .3em;
   }
 
@@ -88,12 +88,12 @@
   }
 
   &__messages {
-    @include var(color, theme-text-secondary);
+    @include theme-color(color, text-secondary);
   }
 
   &__left-icon,
   &__right-icon {
-    @include var(color, theme-text-secondary);
+    @include theme-color(color, text-secondary);
     align-items: center;
     display: inline-flex;
     transition: get-duration(promptly);
@@ -112,14 +112,15 @@
     // #{$my}__selection-label,
     #{$my}__left-icon,
     #{$my}__right-icon {
-      @include var(color, theme-text-primary);
+      @include theme-color(color, text-primary);
     }
   }
 
   &--tab-focused:not(.#{$css-prefix}radio-group) {
     #{$my}__selection-faux {
       @include btn-action-reset;
-      box-shadow: 0px 0px 5px rgba(get-color(context-primary), 1);
+      @include theme-color(box-shadow, context-primary, $suffix: 0px 0px 5px);
+
     }
   }
 
@@ -129,7 +130,7 @@
     #{$my}__messages,
     #{$my}__left-icon,
     #{$my}__right-icon {
-      @include var(color, theme-text-danger);
+      @include theme-color(color, text-error);
     }
 
     // #{$my}__selection-faux {
@@ -140,12 +141,12 @@
   &--disabled {
     #{$my}__label,
     #{$my}__selection-label {
-      @include var(color, theme-text-muted);
+      @include theme-color(color, text-muted);
       pointer-events: none;
     }
 
     #{$my}__selection-faux {
-      @include var(color, theme-text-muted);
+      @include theme-color(color, text-muted);
       pointer-events: none;
     }
   }

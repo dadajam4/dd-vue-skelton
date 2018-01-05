@@ -4,6 +4,10 @@ let sassVariables = {};
 const uiSettings = require('../../../config/css/ui-settings');
 sassVariables = Object.assign({}, sassVariables, uiSettings);
 
+// Themes
+const themes = require('../../../config/css/themes');
+sassVariables = Object.assign({}, sassVariables, {themes});
+
 // Media Query Settings
 const mediaQuerySettings = require('./media-query-settings');
 sassVariables['media-query-target'] = mediaQuerySettings.target;

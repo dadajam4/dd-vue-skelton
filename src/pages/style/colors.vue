@@ -12,20 +12,27 @@
         <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
       </div>
 
-      <section id="colors" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Colors</h2>
+      <section id="text-colors" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Text colors</h2>
 
-        <div v-for="theme in THEME_TABLE" :key="theme.name" class="vc@p-a--md" :class="`vc@theme--${theme.name}`">
-          <h5 class="vc@m-b--md">theme - {{theme.name}}</h5>
-          <p v-for="color in theme.colors" :key="color" :class="`vc@text--${color}`">{{color}}</p>
-        </div>
+        <p v-for="color in textColors" :key="color.name" :class="color.className">{{color.name}}</p>
       </section>
 
       <section id="background-colors" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Background colors</h2>
 
-        <div v-for="color in BACKGROUND_COLORS" :key="color" class="vc@p-a--md" :class="`vc@${color}`">
-          {{color}}
+        <p v-for="color in backgroundColors" :key="color.name" :class="color.className">{{color.name}}</p>
+      </section>
+
+      <section id="color-palette" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Color palette</h2>
+
+        <div v-for="paletteColor, index in paletteColors" :key="index">
+          <div
+            v-for="color in paletteColor"
+            :key="color.name"
+            :class="color.className"
+          >{{color.baseName}} {{color.name}}</div>
         </div>
       </section>
 
@@ -34,43 +41,7 @@
 </template>
 
 <script>
-
-const TEXT_COLORS = [
-  'base',
-  'muted',
-  'link',
-  'link-hover',
-  'primary',
-  'secondary',
-  'success',
-  'info',
-  'warning',
-  'danger',
-  'inverted',
-  'secondary-inverted',
-  'link-inverted',
-  'link-hover-inverted',
-];
-
-const BACKGROUND_COLORS = [
-  'primary',
-  'secondary',
-  'success',
-  'info',
-  'warning',
-  'danger',
-];
-
-const THEME_TABLE = [
-  {name: 'base'    , colors: []},
-  {name: 'inverted', colors: []},
-];
-
-TEXT_COLORS.forEach(color => {
-  const themeName = /inverted$/.test(color) ? 'inverted' : 'base';
-  THEME_TABLE.find(theme => theme.name === themeName).colors.push(color);
-});
-
+import themes from '~~/config/css/themes';
 
 export default {
   $_anchors,
@@ -83,9 +54,55 @@ export default {
 
   data() {
     return {
-      THEME_TABLE,
-      BACKGROUND_COLORS,
+      theme: 'light',
     }
+  },
+
+  computed: {
+    textColors() {
+      const theme = themes.themes[this.theme];
+
+      const colors = themes['color-keys'].text.map(key => {
+        return {
+          name: key,
+          className: `vc@text--${key}`,
+          value: theme[`text-${key}-color`],
+        };
+      });
+      return colors;
+    },
+
+    backgroundColors() {
+      const theme = themes.themes[this.theme];
+
+      const colors = themes['color-keys'].background.map(key => {
+        return {
+          name: key,
+          className: `vc@${key}`,
+          value: theme[`background-${key}-color`],
+        };
+      });
+      return colors;
+    },
+
+    paletteColors() {
+      const colors = [];
+
+      for (let key in themes.palette) {
+        const color = [];
+        for (let name in themes.palette[key]) {
+          color.push({
+            name: name,
+            baseName: key,
+            className: `vc@${key}${name === 'base' ? '' : '-' + name}`,
+            value: themes.palette[name],
+          });
+        }
+        colors.push(color);
+      }
+
+      return colors;
+    },
   },
 }
 </script>

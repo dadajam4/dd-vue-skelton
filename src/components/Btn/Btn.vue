@@ -1,5 +1,6 @@
 <script>
 import Contextualable from '~/mixins/contextualable';
+import Colorable from '~/mixins/colorable';
 import Routable from '~/mixins/routable';
 
 
@@ -9,6 +10,7 @@ export default {
 
   mixins: [
     Contextualable,
+    Colorable,
     Routable,
   ],
 
@@ -19,8 +21,6 @@ export default {
     lg: Boolean,
 
     // outline
-    flat: Boolean,
-    outline: Boolean,
     block: Boolean,
     icon: Boolean,
     left: Boolean,
@@ -44,19 +44,14 @@ export default {
 
 
   computed: {
-    colorForText() { return this.flat || this.outline },
-
     classes() {
-      const classes = {
+      const classes = this.addContextColorClassChecks({
         [this.$options.name]: true,
 
         // size
         'vc@btn--sm': this.sm,
         'vc@btn--lg': this.lg,
 
-        // outline
-        'vc@btn--flat': this.flat,
-        'vc@btn--outline': this.outline,
         'vc@btn--block': this.block,
         'vc@btn--icon': this.icon,
         'vc@btn--left': this.left,
@@ -65,12 +60,7 @@ export default {
         // states
         'vc@btn--loading': this.loading,
         'vc@btn--disabled': this.disabled,
-      }
-
-      for (let key in Contextualable.props) {
-        classes[`vc@btn--${key}`] = this[key] && !this.colorForText;
-        classes[`vc@text--${key}`] = !this.disabled && this.colorForText && this[key];
-      }
+      });
 
       return classes;
     },

@@ -53,7 +53,7 @@
       border-top-left-radius: 0;
       border-top-right-radius: 0;
       border-top: 1px solid;
-      @include var(border-color, theme-divider);
+      @include theme-color(border-color, divider);
     }
 
     & > .#{$css-prefix}card {

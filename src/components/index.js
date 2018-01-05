@@ -8,6 +8,8 @@ import Radio from './Radio';
 import Select from './Select';
 import Overlay from './Overlay';
 import Grid from './Grid';
+import Badge from './Badge';
+import Breadcrumb from './Breadcrumb';
 import Btn from './Btn';
 import Icon from './Icon';
 import List from './List';
@@ -32,6 +34,8 @@ export default Object.assign({},
   Select,
   Overlay,
   Grid,
+  Badge,
+  Breadcrumb,
   Btn,
   Icon,
   List,

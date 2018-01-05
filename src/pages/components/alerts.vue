@@ -18,7 +18,7 @@
         <vt@alert
           v-for="myType in CONTEXT_TYPES"
           :key="myType"
-          :type="myType"
+          v-bind="{[myType]: true}"
           value="true"
         >This is a {{myType}} alert.</vt@alert>
       </section>
@@ -27,7 +27,7 @@
         <h2>Closable</h2>
 
         <vt@alert
-          type="info"
+          info
           v-model="demo1"
           dismissible
           transition="vc@transition-fade"
@@ -42,12 +42,9 @@
 </template>
 
 <script>
-const CONTEXT_TYPES = [
-  'success',
-  'info',
-  'warning',
-  'danger',
-];
+import themes from '~~/config/css/themes';
+
+const CONTEXT_TYPES = themes['color-keys'].context;
 
 export default {
   $_anchors,

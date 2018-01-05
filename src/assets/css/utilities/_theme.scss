@@ -2,20 +2,10 @@
 // Theme
 //
 
-:root {
-  @include theme(base);
-}
-
 .#{$css-prefix}theme {
-  @each $name, $colors in $theme {
+  @each $name, $colors in get-themes() {
     &--#{$name} {
       @include theme($name);
     }
   }
-
-  // @each $theme in inverted, base {
-  //   &--#{$theme} {
-  //     // @include theme-apply($theme);
-  //   }
-  // }
 }

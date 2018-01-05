@@ -1,3 +1,4 @@
+import Contextualable from '~/mixins/contextualable';
 import Colorable from '~/mixins/colorable';
 import Toggleable from '~/mixins/toggleable';
 import Transitionable from '~/mixins/transitionable';
@@ -5,46 +6,32 @@ import Transitionable from '~/mixins/transitionable';
 export default {
   name: 'vt@alert',
 
-  mixins: [Colorable, Toggleable, Transitionable],
+  mixins: [Contextualable, Colorable, Toggleable, Transitionable],
 
   props: {
     dismissible: Boolean,
     icon: String,
-    outline: Boolean,
-    type: {
-      type: String,
-      validator (val) {
-        return [
-          'info',
-          'danger',
-          'success',
-          'warning'
-        ].includes(val)
-      }
-    }
   },
 
   data: () => ({
-    defaultColor: 'danger'
+    defaultColor: 'error'
   }),
 
   computed: {
     classes() {
-      const colorProp = (this.type && !this.color) ? 'type' : 'computedColor';
-      const classes = {
+      const classes = this.addContextColorClassChecks({
         'vc@alert--dismissible': this.dismissible,
         'vc@alert--outline': this.outline
-      }
+      });
 
-      return this.outline ? this.addTextColorClassChecks(classes, colorProp)
-        : this.addBackgroundColorClassChecks(classes, colorProp)
+      return classes;
     },
     computedIcon() {
-      if (this.icon || !this.type) return this.icon;
+      if (this.icon || !this.contextType) return this.icon;
 
-      switch (this.type) {
+      switch (this.contextType) {
         case 'info': return 'info-circle'
-        case 'danger': return 'warning'
+        case 'error': return 'warning'
         case 'success': return 'check-circle'
         case 'warning': return 'exclamation'
       }

@@ -2,8 +2,18 @@
 // Color
 //
 
-@each $key, $define in $text-colors {
+@each $key in $text-color-keys {
   .#{$css-prefix}text--#{$key} {
-    color: map-get($define, value);
+    @include theme-color(color, text-#{$key}, true);
+  }
+}
+
+@each $parent, $children in map-get($themes, palette) {
+  @each $sub, $color in $children {
+    $suffix: if($sub == base, null, -#{$sub});
+    $key: #{$parent}#{$suffix};
+    .#{$css-prefix}text--#{$key} {
+      color: $color!important;
+    }
   }
 }

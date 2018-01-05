@@ -1,0 +1,13 @@
+//
+// Badge
+//
+
+
+@function get-badge($key) {
+  @return map-get($badge, $key);
+}
+
+$badge: ();
+$badge: map-set($badge, font-size, xs);
+$badge: map-set($badge, icon-font-size, xxs);
+$badge: map-set($badge, min-size, 22px);

@@ -27,4 +27,10 @@
     // align-items: center;
     // justify-content: center;
   }
+
+  @each $size in sm, md, lg, xl {
+    &--#{$size} {
+      @include font-size(get-icon(size-#{$size}));
+    }
+  }
 }

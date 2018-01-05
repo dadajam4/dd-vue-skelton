@@ -11,15 +11,15 @@
   }
 
   &__counter {
-    @include var(color, theme-text-secondary);
+    @include theme-color(color, text-secondary);
     margin-left: auto;
 
     &--error {
-      @include var(color, theme-text-danger);
+      @include theme-color(color, text-error);
     }
 
     @at-root .#{$css-prefix}input-group--error & {
-      @include var(color, theme-text-danger);
+      @include theme-color(color, text-error);
     }
   }
 
@@ -31,7 +31,7 @@
     margin-bottom: 20px;
     // border-radius: get-text-field(radius);
     border: solid get-text-field(border-width);
-    @include var(border-color, theme-form-divider);
+    @include theme-color(border-color, form-divider);
     border-top: 0;
     border-radius: 0 0 get-text-field(radius) get-text-field(radius);
     background: #fff;
@@ -48,7 +48,7 @@
       &:hover,
       &:focus,
       &--focused {
-        @include var(background-color, theme-background-light);
+        @include theme-color(background-color, background-light);
       }
     }
   }

@@ -1,31 +1,64 @@
 //
-// Theme
+// Theme Variables
 //
 
-@mixin theme-vars($name) {
+@function get-themes() {
+  @return map-get($themes, themes);
+}
+
+@function get-theme($name) {
+  @return map-get(get-themes(), $name);
+}
+
+@function get-default-theme() {
+  @return get-theme(map-get($themes, default));
+}
+
+@function get-color-keys($type) {
+  @return map-get(map-get($themes, color-keys), $type);
+}
+
+@function get-default-theme-var($key) {
+  $color: map-get($theme-default, $key);
+  @if $color == null {
+    @warn "#{$key} は定義されていません。";
+  }
+  @return $color;
+}
+
+@function get-default-theme-color($key) {
+  @return get-default-theme-var(#{$key}-color);
+}
+
+@mixin set-theme-vars($name) {
   @each $key, $val in get-theme($name) {
-    --theme-#{$key}: $val;
+    --#{$key}: $val;
   }
 }
 
-@mixin theme-apply() {
-  @include var(color, theme-text);
-  @include var(background-color, theme-background);
-  @include var(border-color, theme-divider);
+@mixin set-theme-props() {
+  @include theme-color(color, text);
+  @include theme-color(background-color, background);
+  @include theme-color(border-color, divider);
 
   a {
-    @include var(color, theme-link);
+    @include theme-color(color, link);
 
     &:hover,
     &:focus,
     &:active {
-      @include var(color, theme-link-hover);
+      @include theme-color(color, link-hover);
     }
   }
 }
 
-@mixin theme($name) {
-  @include theme-vars($name);
-  @include theme-apply;
+@mixin theme($name: map-get($themes, default)) {
+  @include set-theme-vars($name);
+  @include set-theme-props;
 }
 
+
+@mixin theme-color($prop, $key, $important: false, $suffix: null) {
+  #{$prop}: $suffix get-default-theme-color($key) if($important, !important, null);
+  #{$prop}: $suffix var(--#{$key}-color) if($important, !important, null);
+}

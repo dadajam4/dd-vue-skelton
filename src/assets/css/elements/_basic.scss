@@ -88,18 +88,18 @@ kbd {
 }
 
 code {
-  @include var(background-color, theme-background-light);
+  @include theme-color(background-color, background-light);
   color: #bd4147;
   @include elevation(1);
 }
 
 kbd {
-  @include var(color, theme-text-darken);
-  @include var(background-color, theme-background-darken);
+  @include theme-color(color, context-darken-text);
+  @include theme-color(background-color, context-darken);
 }
 
 mark {
-  @include var(background-color, theme-highlight);
+  @include theme-color(background-color, background-highlight);
 }
 
 // styled

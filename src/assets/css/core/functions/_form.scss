@@ -18,7 +18,7 @@
   margin: 0;
   padding: 0 get-field(padding-horizontal);
   min-height: get-field(height);
-  caret-color: get-color(context-primary);
+  @include theme-color(caret-color, context-primary);
   @include ellipsis;
   transition: get-duration(promptly);
 
@@ -58,7 +58,7 @@
   width: 100%;
   max-width: calc(100% - #{get-field(margin-horizontal) * 2});
   border-radius: get-field(radius);
-  @include var(border-color, theme-form-divider);
+  @include theme-color(border-color, form-divider);
   border-width: get-field(border-width);
   border-style: solid;
   background: transparent;
@@ -69,7 +69,7 @@
 }
 
 @mixin field-input-focused {
-  border-color: get-color(context-primary) !important;
+  @include theme-color(border-color, context-primary, true);
 }
 
 @mixin hidden-selection-control-node() {

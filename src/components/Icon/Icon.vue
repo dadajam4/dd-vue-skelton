@@ -8,6 +8,7 @@ export default {
   functional: true,
 
   props: {
+    sm: Boolean,
     md: Boolean,
     lg: Boolean,
     xl: Boolean,
@@ -45,8 +46,9 @@ export default {
     const classes = {
       [myClassName]                 : true,
       [`${myClassName}-${iconName}`]: true,
-      [`${myClassName}--lg`]        : props.lg,
+      [`${myClassName}--sm`]        : props.sm,
       [`${myClassName}--md`]        : props.md,
+      [`${myClassName}--lg`]        : props.lg,
       [`${myClassName}--xl`]        : props.xl,
       [`${myClassName}--left`]      : props.left,
       [`${myClassName}--right`]     : props.right,

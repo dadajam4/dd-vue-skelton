@@ -2,6 +2,7 @@
 // Core Variables
 //
 
+@import "./theme";
 @import "./page";
 @import "./color";
 @import "./duration";
@@ -15,11 +16,13 @@
 @import "./border-width";
 @import "./font-family";
 @import "./font-size";
+@import "./icon";
 @import "./line-height";
 @import "./font-weight";
 @import "./space";
 @import "./size";
 @import "./text";
+@import "./badge";
 @import "./button";
 @import "./form";
 @import "./checkbox";
@@ -30,4 +33,3 @@
 @import "./utility";
 @import "./avatar";
 @import "./card";
-@import "./theme";

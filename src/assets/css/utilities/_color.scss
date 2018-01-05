@@ -2,10 +2,18 @@
 // Color
 //
 
-@each $key, $define in $context-colors {
+@each $key in $background-color-keys {
   .#{$css-prefix}#{$key} {
-    $my-background-color: map-get($define, value);
-    background-color: $my-background-color!important;
-    @include suitable-text-color($my-background-color);
+    @include theme-color(background-color, background-#{$key}, true);
+  }
+}
+
+@each $parent, $children in map-get($themes, palette) {
+  @each $sub, $color in $children {
+    $suffix: if($sub == base, null, -#{$sub});
+    $key: #{$parent}#{$suffix};
+    .#{$css-prefix}#{$key} {
+      background-color: $color!important;
+    }
   }
 }

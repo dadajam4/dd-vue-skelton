@@ -3,7 +3,7 @@
 
 .my-logo {
   border-bottom: solid 1px;
-  @include var(border-color, theme-form-divider);
+  @include theme-color(border-color, form-divider);
   // @include theme-color(form-divider);
 
   & > a {
@@ -175,9 +175,24 @@ const links = [
         _filename: 'alerts',
       },
       {
+        name: 'components-avatars',
+        path: '/components/avatars',
+        _filename: 'avatars',
+      },
+      {
         name: 'components-forms',
         path: '/components/forms',
         _filename: 'forms',
+      },
+      {
+        name: 'components-badges',
+        path: '/components/badges',
+        _filename: 'badges',
+      },
+      {
+        name: 'components-breadcrumbs',
+        path: '/components/breadcrumbs',
+        _filename: 'breadcrumbs',
       },
       {
         name: 'components-buttons',

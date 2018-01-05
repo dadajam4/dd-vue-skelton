@@ -164,19 +164,19 @@
   -webkit-tap-highlight-color: rgba(0 ,0 , 0, 0);
 }
 
-$default-vars: ();
-// @function set-var($key, $val) {
-//   $default-vars: map-set($default-vars, $key, $val);
-//   @debug $default-vars;
-//   @return $default-vars;
+// $default-vars: ();
+// // @function set-var($key, $val) {
+// //   $default-vars: map-set($default-vars, $key, $val);
+// //   @debug $default-vars;
+// //   @return $default-vars;
+// // }
+
+// @function get-var($key) {
+//   @return map-get($default-vars, $key);
 // }
 
-@function get-var($key) {
-  @return map-get($default-vars, $key);
-}
-
-@mixin var($prop, $key, $important: false) {
-  $_important: if($important, "!important", "");
-  #{$prop}: get-var($key)#{$_important};
-  #{$prop}: var(--#{$key})#{$_important};
-}
+// @mixin var($prop, $key, $important: false) {
+//   $_important: if($important, "!important", "");
+//   #{$prop}: get-var($key)#{$_important};
+//   #{$prop}: var(--#{$key})#{$_important};
+// }

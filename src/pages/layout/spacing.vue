@@ -18,12 +18,12 @@
 
       <section id="margin" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Margin</h2>
-        <div class="my__container vc@secondary">
+        <div class="my__container vc@context--secondary">
           <template v-for="direction in DIRECTIONS">
             <div
               v-for="space in SPACES"
               :key="space.key"
-              :class="`vc@primary vc@m-${direction.key}--${space.key}`"
+              :class="`vc@context--primary vc@m-${direction.key}--${space.key}`"
             >{{`vc@m-${direction.key}--${space.key}`}}</div>
           </template>
         </div>

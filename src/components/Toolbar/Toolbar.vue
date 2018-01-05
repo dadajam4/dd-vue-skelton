@@ -9,13 +9,14 @@
 
 
 <script>
+import Contextualable from '~/mixins/contextualable';
 import Colorable from '~/mixins/colorable';
 
 
 export default {
   name: 'vt@toolbar',
 
-  mixins: [Colorable],
+  mixins: [Contextualable, Colorable],
 
   props: {
   },
@@ -24,7 +25,7 @@ export default {
 
   computed: {
     classes() {
-      return this.addBackgroundColorClassChecks({
+      return this.addContextColorClassChecks({
         'vc@toolbar': true,
       });
     },
