@@ -14,7 +14,7 @@ p {
 hr {
   height: 1px;
   margin: get-space(md) 0;
-  border-top: solid 1px currentColor;
+  border-top: solid 1px;
   @include theme-color(border-color, divider);
   padding: 0;
 }
@@ -65,6 +65,7 @@ dt {
   letter-spacing: normal;
   margin-top: get-space(sm);
   margin-bottom: get-space(xxs);
+  @include theme-color(color, text-secondary);
 
   & + & {
     margin-top: get-space(xxxs);
@@ -99,7 +100,7 @@ blockquote {
   footer {
     font-size: 80%;
 
-    @include theme-color(color, text-muted);
+    @include theme-color(color, text-sub);
     @include line-height(md);
 
     &:before {
@@ -126,6 +127,7 @@ figcaption {
   @include line-height(md);
   margin-top: get-space(xxs);
   margin-bottom: get-space(xxs);
+  @include theme-color(color, text-secondary);
 }
 
 // address
@@ -152,6 +154,7 @@ caption {
   @include line-height(md);
   margin-top: get-space(xxs);
   margin-bottom: get-space(xxs);
+  @include theme-color(color, text-secondary);
 }
 
 tr {}
@@ -171,7 +174,7 @@ td {
 
 thead {
   border-bottom: solid 1px;
-  @include theme-color(color, divider);
+  @include theme-color(border-color, divider);
 
   th {
     white-space: nowrap;

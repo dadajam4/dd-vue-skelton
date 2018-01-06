@@ -23,6 +23,7 @@ const AUTO_BACKGROUND_BRIGHTNESS_AMMOUNT = 200;
     text-color: 【デフォはpaletteのshades.black】,
     text-inverted-color: 【デフォはpaletteのshades.white】,
     text-muted-color: xxx,
+    text-sub-color: 【デフォはpalette.grey.base】,
     text-[context-name]-color: xxx,
     ......
 
@@ -114,6 +115,7 @@ for (let name in settings) {
 
 if (!defaultTheme['text-color']) defaultTheme['text-color'] = palette.shades.black;
 if (!defaultTheme['text-inverted-color']) defaultTheme['text-inverted-color'] = palette.shades.white;
+if (!defaultTheme['text-sub-color']) defaultTheme['text-sub-color'] = palette.grey.base;
 
 const themeKeys = Object.keys(defaultTheme);
 const colorKeys = themeKeys.filter(key => /-color$/.test(key));
