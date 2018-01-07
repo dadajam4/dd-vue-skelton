@@ -6,6 +6,8 @@ import TextField from './TextField';
 import Checkbox from './Checkbox';
 import Radio from './Radio';
 import Select from './Select';
+import Switch from './Switch';
+import Track from './Track';
 import Overlay from './Overlay';
 import Grid from './Grid';
 import Badge from './Badge';
@@ -14,7 +16,7 @@ import Btn from './Btn';
 import Icon from './Icon';
 import List from './List';
 import Menu from './Menu';
-import Form from './Form';
+// import Form from './Form';
 import NavigationDrawer from './NavigationDrawer';
 import AnchorNavi from './AnchorNavi';
 import Progress from './Progress';
@@ -32,6 +34,8 @@ export default Object.assign({},
   Checkbox,
   Radio,
   Select,
+  Switch,
+  Track,
   Overlay,
   Grid,
   Badge,
@@ -40,7 +44,7 @@ export default Object.assign({},
   Icon,
   List,
   Menu,
-  Form,
+  // Form,
   AnchorNavi,
   NavigationDrawer,
   Progress,

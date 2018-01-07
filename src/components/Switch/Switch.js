@@ -3,35 +3,23 @@ import Selectable from '~/mixins/selectable';
 
 
 export default {
-  name: 'vt@checkbox',
+  name: 'vt@switch',
 
   mixins: [Selectable],
-
-  data() {
-    return {
-      inputIndeterminate: this.indeterminate,
-    }
-  },
-
-  props: {
-    indeterminate: Boolean,
-  },
 
   computed: {
     classes() {
       const classes = {
-        'vc@checkbox': true,
+        'vc@switch': true,
         'vc@input-group--selection-controls': true,
         'vc@input-group--active': this.isActive,
       }
 
       if (this.hasError) {
         classes['vc@text--error'] = true;
-      } else {
-        return this.addTextColorClassChecks(classes);
       }
 
-      return classes
+      return classes;
     },
   },
 
@@ -49,7 +37,7 @@ export default {
 
   render(h) {
     const $input = h('input', {
-      staticClass: 'vc@checkbox__node vc@input-group__selection-node',
+      staticClass: 'vc@switch__node vc@input-group__selection-node',
       domProps: {
         type    : 'checkbox',
         value   : this.value || true,
@@ -72,26 +60,19 @@ export default {
       ref: 'input',
     });
 
-    const $faux = h('i', {
-      staticClass: 'vc@checkbox__faux vc@input-group__selection-faux',
-      class: {'vc@checkbox__faux--indeterminate': this.inputIndeterminate},
+    const $faux = h('span', {
+      class: this.addTextColorClassChecks({
+        'vc@switch__faux--active': this.isActive,
+      }),
+      staticClass: 'vc@switch__faux vc@input-group__selection-faux',
       on: {
         click: e => {
           this.toggle();
         },
       },
-    });
-
-    if (this.isActive && !this.inputIndeterminate) {
-      $faux.children = [
-        h('span', {
-          staticClass: 'vc@checkbox__faux__body',
-        }, [
-          h('span', {staticClass: 'vc@checkbox__faux__body-bar'}),
-          h('span', {staticClass: 'vc@checkbox__faux__body-bar'}),
-        ]),
-      ];
-    }
+    }, [h('span', {
+      staticClass: 'vc@switch__faux__body',
+    })]);
 
     const children = [$input, $faux];
 
@@ -101,7 +82,7 @@ export default {
           ? -1
           : this.internalTabIndex || this.tabindex,
         role: 'checkbox',
-        'aria-checked': this.inputIndeterminate && 'mixed' || this.isActive && 'true' || 'false',
+        'aria-checked': this.isActive && 'true' || 'false',
         'aria-label': this.label,
       }
     }

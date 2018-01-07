@@ -209,6 +209,56 @@
         <p>&gt;&gt;&gt; {{select2}}</p>
         <vt@select v-model="select2" :items="selectItems" multiple></vt@select>
       </section>
+
+      <section id="switches" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2 class="vc@page__section-header">Switches</h2>
+
+        <vt@switch
+          label="modelなし"
+          light
+          value="aaa"
+          name="switch1"
+          :rules="[
+            {rule: 'required', message: 'この項目は必須だよ'},
+          ]"
+        ></vt@switch>
+
+        <vt@switch
+          :label="`modelあり: ${switch1 === null ? 'null' : switch1.toString()}`"
+          v-model="switch1"
+          light
+          value="checked"
+          :rules="[
+            {rule: 'required', message: 'この項目は必須だよ'},
+          ]"
+        ></vt@switch>
+
+        <h3>Array</h3>
+        <div>{{switch2}}</div>
+        <vt@switch
+          label="太郎"
+          v-model="switch2"
+          light
+          value="太郎"
+        ></vt@switch>
+
+        <vt@switch
+          label="花子"
+          v-model="switch2"
+          light
+          value="花子"
+        ></vt@switch>
+
+        <h3>States</h3>
+        <vt@switch input-value="true" value label="on"></vt@switch>
+        <vt@switch value label="off"></vt@switch>
+        <vt@switch input-value="true" value disabled label="on disabled"></vt@switch>
+        <vt@switch value disabled label="off disabled"></vt@switch>
+
+        <h3>Colors</h3>
+        <vt@switch input-value="true" value label="on" color="warning"></vt@switch>
+        <vt@switch input-value="true" value label="on" color="indigo"></vt@switch>
+      </section>
     </main>
   </div>
 </template>
@@ -256,6 +306,8 @@ export default {
         {content: 'これは長い項目です', value: 4},
         {content: '選択肢5', value: 5},
       ],
+      switch1: null,
+      switch2: [],
     }
   },
 

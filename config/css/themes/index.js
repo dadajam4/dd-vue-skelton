@@ -35,6 +35,8 @@ const AUTO_BACKGROUND_BRIGHTNESS_AMMOUNT = 200;
     divider-dark-color: 【デフォルトはdividerと一緒】,
 
     form-divider-color: 【デフォルトはdividerと一緒】,
+    'switch-track-color': xxx,
+    'switch-pointer-color': xxx,
 */
 
 const themes = {};
@@ -55,6 +57,8 @@ const settings = {
 
     // form
     'form-divider-color': palette.grey['lighten-2'],
+    'switch-track-color': 'rgba(0, 0, 0, .38)',
+    'switch-pointer-color': '#fafafa',
 
     // background
     'background-color': palette.shades.white,
