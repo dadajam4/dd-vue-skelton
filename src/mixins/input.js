@@ -108,9 +108,13 @@ export default {
         messages = this.validations.filter(v => v).map(v => this.genError(v));
       }
 
+      const isEmpty = !messages.length;
+
       return this.$createElement('transition-group', {
         class: {
           'vc@input-group__messages': true,
+          'vc@input-group__messages--empty': isEmpty,
+          'vc@input-group__messages--not-empty': !isEmpty,
         },
         props: {
           tag: 'div',

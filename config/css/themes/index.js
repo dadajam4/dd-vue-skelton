@@ -123,7 +123,6 @@ if (!defaultTheme['text-sub-color']) defaultTheme['text-sub-color'] = palette.gr
 
 const themeKeys = Object.keys(defaultTheme);
 const colorKeys = themeKeys.filter(key => /-color$/.test(key));
-const backgroundColorKeys = colorKeys.filter(key => key.indexOf('background') === 0);
 const contextColorKeys = colorKeys.filter(key => key.indexOf('context-') === 0 && !/-(border|text|link|link-hover)-color$/.test(key));
 
 for (let contextColorKey of contextColorKeys) {
@@ -132,7 +131,12 @@ for (let contextColorKey of contextColorKeys) {
   if (!defaultTheme[textColorKey]) {
     colorKeys.push(textColorKey);
   }
+  const backgroundColorKey = `background-${suffix}-color`;
+  if (!defaultTheme[backgroundColorKey]) {
+    colorKeys.push(backgroundColorKey);
+  }
 }
+const backgroundColorKeys = colorKeys.filter(key => key.indexOf('background') === 0);
 const textColorKeys = colorKeys.filter(key => key.indexOf('text') === 0);
 
 for (let name in themes) {
@@ -145,6 +149,9 @@ for (let name in themes) {
 
   textColorKeys.forEach(textColorKey => {
     if (!theme[textColorKey]) theme[textColorKey] = theme[`context-${textColorKey.replace(/^text-/, '')}`];
+  });
+  backgroundColorKeys.forEach(backgroundColorKey => {
+    if (!theme[backgroundColorKey]) theme[backgroundColorKey] = theme[`context-${backgroundColorKey.replace(/^background-/, '')}`];
   });
 
   contextColorKeys.forEach(contextColorKey => {

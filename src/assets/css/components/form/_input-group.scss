@@ -89,6 +89,11 @@
 
   &__messages {
     @include theme-color(color, text-secondary);
+    transition: get-transition(primary);
+
+    &--not-empty {
+      margin-bottom: get-space(md);
+    }
   }
 
   &__left-icon,

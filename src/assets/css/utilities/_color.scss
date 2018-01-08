@@ -5,6 +5,7 @@
 @each $key in $background-color-keys {
   .#{$css-prefix}#{$key} {
     @include theme-color(background-color, background-#{$key}, true);
+    @include theme-color(border-color, background-#{$key}, true);
   }
 }
 
@@ -14,6 +15,7 @@
     $key: #{$parent}#{$suffix};
     .#{$css-prefix}#{$key} {
       background-color: $color!important;
+      border-color: $color!important;
     }
   }
 }

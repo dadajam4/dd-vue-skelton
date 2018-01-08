@@ -7,7 +7,7 @@ import Checkbox from './Checkbox';
 import Radio from './Radio';
 import Select from './Select';
 import Switch from './Switch';
-import Track from './Track';
+import Slider from './Slider';
 import Overlay from './Overlay';
 import Grid from './Grid';
 import Badge from './Badge';
@@ -35,7 +35,7 @@ export default Object.assign({},
   Radio,
   Select,
   Switch,
-  Track,
+  Slider,
   Overlay,
   Grid,
   Badge,

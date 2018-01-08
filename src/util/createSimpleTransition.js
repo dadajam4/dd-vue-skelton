@@ -13,7 +13,7 @@ export default function createSimpleTransition(name, origin = 'top center 0', mo
 
     render(h, context) {
       context.data = context.data || {};
-      context.data.props = { name };
+      context.data.props = { name: `vt@${name}` };
       context.data.on = context.data.on || {};
       if (!Object.isExtensible(context.data.on)) {
         context.data.on = { ...context.data.on };
