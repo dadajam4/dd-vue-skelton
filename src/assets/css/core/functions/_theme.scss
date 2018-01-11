@@ -58,7 +58,9 @@
 }
 
 
-@mixin theme-color($prop, $key, $important: false, $suffix: null) {
-  #{$prop}: $suffix get-default-theme-color($key) if($important, !important, null);
-  #{$prop}: $suffix var(--#{$key}-color) if($important, !important, null);
+@mixin theme-color($props, $key, $important: false, $suffix: null) {
+  @each $prop in $props {
+    #{$prop}: $suffix get-default-theme-color($key) if($important, !important, null);
+    #{$prop}: $suffix var(--#{$key}-color) if($important, !important, null);
+  }
 }

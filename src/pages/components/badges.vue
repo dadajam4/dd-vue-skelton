@@ -42,7 +42,7 @@
             <vt@icon xl>user-circle</vt@icon>
           </vt@badge>
 
-          <vt@badge overlap right class="vc@m-l--xl" color="indigo">
+          <vt@badge overlap right class="vc@m-l--xl" layer-color="indigo">
             <vt@icon slot="badge">bell</vt@icon>
             <vt@icon xl>users</vt@icon>
           </vt@badge>

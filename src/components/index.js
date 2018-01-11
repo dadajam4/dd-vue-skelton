@@ -4,6 +4,7 @@ import Avatar from './Avatar';
 import Card from './Card';
 import TextField from './TextField';
 import Checkbox from './Checkbox';
+import Chip from './Chip';
 import Radio from './Radio';
 import Select from './Select';
 import Switch from './Switch';
@@ -32,6 +33,7 @@ export default Object.assign({},
   Card,
   TextField,
   Checkbox,
+  Chip,
   Radio,
   Select,
   Switch,

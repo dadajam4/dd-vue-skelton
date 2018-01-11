@@ -1,5 +1,4 @@
-import Contextualable from '~/mixins/contextualable';
-import Colorable from '~/mixins/colorable';
+import Colorable from '~/mixins/color';
 import Routable from '~/mixins/routable';
 
 
@@ -7,7 +6,7 @@ import Routable from '~/mixins/routable';
 export default {
   name: 'vt@card',
 
-  mixins: [Contextualable, Colorable, Routable],
+  mixins: [Colorable, Routable],
 
   props: {
     flat: Boolean,
@@ -27,7 +26,7 @@ export default {
 
   computed: {
     classes() {
-      return this.addContextColorClassChecks({
+      return this.addColorClasses({
         'vc@card': true,
         // 'vc@card--flat': this.flat,
         // 'vc@card--horizontal': this.horizontal,

@@ -1,4 +1,4 @@
-import Colorable from './colorable';
+import Colorable from './color';
 import Input from './input'
 
 export default {

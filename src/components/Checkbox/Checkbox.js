@@ -28,7 +28,7 @@ export default {
       if (this.hasError) {
         classes['vc@text--error'] = true;
       } else {
-        return this.addTextColorClassChecks(classes);
+        return this.addColorClasses(classes);
       }
 
       return classes

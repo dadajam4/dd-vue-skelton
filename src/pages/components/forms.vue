@@ -119,7 +119,6 @@
         <h2 class="vc@page__section-header">Checkboxes</h2>
         <vt@checkbox
           label="modelなし"
-          light
           value="aaa"
           name="checkbox1"
           :rules="[
@@ -130,7 +129,6 @@
         <vt@checkbox
           :label="`modelあり: ${checkbox1 === null ? 'null' : checkbox1.toString()}`"
           v-model="checkbox1"
-          light
           value="checked"
           :rules="[
             {rule: 'required', message: 'この項目は必須だよ'},
@@ -142,14 +140,12 @@
         <vt@checkbox
           label="太郎"
           v-model="checkbox2"
-          light
           value="太郎"
         ></vt@checkbox>
 
         <vt@checkbox
           label="花子"
           v-model="checkbox2"
-          light
           value="花子"
         ></vt@checkbox>
 
@@ -215,7 +211,6 @@
 
         <vt@switch
           label="modelなし"
-          light
           value="aaa"
           name="switch1"
           :rules="[
@@ -226,7 +221,6 @@
         <vt@switch
           :label="`modelあり: ${switch1 === null ? 'null' : switch1.toString()}`"
           v-model="switch1"
-          light
           value="checked"
           :rules="[
             {rule: 'required', message: 'この項目は必須だよ'},
@@ -238,14 +232,12 @@
         <vt@switch
           label="太郎"
           v-model="switch2"
-          light
           value="太郎"
         ></vt@switch>
 
         <vt@switch
           label="花子"
           v-model="switch2"
-          light
           value="花子"
         ></vt@switch>
 
@@ -256,8 +248,8 @@
         <vt@switch value disabled label="off disabled"></vt@switch>
 
         <h3>Colors</h3>
-        <vt@switch input-value="true" value label="on" color="warning"></vt@switch>
-        <vt@switch input-value="true" value label="on" color="indigo"></vt@switch>
+        <vt@switch input-value="true" value label="on" text-color="warning"></vt@switch>
+        <vt@switch input-value="true" value label="on" text-color="indigo"></vt@switch>
       </section>
 
       <section id="sliders" class="vc@page__section vc@page__container" data-anchor-point>
@@ -283,7 +275,7 @@
 
         <vt@slider v-model="slider2" step="0" label="label" disabled></vt@slider>
         <h3>Discrete</h3>
-        <vt@slider v-model="slider3" label="label" thumb-label step="10" ticks></vt@slider>
+        <vt@slider v-model="slider3" label="label" thumb-label step="10" max="1000" ticks></vt@slider>
 
         <h3>Icons</h3>
         <vt@slider v-model="slider4" step="0" left-icon="user"></vt@slider>

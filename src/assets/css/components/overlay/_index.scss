@@ -11,7 +11,7 @@
   right: -$my-overflow-size;
   bottom: -$my-overflow-size;
 
-  @include background-color(overlay);
+  // @include background-color(overlay);
   opacity: 0;
   pointer-events: none;
 

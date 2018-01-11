@@ -61,7 +61,7 @@ export default {
     });
 
     const $faux = h('span', {
-      class: this.addTextColorClassChecks({
+      class: this.addTextColorClasses({
         'vc@switch__faux--active': this.isActive,
       }),
       staticClass: 'vc@switch__faux vc@input-group__selection-faux',

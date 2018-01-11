@@ -37,12 +37,12 @@
         >{{myType}}</vt@btn>
 
         <h2>Color</h2>
-        <vt@btn color="indigo" class="vc@text--shades-white">indigo</vt@btn>
-        <vt@btn color="brown-lighten-2" class="vc@text--shades-white">brown-lighten-2</vt@btn>
-        <vt@btn color="deep-orange" class="vc@text--shades-white">deep-orange</vt@btn>
-        <vt@btn color="indigo" outline>indigo</vt@btn>
-        <vt@btn color="brown-lighten-2" outline>brown-lighten-2</vt@btn>
-        <vt@btn color="deep-orange" outline>deep-orange</vt@btn>
+        <vt@btn layer-color="indigo" class="vc@text--shades-white">indigo</vt@btn>
+        <vt@btn layer-color="brown-lighten-2" class="vc@text--shades-white">brown-lighten-2</vt@btn>
+        <vt@btn layer-color="deep-orange" class="vc@text--shades-white">deep-orange</vt@btn>
+        <vt@btn layer-color="indigo" outline>indigo</vt@btn>
+        <vt@btn layer-color="brown-lighten-2" outline>brown-lighten-2</vt@btn>
+        <vt@btn layer-color="deep-orange" outline>deep-orange</vt@btn>
 
         <h2>Block</h2>
         <vt@btn primary block>Block</vt@btn>

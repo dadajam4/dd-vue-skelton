@@ -1,5 +1,5 @@
 import TabFocusable from '~/mixins/tab-focusable';
-import Colorable from '~/mixins/colorable';
+import Colorable from '~/mixins/color';
 
 
 
@@ -27,7 +27,7 @@ export default {
 
   computed: {
     classes() {
-      return this.addTextColorClassChecks({
+      return this.addTextColorClasses({
         'vc@input-group': true,
         'vc@input-group--active': this.isActive,
         'vc@input-group--disabled': this.disabled,

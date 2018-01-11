@@ -5,6 +5,8 @@
 .#{$css-prefix}select {
 
   &__selected-item {
+    list-style-type: none;
+
     &:not(:first-child) {
       &:before {
         content: ", ";

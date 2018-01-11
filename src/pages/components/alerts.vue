@@ -30,7 +30,7 @@
           info
           v-model="demo1"
           dismissible
-          transition="vc@transition-fade"
+          transition="vc@fade-transition"
         >This is a info alert that is closable.</vt@alert>
 
         <div class="vc@text--center">

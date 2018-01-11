@@ -1,15 +1,12 @@
 <script>
-import Contextualable from '~/mixins/contextualable';
-import Colorable from '~/mixins/colorable';
+import Colorable from '~/mixins/color';
 import Routable from '~/mixins/routable';
-
 
 
 export default {
   name: 'vt@btn',
 
   mixins: [
-    Contextualable,
     Colorable,
     Routable,
   ],
@@ -45,7 +42,7 @@ export default {
 
   computed: {
     classes() {
-      const classes = this.addContextColorClassChecks({
+      const classes = this.addColorClasses({
         [this.$options.name]: true,
 
         // size
@@ -80,9 +77,15 @@ export default {
 
   render(h) {
     const { tag, data } = this.generateRouteLink();
+    const defaults = this.$slots.default && this.$slots.default.map(vnode => {
+      if (vnode.tag) return vnode;
+      return h('span', {
+        staticClass: `vc@btn__label`,
+      }, vnode.text);
+    }) || [];
     const children = [(
       <span class="vc@btn__content-wrapper">
-        <span class="vc@btn__content">{this.$slots.default}</span>
+        <span class="vc@btn__content">{defaults}</span>
       </span>
     )];
     tag === 'button' && (data.attrs.type = this.type);

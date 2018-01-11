@@ -30,7 +30,7 @@
   border-radius: get-button(radius);
   border: $my-border-width solid transparent;
   position: relative;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   // @include theme-color(color, text-inverted);
 
   &__content {
@@ -49,6 +49,18 @@
     padding: 0 get-button(padding-horizontal);
     white-space: nowrap;
     transition: get-transition(primary);
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &:before,
@@ -118,12 +130,10 @@
   // includes icon
   &__content .#{$css-prefix}icon {
     color: inherit;
-    // line-height: inherit;
-    // vertical-align: middle;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: bottom;
+    // display: inline-flex;
+    // align-items: center;
+    // justify-content: center;
+    // vertical-align: bottom;
 
     &--left {
       margin-right: get-button(icon-margin);

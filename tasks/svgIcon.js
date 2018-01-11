@@ -29,6 +29,7 @@ function svgIconTask(task, params = {}) {
         fontName        : params.fontName,
         formats         : ['ttf', 'eot', 'woff', 'woff2', 'svg'],
         appendCodepoints: false,
+        descent   : params.descent || 0,
       }))
       .on('error', function() {
         if (task.notify) {

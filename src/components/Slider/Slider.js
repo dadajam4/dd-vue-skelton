@@ -1,6 +1,6 @@
 import { addOnceEventListener, createRange } from '~/util'
 
-import Colorable from '~/mixins/colorable'
+import Colorable from '~/mixins/color'
 import Input from '~/mixins/input'
 
 // import ClickOutside from '../../directives/click-outside'
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       // app: {},
-      defaultColor: 'primary',
+      defaultLayerColor: 'primary',
       isActive: false,
       keyPressed: 0,
     }
@@ -67,13 +67,13 @@ export default {
       }
     },
     computedColor() {
-      return this.disabled ? null : (this.color || this.defaultColor)
+      return this.disabled ? null : (this.layerColor || this.defaultLayerColor)
     },
     computedTrackColor() {
       return this.disabled ? null : (this.trackColor || null)
     },
     computedThumbColor() {
-      return (this.disabled || !this.inputWidth) ? null : (this.thumbColor || this.color || this.defaultColor)
+      return (this.disabled || !this.inputWidth) ? null : (this.thumbColor || this.layerColor || this.defaultLayerColor)
     },
     stepNumeric() {
       return this.step > 0 ? parseFloat(this.step) : 0
@@ -252,7 +252,10 @@ export default {
         }, [
           h('div', {
             staticClass: 'vc@slider__thumb--label',
-            'class': this.addBackgroundColorClassChecks({}, 'computedThumbColor'),
+            'class': {
+              [`vc@layer-color--${this.computedThumbColor}`]: this.computedThumbColor,
+            },
+            // 'class': this.addBackgroundColorClassChecks({}, 'computedThumbColor'),
           }, [
             h('span', {}, this.inputValue),
           ])
@@ -274,8 +277,13 @@ export default {
       const children = []
       children.push(h('div', {
         staticClass: 'vc@slider__thumb',
-        'class': this.addBackgroundColorClassChecks({}, 'computedThumbColor')
-      }))
+      }, [h('div', {
+        staticClass: 'vc@slider__thumb-body',
+        'class': {
+          [`vc@layer-color--${this.computedThumbColor}`]: this.computedThumbColor,
+        },
+        // 'class': this.addBackgroundColorClassChecks({}, 'computedThumbColor')
+      })]))
 
       this.thumbLabel && children.push(this.genThumbLabel(h));
 
@@ -314,12 +322,15 @@ export default {
       const children = [
         h('div', {
           staticClass: 'vc@slider__track',
-          'class': this.addBackgroundColorClassChecks({}, 'computedTrackColor'),
+          'class': {
+            [`vc@layer-color--${this.computedTrackColor}`]: this.computedTrackColor,
+          },
+          // 'class': this.addBackgroundColorClassChecks({}, 'computedTrackColor'),
           style: this.trackStyles,
         }),
         h('div', {
           staticClass: 'vc@slider__track-fill',
-          'class': this.addBackgroundColorClassChecks(),
+          'class': this.addLayerColorClasses(),
           style: this.trackFillStyles,
         })
       ]
@@ -345,7 +356,26 @@ export default {
       }),
     }, children);
 
-    return this.genInputGroup([slider], {
+    const $input = h('input', {
+      class: {
+        'vc@slider__node': true,
+      },
+      domProps: {
+        disabled : this.disabled,
+        required : this.required,
+        value    : this.lazyValue,
+      },
+      attrs: {
+        ...this.$attrs,
+        type    : 'hidden',
+        name    : this.name,
+        readonly: this.readonly,
+        tabindex: '-1',
+        'aria-label': (!this.$attrs || !this.$attrs.id) && this.label, // Label `for` will be set if we have an id
+      },
+    });
+
+    return this.genInputGroup([slider, $input], {
       attrs: {
         role: 'slider',
         tabindex: this.disabled ? -1 : this.tabindex,

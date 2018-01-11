@@ -37,11 +37,11 @@
       <section id="icon-and-text" class="vc@page__section vc@page__container" data-anchor-point>
         <h2>Icon and text</h2>
 
-        <vt@avatar class="vc@context--primary">
+        <vt@avatar class="vc@context-color--primary">
           <vt@icon lg>user-circle</vt@icon>
         </vt@avatar>
 
-        <vt@avatar class="vc@brand-secondary vc@text--shades-white">
+        <vt@avatar class="vc@layer-color--brand-secondary vc@text-color--shades-white">
           <span class="vc@headline">C</span>
         </vt@avatar>
       </section>

@@ -35,8 +35,8 @@ const AUTO_BACKGROUND_BRIGHTNESS_AMMOUNT = 200;
     divider-dark-color: 【デフォルトはdividerと一緒】,
 
     form-divider-color: 【デフォルトはdividerと一緒】,
-    'switch-track-color': xxx,
-    'switch-pointer-color': xxx,
+    switch-track-color: xxx,
+    switch-pointer-color: xxx,
 */
 
 const themes = {};

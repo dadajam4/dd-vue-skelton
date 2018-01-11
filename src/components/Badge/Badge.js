@@ -1,6 +1,5 @@
 // Mixins
-import Contextualable from '~/mixins/contextualable';
-import Colorable from '~/mixins/colorable';
+import Colorable from '~/mixins/color';
 import Toggleable from '~/mixins/toggleable';
 
 
@@ -8,11 +7,11 @@ import Toggleable from '~/mixins/toggleable';
 export default {
   name: 'vt@badge',
 
-  mixins: [Contextualable, Colorable, Toggleable],
+  mixins: [Colorable, Toggleable],
 
   props: {
     bottom: Boolean,
-    color: {
+    layerColor: {
       type: String,
       default: 'brand-primary',
     },
@@ -20,7 +19,7 @@ export default {
     overlap: Boolean,
     transition: {
       type: String,
-      default: 'vc@transition-fab',
+      default: 'vc@fab-transition',
     },
     value: {
       default: true,
@@ -42,7 +41,7 @@ export default {
     const badgeTag    = isClickable ? 'button' : 'span';
     const badgeOption = {
       staticClass: 'vc@badge__badge' + (isClickable ? ' vc@badge__badge--clickable' : ''),
-      'class': this.addContextColorClassChecks(),
+      'class': this.addColorClasses(),
       attrs: this.attrs,
       directives: [{
         name: 'show',

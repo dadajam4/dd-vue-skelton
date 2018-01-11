@@ -1,4 +1,4 @@
-import Colorable from '~/mixins/colorable';
+import Colorable from '~/mixins/color';
 
 
 
@@ -40,7 +40,7 @@ export default {
 
   computed: {
     classes() {
-      return this.addTextColorClassChecks({
+      return this.addTextColorClasses({
         'vc@spinner': true,
         'vc@spinner--indeterminate': this.indeterminate,
         'vc@spinner--button': this.button,

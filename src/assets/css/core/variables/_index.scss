@@ -2,6 +2,8 @@
 // Core Variables
 //
 
+$basic-direction-keys: all, vertical, horizontal, top, right, bottom, left;
+
 @import "./theme";
 @import "./page";
 @import "./color";

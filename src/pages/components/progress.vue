@@ -27,7 +27,7 @@
         <h2 class="vc@page__section-header">Colored</h2>
 
         <div>
-          <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :color="color" value="50" :key="color" />
+          <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :text-color="color" value="50" :key="color" />
         </div>
       </section>
 
@@ -35,7 +35,7 @@
         <h2 class="vc@page__section-header">Indeterminate</h2>
 
         <div>
-          <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :color="color" indeterminate :key="color" />
+          <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :text-color="color" indeterminate :key="color" />
         </div>
       </section>
 
@@ -43,11 +43,11 @@
         <h2 class="vc@page__section-header">Size & Width</h2>
 
         <div>
-          <vt@spinner class="my-spinner" color="base" indeterminate size="50" />
-          <vt@spinner class="my-spinner" color="muted" indeterminate width="3" />
-          <vt@spinner class="my-spinner" color="primary" indeterminate size="70" width="7" />
-          <vt@spinner class="my-spinner" color="secondary" indeterminate width="3" />
-          <vt@spinner class="my-spinner" color="info" indeterminate size="50" />
+          <vt@spinner class="my-spinner" text-color="base" indeterminate size="50" />
+          <vt@spinner class="my-spinner" text-color="muted" indeterminate width="3" />
+          <vt@spinner class="my-spinner" text-color="primary" indeterminate size="70" width="7" />
+          <vt@spinner class="my-spinner" text-color="secondary" indeterminate width="3" />
+          <vt@spinner class="my-spinner" text-color="info" indeterminate size="50" />
         </div>
       </section>
 
@@ -59,7 +59,7 @@
             v-for="define in rotateDefines"
             :key="define.color"
             :rotate="define.rotate"
-            :color="define.color"
+            :text-color="define.color"
             size="100"
             width="15"
             :value="rotateValue"

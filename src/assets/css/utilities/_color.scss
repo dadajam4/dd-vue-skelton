@@ -2,8 +2,74 @@
 // Color
 //
 
+// context
+.#{$css-prefix}context-color {
+  @each $key in get-color-keys(context) {
+    &--#{$key} {
+      @include theme-color(background-color, context-#{$key});
+      @include theme-color(border-color, context-#{$key}-border);
+
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        @include theme-color(color, context-#{$key}-text);
+      }
+
+      a {
+        @include theme-color(color, context-#{$key}-link);
+
+        &:hover,
+        &:focus,
+        &:active {
+          @include theme-color(color, context-#{$key}-link-hover);
+        }
+      }
+    }
+  }
+
+  &--flat {
+    @each $key in get-color-keys(context) {
+      &-#{$key} {
+        @include theme-color(color, context-#{$key});
+        border-color: transparent;
+
+        a {
+          @include theme-color(color, context-#{$key}-link);
+
+          &:hover,
+          &:focus,
+          &:active {
+            @include theme-color(color, context-#{$key}-link-hover);
+          }
+        }
+      }
+    }
+  }
+
+  &--outline {
+    @each $key in get-color-keys(context) {
+      &-#{$key} {
+        @include theme-color(color, context-#{$key});
+        border-color: currentColor;
+
+        a {
+          @include theme-color(color, context-#{$key}-link);
+
+          &:hover,
+          &:focus,
+          &:active {
+            @include theme-color(color, context-#{$key}-link-hover);
+          }
+        }
+      }
+    }
+  }
+}
+
+// layer
 @each $key in $background-color-keys {
-  .#{$css-prefix}#{$key} {
+  .#{$css-prefix}layer-color--#{$key} {
     @include theme-color(background-color, background-#{$key}, true);
     @include theme-color(border-color, background-#{$key}, true);
   }
@@ -12,10 +78,67 @@
 @each $parent, $children in map-get($themes, palette) {
   @each $sub, $color in $children {
     $suffix: if($sub == base, null, -#{$sub});
-    $key: #{$parent}#{$suffix};
+    $key: layer-color--#{$parent}#{$suffix};
     .#{$css-prefix}#{$key} {
       background-color: $color!important;
       border-color: $color!important;
+    }
+  }
+}
+
+// background
+@each $key in $background-color-keys {
+  .#{$css-prefix}background-color--#{$key} {
+    @include theme-color(background-color, background-#{$key}, true);
+  }
+}
+
+@each $parent, $children in map-get($themes, palette) {
+  @each $sub, $color in $children {
+    $suffix: if($sub == base, null, -#{$sub});
+    $key: background-color--#{$parent}#{$suffix};
+    .#{$css-prefix}#{$key} {
+      background-color: $color!important;
+    }
+  }
+}
+
+// border
+@each $key in $background-color-keys {
+  @each $direction-key in $basic-direction-keys {
+    $_key: if($direction-key == all, "", -#{$direction-key});
+    .#{$css-prefix}border-color#{$_key}--#{$key} {
+      @include theme-border-color(background-#{$key}, $direction-key, true);
+    }
+  }
+}
+
+@each $parent, $children in map-get($themes, palette) {
+  @each $sub, $color in $children {
+    @each $direction-key in $basic-direction-keys {
+      $_key: if($direction-key == all, "", -#{$direction-key});
+      $suffix: if($sub == base, null, -#{$sub});
+      $key: border#{$_key}-color--#{$parent}#{$suffix};
+      .#{$css-prefix}#{$key} {
+        border-color: $color!important;
+      }
+    }
+  }
+}
+
+// text
+@each $key in $text-color-keys {
+  .#{$css-prefix}text-color--#{$key} {
+    @include theme-color(color, text-#{$key}, true);
+  }
+}
+
+@each $parent, $children in map-get($themes, palette) {
+  @each $sub, $color in $children {
+    $suffix: if($sub == base, null, -#{$sub});
+    $key: #{$parent}#{$suffix};
+    .#{$css-prefix}text-color--#{$key} {
+      color: $color!important;
     }
   }
 }

@@ -5,6 +5,9 @@
 $my-slider-active-color: background-active;
 $my-slider-inactive-color: background-light;
 $my-slider-disabled-color: context-muted;
+$my-pointer-size: 16px;
+$my-pointer-hit-size: 40px;
+$my-pointer-offset: ($my-pointer-hit-size - $my-pointer-size) / 2;
 
 .#{$css-prefix}input-group--slider {
 
@@ -31,16 +34,16 @@ $my-slider-disabled-color: context-muted;
   &:not(.#{$css-prefix}input-group--dirty) {
     .#{$css-prefix}slider__thumb--label {
       @include theme-color(background, $my-slider-inactive-color);
+      @include theme-color(border-color, $my-slider-inactive-color);
     }
 
-    .#{$css-prefix}slider__thumb {
-      border: solid 3px;
+    .#{$css-prefix}slider__thumb-body {
+      // border: solid 3px;
       @include theme-color(border-color, $my-slider-inactive-color);
     }
 
     &:focus {
-      .#{$css-prefix}slider__thumb {
-        border: solid 3px;
+      .#{$css-prefix}slider__thumb-body {
         @include theme-color(border-color, $my-slider-active-color);
       }
     }
@@ -48,15 +51,14 @@ $my-slider-disabled-color: context-muted;
 
 
   &.#{$css-prefix}input-group--disabled {
-    .#{$css-prefix}slider__thumb {
+    .#{$css-prefix}slider__thumb-body {
       background: none;
-      border: solid 3px;
       @include theme-color(border-color, $my-slider-disabled-color);
     }
   }
 
   &.#{$css-prefix}input-group--disabled.#{$css-prefix}input-group--dirty {
-    .#{$css-prefix}slider__thumb {
+    .#{$css-prefix}slider__thumb-body {
       @include theme-color(background, $my-slider-disabled-color);
       border: 0px solid transparent;
     }
@@ -72,12 +74,17 @@ $my-slider-disabled-color: context-muted;
   .#{$css-prefix}input-group__right-icon { padding-right: 0; }
 }
 
+.#{$css-prefix}slider {
+  margin-left: get-space(sm);
+  margin-right: get-space(sm);
+}
+
 .#{$css-prefix}input-group--left-icon .#{$css-prefix}slider {
-  margin-left: 40px;
+  margin-left: get-space(xl);
 }
 
 .#{$css-prefix}input-group--right-icon .#{$css-prefix}slider {
-  margin-right: 40px;
+  margin-right: get-space(xl);
 }
 
 /** Input Group */
@@ -110,8 +117,8 @@ $my-slider-disabled-color: context-muted;
   // }
 
   &.#{$css-prefix}input-group--active {
-    .#{$css-prefix}slider__thumb {
-      transform: translateY(-50%) scale(1.2);
+    .#{$css-prefix}slider__thumb-body {
+      transform: scale(1.2);
     }
 
     .#{$css-prefix}slider__track {
@@ -121,10 +128,13 @@ $my-slider-disabled-color: context-muted;
     .#{$css-prefix}slider__thumb-container {
       &--label {
         .#{$css-prefix}slider__thumb {
-          transform: translateY(-50%) scale(0);
 
-          &:hover {
-            transform: translateY(-50%) scale(0);
+          &-body {
+            transform: scale(0);
+          }
+
+          &:hover &-body {
+            transform: scale(0);
           }
         }
       }
@@ -146,8 +156,8 @@ $my-slider-disabled-color: context-muted;
   &.#{$css-prefix}input-group--disabled {
     pointer-events: none;
 
-    .#{$css-prefix}slider__thumb {
-      transform: translateY(-50%) scale(.5);
+    .#{$css-prefix}slider__thumb-body {
+      transform: scale(.5);
       background: transparent;
     }
 
@@ -184,6 +194,8 @@ $my-slider-disabled-color: context-muted;
 
 /** Thumb/Track/Ticks */
 .#{$css-prefix}slider {
+  cursor: pointer;
+
   &__track__container {
     position: absolute;
     top: 50%;
@@ -247,16 +259,33 @@ $my-slider-disabled-color: context-muted;
     transition: .3s get-easing(swing);
   }
 
+  // $my-pointer-size: 16px;
+  // $my-pointer-hit-size: 40px;
+  // $my-pointer-offset: ($my-pointer-hit-size - $my-pointer-size) / 2;
   &__thumb {
-    width: 16px;
-    height: 16px;
-    left: -8px;
+    width: $my-pointer-hit-size;
+    height: $my-pointer-hit-size;
+    left: -$my-pointer-hit-size / 2;
     top: 50%;
-    border-radius: 50%;
-    background: transparent;
     transition: .3s get-easing(swing);
-    transform: translateY(-50%) scale(.8);
-    user-select: none;
+    transform: translateY(-50%);
+    @include btn-action-reset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // cursor: pointer;
+
+    &-body {
+      content: "";
+      display: block;
+      width: $my-pointer-size;
+      height: $my-pointer-size;
+      border-radius: 50%;
+      background: transparent;
+      transition: .3s get-easing(swing);
+      transform: scale(.8);
+      border: solid 3px;
+    }
   }
 }
 
@@ -276,18 +305,41 @@ $my-slider-disabled-color: context-muted;
     justify-content: center;
     font-size: 12px;
     color: #fff;
-    width: 28px;
-    height: 28px;
-    border-radius: 50% 50% 0;
     position: absolute;
-    left: -14px;
-    top: -40px;
-    transform: rotate(45deg);
     user-select: none;
     transition: .3s ease-in-out;
 
+    // left: -14px;
+    // top: -40px;
+    // width: 28px;
+    // height: 28px;
+    // border-radius: 50% 50% 0;
+    // transform: rotate(45deg);
+    left: 0;
+    bottom: calc(100% + 6px);
+    padding: get-space(xxs) get-space(xs);
+    border-radius: get-space(sm);
+    transform: translateX(-50%);
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      border-style: solid;
+      border-width: 7px 7px 0 7px;
+      border-top-color: inherit;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      top: calc(100% - 2px);
+      transform: translateX(-50%);
+      // border-color: #007bff transparent transparent transparent;
+      // border: solid
+    }
+
     span {
-      transform: rotate(-45deg)
+      // transform: rotate(-45deg)
     }
   }
 

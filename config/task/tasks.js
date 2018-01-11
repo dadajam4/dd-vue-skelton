@@ -39,6 +39,7 @@ module.exports = {
         dest: config.path(`src/static/font/${sassSettings.prefix}icon`),
         sassDest: config.path('src/assets/css/.tmp'),
         fontName: `${sassSettings.prefix}icon`,
+        descent: 210, // font awesome baseline fix
         template: config.path('config/svg/svg-icon-template.scss'),
         fontDir: config.path.join('../font', `${sassSettings.prefix}icon`),
       },

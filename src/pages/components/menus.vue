@@ -102,7 +102,7 @@
         <div class="text-xs-center">
           <vt@menu
             origin="center center"
-            transition="vc@transition-scale"
+            transition="vc@scale-transition"
             bottom
           >
             <vt@btn primary dark slot="activator">
@@ -116,7 +116,7 @@
           </vt@menu>
 
           <vt@menu
-            transition="vc@transition-slide-x"
+            transition="vc@slide-x-transition"
             bottom
             right
           >
@@ -131,7 +131,7 @@
           </vt@menu>
 
           <vt@menu
-            transition="vc@transition-slide-y"
+            transition="vc@slide-y-transition"
             bottom
           >
             <vt@btn primary dark slot="activator">
