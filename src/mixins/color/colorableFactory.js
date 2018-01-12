@@ -11,7 +11,7 @@ export default function colorableFactory(name, opts = {}) {
   const computedKey = `computed${Name}Color`;
   const classesKey = `${name}ColorClasses`;
   const methodKey = `add${Name}ColorClasses`;
-  const props = {[propKey]: String};
+  const props = Object.assign({[propKey]: String}, opts.props);
 
 
 
@@ -30,20 +30,26 @@ export default function colorableFactory(name, opts = {}) {
 
     computed: {
       [computedKey]() {
-        let color = this[propKey];
-        if (!color && hasExpansionProps) {
+        let color;
+        if (hasExpansionProps) {
           for (let name of expansionProps) {
             if (this[name]) {
-              color = name;
+              return name;
               break;
             }
           }
         }
-        return color || this[defaultKey];
+
+        return this[propKey] || this[defaultKey];
       },
 
       [classesKey]() {
-        return this[computedKey] ? {[`vc@${name}-color--${this[computedKey]}`]: true} : {};
+        const prefix = opts.addColorPrefix ? opts.addColorPrefix.call(this) : '';
+        let classes = this[computedKey] ? {[`vc@${name}-color-${prefix}-${this[computedKey]}`]: true} : {};
+        if (opts.mergeColorClasses) {
+          classes = opts.mergeColorClasses.call(this, classes);
+        }
+        return classes;
       },
     },
 

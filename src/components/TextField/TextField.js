@@ -65,10 +65,8 @@ export default {
         myInput = '';
       }
 
-      const re = new RegExp(myInput);
-
       return this.suggest.filter(suggest => {
-        return re.test(suggest);
+        return suggest.includes(myInput);
       });
     },
 

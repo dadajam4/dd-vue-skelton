@@ -33,6 +33,52 @@
         </div>
       </section>
 
+      <section id="colors" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2>Colors</h2>
+
+        <div class="vc@text--center">
+          <vt@badge overlap left success>
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+          <vt@badge overlap left warning>
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+          <vt@badge overlap left error>
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+          <vt@badge overlap left layer-color="indigo">
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+          <vt@badge overlap left background-color="shades-white" border-color="purple" text-color="lime">
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+        </div>
+      </section>
+
+      <section id="outline" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2>Outline</h2>
+
+        <div class="vc@text--center">
+          <vt@badge outline overlap left success>
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+          <vt@badge outline overlap left warning>
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+          <vt@badge outline overlap left error>
+            <span slot="badge">1</span>
+            <vt@icon xl>user-circle</vt@icon>
+          </vt@badge>
+        </div>
+      </section>
+
       <section id="icon" class="vc@page__section vc@page__container" data-anchor-point>
         <h2>Icon</h2>
 

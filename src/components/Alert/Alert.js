@@ -20,9 +20,9 @@ export default {
 
   computed: {
     classes() {
-      const classes = this.addColorClasses({
+      const classes = this.addContextColorClasses({
         'vc@alert--dismissible': this.dismissible,
-        'vc@alert--outline': this.outline
+        'vc@alert--outline': this.outline,
       });
 
       return classes;

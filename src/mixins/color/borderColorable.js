@@ -14,7 +14,7 @@ export default {
       const classes = {};
       for (let direction of props.directions) {
         if (this[direction.key]) {
-          classes[`vc@${props.keyChain}--${this[direction.key]}`] = true;
+          classes[`vc@${direction.keyChain}--${this[direction.key]}`] = true;
         }
       }
       return classes;

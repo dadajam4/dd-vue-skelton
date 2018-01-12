@@ -1,5 +1,5 @@
 import TabFocusable from '~/mixins/tab-focusable';
-import Colorable from '~/mixins/color';
+import TextColorable from '~/mixins/color/textColorable';
 
 
 
@@ -10,7 +10,7 @@ export default {
 
   inject: ['isMandatory', 'name', 'registerChild', 'unregisterChild'],
 
-  mixins: [Colorable, TabFocusable],
+  mixins: [TextColorable, TabFocusable],
 
   props: {
     disabled: Boolean,

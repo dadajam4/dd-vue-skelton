@@ -1,8 +1,8 @@
-import Colorable from './color';
+import TextColorable from './color/textColorable';
 import Input from './input'
 
 export default {
-  mixins: [Input, Colorable],
+  mixins: [Input, TextColorable],
 
   model: {
     prop: 'inputValue',
@@ -11,7 +11,6 @@ export default {
 
   data() {
     return {
-      defaultColor: 'accent',
       internalValueStore: null,
     }
   },

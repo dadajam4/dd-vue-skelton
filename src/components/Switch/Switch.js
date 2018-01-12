@@ -16,7 +16,7 @@ export default {
       }
 
       if (this.hasError) {
-        classes['vc@text--error'] = true;
+        classes['vc@text-color--error'] = true;
       }
 
       return classes;

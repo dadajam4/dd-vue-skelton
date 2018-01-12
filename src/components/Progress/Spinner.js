@@ -1,11 +1,11 @@
-import Colorable from '~/mixins/color';
+import TextColorable from '~/mixins/color/textColorable';
 
 
 
 export default {
   name: 'vt@spinner',
 
-  mixins: [Colorable],
+  mixins: [TextColorable],
 
   props: {
     button: Boolean,

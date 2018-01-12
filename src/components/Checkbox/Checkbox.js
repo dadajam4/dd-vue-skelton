@@ -26,12 +26,12 @@ export default {
       }
 
       if (this.hasError) {
-        classes['vc@text--error'] = true;
+        classes['vc@text-color--error'] = true;
       } else {
-        return this.addColorClasses(classes);
+        return this.addTextColorClasses(classes);
       }
 
-      return classes
+      return classes;
     },
   },
 

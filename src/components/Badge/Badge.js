@@ -11,9 +11,9 @@ export default {
 
   props: {
     bottom: Boolean,
-    layerColor: {
+    contextColor: {
       type: String,
-      default: 'brand-primary',
+      default: 'primary',
     },
     left: Boolean,
     overlap: Boolean,
