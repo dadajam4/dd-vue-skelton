@@ -75,24 +75,28 @@ $my-pointer-offset: ($my-pointer-hit-size - $my-pointer-size) / 2;
 }
 
 .#{$css-prefix}slider {
-  margin-left: get-space(sm);
-  margin-right: get-space(sm);
+  // margin-left: get-space(sm);
+  // margin-right: get-space(sm);
+
+  // iOSのedgeスワイプ対応
+  margin-left: get-space(md);
+  margin-right: get-space(md);
 }
 
 .#{$css-prefix}input-group--left-icon .#{$css-prefix}slider {
-  margin-left: get-space(xl);
+  margin-left: get-space(lg);
 }
 
 .#{$css-prefix}input-group--right-icon .#{$css-prefix}slider {
-  margin-right: get-space(xl);
+  margin-right: get-space(lg);
 }
 
 /** Input Group */
 .#{$css-prefix}input-group.#{$css-prefix}input-group--slider {
   flex-direction: row;
   flex-wrap: wrap;
-  // Allow for right space if inline with other inputs
-  padding-right: 16px;
+  // // Allow for right space if inline with other inputs
+  // padding-right: 16px;
 
   .#{$css-prefix}input-group__details:before, .#{$css-prefix}input-group__details:after {
     display: none;

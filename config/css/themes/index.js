@@ -37,6 +37,8 @@ const AUTO_BACKGROUND_BRIGHTNESS_AMMOUNT = 200;
     form-divider-color: 【デフォルトはdividerと一緒】,
     switch-track-color: xxx,
     switch-pointer-color: xxx,
+
+    backdrop: xxx,
 */
 
 const themes = {};
@@ -82,6 +84,9 @@ const settings = {
     'context-darken-color': palette.grey['darken-4'],
     'context-muted-color': 'rgba(0, 0, 0, .12)',
     'context-muted-text-color': 'rgba(0, 0, 0, .26)',
+
+    // others
+    'backdrop-color': 'rgba(0, 0, 0, .4)',
   },
 
   dark: {

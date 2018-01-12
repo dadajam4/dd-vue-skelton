@@ -28,6 +28,11 @@
     text-transform: uppercase;
   }
 }
+
+.my-anchor-navi {
+  border-right: solid 4px;
+  @include theme-border-color(context-primary);
+}
 </style>
 
 <template>
@@ -87,7 +92,7 @@
                 -->
               </vt@list-tile-action>
             </vt@list-tile>
-            <li v-if="$route.name === child.name" :key="childIndex + '-anchors'">
+            <li v-if="$route.name === child.name" :key="childIndex + '-anchors'" class="my-anchor-navi">
               <vt@anchor-navi></vt@anchor-navi>
             </li>
           </template>
