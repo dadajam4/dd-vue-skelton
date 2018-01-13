@@ -15,19 +15,15 @@
       <section id="standard-display" class="vc@page__section vc@page__container" data-anchor-point>
         <h2>Standard display</h2>
 
-        <p>
-          <label>
-            サイズ
-            <input type="range" min="0" max="100" v-model="size">
-            {{size}}px
-          </label>
-        </p>
-        <p>
-          <label>
-            <input type="checkbox" :value="true" v-model="tile">
-            タイル
-          </label>
-        </p>
+        <vt@slider
+          thumb-label
+          min="0"
+          max="240"
+          v-model="size"
+          label="size"
+          :thumb-label-assist="size => size + 'px'"
+        />
+        <vt@switch :label="tile ? 'tile' : 'circle'" v-model="tile" />
 
         <vt@avatar :size="size" :tile="tile">
           <img src="~assets/img/avatar/nigaoe_murou_saisei.png" alt="">

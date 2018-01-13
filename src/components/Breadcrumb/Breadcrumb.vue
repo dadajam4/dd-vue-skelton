@@ -10,17 +10,21 @@ export default {
       type: String,
       default: '/',
     },
-    // large: Boolean,
-    justifyCenter: Boolean,
-    justifyEnd: Boolean,
+
+    lg: Boolean,
+
+    left: Boolean,
+    center: Boolean,
+    right: Boolean,
   },
 
   computed: {
     classes() {
       return {
-        // 'breadcrumb--large': this.large,
-        'vc@breadcrumb--justify-center': this.justifyCenter,
-        'vc@breadcrumb--justify-end': this.justifyEnd,
+        'vc@breadcrumb--lg': this.lg,
+        'vc@breadcrumb--left': this.left,
+        'vc@breadcrumb--center': this.center,
+        'vc@breadcrumb--right': this.right,
       }
     },
     computedDivider() {

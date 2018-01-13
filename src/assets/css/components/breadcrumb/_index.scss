@@ -9,12 +9,12 @@
   list-style-type: none;
   margin: get-space(md) get-space(sm);
   padding: 0;
+  @include font-size(sm);
 
   & > li {
     list-style-type: none;
     display: flex;
     align-items: center;
-    @include font-size(sm);
   }
 
   &__divider {
@@ -27,5 +27,13 @@
       @include theme-color(color, text-muted, true);
       pointer-events: none;
     }
+  }
+
+  &--left { justify-content: flex-start; }
+  &--center { justify-content: center; }
+  &--right { justify-content: flex-end; }
+
+  &--lg {
+    @include font-size(lg);
   }
 }

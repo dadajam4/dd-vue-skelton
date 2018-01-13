@@ -2,9 +2,9 @@
 // Page
 //
 
-$page-container-padding: 16px;
+$page-container-padding: 20px; // 16だとiOSのセーフティーmarginに触りやすくなってしまう
 
-@function get-container-size($key) {
+@function get-page-container-size($key) {
   @return map-get($page-container-size, $key);
 }
 

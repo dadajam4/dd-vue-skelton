@@ -32,6 +32,30 @@
         </vt@breadcrumb>
       </section>
 
+      <section id="alignment" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2>Alignment</h2>
+
+        <div v-for="key in ['left', 'center', 'right']" :key="key">
+          <h3>{{key}}</h3>
+          <vt@breadcrumb v-bind="{[key]: true}">
+            <vt@breadcrumb-item>Dashbord</vt@breadcrumb-item>
+            <vt@breadcrumb-item>Link1</vt@breadcrumb-item>
+            <vt@breadcrumb-item disabled>Link2</vt@breadcrumb-item>
+          </vt@breadcrumb>
+        </div>
+      </section>
+
+      <section id="sizing" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2>Sizing</h2>
+
+        <h3>Large</h3>
+        <vt@breadcrumb lg>
+          <vt@breadcrumb-item>Dashbord</vt@breadcrumb-item>
+          <vt@breadcrumb-item>Link1</vt@breadcrumb-item>
+          <vt@breadcrumb-item disabled>Link2</vt@breadcrumb-item>
+        </vt@breadcrumb>
+      </section>
+
       <section id="icon-dividers" class="vc@page__section vc@page__container" data-anchor-point>
         <h2>Icon dividers</h2>
 

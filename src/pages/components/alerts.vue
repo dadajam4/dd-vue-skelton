@@ -37,6 +37,19 @@
           <vt@btn primary v-if="!demo1" @click="demo1 = true">Reset</vt@btn>
         </div>
       </section>
+
+      <section id="outline" class="vc@page__section vc@page__container" data-anchor-point>
+        <h2>Outline</h2>
+
+        <vt@alert
+          v-for="myType in CONTEXT_TYPES"
+          :key="myType"
+          v-bind="{[myType]: true}"
+          value="true"
+          outline
+          dismissible
+        >This is a {{myType}} alert.</vt@alert>
+      </section>
     </main>
   </div>
 </template>

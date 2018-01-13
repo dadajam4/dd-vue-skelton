@@ -3,7 +3,7 @@
 //
 
 .#{$css-prefix}alert {
-  border-color: rgba(0,0,0,.12)!important;
+  border-color: rgba(0, 0, 0, .12)!important;
   border-width: 4px 0 0;
   border-style: solid;
   // border: solid 1px;
@@ -43,5 +43,9 @@
     @include font-size(lg);
     margin-left: 16px;
     color: inherit!important;
+  }
+
+  &--outline {
+    border: solid 1px currentColor!important;
   }
 }

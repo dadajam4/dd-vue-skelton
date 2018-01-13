@@ -54,6 +54,7 @@ export default {
       type: [Number, String],
       default: 0,
     },
+    thumbLabelAssist: Function,
   },
 
   computed: {
@@ -238,6 +239,8 @@ export default {
       }
     },
     genThumbLabel(h) {
+      const label = this.thumbLabelAssist && this.thumbLabelAssist(this.inputValue) || this.inputValue;
+
       return h('vt@scale-transition', {
         props: { origin: 'bottom center' },
       }, [
@@ -255,9 +258,8 @@ export default {
             'class': {
               [`vc@layer-color--${this.computedThumbColor}`]: this.computedThumbColor,
             },
-            // 'class': this.addBackgroundColorClassChecks({}, 'computedThumbColor'),
           }, [
-            h('span', {}, this.inputValue),
+            h('span', {}, label),
           ])
         ])
       ])
@@ -282,7 +284,6 @@ export default {
         'class': {
           [`vc@layer-color--${this.computedThumbColor}`]: this.computedThumbColor,
         },
-        // 'class': this.addBackgroundColorClassChecks({}, 'computedThumbColor')
       })]))
 
       this.thumbLabel && children.push(this.genThumbLabel(h));
@@ -325,7 +326,6 @@ export default {
           'class': {
             [`vc@layer-color--${this.computedTrackColor}`]: this.computedTrackColor,
           },
-          // 'class': this.addBackgroundColorClassChecks({}, 'computedTrackColor'),
           style: this.trackStyles,
         }),
         h('div', {

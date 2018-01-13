@@ -18,7 +18,7 @@ export default {
   watch: {
     isActive() {
       this.isBooted = true;
-    }
+    },
   },
 
   methods: {
@@ -26,6 +26,6 @@ export default {
       return (this.isBooted || !this.lazy)
         ? content
         : null
-    }
+    },
   }
 }
