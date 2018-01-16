@@ -1,5 +1,13 @@
-export clone from './clone';
-export zeroPad from './zeroPad';
-export nl2br from './nl2br';
-export splitedArd from './splitedArd';
-export capitalize from './capitalize';
+import clone from './clone';
+import zeroPad from './zeroPad';
+import nl2br from './nl2br';
+import splitedArd from './splitedArd';
+import capitalize from './capitalize';
+
+export {
+  clone,
+  zeroPad,
+  nl2br,
+  splitedArd,
+  capitalize,
+}

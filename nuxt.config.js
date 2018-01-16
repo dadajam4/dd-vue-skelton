@@ -157,7 +157,7 @@ module.exports = {
     },
 
     vendor: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       '~/plugins/core',
     ],
   },

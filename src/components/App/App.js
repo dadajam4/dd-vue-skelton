@@ -45,6 +45,10 @@ export default {
     },
   },
 
+  mounted() {
+    this.$forceUpdate();
+  },
+
   render(h) {
     return h('div', {
       'class': this.classes,

@@ -7,24 +7,27 @@ export default {
       type: String,
       default: 'main',
     },
-    container: {
-      type: Boolean,
-      default: true,
-    },
   },
 
   computed: {
     classes() {
       return {
         'vc@page': true,
-        'vc@container': this.container,
       }
     },
   },
 
-  created() {
-    // console.warn(this.$options);
-  },
+  // created() {
+  //   // console.warn(this.$options);
+  //   // console.warn(this.$parent.$options.head());
+  //   // console.warn(Object.keys(this.$vnode));
+  //   console.warn(this.$vnode.children);
+  //   console.log(this.$children);
+  // },
+
+  // destroyed() {
+  //   console.warn(this.$parent.$options.head());
+  // },
 
   render(h) {
     const tag = this.tag;
@@ -32,8 +35,6 @@ export default {
     const data = {
       class: this.classes,
     };
-
-    // console.warn(this.container);
 
     return h(tag, data, this.$slots.default);
   }

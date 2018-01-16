@@ -4,7 +4,6 @@
 .my-logo {
   border-bottom: solid 1px;
   @include theme-color(border-color, form-divider);
-  // @include theme-color(form-divider);
 
   & > a {
     color: inherit;
@@ -84,7 +83,7 @@
             >
               <vt@list-tile-action>&nbsp;</vt@list-tile-action>
               <vt@list-tile-content>
-                <vt@list-tile-title class="my-child-name">{{child._filename}}</vt@list-tile-title>
+                <vt@list-tile-title class="my-child-name">{{child.label}}</vt@list-tile-title>
               </vt@list-tile-content>
               <vt@list-tile-action>
                 <!--
@@ -118,130 +117,6 @@
 </template>
 
 <script>
-// import routings from '.tmp/public-routings';
-
-const links = [
-  {
-    name: 'getting-started',
-    path: '/getting-started',
-  },
-
-  {
-    name: 'elements',
-    path: '/elements',
-    children: [
-      {
-        name: 'elements-basic',
-        path: '/elements/basic',
-        _filename: 'basic',
-      },
-      {
-        name: 'elements-grouping',
-        path: '/elements/grouping',
-        _filename: 'grouping',
-      },
-      {
-        name: 'elements-headings',
-        path: '/elements/headings',
-        _filename: 'headings',
-      },
-    ],
-  },
-
-  {
-    name: 'style',
-    path: '/style',
-    children: [
-      {
-        name: 'style-colors',
-        path: '/style/colors',
-        _filename: 'colors',
-      },
-      {
-        name: 'style-content',
-        path: '/style/content',
-        _filename: 'content',
-      },
-      {
-        name: 'style-typography',
-        path: '/style/typography',
-        _filename: 'typography',
-      },
-    ],
-  },
-
-  {
-    name: 'components',
-    path: '/components',
-    children: [
-      {
-        name: 'components-alerts',
-        path: '/components/alerts',
-        _filename: 'alerts',
-      },
-      {
-        name: 'components-avatars',
-        path: '/components/avatars',
-        _filename: 'avatars',
-      },
-      {
-        name: 'components-forms',
-        path: '/components/forms',
-        _filename: 'forms',
-      },
-      {
-        name: 'components-badges',
-        path: '/components/badges',
-        _filename: 'badges',
-      },
-      {
-        name: 'components-breadcrumbs',
-        path: '/components/breadcrumbs',
-        _filename: 'breadcrumbs',
-      },
-      {
-        name: 'components-buttons',
-        path: '/components/buttons',
-        _filename: 'buttons',
-      },
-      {
-        name: 'components-lists',
-        path: '/components/lists',
-        _filename: 'lists',
-      },
-      {
-        name: 'components-menus',
-        path: '/components/menus',
-        _filename: 'menus',
-      },
-      {
-        name: 'components-progress',
-        path: '/components/progress',
-        _filename: 'progress',
-      },
-    ],
-  },
-
-  {
-    name: 'layout',
-    path: '/layout',
-    children: [
-      {
-        name: 'layout-grid',
-        path: '/layout/grid',
-        _filename: 'grid',
-      },
-      {
-        name: 'layout-spacing',
-        path: '/layout/spacing',
-        _filename: 'spacing',
-      },
-    ],
-  },
-];
-
-
-
 export default {
   props: {
     value: {
@@ -252,7 +127,6 @@ export default {
   data() {
     return {
       isActive: this.value,
-      links: links,
       iconMap: {
         'getting-started': 'cube',
         elements  : 'truck',
@@ -267,6 +141,52 @@ export default {
     lastRequested: {
       get() { return this.$refs.drawer.lastRequested },
       set(lastRequested) { this.$refs.drawer.lastRequested = lastRequested },
+    },
+    links() {
+      const links = [];
+      const routes = this.$router.options.routes;
+      const levels = [];
+
+      routes.forEach(route => {
+        const tmp = route.path.replace(/^\//, '').split('/');
+        const level = tmp.length - 1;
+
+        if (!levels[level]) levels[level] = [];
+        levels[level].push(route);
+      });
+
+      levels.forEach((level, index) => {
+        if (index === 0) {
+          level.forEach(route => {
+            if (!route.name !== 'index') {
+              links.push({
+                path: route.path,
+                name: route.name,
+              });
+            }
+          });
+        } else {
+          level.forEach(route => {
+            const tmp = route.path.replace(/^\//, '').split('/');
+            const myParentName = tmp[0];
+            let parent = links.find(parent => parent.name === myParentName);
+            if (!parent) {
+              parent = {
+                name: myParentName,
+                path: '/' + myParentName,
+                children: [],
+              };
+              links.push(parent);
+            }
+            parent.children.push({
+              name: route.name,
+              path: route.path,
+              label: tmp[1],
+            });
+          });
+        }
+      });
+      return links;
     },
   },
 
@@ -285,11 +205,5 @@ export default {
       window.history.pushState(null, null, path);
     },
   },
-
-  // created() {
-  //   setTimeout(() => {
-  //   console.warn(this.$router.currentRoute);
-  //   }, 1000);
-  // },
 }
 </script>

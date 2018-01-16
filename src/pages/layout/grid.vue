@@ -9,38 +9,19 @@
     </vt@page-intro>
 
     <vt@page-section title id="grid" data-anchor-point>
-      <vt@container grid-list-md text-xs-center>
+      <vt@container grid-list-md text--center>
         <vt@layout row wrap text--center>
-          <vt@flex xs12>
-            <vt@card primary>
-              <vt@card-text class="vc@p-h--none">12</vt@card-text>
-            </vt@card>
-          </vt@flex>
-          <vt@flex xs6 v-for="i in 2" :key="i">
-            <vt@card secondary>
-              <vt@card-text class="vc@p-h--none">6</vt@card-text>
-            </vt@card>
-          </vt@flex>
-          <vt@flex xs4 v-for="i in 3" :key="i">
-            <vt@card primary>
-              <vt@card-text class="vc@p-h--none">4</vt@card-text>
-            </vt@card>
-          </vt@flex>
-          <vt@flex xs3 v-for="i in 4" :key="i">
-            <vt@card secondary>
-              <vt@card-text class="vc@p-h--none">3</vt@card-text>
-            </vt@card>
-          </vt@flex>
-          <vt@flex xs2 v-for="i in 6" :key="i">
-            <vt@card primary>
-              <vt@card-text class="vc@p-h--none">2</vt@card-text>
-            </vt@card>
-          </vt@flex>
-          <vt@flex xs1 v-for="i in 12" :key="i">
-            <vt@card secondary>
-              <vt@card-text class="vc@p-h--none">1</vt@card-text>
-            </vt@card>
-          </vt@flex>
+          <template v-for="col, index in [12, 6, 4, 3, 2]">
+            <vt@flex
+              v-for="n in 12 / col"
+              :key="`${col}-${n}`"
+              v-bind="{[`xs${col}`]: true}"
+            >
+              <vt@card v-bind="{[index % 2 === 0 ? 'primary' : 'secondary']: true}">
+                <vt@card-text class="vc@p-h--none">{{col}}</vt@card-text>
+              </vt@card>
+            </vt@flex>
+          </template>
         </vt@layout>
       </vt@container>
     </vt@page-section>
@@ -88,6 +69,26 @@ export default {
   data() {
     return {
     }
+  },
+
+  // asyncData(context) {
+  //   console.log(context);
+  // },
+
+  mounted() {
+    // console.warn(this.$options);
+    // console.warn(this.$parent.$options.head());
+    // console.warn(Object.keys(this.$vnode));
+    // console.warn(this.$vnode.children);
+    console.log(this.$el);
+  },
+
+  beforeMount() {
+    console.log(this.$el);
+  },
+
+  destroyed() {
+    console.warn(this);
   },
 }
 </script>
