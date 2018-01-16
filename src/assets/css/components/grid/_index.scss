@@ -3,10 +3,14 @@
 //
 
 .#{$css-prefix}container {
+  width: 100%;
   flex: 1 1 100%;
   margin: auto;
-  // padding: $grid-gutters.lg;
-  width: 100%;
+  // flex: 1 1 100%;
+  // margin: auto;
+  // // padding: $grid-gutters.lg;
+  // width: 100%;
+  // @include grid-container;
 
   &.#{$css-prefix}grid-list {
     @each $size, $gutter in get-grid(gutters) {

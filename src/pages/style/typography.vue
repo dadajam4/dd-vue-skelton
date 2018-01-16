@@ -2,31 +2,25 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Typography</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Typography</vt@page-header>
+    <vt@page-intro>
+      これはページのイントロダクションです。
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">これはページのイントロダクションです。</p>
+    <vt@page-section title id="examples" data-anchor-point>
+      <div v-for="example in EXAMPLES" :key="example.label">
+        <h3>{{example.label}}</h3>
+        <p>{{example.description}}</p>
+        <dl v-for="item in example.items" :key="item.label">
+          <dt>{{item.label}}</dt>
+          <dd>
+            <div :class="item.className">{{item.text}}</div>
+          </dd>
+        </dl>
       </div>
-      <section id="examples" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Examples</h2>
-
-        <div v-for="example in EXAMPLES" :key="example.label">
-          <h3>{{example.label}}</h3>
-          <p>{{example.description}}</p>
-          <dl v-for="item in example.items" :key="item.label">
-            <dt>{{item.label}}</dt>
-            <dd>
-              <div :class="item.className">{{item.text}}</div>
-            </dd>
-          </dl>
-        </div>
-      </section>
-    </main>
-  </div>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>

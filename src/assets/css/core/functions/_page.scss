@@ -2,39 +2,55 @@
 // Page
 //
 
-@mixin page-container-padding() {
-  padding-left: $page-container-padding;
-  padding-right: $page-container-padding;
+@mixin page-padding() {
+  padding-left: get-page(horizontal-padding);
+  padding-right: get-page(horizontal-padding);
 }
 
-@mixin page-container-pull() {
-  margin-left: -$page-container-padding;
-  margin-right: -$page-container-padding;
+@mixin page-pull() {
+  margin-left: -get-page(horizontal-padding);
+  margin-right: -get-page(horizontal-padding);
+
+  @each $key, $size in get-page(max-widths) {
+    @include mq($key) {
+      @if $size != 100% {
+        margin-left: calc((100vw - #{$size}) / -2 - #{get-page(horizontal-padding)});
+        width: 100vw;
+
+        .#{$css-prefix}app--drawer-right-static & {
+          margin-left: calc((100vw - #{$size}) / -2 - #{get-page(horizontal-padding)} + #{$navigation-drawer-width / 2});
+          width: calc(100vw - #{$navigation-drawer-width});
+
+          @media all and (max-width: #{$size + $navigation-drawer-width}) {
+            margin-left: get-page(horizontal-padding) * -1;
+          }
+        }
+      } @else {
+        margin-left: get-page(horizontal-padding) * -1;
+        margin-right: get-page(horizontal-padding) * -1;
+      }
+    }
+  }
 }
 
 @mixin page-container-base() {
-  @include page-container-padding;
+  @include page-padding;
 
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-@mixin page-container-size($key) {
-  max-width: get-page-container-size($key);
+@mixin page-max-width($key) {
+  max-width: get-page-max-width($key);
 }
 
 @mixin page-container() {
-  $lastKey: null;
-
   @include page-container-base;
 
-  @each $key, $size in $page-container-size {
-    $lastKey: $key;
+  @each $key, $size in get-page(max-widths) {
     @include mq($key) {
-      @include page-container-size($key);
+      @include page-max-width($key);
     }
   }
-
-  @include page-container-size($lastKey);
 }

@@ -6,44 +6,36 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Spacing</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Spacing</vt@page-header>
+    <vt@page-intro>
+      Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span>
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
+    <vt@page-section title id="margin" data-anchor-point>
+      <div class="my__container vc@context-color--secondary">
+        <template v-for="direction in DIRECTIONS">
+          <div
+            v-for="space in SPACES"
+            :key="space.key"
+            :class="`vc@context-color--primary vc@m-${direction.key}--${space.key}`"
+          >{{`vc@m-${direction.key}--${space.key}`}}</div>
+        </template>
       </div>
+    </vt@page-section>
 
-      <section id="margin" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Margin</h2>
-        <div class="my__container vc@context-color--secondary">
-          <template v-for="direction in DIRECTIONS">
-            <div
-              v-for="space in SPACES"
-              :key="space.key"
-              :class="`vc@context-color--primary vc@m-${direction.key}--${space.key}`"
-            >{{`vc@m-${direction.key}--${space.key}`}}</div>
-          </template>
-        </div>
-      </section>
-
-      <section id="padding" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Padding</h2>
-        <div>
-          <template v-for="direction in DIRECTIONS">
-            <div
-              v-for="space in SPACES"
-              :key="space.key"
-              :class="`my__container vc@p-${direction.key}--${space.key}`"
-            ><div class="my__div">{{`vc@p-${direction.key}--${space.key}`}}</div></div>
-          </template>
-        </div>
-      </section>
-
-    </main>
-  </div>
+    <vt@page-section title id="padding" data-anchor-point>
+      <div>
+        <template v-for="direction in DIRECTIONS">
+          <div
+            v-for="space in SPACES"
+            :key="space.key"
+            :class="`my__container vc@p-${direction.key}--${space.key}`"
+          ><div class="my__div">{{`vc@p-${direction.key}--${space.key}`}}</div></div>
+        </template>
+      </div>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>

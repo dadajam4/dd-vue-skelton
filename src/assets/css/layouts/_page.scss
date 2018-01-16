@@ -4,11 +4,15 @@
 
 .#{$css-prefix}page {
   display: block;
-  padding-top: 3rem;
   padding-bottom: 6rem;
 
-  &-header {
-    @include theme-color(background-color, background-light);
+  @include page-container;
+
+  &__pull {
+    @include page-pull;
+  }
+
+  &__header {
 
     &__inner {
       height: 7.25rem;
@@ -26,47 +30,31 @@
       h6 {
         @include font-size(xxxl);
         @include font-weight(regular);
-        @include theme-color(color, text-secondary);
       }
     }
   }
 
-  &__introduction {
+  &__intro {
     @include theme-color(color, text-secondary);
-    margin: 0;
+    margin-top: 2rem;
   }
 
   &__section {
-    margin-top: 5rem;
+    margin-top: 4rem;
 
     &-header {
       @include font-size(xxl);
-      // @include font-weight(regular);
       @include font-weight(bold);
       @include theme-color(color, text-secondary);
       margin-bottom: 1rem;
-      // font-weight: bold;
 
       &:first-child {
         margin-top: 0;
       }
-      // &:first-letter {
-      //   text-transform: uppercase;
-      // }
     }
   }
 
   &__container {
     @include page-container;
-
-    &-pull {
-      @include page-container-pull;
-    }
-
-    & > .#{$css-prefix}page__section {
-      &:first-child {
-        margin-top: 0;
-      }
-    }
   }
 }

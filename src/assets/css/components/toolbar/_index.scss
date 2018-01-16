@@ -14,7 +14,7 @@
   }
 
   &__title {
-    margin-left: $page-container-padding;
+    margin-left: get-page(horizontal-padding);
     @include font-weight(regular);
     @include font-size(lg);
     @include ellipsis;
@@ -27,11 +27,11 @@
 
     & > * {
       &:first-child:not(.#{$css-prefix}toolbar__title) {
-        margin-left: $page-container-padding / 2;
+        margin-left: get-page(horizontal-padding) / 2;
       }
 
       &:last-child {
-        margin-right: $page-container-padding / 2;
+        margin-right: get-page(horizontal-padding) / 2;
       }
     }
   }

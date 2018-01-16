@@ -2,287 +2,255 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Forms</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Forms</vt@page-header>
+    <vt@page-intro>
+      Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span>
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
-      </div>
+    <vt@page-section title id="text-fields" data-anchor-point>
+      <vt@text-field
+        label="氏名"
+        name="input_1"
+        placeholder="田中　太郎"
+        hint="3文字以上、5文字以内で入力してください"
+        counter="10"
+        :rules="[
+          {rule: 'min:3', message: '3文字以上にしてね'},
+          {rule: 'max:5', message: '5文字以内にしてね'},
+        ]"
+      ></vt@text-field>
 
-<!--
-      <section>
-        <h2>Text Fields</h2>
-        <div v-for="type in INPUT_TYPES" :key="type">
-          <vt@text-field
-            :type="type"
-            :label="type"
-            :name="`input_type_${type}`"
-            :placeholder="type"
-            v-model="inputType[type]"
-          ></vt@text-field>
-          <p>{{inputType[type]}}</p>
-        </div>
-      </section>
--->
+      <vt@text-field
+        label="文章"
+        type="textarea"
+        name="input_2"
+        placeholder="プレースホルダ"
+        hint="100文字以内で入力してください"
+        counter="10"
+        :rules="[
+          {rule: 'max:100', message: '100文字以内にしてね'},
+        ]"
+      ></vt@text-field>
 
-      <section id="textfields" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Text fields</h2>
+      <vt@text-field
+        label="Ammount"
+        prefix="$"
+      ></vt@text-field>
 
-        <vt@text-field
-          label="氏名"
-          name="input_1"
-          placeholder="田中　太郎"
-          hint="3文字以上、5文字以内で入力してください"
-          counter="10"
-          :rules="[
-            {rule: 'min:3', message: '3文字以上にしてね'},
-            {rule: 'max:5', message: '5文字以内にしてね'},
-          ]"
-        ></vt@text-field>
+      <vt@text-field
+        label="Email address"
+        suffix="@gmail.com"
+      ></vt@text-field>
 
-        <vt@text-field
-          label="文章"
-          type="textarea"
-          name="input_2"
-          placeholder="プレースホルダ"
-          hint="100文字以内で入力してください"
-          counter="10"
-          :rules="[
-            {rule: 'max:100', message: '100文字以内にしてね'},
-          ]"
-        ></vt@text-field>
+      <vt@text-field
+        label="Phone number"
+        left-icon="phone"
+      ></vt@text-field>
 
-        <vt@text-field
-          label="Ammount"
-          prefix="$"
-        ></vt@text-field>
+      <vt@text-field
+        label="Phone number"
+        right-icon="phone"
+      ></vt@text-field>
 
-        <vt@text-field
-          label="Email address"
-          suffix="@gmail.com"
-        ></vt@text-field>
+      <vt@text-field
+        label="Search"
+        type="search"
+        left-icon="search"
+        :suggest="[
+          'サジェスト1',
+          '長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。',
+          'サジェスト3',
+        ]"
+      ></vt@text-field>
 
-        <vt@text-field
-          label="Phone number"
-          left-icon="phone"
-        ></vt@text-field>
+      <vt@text-field
+        label="Search"
+        type="search"
+        left-icon="search"
+      >
+        <vt@btn slot="leftBtn" primary outline>左ボタン</vt@btn>
+      </vt@text-field>
 
-        <vt@text-field
-          label="Phone number"
-          right-icon="phone"
-        ></vt@text-field>
+      <vt@text-field
+        label="Search"
+        type="search"
+        left-icon="search"
+        :suggest="[
+          'サジェスト1',
+          '長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。',
+          'サジェスト3',
+        ]"
+      >
+        <vt@btn slot="rightBtn" primary icon><vt@icon>search</vt@icon></vt@btn>
+      </vt@text-field>
 
-        <vt@text-field
-          label="Search"
-          type="search"
-          left-icon="search"
-          :suggest="[
-            'サジェスト1',
-            '長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。',
-            'サジェスト3',
-          ]"
-        ></vt@text-field>
+      <vt@text-field
+        label="Comment"
+        type="textarea"
+      >
+        <vt@btn slot="leftBtn" secondary><vt@icon>upload</vt@icon></vt@btn>
+      </vt@text-field>
+    </vt@page-section>
 
-        <vt@text-field
-          label="Search"
-          type="search"
-          left-icon="search"
-        >
-          <vt@btn slot="leftBtn" primary outline>左ボタン</vt@btn>
-        </vt@text-field>
+    <vt@page-section title id="checkboxes" data-anchor-point>
+      <vt@checkbox
+        label="modelなし"
+        value="aaa"
+        name="checkbox1"
+        :rules="[
+          {rule: 'required', message: 'この項目は必須だよ'},
+        ]"
+      ></vt@checkbox>
 
-        <vt@text-field
-          label="Search"
-          type="search"
-          left-icon="search"
-          :suggest="[
-            'サジェスト1',
-            '長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。',
-            'サジェスト3',
-          ]"
-        >
-          <vt@btn slot="rightBtn" primary icon><vt@icon>search</vt@icon></vt@btn>
-        </vt@text-field>
+      <vt@checkbox
+        :label="`modelあり: ${checkbox1 === null ? 'null' : checkbox1.toString()}`"
+        v-model="checkbox1"
+        value="checked"
+        :rules="[
+          {rule: 'required', message: 'この項目は必須だよ'},
+        ]"
+      ></vt@checkbox>
 
-        <vt@text-field
-          label="Comment"
-          type="textarea"
-        >
-          <vt@btn slot="leftBtn" secondary><vt@icon>upload</vt@icon></vt@btn>
-        </vt@text-field>
-      </section>
+      <h3>Array</h3>
+      <div>{{checkbox2}}</div>
+      <vt@checkbox
+        label="太郎"
+        v-model="checkbox2"
+        value="太郎"
+      ></vt@checkbox>
 
-      <section id="checkboxes" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Checkboxes</h2>
-        <vt@checkbox
-          label="modelなし"
-          value="aaa"
-          name="checkbox1"
-          :rules="[
-            {rule: 'required', message: 'この項目は必須だよ'},
-          ]"
-        ></vt@checkbox>
+      <vt@checkbox
+        label="花子"
+        v-model="checkbox2"
+        value="花子"
+      ></vt@checkbox>
 
-        <vt@checkbox
-          :label="`modelあり: ${checkbox1 === null ? 'null' : checkbox1.toString()}`"
-          v-model="checkbox1"
-          value="checked"
-          :rules="[
-            {rule: 'required', message: 'この項目は必須だよ'},
-          ]"
-        ></vt@checkbox>
+      <h3>States</h3>
+      <vt@checkbox input-value="true" value label="on"></vt@checkbox>
+      <vt@checkbox value label="off"></vt@checkbox>
+      <vt@checkbox value indeterminate label="indeterminate"></vt@checkbox>
+      <vt@checkbox input-value="true" value disabled label="on disabled"></vt@checkbox>
+      <vt@checkbox value disabled label="off disabled"></vt@checkbox>
+    </vt@page-section>
 
-        <h3>Array</h3>
-        <div>{{checkbox2}}</div>
-        <vt@checkbox
-          label="太郎"
-          v-model="checkbox2"
-          value="太郎"
-        ></vt@checkbox>
+    <vt@page-section title id="radios" data-anchor-point>
+      <h3>モデル無し</h3>
+      <vt@radio-group name="radio1">
+        <vt@radio label="Radio 1" value="radio-1"></vt@radio>
+        <vt@radio label="Radio 2" value="radio-2"></vt@radio>
+      </vt@radio-group>
 
-        <vt@checkbox
-          label="花子"
-          v-model="checkbox2"
-          value="花子"
-        ></vt@checkbox>
+      <h3>モデル有り</h3>
+      <p>&gt;&gt;&gt; {{radio1}}</p>
+      <vt@radio-group v-model="radio1" row>
+        <vt@radio label="Radio 1" value="radio-1"></vt@radio>
+        <vt@radio label="Radio 2" value="radio-2"></vt@radio>
+        <vt@radio label="Radio 3" value="radio-3"></vt@radio>
+        <vt@radio label="Radio 4" value="radio-4"></vt@radio>
+        <vt@radio label="Radio 5" value="radio-5"></vt@radio>
+        <vt@radio label="Radio 6" value="radio-6"></vt@radio>
+        <vt@radio label="Radio 7" value="radio-7"></vt@radio>
+        <vt@radio label="Radio 8" value="radio-8"></vt@radio>
+        <vt@radio label="Radio 9" value="radio-9"></vt@radio>
+        <vt@radio label="Radio 10" value="radio-10"></vt@radio>
+      </vt@radio-group>
 
-        <h3>States</h3>
-        <vt@checkbox input-value="true" value label="on"></vt@checkbox>
-        <vt@checkbox value label="off"></vt@checkbox>
-        <vt@checkbox value indeterminate label="indeterminate"></vt@checkbox>
-        <vt@checkbox input-value="true" value disabled label="on disabled"></vt@checkbox>
-        <vt@checkbox value disabled label="off disabled"></vt@checkbox>
-      </section>
+      <h3>状態</h3>
+      <vt@radio-group name="radio2" disabled>
+        <vt@radio label="Radio 1" value="radio-1"></vt@radio>
+        <vt@radio label="Radio 2" value="radio-2"></vt@radio>
+      </vt@radio-group>
+    </vt@page-section>
 
-      <section id="radios" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Radios</h2>
+    <vt@page-section title id="selects" data-anchor-point>
+      <h3>モデルなし。option直書き</h3>
+      <vt@select name="dummy-select-name">
 
-        <h3>モデル無し</h3>
-        <vt@radio-group name="radio1">
-          <vt@radio label="Radio 1" value="radio-1"></vt@radio>
-          <vt@radio label="Radio 2" value="radio-2"></vt@radio>
-        </vt@radio-group>
+        <vt@option v-for="item in selectItems" :key="item.value" :value="item.value">{{item.content}}</vt@option>
+      </vt@select>
 
-        <h3>モデル有り</h3>
-        <p>&gt;&gt;&gt; {{radio1}}</p>
-        <vt@radio-group v-model="radio1" row>
-          <vt@radio label="Radio 1" value="radio-1"></vt@radio>
-          <vt@radio label="Radio 2" value="radio-2"></vt@radio>
-          <vt@radio label="Radio 3" value="radio-3"></vt@radio>
-          <vt@radio label="Radio 4" value="radio-4"></vt@radio>
-          <vt@radio label="Radio 5" value="radio-5"></vt@radio>
-          <vt@radio label="Radio 6" value="radio-6"></vt@radio>
-          <vt@radio label="Radio 7" value="radio-7"></vt@radio>
-          <vt@radio label="Radio 8" value="radio-8"></vt@radio>
-          <vt@radio label="Radio 9" value="radio-9"></vt@radio>
-          <vt@radio label="Radio 10" value="radio-10"></vt@radio>
-        </vt@radio-group>
+      <h3>モデルあり。props渡し</h3>
+      <p>&gt;&gt;&gt; {{selectItems.filter(item => item.value === select1)[0] || '未選択'}}</p>
+      <vt@select v-model="select1" :items="selectItems"></vt@select>
 
-        <h3>状態</h3>
-        <vt@radio-group name="radio2" disabled>
-          <vt@radio label="Radio 1" value="radio-1"></vt@radio>
-          <vt@radio label="Radio 2" value="radio-2"></vt@radio>
-        </vt@radio-group>
-      </section>
+      <h3>複数選択</h3>
+      <p>&gt;&gt;&gt; {{select2}}</p>
+      <vt@select v-model="select2" :items="selectItems" multiple></vt@select>
+    </vt@page-section>
 
-      <section id="selects" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Selects</h2>
+    <vt@page-section title id="switches" data-anchor-point>
+      <vt@switch
+        label="modelなし"
+        value="aaa"
+        name="switch1"
+        :rules="[
+          {rule: 'required', message: 'この項目は必須だよ'},
+        ]"
+      ></vt@switch>
 
-        <h3>モデルなし。option直書き</h3>
-        <vt@select name="dummy-select-name">
+      <vt@switch
+        :label="`modelあり: ${switch1 === null ? 'null' : switch1.toString()}`"
+        v-model="switch1"
+        value="checked"
+        :rules="[
+          {rule: 'required', message: 'この項目は必須だよ'},
+        ]"
+      ></vt@switch>
 
-          <vt@option v-for="item in selectItems" :key="item.value" :value="item.value">{{item.content}}</vt@option>
-        </vt@select>
+      <h3>Array</h3>
+      <div>{{switch2}}</div>
+      <vt@switch
+        label="太郎"
+        v-model="switch2"
+        value="太郎"
+      ></vt@switch>
 
-        <h3>モデルあり。props渡し</h3>
-        <p>&gt;&gt;&gt; {{selectItems.filter(item => item.value === select1)[0] || '未選択'}}</p>
-        <vt@select v-model="select1" :items="selectItems"></vt@select>
+      <vt@switch
+        label="花子"
+        v-model="switch2"
+        value="花子"
+      ></vt@switch>
 
-        <h3>複数選択</h3>
-        <p>&gt;&gt;&gt; {{select2}}</p>
-        <vt@select v-model="select2" :items="selectItems" multiple></vt@select>
-      </section>
+      <h3>States</h3>
+      <vt@switch input-value="true" value label="on"></vt@switch>
+      <vt@switch value label="off"></vt@switch>
+      <vt@switch input-value="true" value disabled label="on disabled"></vt@switch>
+      <vt@switch value disabled label="off disabled"></vt@switch>
 
-      <section id="switches" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Switches</h2>
+      <h3>Colors</h3>
+      <vt@switch input-value="true" value label="on" text-color="warning"></vt@switch>
+      <vt@switch input-value="true" value label="on" text-color="indigo"></vt@switch>
+    </vt@page-section>
 
-        <vt@switch
-          label="modelなし"
-          value="aaa"
-          name="switch1"
-          :rules="[
-            {rule: 'required', message: 'この項目は必須だよ'},
-          ]"
-        ></vt@switch>
+    <vt@page-section title id="sliders" data-anchor-point>
+      <vt@slider
+        step="0"
+        label="モデルなし"
+        name="slider0"
+        :rules="[
+          {rule: 'max_value:30', message: '30以内にしてね'},
+        ]"
+      ></vt@slider>
 
-        <vt@switch
-          :label="`modelあり: ${switch1 === null ? 'null' : switch1.toString()}`"
-          v-model="switch1"
-          value="checked"
-          :rules="[
-            {rule: 'required', message: 'この項目は必須だよ'},
-          ]"
-        ></vt@switch>
+      <vt@slider
+        v-model="slider1"
+        step="0"
+        :label="`モデルあり : ${slider1}`"
+        :rules="[
+          {rule: 'max_value:30', message: '30以内にしてね'},
+        ]"
+      ></vt@slider>
 
-        <h3>Array</h3>
-        <div>{{switch2}}</div>
-        <vt@switch
-          label="太郎"
-          v-model="switch2"
-          value="太郎"
-        ></vt@switch>
+      <vt@slider v-model="slider2" step="0" label="label" disabled></vt@slider>
+      <h3>Discrete</h3>
+      <vt@slider v-model="slider3" label="label" thumb-label step="10" max="1000" ticks></vt@slider>
 
-        <vt@switch
-          label="花子"
-          v-model="switch2"
-          value="花子"
-        ></vt@switch>
-
-        <h3>States</h3>
-        <vt@switch input-value="true" value label="on"></vt@switch>
-        <vt@switch value label="off"></vt@switch>
-        <vt@switch input-value="true" value disabled label="on disabled"></vt@switch>
-        <vt@switch value disabled label="off disabled"></vt@switch>
-
-        <h3>Colors</h3>
-        <vt@switch input-value="true" value label="on" text-color="warning"></vt@switch>
-        <vt@switch input-value="true" value label="on" text-color="indigo"></vt@switch>
-      </section>
-
-      <section id="sliders" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Sliders</h2>
-
-        <vt@slider
-          step="0"
-          label="モデルなし"
-          name="slider0"
-          :rules="[
-            {rule: 'max_value:30', message: '30以内にしてね'},
-          ]"
-        ></vt@slider>
-
-        <vt@slider
-          v-model="slider1"
-          step="0"
-          :label="`モデルあり : ${slider1}`"
-          :rules="[
-            {rule: 'max_value:30', message: '30以内にしてね'},
-          ]"
-        ></vt@slider>
-
-        <vt@slider v-model="slider2" step="0" label="label" disabled></vt@slider>
-        <h3>Discrete</h3>
-        <vt@slider v-model="slider3" label="label" thumb-label step="10" max="1000" ticks></vt@slider>
-
-        <h3>Icons</h3>
-        <vt@slider v-model="slider4" step="0" left-icon="user"></vt@slider>
-        <vt@slider v-model="slider5" step="0" right-icon="user"></vt@slider>
-      </section>
-    </main>
-  </div>
+      <h3>Icons</h3>
+      <vt@slider v-model="slider4" step="0" left-icon="user"></vt@slider>
+      <vt@slider v-model="slider5" step="0" right-icon="user"></vt@slider>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>

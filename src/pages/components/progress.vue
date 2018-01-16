@@ -5,69 +5,55 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Progress</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Progress</vt@page-header>
+    <vt@page-intro>
+      Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span>
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
+    <vt@page-section title id="default" data-anchor-point>
+      <div>
+        <vt@spinner class="my-spinner" v-for="value in [0, 20, 40, 60, 80, 100]" :value="value" :key="value" />
       </div>
+    </vt@page-section>
 
-      <section id="default" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Default</h2>
+    <vt@page-section title id="colored" data-anchor-point>
+      <div>
+        <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :text-color="color" value="50" :key="color" />
+      </div>
+    </vt@page-section>
 
-        <div>
-          <vt@spinner class="my-spinner" v-for="value in [0, 20, 40, 60, 80, 100]" :value="value" :key="value" />
-        </div>
-      </section>
+    <vt@page-section title id="indeterminate" data-anchor-point>
+      <div>
+        <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :text-color="color" indeterminate :key="color" />
+      </div>
+    </vt@page-section>
 
-      <section id="colored" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Colored</h2>
+    <vt@page-section title="Size &amp; Width" id="size-and-width" data-anchor-point>
+      <div>
+        <vt@spinner class="my-spinner" text-color="base" indeterminate size="50" />
+        <vt@spinner class="my-spinner" text-color="muted" indeterminate width="3" />
+        <vt@spinner class="my-spinner" text-color="primary" indeterminate size="70" width="7" />
+        <vt@spinner class="my-spinner" text-color="secondary" indeterminate width="3" />
+        <vt@spinner class="my-spinner" text-color="info" indeterminate size="50" />
+      </div>
+    </vt@page-section>
 
-        <div>
-          <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :text-color="color" value="50" :key="color" />
-        </div>
-      </section>
-
-      <section id="indeterminate" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Indeterminate</h2>
-
-        <div>
-          <vt@spinner class="my-spinner" v-for="color in TEXT_COLORS" :text-color="color" indeterminate :key="color" />
-        </div>
-      </section>
-
-      <section id="size-and-width" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Size & Width</h2>
-
-        <div>
-          <vt@spinner class="my-spinner" text-color="base" indeterminate size="50" />
-          <vt@spinner class="my-spinner" text-color="muted" indeterminate width="3" />
-          <vt@spinner class="my-spinner" text-color="primary" indeterminate size="70" width="7" />
-          <vt@spinner class="my-spinner" text-color="secondary" indeterminate width="3" />
-          <vt@spinner class="my-spinner" text-color="info" indeterminate size="50" />
-        </div>
-      </section>
-
-      <section id="rotate" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Rotate</h2>
-        <div>
-          <vt@spinner
-            class="my-spinner"
-            v-for="define in rotateDefines"
-            :key="define.color"
-            :rotate="define.rotate"
-            :text-color="define.color"
-            size="100"
-            width="15"
-            :value="rotateValue"
-          >{{rotateValue}}</vt@spinner>
-        </div>
-      </section>
-    </main>
-  </div>
+    <vt@page-section title id="rotate" data-anchor-point>
+      <div>
+        <vt@spinner
+          class="my-spinner"
+          v-for="define in rotateDefines"
+          :key="define.color"
+          :rotate="define.rotate"
+          :text-color="define.color"
+          size="100"
+          width="15"
+          :value="rotateValue"
+        >{{rotateValue}}</vt@spinner>
+      </div>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>

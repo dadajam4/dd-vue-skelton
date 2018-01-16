@@ -2,56 +2,45 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Alerts</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Alerts</vt@page-header>
+    <vt@page-intro>
+      ほげほげ
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">ほげほげ</p>
+    <vt@page-section title id="contextual" data-anchor-point>
+      <vt@alert
+        v-for="myType in CONTEXT_TYPES"
+        :key="myType"
+        v-bind="{[myType]: true}"
+        value="true"
+      >This is a {{myType}} alert.</vt@alert>
+    </vt@page-section>
+
+    <vt@page-section title id="closable" data-anchor-point>
+      <vt@alert
+        info
+        v-model="demo1"
+        dismissible
+        transition="vc@fade-transition"
+      >This is a info alert that is closable.</vt@alert>
+
+      <div class="vc@text--center">
+        <vt@btn primary v-if="!demo1" @click="demo1 = true">Reset</vt@btn>
       </div>
+    </vt@page-section>
 
-      <section id="contextual" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2>Contextual</h2>
-
-        <vt@alert
-          v-for="myType in CONTEXT_TYPES"
-          :key="myType"
-          v-bind="{[myType]: true}"
-          value="true"
-        >This is a {{myType}} alert.</vt@alert>
-      </section>
-
-      <section id="closable" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2>Closable</h2>
-
-        <vt@alert
-          info
-          v-model="demo1"
-          dismissible
-          transition="vc@fade-transition"
-        >This is a info alert that is closable.</vt@alert>
-
-        <div class="vc@text--center">
-          <vt@btn primary v-if="!demo1" @click="demo1 = true">Reset</vt@btn>
-        </div>
-      </section>
-
-      <section id="outline" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2>Outline</h2>
-
-        <vt@alert
-          v-for="myType in CONTEXT_TYPES"
-          :key="myType"
-          v-bind="{[myType]: true}"
-          value="true"
-          outline
-          dismissible
-        >This is a {{myType}} alert.</vt@alert>
-      </section>
-    </main>
-  </div>
+    <vt@page-section title id="outline" data-anchor-point>
+      <vt@alert
+        v-for="myType in CONTEXT_TYPES"
+        :key="myType"
+        v-bind="{[myType]: true}"
+        value="true"
+        outline
+        dismissible
+      >This is a {{myType}} alert.</vt@alert>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>

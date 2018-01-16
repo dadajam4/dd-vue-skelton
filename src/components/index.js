@@ -20,6 +20,7 @@ import Menu from './Menu';
 // import Form from './Form';
 import NavigationDrawer from './NavigationDrawer';
 import AnchorNavi from './AnchorNavi';
+import Page from './Page';
 import Progress from './Progress';
 import Toolbar from './Toolbar';
 import Transitions from './transitions';
@@ -49,6 +50,7 @@ export default Object.assign({},
   // Form,
   AnchorNavi,
   NavigationDrawer,
+  Page,
   Progress,
   Toolbar,
   Transitions,

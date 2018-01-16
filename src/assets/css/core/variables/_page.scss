@@ -2,15 +2,22 @@
 // Page
 //
 
-$page-container-padding: 20px; // 16だとiOSのセーフティーmarginに触りやすくなってしまう
-
-@function get-page-container-size($key) {
-  @return map-get($page-container-size, $key);
+// ブレイクポイントごとのコンテナの最大幅の設定
+$ignore-page-max-width-breakpoints: xs, sm, md;
+$page-max-widths: ();
+@each $target, $define in $media-query-breakpoints {
+  $width: if(index($ignore-page-max-width-breakpoints, $target), 100%, map-get($define, min) * 1px);
+  $page-max-widths: map-set($page-max-widths, $target, $width);
 }
 
-$page-container-size: ();
-$page-container-size: map-set($page-container-size, xs, 100%  );
-$page-container-size: map-set($page-container-size, sm, 100%  );
-$page-container-size: map-set($page-container-size, md, 100%  );
-$page-container-size: map-set($page-container-size, lg, 992px );
-$page-container-size: map-set($page-container-size, xl, 1200px);
+@function get-page($key) {
+  @return map-get($page, $key);
+}
+
+$page: ();
+$page: map-set($page, horizontal-padding, 20px); // 16だとiOSのセーフティーmarginに触りやすくなってしまう
+$page: map-set($page, max-widths, $page-max-widths);
+
+@function get-page-max-width($key) {
+  @return map-get($page-max-widths, $key);
+}

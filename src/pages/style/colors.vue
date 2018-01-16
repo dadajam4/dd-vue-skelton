@@ -2,63 +2,45 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Colors</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Colors</vt@page-header>
+    <vt@page-intro>
+      Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span>
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
+    <vt@page-section title id="context-colors" data-anchor-point>
+      <div v-for="color in contextColors" :key="color.name" :class="color.className">
+        {{color.name}}
+        <p>This is <a href="">Link</a></p>
       </div>
+    </vt@page-section>
 
-      <section id="context-colors" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Context colors</h2>
+    <vt@page-section title id="text-colors" data-anchor-point>
+      <p v-for="color in textColors" :key="color.name" :class="color.className">{{color.name}}</p>
+    </vt@page-section>
 
-        <div v-for="color in contextColors" :key="color.name" :class="color.className">
-          {{color.name}}
-          <p>This is <a href="">Link</a></p>
-        </div>
-      </section>
+    <vt@page-section title id="layer-colors" data-anchor-point>
+      <p v-for="color in layerColors" :key="color.name" :class="color.className">{{color.name}}</p>
+    </vt@page-section>
 
-      <section id="text-colors" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Text colors</h2>
+    <vt@page-section title id="background-colors" data-anchor-point>
+      <p v-for="color in backgroundColors" :key="color.name" :class="color.className">{{color.name}}</p>
+    </vt@page-section>
 
-        <p v-for="color in textColors" :key="color.name" :class="color.className">{{color.name}}</p>
-      </section>
+    <vt@page-section title id="border-colors" data-anchor-point>
+      <p v-for="color in borderColors" :key="color.name" :class="color.className" style="border: solid 1px;">{{color.name}}</p>
+    </vt@page-section>
 
-      <section id="layer-colors" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Layer colors</h2>
-
-        <p v-for="color in layerColors" :key="color.name" :class="color.className">{{color.name}}</p>
-      </section>
-
-      <section id="background-colors" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Background colors</h2>
-
-        <p v-for="color in backgroundColors" :key="color.name" :class="color.className">{{color.name}}</p>
-      </section>
-
-      <section id="border-colors" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Border colors</h2>
-
-        <p v-for="color in borderColors" :key="color.name" :class="color.className" style="border: solid 1px;">{{color.name}}</p>
-      </section>
-
-      <section id="color-palette" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">Color palette</h2>
-
-        <div v-for="paletteColor, index in paletteColors" :key="index">
-          <div
-            v-for="color in paletteColor"
-            :key="color.name"
-            :class="color.className"
-          >{{color.baseName}} {{color.name}}</div>
-        </div>
-      </section>
-
-    </main>
-  </div>
+    <vt@page-section title id="color-palette" data-anchor-point>
+      <div v-for="paletteColor, index in paletteColors" :key="index">
+        <div
+          v-for="color in paletteColor"
+          :key="color.name"
+          :class="color.className"
+        >{{color.baseName}} {{color.name}}</div>
+      </div>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>

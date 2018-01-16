@@ -2,28 +2,21 @@
 </style>
 
 <template>
-  <div>
-    <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@page__container">Getting Started</h1>
-    </header>
+  <vt@page>
+    <vt@page-header>Getting Started</vt@page-header>
+    <vt@page-intro>
+      これはページのイントロダクションです。これはページのイントロダクションです。これはページのイントロダクションです。
+    </vt@page-intro>
 
-    <main class="vc@page">
-      <div class="vc@page__container">
-        <p class="vc@page__introduction">これはページのイントロダクションです。これはページのイントロダクションです。これはページのイントロダクションです。</p>
-      </div>
+    <vt@page-section title id="はじめに" data-anchor-point>
+      <p>コンテンツが入ります</p>
+      <p v-for="size in [10, 12, 14, 16, 20, 32, 56, 100]" :key="size" :style="{fontSize: size + 'px'}">M
+        <vt@icon>github</vt@icon>
+      </p>
 
-      <section id="hoge" class="vc@page__section vc@page__container" data-anchor-point>
-        <h2 class="vc@page__section-header">はじめに</h2>
-
-        <p>コンテンツが入ります</p>
-        <p v-for="size in [10, 12, 14, 16, 20, 32, 56, 100]" :key="size" :style="{fontSize: size + 'px'}">M
-          <vt@icon>github</vt@icon>
-        </p>
-
-        <div class="vc@context--primary">あいうえお</div>
-      </section>
-    </main>
-  </div>
+      <div class="vc@context--primary">あいうえお</div>
+    </vt@page-section>
+  </vt@page>
 </template>
 
 <script>
