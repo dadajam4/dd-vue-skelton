@@ -1,0 +1,100 @@
+//
+// Pagination
+//
+
+.#{$css-prefix}pagination {
+  align-items: center;
+  display: inline-flex;
+  list-style-type: none;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+
+  & > li {
+    align-items: center;
+    display: flex;
+  }
+
+  &--circle {
+    .#{$css-prefix}pagination__item,
+    .#{$css-prefix}pagination__more,
+    .#{$css-prefix}pagination__navigation {
+      border-radius: 50%;
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: .6;
+  }
+
+  &__item {
+    @include btn-style-reset($display: inline-flex);
+    @include elevation(2);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    // font-size: $button-font-size;
+    @include font-size(sm);
+    background: transparent;
+    height: 34px;
+    width: 34px;
+    margin: .3rem;
+    transition: .3s get-easing(linear-out-slow-in);
+    @include theme-color(background, background);
+    @include theme-color(color, text);
+
+    &--active {
+      @include elevation(4);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: inherit;
+    }
+  }
+
+  &__navigation {
+    @include btn-style-reset($display: inline-flex);
+    @include elevation(2);
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+
+    border-radius: 4px;
+    width: 2rem;
+    margin: .3rem 10px;
+
+    @include theme-color(background, background);
+    @include theme-color(color, text);
+
+    .#{$css-prefix}icon {
+      // font-size: 2rem;
+      @include font-size(sm);
+      transition: get-transition(secondary);
+      vertical-align: middle;
+    }
+
+    &--disabled {
+      opacity: .6;
+      pointer-events: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: inherit;
+    }
+  }
+
+  &__more {
+    margin: .3rem;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    user-select: none;
+  }
+}

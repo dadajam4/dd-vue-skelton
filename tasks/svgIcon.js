@@ -26,10 +26,12 @@ function svgIconTask(task, params = {}) {
         cssClass  : params.fontName,
       }))
       .pipe(iconfont({
-        fontName        : params.fontName,
-        formats         : ['ttf', 'eot', 'woff', 'woff2', 'svg'],
-        appendCodepoints: false,
-        descent   : params.descent || 0,
+        fontName          : params.fontName,
+        formats           : ['ttf', 'eot', 'woff', 'woff2', 'svg'],
+        appendCodepoints  : false,
+        fixedWidth        : params.fixedWidth === undefined ? true : params.fixedWidth,
+        centerHorizontally: params.centerHorizontally === undefined ? true : params.centerHorizontally,
+        descent           : params.descent || 0,
       }))
       .on('error', function() {
         if (task.notify) {

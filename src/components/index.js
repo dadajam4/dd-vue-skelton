@@ -21,6 +21,7 @@ import Menu from './Menu';
 import NavigationDrawer from './NavigationDrawer';
 import AnchorNavi from './AnchorNavi';
 import Page from './Page';
+import Pagination from './Pagination';
 import Progress from './Progress';
 import Toolbar from './Toolbar';
 import Transitions from './transitions';
@@ -51,6 +52,7 @@ export default Object.assign({},
   AnchorNavi,
   NavigationDrawer,
   Page,
+  Pagination,
   Progress,
   Toolbar,
   Transitions,

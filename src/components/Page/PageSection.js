@@ -15,6 +15,8 @@ export default {
   render: (h, { props, data, children, slots }) => {
     let title;
 
+    children = children || [];
+
     if (props.title !== undefined) {
       title = props.title || slots().header;
       if (!title && props.id) {

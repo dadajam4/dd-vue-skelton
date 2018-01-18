@@ -10,8 +10,8 @@
   @include remove-tap-highlight;
 }
 
-// Button Base
-@mixin btn-base($display: inline-block) {
+
+@mixin btn-style-reset($display: inline-block) {
   @include btn-action-reset;
   appearance: none;
   position: relative;
@@ -31,4 +31,9 @@
     text-decoration: none;
     outline: none;
   }
+}
+
+// Button Base
+@mixin btn-base($display: inline-block) {
+  @include btn-style-reset($display: $display);
 }
