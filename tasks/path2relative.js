@@ -16,22 +16,23 @@ function path2relativeTask(task, params = {}) {
         const ext      = extMatch ? extMatch[1] : null;
         const isHtml   = ext === 'html';
         const isJs     = ext === 'js';
+        const isCss    = ext === 'css';
 
-        if (!isHtml && !isJs) {
+        if (!isHtml && !isJs && !isCss) {
           continue;
         }
 
         let doc = fs.readFileSync(row.filepath, 'utf-8');
 
-        if (isHtml) {
-          let replaceBase = '';
+        if (isHtml || isCss) {
+          const dirMapStr   = row.dir.replace(replaceRe, '');
+          const levelMatchs = dirMapStr.match(/\//g);
+          const level       = levelMatchs ? levelMatchs.length : 0;
+          const base        = level === 0 ? './' : '../'.repeat(level);
+
+          let replaceBase = isHtml ? '' : './';
 
           if (isHtml) {
-            const dirMapStr   = row.dir.replace(replaceRe, '');
-            const levelMatchs = dirMapStr.match(/\//g);
-            const level       = levelMatchs ? levelMatchs.length : 0;
-            const base        = level === 0 ? './' : '../'.repeat(level);
-
             const baseTagMatch = doc.match(/<base href="(.*?)">/);
             const htmlTagMatch = doc.match(/<html (.*?)>/);
             const headTagMatch = doc.match(/<head (.*?)>/);
@@ -47,13 +48,14 @@ function path2relativeTask(task, params = {}) {
             } else {
               replaceBase = base;
             }
+
+            doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
+            doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
           }
 
-          doc = doc.replace(/ src="\//g, ` src="${replaceBase}`);
-          doc = doc.replace(/ href="\//g, ` href="${replaceBase}`);
           doc = doc.replace(/url\(\//g, `url(${replaceBase}`);
           doc = doc.replace(/(\/?\$\$base\$\$\/?)/g, replaceBase);
-        } else {
+        } else if (isJs) {
           const baseURIGetter = `(document.baseURI || document.getElementsByTagName('base')[0].href)`;
           doc = doc.replace(/"\/\$\$base\$\$"/g, `${baseURIGetter}.replace(new RegExp('^' + location.protocol + '//' + location.host), '')`);
           doc = doc.replace(/"\/\$\$base\$\$\//g, `${baseURIGetter} + "`);

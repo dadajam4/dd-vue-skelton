@@ -75,6 +75,15 @@ module.exports = {
   generate: {
     dir: config.path('dist'),
     minify: false,
+    routes: [
+      '/components/pagination',
+      '/components/pagination/1',
+      '/components/pagination/2',
+      '/components/pagination/3',
+      '/components/pagination/4',
+      '/components/pagination/5',
+      '/components/pagination/6',
+    ],
   },
 
   head: {
@@ -118,7 +127,7 @@ module.exports = {
 
   build: {
     // これやると相対パス解決できない
-    // extractCSS: true,
+    extractCSS: true,
     babel: babelLoaderSettings.query,
 
     postcss: postcssConfig.plugins,
