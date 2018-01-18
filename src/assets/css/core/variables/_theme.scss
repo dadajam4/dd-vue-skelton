@@ -13,8 +13,3 @@ $theme-default: get-default-theme();
   $theme-vars: map-set($theme-vars, $name, $theme-values);
 }
 
-:root {
-  @each $key, $val in $theme-default {
-    --#{$key}: $val;
-  }
-}

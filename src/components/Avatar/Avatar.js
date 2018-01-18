@@ -1,7 +1,11 @@
+import Colorable from '~/mixins/color';
+
+
+
 export default {
   name: 'vt@avatar',
 
-  functional: true,
+  mixins: [Colorable],
 
   props: {
     size: {
@@ -11,20 +15,31 @@ export default {
     tile: Boolean,
   },
 
-  render(h, { data, props, children }) {
-    data.staticClass = (`vc@avatar ${data.staticClass || ''}`).trim();
-    data.style = data.style || {};
+  computed: {
+    hasNumberSize() { return !isNaN(this.size) },
+    classes() {
+      const classes = this.addColorClasses({
+        'vc@avatar': true,
+        'vc@avatar--tile': this.tile,
+      });
+      if (!this.hasNumberSize) classes[`vc@avatar--${this.size}`] = true;
+      return classes;
+    },
+    styles() {
+      if (this.hasNumberSize) {
+        const size = `${parseInt(this.size)}px`;
+        return {
+          width: size,
+          height: size,
+        }
+      }
+    },
+  },
 
-    if (props.tile) data.staticClass += ' vc@avatar--tile';
-
-    if (!isNaN(props.size)) {
-      const size = `${parseInt(props.size)}px`;
-      data.style.height = size;
-      data.style.width = size;
-    } else if (props.size) {
-      data.staticClass += ` vc@avatar--${props.size}`;
-    }
-
-    return h('div', data, children);
+  render(h) {
+    return h('div', {
+      class: this.classes,
+      style: this.styles,
+    }, this.$slots.default);
   }
 }

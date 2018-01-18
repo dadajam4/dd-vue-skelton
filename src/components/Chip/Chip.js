@@ -14,7 +14,7 @@ export default {
 
     // Used for selects/tagging
     selected: Boolean,
-    small: Boolean,
+    sm: Boolean,
     textColor: String,
     value: {
       type: Boolean,
@@ -22,14 +22,20 @@ export default {
     }
   },
 
+  data() {
+    return {
+      defaultContextColor: this.outline ? void(0) : 'light',
+    }
+  },
+
   computed: {
     classes() {
-      const classes = this.addBackgroundColorClasses({
+      const classes = this.addColorClasses({
         'vc@chip--disabled': this.disabled,
         'vc@chip--selected': this.selected,
         'vc@chip--label': this.label,
         'vc@chip--outline': this.outline,
-        'vc@chip--small': this.small,
+        'vc@chip--sm': this.sm,
         'vc@chip--removable': this.close,
       })
 
@@ -52,7 +58,7 @@ export default {
       };
 
       return h('div', data, [
-        h('vc@icon', 'times')
+        h('vc@icon', 'times-circle')
       ])
     },
     genContent(h) {

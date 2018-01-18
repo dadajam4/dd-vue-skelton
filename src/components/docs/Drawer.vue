@@ -158,7 +158,7 @@ export default {
       levels.forEach((level, index) => {
         if (index === 0) {
           level.forEach(route => {
-            if (!route.name !== 'index') {
+            if (route.name !== 'index') {
               links.push({
                 path: route.path,
                 name: route.name,
@@ -186,6 +186,19 @@ export default {
           });
         }
       });
+
+      links.forEach(link => {
+        if (link.children) {
+          link.children.sort((a, b) => a.name > b.name);
+        }
+      });
+
+      links.sort((a, b) => {
+        if (a.children && !b.children) return 1;
+        if (!a.children && b.children) return -1;
+        return a.name > b.name;
+      })
+
       return links;
     },
   },

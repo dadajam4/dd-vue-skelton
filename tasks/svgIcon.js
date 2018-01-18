@@ -12,8 +12,8 @@ const chalk       = require('chalk');
 
 function svgIconTask(task, params = {}) {
   return new Promise((resolve, reject) => {
-    const CSS_ABSOLUTE_PATH = path.join(params.sassDest || params.dest, `${params.fontName}.scss`),
-          CSS_RELATIVE_PATH = path.relative(params.dest, CSS_ABSOLUTE_PATH);
+    const DEST_PATH          = path.join(params.dest, params.fontName);
+    const FONT_RELATIVE_PATH = path.relative(params.cssEntryPath, DEST_PATH);
 
     const stream = gulp.src(path.join(params.src, '*.svg'))
       .pipe(svgmin())
@@ -21,8 +21,8 @@ function svgIconTask(task, params = {}) {
       .pipe(iconfontCss({
         fontName  : params.fontName,
         path      : params.template,
-        targetPath: CSS_RELATIVE_PATH,
-        fontPath  : params.fontDir + '/',
+        targetPath: `./${params.fontName}.scss`,
+        fontPath  : FONT_RELATIVE_PATH + '/',
         cssClass  : params.fontName,
       }))
       .pipe(iconfont({
@@ -40,7 +40,7 @@ function svgIconTask(task, params = {}) {
         }
         console.log(chalk.red(`${task.description} 失敗しました。`));
       })
-      .pipe(gulp.dest(params.dest))
+      .pipe(gulp.dest(DEST_PATH))
       .on('end', function() {
         if (task.notify) {
           new Notifier('success', {

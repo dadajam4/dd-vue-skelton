@@ -3,11 +3,15 @@
 
 
 // Ready Styles
-@import "./.tmp/dd-icon";
+@import "./.tmp/dd-icon/dd-icon";
 // @import "dd-sprite";
 
 // Core
 @import "./core/index";
+
+:root {
+  @include dump-default-theme;
+}
 
 // Basis
 @import "./reset";

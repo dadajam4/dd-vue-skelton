@@ -96,13 +96,13 @@ module.exports = {
       // { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'favicon-32x32.png' },
       // { rel: 'icon', type: 'image/png', sizes: '16x16', href: 'favicon-16x16.png' },
 
-      { rel: 'stylesheet', href: `${basePathPrefix}css/docs.css${cacheBuster}` },
+      // { rel: 'stylesheet', href: `${basePathPrefix}css/docs.css${cacheBuster}` },
     ],
   },
 
-  // css: [
-  //   { src: '~assets/css/main.scss', lang: 'scss' },
-  // ],
+  css: [
+    { src: '~assets/css/docs.scss', lang: 'scss' },
+  ],
 
   // render: {
   //   bundleRenderer: {
@@ -117,6 +117,7 @@ module.exports = {
   // },
 
   build: {
+    extractCSS: true,
     babel: babelLoaderSettings.query,
 
     postcss: postcssConfig.plugins,
@@ -154,6 +155,19 @@ module.exports = {
           },
         },
       });
+
+      // // いつかここで coreを自動でインポートするといいかも
+      // webpackConfig.module.rules.unshift({
+      //   test: /\.(scss|sass)$/,
+      //   enforce: 'pre',
+      //   loader: 'dd-sass-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     css: {
+      //       prefix: sassSettings.prefix,
+      //     },
+      //   },
+      // });
     },
 
     vendor: [

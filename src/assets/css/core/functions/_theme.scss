@@ -64,3 +64,9 @@
     #{$prop}: $suffix var(--#{$key}-color) if($important, !important, null);
   }
 }
+
+@mixin dump-default-theme() {
+  @each $key, $val in $theme-default {
+    --#{$key}: $val;
+  }
+}

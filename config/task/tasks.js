@@ -36,12 +36,11 @@ module.exports = {
         description: '[core] SVGアイコンのビルド',
         src: config.path('src/assets/svg-icon'),
         watch: config.path('src/assets/svg-icon'),
-        dest: config.path(`src/static/font/${sassSettings.prefix}icon`),
-        sassDest: config.path('src/assets/css/.tmp'),
+        dest: config.path('src/assets/css/.tmp'),
+        cssEntryPath: config.path('src/assets/css'),
         fontName: `${sassSettings.prefix}icon`,
         descent: 252, // (nx14) font awesome baseline fix
         template: config.path('config/svg/svg-icon-template.scss'),
-        fontDir: config.path.join('../font', `${sassSettings.prefix}icon`),
       },
       sassValues: {
         type: 'sassValues',
@@ -72,17 +71,17 @@ module.exports = {
           config.path('src/static/img'),
         ],
       },
-      sass: {
-        type: 'sass',
-        description: '[static] sassのビルド',
-        src: config.path('src/assets/css'),
-        dest: config.path('src/static/css'),
-        filename: 'docs',
-        watch: [
-          config.path('src/assets/css'),
-          config.path('src/plugins/core/sass'),
-        ],
-      },
+      // sass: {
+      //   type: 'sass',
+      //   description: '[static] sassのビルド',
+      //   src: config.path('src/assets/css'),
+      //   dest: config.path('src/static/css'),
+      //   filename: 'docs',
+      //   watch: [
+      //     config.path('src/assets/css'),
+      //     config.path('src/plugins/core/sass'),
+      //   ],
+      // },
       img: {
         type: 'imagemin',
         description: '[static] 画像の圧縮',

@@ -1,0 +1,25 @@
+//
+// Chip
+//
+
+@function get-chip($key) {
+  @return map-get($chip, $key);
+}
+
+$chip: ();
+$chip: map-set($chip, border-radius, 28px);
+$chip: map-set($chip, close-margin, 0 2px 0 8px);
+$chip: map-set($chip, font-size, get-font-size(sm));
+$chip: map-set($chip, label-border-radius, get-card(border-radius));
+$chip: map-set($chip, icon-font-size, get-font-size(xxl));
+$chip: map-set($chip, padding, 0 12px);
+$chip: map-set($chip, removeable-padding, 0 4px 0 12px);
+$chip: map-set($chip, outline-background, transparent !important);
+// $chip: map-set($chip, outline-color, $grey.base);
+$chip: map-set($chip, height, 32px);
+$chip: map-set($chip, margin, 4px);
+$chip: map-set($chip, small-height, 26px);
+$chip: map-set($chip, small-font-size, get-font-size(xs));
+$chip: map-set($chip, small-icon-font-size, get-font-size(xl));
+$chip: map-set($chip, icon-offset, 12px);
+$chip: map-set($chip, icon-negative-offset, -4px);

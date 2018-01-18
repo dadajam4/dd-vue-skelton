@@ -3,4 +3,148 @@
 //
 
 .#{$css-prefix}chip {
+  align-items: center;
+  border-radius: get-chip(border-radius);
+  // border: 1px solid transparent;
+  border: solid 1px;
+  display: inline-flex;
+  font-size: get-chip(font-size);
+  margin: get-chip(margin);
+  outline: none;
+  position: relative;
+  transition: get-transition(primary);
+  vertical-align: middle;
+
+  &__content {
+    align-items: center;
+    border-radius: get-chip(border-radius);
+    cursor: default;
+    display: inline-flex;
+    height: get-chip(height);
+    justify-content: space-between;
+    padding: get-chip(padding);
+    vertical-align: middle;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  &--removable {
+    .#{$css-prefix}chip__content {
+      padding: get-chip(removeable-padding);
+    }
+  }
+
+  .#{$css-prefix}avatar {
+
+    // Important is needed to account for new avatar structure
+    height: get-chip(height) !important;
+    margin-left: -12px;
+    margin-right: 8px;
+    min-width: get-chip(height);
+    width: get-chip(height) !important;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  &:focus,
+  &--active,
+  &--selected {
+    &:not(.#{$css-prefix}chip--disabled) {
+      border-color: rgba(#000, .13);
+      @include elevation(2);
+
+      &:after {
+        background: currentColor;
+        border-radius: inherit;
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        transition: inherit;
+        width: calc(100% + 2px);
+        height: calc(100% + 2px);
+        pointer-events: none;
+        opacity: .13;
+      }
+    }
+  }
+
+  &--label {
+    border-radius: get-chip(label-border-radius);
+
+    .#{$css-prefix}chip__content {
+      border-radius: get-chip(label-border-radius);
+    }
+  }
+
+  // &.#{$css-prefix}chip--outline {
+  //   // border: solid 1px currentColor;
+  //   // background: $chip-outline-background;
+  //   // border-color: currentColor;
+  //   // color: $chip-outline-color;
+  // }
+
+  &__close {
+    align-items: center;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font-size: get-chip(icon-font-size);
+    margin: get-chip(close-margin);
+    text-decoration: none;
+    user-select: none;
+
+    & > .#{$css-prefix}icon {
+      color: inherit !important;
+      @include font-size(lg);
+      opacity: .5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--select-multi {
+    margin: get-chip(margin) get-chip(margin) get-chip(margin) 0;
+  }
+
+  .#{$css-prefix}icon {
+    color: inherit;
+
+    &--right {
+      margin-left: get-chip(icon-offset);
+      margin-right: get-chip(icon-negative-offset);
+    }
+
+    &--left {
+      margin-left: get-chip(icon-negative-offset);
+      margin-right: get-chip(icon-offset);
+    }
+  }
+
+  &--sm {
+    font-size: get-chip(small-font-size);
+
+    .#{$css-prefix}chip__content {
+      height: get-chip(small-height);
+    }
+
+    .#{$css-prefix}avatar {
+      height: get-chip(small-height) !important;
+      min-width: get-chip(small-height);
+      width: get-chip(small-height) !important;
+    }
+
+    .#{$css-prefix}chip__close {
+      font-size: get-chip(small-icon-font-size);
+
+      & > .#{$css-prefix}icon {
+        @include font-size(md);
+      }
+    }
+  }
 }

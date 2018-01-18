@@ -13,7 +13,7 @@ module.exports = {
   // static
   static: [
     'static.clean',
-    'static.sass',
+    // 'static.sass',
     'static.img',
   ],
 
