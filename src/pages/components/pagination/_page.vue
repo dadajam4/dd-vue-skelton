@@ -38,6 +38,12 @@
       </div>
     </vt@page-section>
 
+    <vt@page-section title id="guard" data-anchor-point>
+      <div class="vc@text--center">
+        <vt@pagination :length="6" v-model="page3" :before-change="guard"></vt@pagination>
+      </div>
+    </vt@page-section>
+
     <vt@page-section title id="no-model" data-anchor-point>
       <div class="vc@text--center">
         <vt@pagination :length="6"></vt@pagination>
@@ -80,6 +86,7 @@ export default {
     return {
       page1: 1,
       page2: 1,
+      page3: 1,
     }
   },
 
@@ -87,6 +94,17 @@ export default {
   },
 
   methods: {
+    guard(page) {
+      if (page === 2) {
+        return window.confirm('2ページに移動していいですか？');
+      } else if (page === 3) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(window.confirm('※ちょっとウェイトしました。3ページに移動していいですか？'));
+          }, 2000)
+        });
+      }
+    },
   },
 
   created() {

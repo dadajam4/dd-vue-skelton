@@ -14,6 +14,7 @@ export default {
       lazyValue: this.value || 1,
       maxButtons: 0,
       defaultContextColor: 'primary',
+      requestId: 0,
     }
   },
 
@@ -41,6 +42,9 @@ export default {
     routable: {
       type: [Object, String, Boolean],
       default: false,
+    },
+    beforeChange: {
+      type: Function,
     },
   },
 
@@ -91,8 +95,28 @@ export default {
         }
       },
       set(page) {
-        this.lazyValue = page;
-        this.$emit('input', page);
+        this.requestId = this.requestId + 1;
+        const requestId = this.requestId;
+
+        const exec = () => {
+          if (this._isDestroyed || this.requestId !== requestId) return;
+          this.lazyValue = page;
+          this.$emit('input', page);
+        }
+
+        let pass = true;
+        if (typeof this.beforeChange === 'function') {
+          pass = this.beforeChange(page);
+        }
+        if (!!pass && (typeof pass === 'object' || typeof pass === 'function') && typeof pass.then === 'function') {
+          pass.then(result => {
+            if (result !== false) {
+              exec();
+            }
+          });
+        } else if (pass !== false) {
+          exec();
+        }
       },
     },
 
