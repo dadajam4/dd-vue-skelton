@@ -117,7 +117,8 @@ module.exports = {
   // },
 
   build: {
-    extractCSS: true,
+    // これやると相対パス解決できない
+    // extractCSS: true,
     babel: babelLoaderSettings.query,
 
     postcss: postcssConfig.plugins,
