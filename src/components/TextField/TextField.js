@@ -161,7 +161,7 @@ export default {
           autofocus: this.autofocus,
           disabled : this.disabled,
           required : this.required,
-          value    : this.suggestSelected || this.lazyValue,
+          value    : this.suggestSelected || (this.lazyValue || ''),
         },
         attrs: {
           ...this.$attrs,

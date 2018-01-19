@@ -151,6 +151,28 @@ module.exports = {
         loader.options = Object.assign({}, loader.options, sassSettings);
       });
 
+      webpackConfig.module.rules.push({
+        test: /\.vue$/,
+        enforce: 'pre',
+        loader: 'dd-vue-docs-loader',
+        exclude: /node_modules/,
+      });
+
+      webpackConfig.module.rules.unshift({
+        test: /\.vue$/,
+        enforce: 'pre',
+        loader: 'dd-vue-example-loader',
+        exclude: /node_modules/,
+        options: {
+          vue: {
+            nameSpace: 'dd',
+          },
+          css: {
+            prefix: sassSettings.prefix,
+          },
+        },
+      });
+
       webpackConfig.module.rules.unshift({
         test: /\.(vue|js)$/,
         enforce: 'pre',

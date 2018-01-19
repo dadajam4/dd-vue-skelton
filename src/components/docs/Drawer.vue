@@ -53,7 +53,7 @@
             <vt@icon>{{iconMap[parent.name]}}</vt@icon>
           </vt@list-tile-action>
           <vt@list-tile-content>
-            <vt@list-tile-title class="my-parent-name">{{parent.name}}</vt@list-tile-title>
+            <vt@list-tile-title class="my-parent-name">{{parent.label}}</vt@list-tile-title>
           </vt@list-tile-content>
           <vt@list-tile-action>
           </vt@list-tile-action>
@@ -117,6 +117,10 @@
 </template>
 
 <script>
+const toLabel = str => {
+  return str.replace(/-/g, ' ');
+}
+
 export default {
   props: {
     value: {
@@ -160,8 +164,9 @@ export default {
           level.forEach(route => {
             if (route.name !== 'index') {
               links.push({
-                path: route.path,
-                name: route.name,
+                path : route.path,
+                name : route.name,
+                label: toLabel(route.name),
               });
             }
           });
@@ -179,9 +184,9 @@ export default {
               links.push(parent);
             }
             parent.children.push({
-              name: route.name,
-              path: route.path,
-              label: tmp[1],
+              name : route.name,
+              path : route.path,
+              label: toLabel(tmp[1]),
             });
           });
         }
@@ -189,14 +194,20 @@ export default {
 
       links.forEach(link => {
         if (link.children) {
-          link.children.sort((a, b) => a.name > b.name);
+          link.children.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+          });
         }
       });
 
       links.sort((a, b) => {
         if (a.children && !b.children) return 1;
         if (!a.children && b.children) return -1;
-        return a.name > b.name;
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+        return 0;
       })
 
       return links;

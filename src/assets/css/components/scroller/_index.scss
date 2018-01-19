@@ -1,0 +1,67 @@
+//
+// Scroller
+//
+
+.#{$css-prefix}scroller {
+  $my-layer-width: 40px;
+
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+
+  &__context {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    // max-width: 100%;
+    // max-height: 100%;
+    overflow: auto;
+  }
+
+  &__content {}
+
+  &__layer {
+    &-container {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transition: get-transition(primary);
+
+    &--active {
+      opacity: 0.25;
+    }
+
+    &--horizontal {
+      top: 0;
+      bottom: 0;
+      width: $my-layer-width;
+    }
+
+    &--vertical {
+      left: 0;
+      right: 0;
+      height: $my-layer-width;
+    }
+
+    $my-layer-from-color: currentColor;
+    $my-layer-to-color: rgba(0, 0, 0, 0);
+
+    @each $vec, $to in (top: bottom, right: left, bottom: top, left: right) {
+      &--#{$vec} {
+        #{$vec}: 0;
+        background: linear-gradient(to #{$to}, $my-layer-from-color, $my-layer-to-color);
+      }
+    }
+  }
+}

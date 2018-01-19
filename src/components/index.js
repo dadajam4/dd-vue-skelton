@@ -5,6 +5,7 @@ import Card from './Card';
 import TextField from './TextField';
 import Checkbox from './Checkbox';
 import Chip from './Chip';
+import DataTable from './DataTable';
 import Radio from './Radio';
 import Select from './Select';
 import Switch from './Switch';
@@ -23,6 +24,7 @@ import AnchorNavi from './AnchorNavi';
 import Page from './Page';
 import Pagination from './Pagination';
 import Progress from './Progress';
+import Scroller from './Scroller';
 import Toolbar from './Toolbar';
 import Transitions from './transitions';
 
@@ -33,6 +35,7 @@ export default Object.assign({},
   Alert,
   Avatar,
   Card,
+  DataTable,
   TextField,
   Checkbox,
   Chip,
@@ -54,6 +57,7 @@ export default Object.assign({},
   Page,
   Pagination,
   Progress,
+  Scroller,
   Toolbar,
   Transitions,
 );

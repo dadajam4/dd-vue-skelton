@@ -136,9 +136,6 @@ export default {
         if (options.params) {
           options.query = false;
         }
-        // if (this.routable.base && this.routable.query === false) {
-        //   options.directory = true;
-        // }
       } else if (typeof this.routable === 'string' && this.routable) {
         options = Object.assign(options, {
           base: this.routable,
@@ -176,7 +173,7 @@ export default {
     go(page) {
       this.page = page;
     },
-    onResize() {
+    onResize(e) {
       const width = this.$el && this.$el.parentNode
         ? this.$el.parentNode.clientWidth
         : window.innerWidth
@@ -226,7 +223,7 @@ export default {
       const icon = this[`${vec}Icon`];
 
       const data = {
-        staticClass: 'vc@pagination__navigation',
+        staticClass: 'vc@pagination__navigation vc@pagination__navigation--' + vec,
         class: {
           'vc@pagination__navigation--disabled': disabled
         },
@@ -287,9 +284,9 @@ export default {
       this.genIcon(h, 'next', this.page >= this.length, this.next),
     ];
 
-    return h('ul', {
+    return h('nav', {
       directives: [{ name: 'resize', value: this.onResize }],
       class: this.classes,
-    }, children);
+    }, [h('ul', {}, [children])]);
   }
 }

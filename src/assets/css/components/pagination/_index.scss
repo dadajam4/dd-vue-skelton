@@ -3,16 +3,20 @@
 //
 
 .#{$css-prefix}pagination {
-  align-items: center;
-  display: inline-flex;
-  list-style-type: none;
-  margin: 0;
-  max-width: 100%;
-  padding: 0;
+  display: block;
 
-  & > li {
-    align-items: center;
-    display: flex;
+  & > ul {
+  align-items: center;
+    display: inline-flex;
+    list-style-type: none;
+    margin: 0;
+    max-width: 100%;
+    padding: 0;
+
+    & > li {
+      align-items: center;
+      display: flex;
+    }
   }
 
   &--circle {
@@ -43,15 +47,20 @@
     transition: .3s get-easing(linear-out-slow-in);
     @include theme-color(background, background);
     @include theme-color(color, text);
+    padding-top: 1px;
 
     &--active {
       @include elevation(4);
+      pointer-events: none;
     }
 
     &:hover,
     &:focus,
     &:active {
       color: inherit;
+    }
+
+    &:focus {
     }
   }
 
@@ -65,6 +74,7 @@
     border-radius: 4px;
     width: 2rem;
     margin: .3rem 10px;
+    padding-top: 1px;
 
     @include theme-color(background, background);
     @include theme-color(color, text);
@@ -74,6 +84,18 @@
       @include font-size(sm);
       transition: get-transition(secondary);
       vertical-align: middle;
+    }
+
+    &--prev {
+      .#{$css-prefix}icon {
+        margin-right: 2px;
+      }
+    }
+
+    &--next {
+      .#{$css-prefix}icon {
+        margin-left: 2px;
+      }
     }
 
     &--disabled {
