@@ -205,11 +205,13 @@ module.exports = {
     vendor: [
       // 'babel-polyfill',
       '~/plugins/core',
+      '~/plugins/docs',
     ],
   },
 
   plugins: [
     '~/plugins/core',
+    '~/plugins/docs',
     '~/plugins/highlightjs',
   ],
 }

@@ -8,7 +8,7 @@
       ほげほげ
     </vt@page-intro>
 
-    <docs-example is="basic" />
+    <dd-example is="basic" />
 
   </vt@page>
 </template>

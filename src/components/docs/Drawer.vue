@@ -122,6 +122,8 @@ const toLabel = str => {
 }
 
 export default {
+  name: 'docs-drawer',
+
   props: {
     value: {
       required: false,

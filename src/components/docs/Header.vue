@@ -25,6 +25,8 @@
 
 
 export default {
+  name: 'docs-header',
+
   props: {
     title: String,
     hidden: Boolean,

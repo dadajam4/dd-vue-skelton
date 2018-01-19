@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <vt@spinner class="vc@m-a--md" v-for="value in [0, 20, 40, 60, 80, 100]" :value="value" :key="value" />
+    <vt@spinner class="vc@m-a--md" v-for="color in TEXT_COLORS" :text-color="color" value="50" :key="color" />
   </docs-example>
 </template>
 

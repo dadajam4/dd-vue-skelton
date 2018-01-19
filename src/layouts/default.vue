@@ -54,17 +54,7 @@
 </template>
 
 <script>
-import Header from '../components/docs/Header';
-import Drawer from '../components/docs/Drawer';
-
-
-
 export default {
-  components: {
-    'docs-header': Header,
-    'docs-drawer': Drawer,
-  },
-
   data() {
     const currentHead = this.getCurrentHead();
     return {

@@ -63,6 +63,8 @@
 
 
 export default {
+  name: 'docs-element-guide',
+
   props: {
     name: String,
     source: String,

@@ -50,10 +50,6 @@
 </template>
 
 <script>
-import DocsElementGuide from '~/components/docs/ElementGuide';
-
-
-
 export default {
   $_anchors,
 
@@ -61,10 +57,6 @@ export default {
     return {
       title: 'Headings',
     }
-  },
-
-  components: {
-    DocsElementGuide,
   },
 
   data() {

@@ -8,7 +8,7 @@
 </style>
 
 <template>
-  <div>
+  <docs-example>
     <vt@scroller
       :width="containerSize"
       :height="containerSize"
@@ -36,12 +36,10 @@
       label="inner"
       :thumb-label-assist="size => size + 'px'"
     />
-  </div>
+  </docs-example>
 </template>
 
 <script>
-/* @dd-vue-docs-loader */
-console.log($docsLoaderResult.template);
 export default {
   computed: {
     innerStyle() {

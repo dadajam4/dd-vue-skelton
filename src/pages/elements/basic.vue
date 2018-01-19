@@ -342,8 +342,6 @@ end.</code></pre>
 </template>
 
 <script>
-import DocsElementGuide from '~/components/docs/ElementGuide';
-
 export default {
   $_anchors,
 
@@ -351,10 +349,6 @@ export default {
     return {
       title: 'Basic',
     }
-  },
-
-  components: {
-    DocsElementGuide,
   },
 
   data() {

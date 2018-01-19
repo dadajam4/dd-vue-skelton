@@ -5,6 +5,9 @@ import directives  from '~/directives';
 import Prototype   from './prototype';
 import Validator   from './validator';
 import VueScrollTo from 'vue-scrollto';
+import themes from '~~/config/css/themes';
+
+// const TEXT_COLORS = themes['color-keys'].text;
 
 
 
@@ -25,6 +28,12 @@ function plugin(Vue, opt = {}) {
   Object.keys(components).forEach(key => {
     const component = components[key];
     Vue.component(component.name, component);
+  });
+
+  Vue.mixin({
+    computed: {
+      TEXT_COLORS() { return themes['color-keys'].text },
+    },
   });
 }
 
