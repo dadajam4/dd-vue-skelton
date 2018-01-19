@@ -159,9 +159,10 @@ export default {
     },
   },
 
-  // mounted() {
-  //   this.init();
-  // },
+  mounted() {
+    // this.init();
+    this.updateMaxButtons();
+  },
 
   methods: {
     // init() {
@@ -174,6 +175,9 @@ export default {
       this.page = page;
     },
     onResize(e) {
+      this.updateMaxButtons();
+    },
+    updateMaxButtons() {
       const width = this.$el && this.$el.parentNode
         ? this.$el.parentNode.clientWidth
         : window.innerWidth
