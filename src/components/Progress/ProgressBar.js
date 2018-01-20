@@ -1,19 +1,9 @@
-import Colorable from '~/mixins/color/backgroundColorable';
+import Colorable from '~/mixins/color/colorable';
 
 
-
-// import {
-//   VFadeTransition,
-//   VSlideXTransition
-// } from '../transitions'
 
 export default {
   name: 'vt@progress-bar',
-
-  // components: {
-  //   VFadeTransition,
-  //   VSlideXTransition
-  // },
 
   mixins: [Colorable],
 
@@ -22,21 +12,14 @@ export default {
       type: Boolean,
       default: true,
     },
-    dropColor: {
-      type: String,
-      default: null,
-    },
-    dropOpacity: {
+    color: String,
+    backgroundOpacity: {
       type: [Number, String],
       default: null,
     },
     bufferValue: {
       type: [Number, String],
       default: 100,
-    },
-    backgroundColor: {
-      type: String,
-      default: 'primary',
     },
     height: {
       type: [Number, String],
@@ -47,6 +30,12 @@ export default {
     value: {
       type: [Number, String],
       default: 0,
+    }
+  },
+
+  data() {
+    return {
+      defaultContextColor: 'primary',
     }
   },
 
@@ -71,14 +60,14 @@ export default {
 
       return this.value * 100 / this.bufferValue;
     },
-    dropStyle() {
-      const dropOpacity = this.dropOpacity == null
-        ? (this.dropColor ? 1 : 0.3)
-        : parseFloat(this.dropOpacity);
+    backgroundStyle() {
+      const backgroundOpacity = this.backgroundOpacity == null
+        ? (this.backgroundColor ? 1 : 0.3)
+        : parseFloat(this.backgroundOpacity);
 
       return {
         height: this.active ? `${this.height}px` : 0,
-        opacity: dropOpacity,
+        opacity: backgroundOpacity,
         width: `${this.bufferValue}%`,
       }
     }
@@ -86,21 +75,21 @@ export default {
 
   methods: {
     genDeterminate(h) {
+      const classes = this.color ? {[`vc@background-color--${this.color}`]: true} : this.addColorClasses();
       return h('div', {
         ref: 'front',
         staticClass: `vc@progress-bar__bar__determinate`,
-        class: this.addBackgroundColorClasses(),
+        class: classes,
         style: {
           width: `${this.effectiveWidth}%`,
         }
       })
     },
     genBar(h, name) {
+      const classes = this.color ? {[`vc@background-color--${this.color}`]: true} : this.addColorClasses();
       return h('div', {
-        staticClass: 'vc@progress-bar__bar__indeterminate',
-        class: this.addBackgroundColorClasses({
-          [name]: true,
-        })
+        staticClass: 'vc@progress-bar__bar__indeterminate ' + name,
+        class: classes,
       })
     },
     genIndeterminate(h) {
@@ -111,8 +100,8 @@ export default {
           'vc@progress-bar__bar__indeterminate--active': this.active,
         }
       }, [
-        this.genBar(h, 'vc@long'),
-        this.genBar(h, 'vc@short'),
+        this.genBar(h, 'vc@progress-bar__long'),
+        this.genBar(h, 'vc@progress-bar__short'),
       ])
     }
   },
@@ -126,9 +115,9 @@ export default {
       style: this.styles,
     }, [fade, slide]);
     const background = h('div', {
-      staticClass: 'progress-bar__background',
-      class: [this.dropColor || this.color],
-      style: this.dropStyle,
+      staticClass: 'vc@progress-bar__background',
+      class: this.addColorClasses(),
+      style: this.backgroundStyle,
     })
 
     return h('div', {

@@ -13,7 +13,12 @@
     <dd-example is="indeterminate" />
     <dd-example is="size-and-width" />
     <dd-example is="rotate" />
-
+    <dd-example is="determinate" />
+    <dd-example is="bar-indeterminate" />
+    <dd-example is="bar-buffer" />
+    <dd-example is="bar-query-indeterminate-and-determinate" />
+    <dd-example is="bar-custom-height-and-contextual-colors" />
+    <dd-example is="bar-custom-colors" />
   </vt@page>
 </template>
 
