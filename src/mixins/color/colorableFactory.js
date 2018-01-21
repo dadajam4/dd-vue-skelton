@@ -11,6 +11,7 @@ export default function colorableFactory(name, opts = {}) {
   const computedKey = `computed${Name}Color`;
   const classesKey = `${name}ColorClasses`;
   const methodKey = `add${Name}ColorClasses`;
+  const getMethodKey = `get${Name}ColorClasses`;
   const props = Object.assign({[propKey]: String}, opts.props);
 
 
@@ -44,16 +45,26 @@ export default function colorableFactory(name, opts = {}) {
       },
 
       [classesKey]() {
+        return this[getMethodKey]();
+        // const prefix = opts.addColorPrefix ? opts.addColorPrefix.call(this) : '';
+        // let classes = this[computedKey] ? {[`vc@${name}-color-${prefix}-${this[computedKey]}`]: true} : {};
+        // if (opts.mergeColorClasses) {
+        //   classes = opts.mergeColorClasses.call(this, classes);
+        // }
+        // return classes;
+      },
+    },
+
+    methods: {
+      [getMethodKey](key = computedKey) {
         const prefix = opts.addColorPrefix ? opts.addColorPrefix.call(this) : '';
-        let classes = this[computedKey] ? {[`vc@${name}-color-${prefix}-${this[computedKey]}`]: true} : {};
+        let classes = this[key] ? {[`vc@${name}-color-${prefix}-${this[key]}`]: true} : {};
         if (opts.mergeColorClasses) {
           classes = opts.mergeColorClasses.call(this, classes);
         }
         return classes;
       },
-    },
 
-    methods: {
       [methodKey](classes = {}) {
         return Object.assign({}, classes, this[classesKey]);
       },

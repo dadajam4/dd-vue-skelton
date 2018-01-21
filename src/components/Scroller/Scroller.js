@@ -22,6 +22,10 @@ export default {
   },
 
   props: {
+    tag: {
+      type: String,
+      default: 'div',
+    },
     horizontal: Boolean,
     vertical: Boolean,
     width: {
@@ -132,7 +136,7 @@ export default {
       ref: 'scroller',
     }, [$content]);
 
-    return h('div', {
+    return h(this.tag, {
       class: this.classes,
       style: this.styles,
     }, [$scroller, $layerContainer]);

@@ -25,6 +25,7 @@ import Page from './Page';
 import Pagination from './Pagination';
 import Progress from './Progress';
 import Scroller from './Scroller';
+import Tabs from './Tabs';
 import Toolbar from './Toolbar';
 import Transitions from './transitions';
 
@@ -58,6 +59,7 @@ export default Object.assign({},
   Pagination,
   Progress,
   Scroller,
+  Tabs,
   Toolbar,
   Transitions,
 );
