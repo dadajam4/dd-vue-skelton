@@ -40,6 +40,7 @@
 
     &__bar {
       position: absolute;
+      z-index: 2;
       bottom: 0;
       left: 50%;
       right: 50%;
@@ -56,6 +57,41 @@
     &--active &__bar {
       left: 0;
       right: 0;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      opacity: .12;
+      color: inherit;
+      // opacity: 0;
+      background-color: rgba(0, 0, 0, 0);
+      transition: get-transition(primary);
+    }
+
+    &:hover,
+    &:focus {
+      &:before {
+        background-color: currentColor;
+      }
+      // &:after {
+      //   background-color: rgba(0, 0, 0, .5);
+      // }
+    }
+
+    &:active {
+      // &:before {
+      //   background-color: currentColor;
+      // }
+      &:after {
+        background-color: rgba(0, 0, 0, .5);
+      }
     }
   }
 
