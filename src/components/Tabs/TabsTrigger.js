@@ -1,5 +1,11 @@
+import BackgroundColorable from '~/mixins/color/backgroundColorable';
+
+
+
 export default {
   name: 'vt@tabs-trigger',
+
+  mixins: [BackgroundColorable],
 
   props: {
     id: {
@@ -10,6 +16,7 @@ export default {
       type: Number,
       required: true,
     },
+    activeColor: String,
   },
 
   data() {
@@ -42,6 +49,7 @@ export default {
   render(h) {
     const $bar = h('span', {
       staticClass: 'vc@tabs__trigger__bar',
+      class: this.getBackgroundColorClasses('activeColor'),
       ref: 'bar',
     });
 

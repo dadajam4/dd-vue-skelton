@@ -20,13 +20,16 @@ export default {
     value: {
       type: String,
     },
+    activeColor: String,
+    center: Boolean,
+    wrap: Boolean,
   },
 
   data() {
     return {
       lazyValue: null,
       items: [],
-      defaultContextColor: 'primary',
+      // defaultContextColor: 'primary',
     }
   },
 
@@ -131,6 +134,13 @@ export default {
       });
 
       separated.trigger.forEach(trigger => {
+        trigger.componentOptions.propsData = Object.assign(
+          {
+            activeColor: this.activeColor,
+          },
+          trigger.componentOptions.propsData,
+        );
+
         trigger.componentOptions.listeners = Object.assign(
           {
             click: vm => {
@@ -147,7 +157,14 @@ export default {
     this.items = items;
     if (!this.value) this.currentId = items[0].id;
 
-    const $nav      = h('vt@tabs-nav', {class: this.addColorClasses()}, separated.trigger);
+    const $nav = h('vt@tabs-nav', {
+      class: this.addColorClasses(),
+      props: {
+        center: this.center,
+        wrap: this.wrap,
+      },
+    }, separated.trigger);
+
     const $contents = h('vt@tabs-contents', {ref: 'contents'}, separated.content);
 
     return h('div', {
