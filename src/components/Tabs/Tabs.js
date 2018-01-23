@@ -23,6 +23,7 @@ export default {
     activeColor: String,
     center: Boolean,
     wrap: Boolean,
+    fixed: Boolean,
   },
 
   data() {
@@ -62,6 +63,7 @@ export default {
         }
       },
     },
+    length() { return this.items.length },
   },
 
   watch: {
@@ -109,6 +111,14 @@ export default {
       const item = this.getItemByIndex(index);
       if (item) return item.$content.componentInstance;
     },
+    next() {
+      const currentIndex = this.currentIndex;
+      this.currentIndex = (currentIndex === this.length - 1) ? 0 : currentIndex + 1;
+    },
+    prev() {
+      const currentIndex = this.currentIndex;
+      this.currentIndex = (currentIndex === 0) ? this.length - 1 : currentIndex + 1;
+    },
   },
 
   render(h) {
@@ -137,6 +147,7 @@ export default {
         trigger.componentOptions.propsData = Object.assign(
           {
             activeColor: this.activeColor,
+            fixed: this.fixed,
           },
           trigger.componentOptions.propsData,
         );

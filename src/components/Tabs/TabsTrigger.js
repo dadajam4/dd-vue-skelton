@@ -17,6 +17,8 @@ export default {
       required: true,
     },
     activeColor: String,
+    icon: String,
+    fixed: Boolean,
   },
 
   data() {
@@ -30,6 +32,8 @@ export default {
       return {
         'vc@tabs__trigger': true,
         'vc@tabs__trigger--active': this.isActive,
+        'vc@tabs__trigger--icon': this.icon,
+        'vc@tabs__trigger--fixed': this.fixed,
       }
     },
   },
@@ -53,6 +57,14 @@ export default {
       ref: 'bar',
     });
 
+    const children = [this.$slots.default, $bar];
+
+    if (this.icon) {
+      children.unshift(h('vt@icon', {
+        staticClass: 'vc@tabs__trigger__icon',
+      }, this.icon));
+    }
+
     return h('a', {
       class: this.classes,
       attrs: {
@@ -61,6 +73,6 @@ export default {
       on: {
         click: e => this.onClick(e),
       },
-    }, [this.$slots.default, $bar]);
+    }, children);
   },
 }

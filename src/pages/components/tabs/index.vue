@@ -14,6 +14,8 @@
     <dd-example is="centered" />
     <dd-example is="scrollable" />
     <dd-example is="wraped" />
+    <dd-example is="icons" />
+    <dd-example is="desktop-tabs" />
 
   </vt@page>
 </template>

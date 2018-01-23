@@ -7,7 +7,7 @@
 
     &-container {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: flex-start;
       flex-wrap: nowrap;
 
@@ -26,17 +26,34 @@
     align-items: center;
     justify-content: center;
     padding: 10px 12px;
+    min-height: 48px;
     overflow: hidden;
     opacity: .7;
     color: inherit!important;
     white-space: nowrap;
     flex-shrink: 0;
+    @include font-size(sm);
 
     // &:hover,
     // &:focus,
     // &:active {
     //   color: inherit!important;
     // }
+
+    &--fixed {
+      min-width: 160px;
+      max-width: 264px;
+      flex: 0 1 160px;
+    }
+
+    &--icon {
+      flex-direction: column;
+    }
+
+    &__icon {
+      line-height: 1.2;
+      @include font-size(lg);
+    }
 
     &__bar {
       position: absolute;
