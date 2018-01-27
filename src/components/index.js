@@ -27,6 +27,7 @@ import Progress from './Progress';
 import Scroller from './Scroller';
 import Tabs from './Tabs';
 import Toolbar from './Toolbar';
+import Tooltip from './Tooltip';
 import Transitions from './transitions';
 
 
@@ -61,5 +62,6 @@ export default Object.assign({},
   Scroller,
   Tabs,
   Toolbar,
+  Tooltip,
   Transitions,
 );

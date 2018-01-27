@@ -2,7 +2,13 @@ import elementResizeEvent from 'element-resize-event';
 
 
 
+const IS_BROWSER = typeof document !== 'undefined';
+
+
+
 function inserted(el, binding) {
+  if (!IS_BROWSER) return;
+
   let cb = binding.value;
   // let debounce = 200;
 
@@ -29,6 +35,7 @@ function inserted(el, binding) {
 }
 
 function unbind(el, binding) {
+  if (!IS_BROWSER) return;
   elementResizeEvent.unbind(el, el._onResize);
   // window.removeEventListener('resize', el._onResize);
 }
