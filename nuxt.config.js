@@ -4,7 +4,6 @@ const sassSettings        = config.path.require('config/css/sass-settings');
 const babelLoaderSettings = config.path.require('config/webpack/babel-loader-settings');
 const postcssConfig       = config.path.require('config/css/postcss.config');
 const routesResolver      = config.path.require('lib/dd-vue-routes-resolver');
-const iconList            = config.path.require('config/svg/svg-icon-list');
 
 
 
@@ -127,7 +126,6 @@ module.exports = {
   // },
 
   build: {
-    // これやると相対パス解決できない
     extractCSS: true,
     babel: babelLoaderSettings.query,
 
@@ -138,7 +136,6 @@ module.exports = {
         'process.env.NODE_ENV': `'${config.env}'`,
         'IS_PRODUCTION'       : config.isProduction,
         'IS_DEVELOP'          : config.isDevelop,
-        '$docs.icons'         : JSON.stringify(iconList),
       }),
     ],
 

@@ -1,6 +1,7 @@
 const config      = require('app-root-path').require('/config');
 const gulp        = require('gulp');
 const path        = require('path');
+const fs          = require('fs');
 const plumber     = require('gulp-plumber');
 const svgmin      = require('gulp-svgmin');
 const iconfontCss = require('gulp-iconfont-css');
@@ -14,6 +15,36 @@ function svgIconTask(task, params = {}) {
   return new Promise((resolve, reject) => {
     const DEST_PATH          = path.join(params.dest, params.fontName);
     const FONT_RELATIVE_PATH = path.relative(params.cssEntryPath, DEST_PATH);
+
+    const checkMap = {icon: false, info: false};
+    const check = type => {
+      checkMap[type] = true;
+      if (checkMap.icon && checkMap.info) {
+        return onSuccess();
+      }
+    }
+
+    const onSuccess = () => {
+      if (task.notify) {
+        new Notifier('success', {
+          subtitle: `${task.description}`,
+          message : '完了しました。',
+        });
+      }
+      console.log(chalk.green(`${task.description} 完了しました。`));
+      resolve();
+    }
+
+    const onError = err => {
+      if (task.notify) {
+        new Notifier('danger', {
+          subtitle: `${task.description}`,
+          message : '失敗しました。',
+        });
+      }
+      console.log(chalk.red(`${task.description} 失敗しました。`));
+      reject(err);
+    }
 
     const stream = gulp.src(path.join(params.src, '*.svg'))
       .pipe(svgmin())
@@ -33,25 +64,24 @@ function svgIconTask(task, params = {}) {
         centerHorizontally: params.centerHorizontally === undefined ? true : params.centerHorizontally,
         descent           : params.descent || 0,
       }))
-      .on('error', function() {
-        if (task.notify) {
-          new Notifier('danger', {
-            subtitle: `${task.description}`,
-            message : '失敗しました。',
-          });
-        }
-        console.log(chalk.red(`${task.description} 失敗しました。`));
+      .on('glyphs', function(glyphs, options) {
+        const info = {
+          fontName: params.fontName,
+          cssClass: params.fontName,
+          glyphs,
+        };
+
+        fs.writeFile(path.join(DEST_PATH, `${params.fontName}.json`), JSON.stringify(info), err => {
+          if (err) return onError(err);
+          return check('info');
+        });
+      })
+      .on('error', function(err) {
+        return onError(err);
       })
       .pipe(gulp.dest(DEST_PATH))
       .on('end', function() {
-        if (task.notify) {
-          new Notifier('success', {
-            subtitle: `${task.description}`,
-            message : '完了しました。',
-          });
-        }
-        console.log(chalk.green(`${task.description} 完了しました。`));
-        resolve();
+        return check('icon');
       });
   });
 }

@@ -1,0 +1,6 @@
+{
+  "fontName": "<%= fontName %>",
+  "fontPath": "<%= fontPath %>",
+  "cssClass": "<%= cssClass %>",
+  "icons": <%= JSON.stringify(glyphs.map(glyph => { return {name: glyph.fileName, codePoint: glyph.codePoint} })) %>
+}
