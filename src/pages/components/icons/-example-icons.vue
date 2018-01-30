@@ -25,6 +25,8 @@
   }
 
   &__node {
+    transition: transform get-transition(primary);
+
   }
 
   &__label {
@@ -42,6 +44,11 @@
     .my-icon__node {
       transform: scale(1.8);
     }
+  }
+
+  &__copy {
+    height: 1px;
+    overflow: hidden;
   }
 
   &--copied {
@@ -95,7 +102,7 @@
       </div>
 
       <vt@container grid-list-md>
-        <vt@layout row wrap justify-start>
+        <vt@layout row wrap justify-center>
           <vt@flex
             v-for="icon in computedIcons"
             :key="icon.name"
@@ -109,7 +116,8 @@
               @keyup.enter="copy(icon)"
             >
               <div class="my-icon__icon"><vt@icon class="my-icon__node">{{icon.name}}</vt@icon></div>
-              <div class="my-icon__label" :ref="`copy-${icon.name}`">{{icon.name}}</div>
+              <div class="my-icon__label">{{icon.label}}</div>
+              <div class="my-icon__copy" :ref="`copy-${icon.name}`">{{icon.name}}</div>
               <div class="my-copied">Copied</div>
             </div>
           </vt@flex>
@@ -120,18 +128,7 @@
 </template>
 
 <script>
-import fontInfo from '~/assets/css/.tmp/dd-icon/dd-icon.json';
-
-
-
-const icons = fontInfo.glyphs.map(glyph => glyph.name);
-const tags = [];
-icons.forEach(icon => {
-  const tmp = icon.split('-');
-  tmp.forEach(tag => {
-    if (tag.length > 2 && !tags.includes(tag)) tags.push(tag);
-  });
-});
+import iconInfo from '~/constants/icon';
 
 
 
@@ -139,11 +136,12 @@ export default {
   data() {
     return {
       search: null,
-      icons: icons.map(icon => { return {name: icon, copied: false} }),
+      icons: iconInfo.icons.map(icon => { return {name: icon.name, label: icon.label, copied: false} }),
+      _copied: null,
     }
   },
   computed: {
-    tags() { return tags },
+    tags() { return iconInfo.tags },
     computedIcons() {
       if (!this.search) return this.icons;
       return this.icons.filter(icon => icon.name.includes(this.search));
@@ -151,7 +149,7 @@ export default {
   },
   methods: {
     copy(icon, e) {
-      this.clearTimer(icon);
+      this.clearTimer();
 
       try {
         const $copy = this.$refs[`copy-${icon.name}`][0];
@@ -163,18 +161,28 @@ export default {
         selection.addRange(range);
         document.execCommand('copy');
 
-        icon.copied = setTimeout(() => {
-          this.clearTimer(icon);
+        icon.copied = true;
+        this._copied = {
+          cb: () => {
+            icon.copied = false;
+          },
+        };
+        this._copied.timerId = setTimeout(() => {
+          this._copied.cb();
         }, 2000);
       } catch(e) {
       }
     },
-    clearTimer(icon) {
-      if (typeof icon.copied !== 'boolean') {
-        clearTimeout(icon.copied);
-        icon.copied = false;
+    clearTimer() {
+      if (this._copied) {
+        clearTimeout(this._copied.timerId);
+        this._copied.cb();
+        this._copied = null;
       }
     },
+  },
+  beforeDestroy() {
+    this.clearTimer();
   },
 }
 </script>

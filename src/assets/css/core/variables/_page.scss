@@ -17,6 +17,7 @@ $page-max-widths: ();
 $page: ();
 $page: map-set($page, horizontal-padding, 20px); // 16だとiOSのセーフティーmarginに触りやすくなってしまう
 $page: map-set($page, max-widths, $page-max-widths);
+$page: map-set($page, drawer-transition, get-duration(slowly) get-easing(drawer));
 
 @function get-page-max-width($key) {
   @return map-get($page-max-widths, $key);

@@ -5,7 +5,6 @@
 $basic-direction-keys: all, vertical, horizontal, top, right, bottom, left;
 
 @import "./theme";
-@import "./page";
 @import "./color";
 @import "./duration";
 @import "./easing";
@@ -36,3 +35,4 @@ $basic-direction-keys: all, vertical, horizontal, top, right, bottom, left;
 @import "./avatar";
 @import "./card";
 @import "./chip";
+@import "./page";

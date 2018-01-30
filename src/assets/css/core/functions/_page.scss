@@ -8,6 +8,10 @@
 }
 
 @mixin page-pull() {
+  transition:
+    width get-page(drawer-transition),
+    margin get-page(drawer-transition);
+
   margin-left: -get-page(horizontal-padding);
   margin-right: -get-page(horizontal-padding);
 

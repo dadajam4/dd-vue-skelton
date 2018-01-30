@@ -1,0 +1,16 @@
+export default {name: 'Gender', icons: [
+  "genderless",
+  "intersex (alias)",
+  "mars",
+  "mars-double",
+  "mars-stroke",
+  "mars-stroke-h",
+  "mars-stroke-v",
+  "mercury",
+  "neuter",
+  "transgender",
+  "transgender-alt",
+  "venus",
+  "venus-double",
+  "venus-mars",
+]}
