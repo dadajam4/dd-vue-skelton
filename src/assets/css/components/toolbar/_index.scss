@@ -13,40 +13,79 @@
     flex-shrink: 0;
   }
 
+  &__body {
+    display: flex;
+    align-items: center;
+    min-height: get-toolbar(row-height);
+
+    & > * {
+      margin: {
+        left: get-toolbar(content-margin);
+        right: get-toolbar(content-margin);
+      }
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      width: 0;
+      flex-basis: 0;
+      height: get-toolbar(row-height);
+    }
+  }
+
+  // &__content {
+  //   display: flex;
+  //   align-items: center;
+  //   height: get-toolbar(row-height);
+
+  //   margin: {
+  //     left: get-toolbar(content-margin);
+  //     right: get-toolbar(content-margin);
+  //   }
+  // }
+
   &__title {
+    display: block;
+    height: auto;
     margin-left: get-page(horizontal-padding);
     @include font-weight(regular);
     @include font-size(lg);
     @include ellipsis;
+
+    &:not(:first-child) {
+      margin-left: get-toolbar(content-margin);
+    }
+    // .#{$css-prefix}toolbar__content + & {
+    //   margin-left: get-toolbar(content-margin);
+    // }
   }
 
-  &__content {
+  &__items {
     display: flex;
     align-items: center;
-    height: $toolbar-row-height;
+    height: get-toolbar(row-height);
 
-    & > * {
-      &:first-child:not(.#{$css-prefix}toolbar__title) {
-        margin-left: get-page(horizontal-padding) / 2;
-      }
-
-      &:last-child {
-        margin-right: get-page(horizontal-padding) / 2;
-      }
+    & > .#{$css-prefix}btn,
+    & > .#{$css-prefix}menu .#{$css-prefix}menu__activator .#{$css-prefix}btn {
+      height: 100%;
+      margin: 0;
+      border-radius: 0;
     }
   }
 
-  &__trigger {
-    display: inline-block;
-    vertical-align: middle;
-    color: inherit;
-    padding: 0 .6em;
-    border-bottom: solid 2px transparent;
+  // &__trigger {
+  //   display: inline-block;
+  //   vertical-align: middle;
+  //   color: inherit;
+  //   padding: 0 .6em;
+  //   border-bottom: solid 2px transparent;
 
-    &--active,
-    &:hover,
-    &:focus {
-      @include theme-color(border-color, context-primary);
-    }
-  }
+  //   &--active,
+  //   &:hover,
+  //   &:focus {
+  //     @include theme-color(border-color, context-primary);
+  //   }
+  // }
 }

@@ -3,3 +3,11 @@
 //
 
 $toolbar-row-height: $toolbar-row-height * 1px;
+
+@function get-toolbar($key) {
+  @return map-get($toolbar, $key);
+}
+
+$toolbar: ();
+$toolbar: map-set($toolbar, content-margin, get-space(xs));
+$toolbar: map-set($toolbar, row-height, $toolbar-row-height);

@@ -88,6 +88,7 @@
   // }
 
   &__close {
+    @include btn-style-reset($display: flex);
     align-items: center;
     color: inherit;
     cursor: pointer;

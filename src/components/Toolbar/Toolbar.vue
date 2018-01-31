@@ -1,13 +1,3 @@
-<template>
-  <nav :class="classes">
-    <div :class="contentClasses">
-      <slot />
-    </div>
-  </nav>
-</template>
-
-
-
 <script>
 import Colorable from '~/mixins/color';
 
@@ -18,6 +8,10 @@ export default {
   mixins: [Colorable],
 
   props: {
+    tag: {
+      type: String,
+      default: 'nav',
+    },
   },
 
 
@@ -29,14 +23,26 @@ export default {
       });
     },
 
-    contentClasses() {
+    bodyClasses() {
       return {
-        'vc@toolbar__content': true,
+        'vc@toolbar__body': true,
       }
     },
   },
 
   methods: {
+  },
+
+  render(h) {
+    const children = this.$slots.default;
+    // children.forEach(child => {
+    //   child.data = child.data || {};
+    //   child.data.staticClass = ((child.data.staticClass || '') + ' vc@toolbar__content').trim();
+    // });
+
+    return h(this.tag, {class: this.classes}, [
+      h('div', {class: this.bodyClasses}, children),
+    ]);
   },
 }
 </script>
