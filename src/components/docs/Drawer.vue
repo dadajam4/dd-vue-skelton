@@ -10,7 +10,6 @@
     font-weight: bold;
     display: flex;
     padding-left: 20px;
-    height: $toolbar-row-height;
     align-items: center;
     transition: get-transition(primary);
 
@@ -37,7 +36,7 @@
 <template>
   <vt@app-drawer right static="desktop" v-model="isActive" ref="drawer">
     <div class="my-logo">
-      <router-link :to="{name: 'index'}">
+      <router-link class="vc@height--app-header" :to="{name: 'index'}">
         <img class="vc@m-r--xs" src="img/logo/dd.svg" alt="" width="24">
         DD Vue Skelton
       </router-link>

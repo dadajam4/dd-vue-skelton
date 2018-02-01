@@ -15,14 +15,11 @@ export default {
     rows: {
       default: 5,
     },
-
     type: {
       type: String,
       default: 'text',
     },
-
     counter: [Boolean, Number, String],
-
     suggest: {
       type: Array,
       default: () => [],
@@ -156,6 +153,8 @@ export default {
       const nodeOptions = {
         class: {
           'vc@field__node': true,
+          'vc@field__node--sm': this.sm,
+          'vc@field__node--lg': this.lg,
         },
         domProps: {
           autofocus: this.autofocus,

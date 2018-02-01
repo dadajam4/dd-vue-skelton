@@ -64,4 +64,24 @@
     @include theme-color(border-color, context-error, true);
     @include theme-color(color, text-error);
   }
+
+  &--flat {
+    .#{$css-prefix}input-group__input {
+      border-color: transparent !important;
+      border-radius: 0;
+    }
+
+    .#{$css-prefix}field__node {
+      border-bottom: solid get-field(border-width);
+      @include theme-color(border-color, form-divider);
+    }
+
+    &.#{$css-prefix}input-group--focused .#{$css-prefix}field__node {
+      @include field-input-focused;
+    }
+
+    &.#{$css-prefix}input-group--error .#{$css-prefix}field__node {
+      @include theme-color(border-color, context-error, true);
+    }
+  }
 }

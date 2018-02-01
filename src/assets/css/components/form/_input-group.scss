@@ -102,15 +102,19 @@
     align-items: center;
     display: inline-flex;
     transition: get-duration(promptly);
+    padding: {
+      left: get-field(padding-horizontal);
+      right: get-field(padding-horizontal);
+    }
   }
 
-  &__left-icon {
-    padding-left: get-field(padding-horizontal);
-  }
+  // &__left-icon {
+  //   padding-left: get-field(padding-horizontal);
+  // }
 
-  &__right-icon {
-    padding-right: get-field(padding-horizontal);
-  }
+  // &__right-icon {
+  //   padding-right: get-field(padding-horizontal);
+  // }
 
   &--focused {
     #{$my}__label,

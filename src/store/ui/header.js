@@ -1,16 +1,8 @@
-import uiSettings from '~~/config/css/ui-settings';
-
-
-
-const HEADER_HEIGHT = uiSettings['toolbar-row-height'];
-
-
-
 export default {
   namespaced: true,
 
   state: {
-    height: HEADER_HEIGHT,
+    height: null,
     use: false,
     fixed: false,
     hidden: false,
@@ -28,6 +20,9 @@ export default {
   mutations: {
     set(state) {
       state.use = true;
+    },
+    setHeight(state, val) {
+      state.height = val;
     },
     setFixed(state, val) {
       state.fixed = val;

@@ -49,6 +49,7 @@
     padding: 0 get-button(padding-horizontal);
     white-space: nowrap;
     transition: get-transition(primary);
+    user-select: none;
 
     &::first-letter {
       text-transform: uppercase;

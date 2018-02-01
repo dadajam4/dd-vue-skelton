@@ -2,12 +2,13 @@
 // Toolbar
 //
 
-$toolbar-row-height: $toolbar-row-height * 1px;
-
 @function get-toolbar($key) {
   @return map-get($toolbar, $key);
 }
 
 $toolbar: ();
 $toolbar: map-set($toolbar, content-margin, get-space(xs));
-$toolbar: map-set($toolbar, row-height, $toolbar-row-height);
+$toolbar: map-set($toolbar, height-mobile-landscape, $toolbar-height-mobile-landscape * 1px);
+$toolbar: map-set($toolbar, height-mobile, $toolbar-height-mobile * 1px);
+$toolbar: map-set($toolbar, height-desktop, $toolbar-height-desktop * 1px);
+$toolbar: map-set($toolbar, height-dense, $toolbar-height-dense * 1px);

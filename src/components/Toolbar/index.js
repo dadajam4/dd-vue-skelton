@@ -4,6 +4,7 @@ import {
 
 import Toolbar from './Toolbar';
 import ToolbarSideIcon from './ToolbarSideIcon';
+import ToolbarExtension from './ToolbarExtension';
 
 
 
@@ -17,4 +18,5 @@ export default {
   ToolbarSideIcon,
   ToolbarTitle,
   ToolbarItems,
+  ToolbarExtension,
 }

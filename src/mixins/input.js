@@ -157,6 +157,7 @@ export default {
         },
         on: {
           click: e => {
+            this.focus();
             if (!callback) return;
 
             e.stopPropagation();

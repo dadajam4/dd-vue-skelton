@@ -28,7 +28,7 @@ export default {
     classes() {
       return this.addColorClasses({
         'vc@card': true,
-        // 'vc@card--flat': this.flat,
+        'vc@card--flat': this.flat,
         // 'vc@card--horizontal': this.horizontal,
         // 'vc@card--hover': this.hover,
         // 'vc@card--raised': this.raised,

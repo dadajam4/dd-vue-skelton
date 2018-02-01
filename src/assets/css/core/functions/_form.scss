@@ -18,6 +18,11 @@
   margin: 0;
   padding: 0 get-field(padding-horizontal);
   min-height: get-field(height);
+
+  &--sm { min-height: get-field(height-sm); }
+  &--md { min-height: get-field(height); }
+  &--lg { min-height: get-field(height-lg); }
+
   @include theme-color(caret-color, context-primary);
   @include ellipsis;
   transition: get-duration(promptly);

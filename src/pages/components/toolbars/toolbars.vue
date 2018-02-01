@@ -9,7 +9,14 @@
     </vt@page-intro>
 
     <dd-example is="default" />
+    <dd-example is="scroll" />
     <dd-example is="app-bar" />
+    <dd-example is="extension" />
+    <dd-example is="menu" />
+    <dd-example is="search" />
+    <dd-example is="dense" />
+    <dd-example is="floating" />
+
   </vt@page>
 </template>
 

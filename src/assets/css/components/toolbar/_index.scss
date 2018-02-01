@@ -8,15 +8,36 @@
   transition: padding get-duration(slowly) get-easing(drawer);
   @include elevation(4);
 
+  &--floating {
+    display: inline-flex;
+    margin: 16px;
+    width: auto;
+  }
+
+  .#{$css-prefix}btn,
+  &__side-icon {
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
+  }
+
   .#{$css-prefix}btn--icon,
   &__side-icon {
     flex-shrink: 0;
   }
 
-  &__body {
-    display: flex;
+  &:not(&--scroll) {
+    overflow-x: hidden;
+  }
+
+  &__body,
+  &__extension {
+    display: inline-flex;
+    vertical-align: bottom;
     align-items: center;
-    min-height: get-toolbar(row-height);
+    min-width: 100%;
+    overflow-y: hidden;
 
     & > * {
       margin: {
@@ -31,20 +52,10 @@
       display: block;
       width: 0;
       flex-basis: 0;
-      height: get-toolbar(row-height);
+      height: inherit;
+      min-height: inherit;
     }
   }
-
-  // &__content {
-  //   display: flex;
-  //   align-items: center;
-  //   height: get-toolbar(row-height);
-
-  //   margin: {
-  //     left: get-toolbar(content-margin);
-  //     right: get-toolbar(content-margin);
-  //   }
-  // }
 
   &__title {
     display: block;
@@ -53,19 +64,22 @@
     @include font-weight(regular);
     @include font-size(lg);
     @include ellipsis;
+    min-width: 3em;
 
     &:not(:first-child) {
       margin-left: get-toolbar(content-margin);
     }
-    // .#{$css-prefix}toolbar__content + & {
-    //   margin-left: get-toolbar(content-margin);
-    // }
+
+    .#{$css-prefix}toolbar__extension & {
+      &:first-child {
+        margin-left: 70px;
+      }
+    }
   }
 
   &__items {
     display: flex;
     align-items: center;
-    height: get-toolbar(row-height);
 
     & > .#{$css-prefix}btn,
     & > .#{$css-prefix}menu .#{$css-prefix}menu__activator .#{$css-prefix}btn {
@@ -74,6 +88,25 @@
       border-radius: 0;
     }
   }
+
+  // @mixin set-height($key: hoge) {
+  //   .#{$css-prefix}toolbar__body,
+  //   .#{$css-prefix}toolbar__extension {
+  //     min-height: get-toolbar(row-height);
+
+  //     &:before,
+  //     &:after {
+  //       height: get-toolbar(row-height);
+  //     }
+  //   }
+
+  //   .#{$css-prefix}__items {
+  //     height: get-toolbar(row-height);
+  //   }
+  // }
+
+  // @include set-height;
+  // &--dense {}
 
   // &__trigger {
   //   display: inline-block;

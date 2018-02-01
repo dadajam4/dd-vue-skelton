@@ -65,4 +65,12 @@
       }
     }
   }
+
+  &--horizontal &__context {
+    overflow-y: hidden;
+  }
+
+  &--vertical &__context {
+    overflow-x: hidden;
+  }
 }

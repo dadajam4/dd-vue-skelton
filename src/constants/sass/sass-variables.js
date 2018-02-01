@@ -26,7 +26,7 @@ for (let key in mediaQuerySettings.groups) {
         target    = group.min ? 'min' : 'max',
         keyValue  = group[target],
         value     = sassVariables['media-query-breakpoints'][keyValue][target],
-        condition = `(${target}-width: ${value}px)`;
+        condition = `(${target}-width: ${value}px)` + (group.orientation ? ` and (orientation: ${group.orientation})` : '');
 
   sassVariables['media-query-groups'][key] = condition;
 }

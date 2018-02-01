@@ -10,8 +10,10 @@ export default function factory(type) {
       autofocus: Boolean,
       prefix: String,
       suffix: String,
-      // sm: Boolean,
-      // md: Boolean,
+      flat: Boolean,
+      sm: Boolean,
+      md: Boolean,
+      lg: Boolean,
     },
 
     data() {
@@ -30,8 +32,10 @@ export default function factory(type) {
           'vc@field--prefix'   : this.prefix,
           'vc@field--focused'  : this.focused,
           'vc@field--suggested': this.suggested,
-          // 'vc@field--sm': this.sm,
-          // 'vc@field--lg': this.lg,
+          'vc@field--flat'     : this.flat,
+          'vc@field--sm'       : this.sm,
+          'vc@field--md'       : this.md,
+          'vc@field--lg'       : this.lg,
         }
       },
 

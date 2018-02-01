@@ -42,9 +42,9 @@
     transition-property: padding-right;
   }
 
-  &--header-fixed {
-    padding-top: get-toolbar(row-height);
-  }
+  // &--header-fixed {
+  //   padding-top: get-toolbar(row-height);
+  // }
 
   &--drawer-left-static {
     padding-left: $navigation-drawer-width;
