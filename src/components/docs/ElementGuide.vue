@@ -79,14 +79,16 @@ export default {
 
   methods: {
     copy() {
-      const range = document.createRange();
-      range.selectNode(this.$refs.code);
+      try {
+        const range = document.createRange();
+        range.selectNode(this.$refs.code);
 
-      const selection = getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
+        const selection = getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
 
-      document.execCommand('copy');
+        document.execCommand('copy');
+      } catch(e) {}
 
       // alert('コピーしました');
       // selection.removeAllRanges();

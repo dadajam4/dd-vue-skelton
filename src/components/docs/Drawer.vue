@@ -34,7 +34,7 @@
 </style>
 
 <template>
-  <vt@app-drawer right static="desktop" v-model="isActive" ref="drawer">
+  <vt@app-drawer right static="xl" v-model="isActive" ref="drawer">
     <div class="my-logo">
       <router-link class="vc@height--app-header" :to="{name: 'index'}">
         <img class="vc@m-r--xs" src="img/logo/dd.svg" alt="" width="24">
@@ -54,8 +54,7 @@
           <vt@list-tile-content>
             <vt@list-tile-title class="my-parent-name">{{parent.label}}</vt@list-tile-title>
           </vt@list-tile-content>
-          <vt@list-tile-action>
-          </vt@list-tile-action>
+          <vt@list-tile-action />
         </vt@list-tile>
 
         <vt@list-group

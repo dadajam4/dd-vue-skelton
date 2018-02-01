@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <vt@app-header fixed :hidden="hidden">
+  <vt@app-header fixed scroll-off :hidden="hidden">
     <vt@toolbar-title>{{title}}</vt@toolbar-title>
     <vt@spacer />
 <!--

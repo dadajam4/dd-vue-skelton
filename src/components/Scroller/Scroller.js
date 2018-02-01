@@ -4,6 +4,12 @@ import BackgroundColorable from '~/mixins/color/backgroundColorable';
 
 
 
+const getSanitizedPropSize = size => {
+  return isNaN(size) ? size : `${size}px`;
+}
+
+
+
 export default {
   name: 'vt@scroller',
 
@@ -36,6 +42,14 @@ export default {
       type: [String, Number],
       default: null,
     },
+    maxWidth: {
+      type: [String, Number],
+      default: null,
+    },
+    maxHeight: {
+      type: [String, Number],
+      default: null,
+    },
     judgeAmmount: {
       type: [String, Number],
       default: 10,
@@ -60,8 +74,9 @@ export default {
     },
     styles() {
       const styles = {};
-      if (this.width  !== null) styles.width  = this.width  + (isNaN(this.width ) ? '' : 'px');
-      if (this.height !== null) styles.height = this.height + (isNaN(this.height) ? '' : 'px');
+      ['width', 'height', 'maxWidth', 'maxHeight'].forEach(prop => {
+        styles[prop] = getSanitizedPropSize(this[prop]);
+      });
       return styles;
     },
     scrollableWidth() { return this.scrollWidth - this.containerWidth },

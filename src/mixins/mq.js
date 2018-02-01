@@ -56,7 +56,7 @@ export default {
   created() {
     // this.startWatchMediaQuery();
 
-    if (process.browser) {
+    if (typeof window !== 'undefined') {
       this.$store.dispatch('mq/update');
     }
   },

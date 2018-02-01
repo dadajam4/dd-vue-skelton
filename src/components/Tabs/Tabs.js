@@ -77,6 +77,7 @@ export default {
 
       const $nowContent = this.getContentByIndex(now);
       const $nowTrigger = this.getTriggerByIndex(now);
+
       $nowContent.toggle(true, hasTransition, isReverse);
       $nowTrigger.toggle(true, hasTransition, isReverse);
 

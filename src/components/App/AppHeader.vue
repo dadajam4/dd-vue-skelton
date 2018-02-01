@@ -8,12 +8,25 @@
 
 
 <script>
+import AppScrollDetect from '~/mixins/app-scroll-detect';
+
+
+
+const SCROLL_JUDGE_AMMOUNT = 64;
+
+
+
 export default {
   name: 'vt@app-header',
+
+  mixins: [AppScrollDetect],
 
   props: {
     fixed: Boolean,
     hidden: Boolean,
+    scrollOff: {
+      type: [Boolean, Object],
+    },
   },
 
   data() {
@@ -23,17 +36,46 @@ export default {
   },
 
   computed: {
+    scrollOffParams() {
+      const params = {enabled: false, threshold: 'auto'}
+      const scrollOff = this.scrollOff;
+      if (!scrollOff) return params;
+      params.enabled = scrollOff.enabled || true;
+      if (scrollOff.threshold) params.threshold = scrollOff.threshold;
+      return params;
+    },
     classes() {
       return {
         'vc@app-header': true,
         'vc@app-header--fixed': this.fixed,
-        'vc@app-header--hidden': this.hidden,
+        'vc@app-header--hidden': this.isHidden,
       }
     },
     styles() {
-      if (this.hidden && this.innerHeight) {
+      if (this.isHidden && this.innerHeight) {
         return {top: `-${this.innerHeight}px`}
       }
+    },
+    isHidden() { return this.hidden || this.isScrollOffHidden },
+    isScrollOffHidden() {
+      const params = this.scrollOffParams;
+      if (
+        !params.enabled
+        || (!this.lastVerticalIsBottom && this.appScrollLastAmmountTop <= -SCROLL_JUDGE_AMMOUNT)
+      ) return false;
+      let threshold;
+      if (params.threshold === 'auto') {
+        threshold = this.autoScrollOffThreshold;
+      } else if (typeof params.threshold === 'function') {
+        threshold = params.threshold({scrollTop: this.scrollTop, height: this.innerHeight});
+      } else {
+        threshold = params.threshold;
+      }
+      return this.appScrollTop >= threshold;
+    },
+    autoScrollOffThreshold() {
+      // return this.innerHeight
+      return 300;
     },
     customStyles() {
       const height = this.innerHeight;
@@ -47,7 +89,7 @@ export default {
 
   watch: {
     fixed() { this.$store.commit('ui/header/setFixed', this.fixed) },
-    hidden() { this.$store.commit('ui/header/setHidden', this.hidden) },
+    isHidden() { this.$store.commit('ui/header/setHidden', this.isHidden) },
     innerHeight(val) {
       this.$store.commit('ui/header/setHeight', val);
     },
@@ -62,7 +104,7 @@ export default {
   created() {
     this.$store.commit('ui/header/set');
     this.$store.commit('ui/header/setFixed', this.fixed);
-    this.$store.commit('ui/header/setHidden', this.hidden);
+    this.$store.commit('ui/header/setHidden', this.isHidden);
   },
 
   beforeDestroy() {
