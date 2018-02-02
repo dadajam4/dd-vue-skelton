@@ -59,6 +59,9 @@ function path2relativeTask(task, params = {}) {
           const baseURIGetter = `(document.baseURI || document.getElementsByTagName('base')[0].href)`;
           doc = doc.replace(/"\/\$\$base\$\$"/g, `${baseURIGetter}.replace(new RegExp('^' + location.protocol + '//' + location.host), '')`);
           doc = doc.replace(/"\/\$\$base\$\$\//g, `${baseURIGetter} + "`);
+
+          // ui custom
+          doc = doc.replace(/img:"\//g, `img:${baseURIGetter}+"`);
         }
 
         fs.writeFileSync(row.filepath, doc);
