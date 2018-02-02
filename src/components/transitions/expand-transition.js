@@ -28,8 +28,8 @@ export default function (expandedParentClass = '') {
       // Set height before we transition to 0
       el.style.overflow = 'hidden'
       el.style.height = `${el.offsetHeight}px`
-      el.style.paddingTop = '0'
-      el.style.paddingBottom = '0'
+      // el.style.paddingTop = '0'
+      // el.style.paddingBottom = '0'
 
       setTimeout(() => (el.style.height = 0), 100)
     },

@@ -13,7 +13,8 @@ export default {
 
   props: {
     rows: {
-      default: 5,
+      type: [String, Number],
+      // default: 5,
     },
     type: {
       type: String,
@@ -124,7 +125,7 @@ export default {
     genSuggest() {
       const $suggest = this.$createElement('transition', {
         attrs: {
-          name: 'vc@transition-slide-y',
+          name: 'vc@slide-y-transition',
         }
       }, [this.isShowSuggest ? this.$createElement('div', {
         class: `vc@text-field__suggest`,
@@ -153,8 +154,10 @@ export default {
       const nodeOptions = {
         class: {
           'vc@field__node': true,
-          'vc@field__node--sm': this.sm,
-          'vc@field__node--lg': this.lg,
+          'vc@field__node--sm': !this.rows && this.sm,
+          'vc@field__node--md': !this.rows && this.md,
+          'vc@field__node--lg': !this.rows && this.lg,
+          // 'vc@field__node--empty': !this.isDirty,
         },
         domProps: {
           autofocus: this.autofocus,

@@ -12,6 +12,9 @@ export default {
   props: {
     dismissible: Boolean,
     icon: String,
+    value: {
+      default: true,
+    },
   },
 
   data: () => ({

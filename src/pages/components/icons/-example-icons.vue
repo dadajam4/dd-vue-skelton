@@ -13,13 +13,13 @@
     <div>
       <div>
 <!--
-          :suggest="tags"
 -->
         <vt@text-field
           label="Search"
           type="search"
           left-icon="search"
           v-model="search"
+          :suggest="tags"
         ></vt@text-field>
       </div>
 

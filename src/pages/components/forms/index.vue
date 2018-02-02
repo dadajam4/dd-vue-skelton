@@ -8,7 +8,6 @@
       Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span>
     </vt@page-intro>
 
-    <dd-example is="text-fields" />
     <dd-example is="checkboxes" />
     <dd-example is="radios" />
     <dd-example is="selects" />

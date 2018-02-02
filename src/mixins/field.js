@@ -125,6 +125,11 @@ export default function factory(type) {
       genFix(type) {
         return this.$createElement('span', {
           class: `vc@field__${type}`,
+          on: {
+            click: e => {
+              this.focus(e);
+            },
+          },
         }, this[type])
       },
     },

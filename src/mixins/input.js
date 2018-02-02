@@ -6,16 +6,12 @@ export default {
   mixins: [Validatable],
 
   props: {
-    // appendIcon: String,
-    // appendIconCb: Function,
     disabled: Boolean,
     hint: String,
     // hideDetails: Boolean,
     label: String,
     persistentHint: Boolean,
     placeholder: String,
-    // prependIcon: String,
-    // prependIconCb: Function,
     readonly: Boolean,
     required: Boolean,
     tabindex: {
@@ -50,7 +46,7 @@ export default {
         'vc@input-group': true,
         // 'vc@input-group--async-loading': this.loading !== false,
         'vc@input-group--focused': this.isFocused,
-        // 'vc@input-group--dirty': this.isDirty,
+        'vc@input-group--dirty': this.isDirty,
         'vc@input-group--tab-focused': this.tabFocused,
         'vc@input-group--disabled': this.disabled,
         'vc@input-group--error': this.hasError,
@@ -154,14 +150,17 @@ export default {
         },
         props: {
           disabled: this.disabled,
+          sm: this.sm,
+          md: this.md,
+          lg: this.lg,
         },
         on: {
           click: e => {
-            this.focus();
+            this.focus(e);
             if (!callback) return;
 
             e.stopPropagation();
-            callback();
+            callback(e);
           }
         }
       }, icon);
@@ -254,7 +253,11 @@ export default {
       ['left', 'right'].forEach(type => {
         if (this.$slots[`${type}Btn`]) {
           const $btn = this.$slots[`${type}Btn`][0];
-          $btn.componentOptions.propsData[type] = true;
+          const propsData = $btn.componentOptions.propsData;
+          propsData[type] = true;
+          propsData.sm = this.sm;
+          propsData.md = this.md;
+          propsData.lg = this.lg;
           $inputWrapper.children[type === 'left' ? 'unshift' : 'push']($btn);
         }
       });

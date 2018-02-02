@@ -14,6 +14,10 @@
     transition: get-duration(promptly);
     @include theme-color(color, text-secondary);
     padding-bottom: .3em;
+
+    .#{$css-prefix}field--sm & { @include font-size(xxs); }
+    .#{$css-prefix}field--md & { @include font-size(xs); }
+    .#{$css-prefix}field--lg & { @include font-size(sm); }
   }
 
   &__selection-label {
@@ -81,6 +85,10 @@
     width: 100%;
     padding-top: 4px;
     @include font-size(xs);
+
+    .#{$css-prefix}field--sm & { @include font-size(xxs); padding-top: 2px; }
+    .#{$css-prefix}field--md & { @include font-size(xs); padding-top: 4px; }
+    .#{$css-prefix}field--lg & { @include font-size(sm); padding-top: 6px; }
 
     .#{$css-prefix}list__tile__action & {
       display: none;

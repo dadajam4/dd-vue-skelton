@@ -11,6 +11,10 @@
     vertical-align: bottom;
   }
 
+  &--sm { @include font-size(sm); }
+  &--md { @include font-size(md); }
+  &--lg { @include font-size(lg); }
+
   &__node {
     @include field-node-base;
   }
@@ -67,7 +71,8 @@
 
   &--flat {
     .#{$css-prefix}input-group__input {
-      border-color: transparent !important;
+      // border-color: transparent !important;
+      border: 0 !important;
       border-radius: 0;
     }
 
