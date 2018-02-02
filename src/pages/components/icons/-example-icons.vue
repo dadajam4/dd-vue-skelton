@@ -12,8 +12,6 @@
   <docs-example :source="false">
     <div>
       <div>
-<!--
--->
         <vt@text-field
           label="Search"
           type="search"
