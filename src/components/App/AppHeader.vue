@@ -52,6 +52,9 @@ export default {
       }
     },
     styles() {
+      // if (this.innerHeight === null) {
+      //   return {top: `-64px`}
+      // }
       if (this.isHidden && this.innerHeight) {
         return {top: `-${this.innerHeight}px`}
       }

@@ -8,6 +8,8 @@
       ほげほげ
     </vt@page-intro>
 
+    <dd-example is="sizing" />
+    <dd-example is="rotation" />
     <dd-example is="icons" />
   </vt@page>
 </template>
