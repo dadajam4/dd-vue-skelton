@@ -1,0 +1,41 @@
+//
+// Radio
+//
+
+.#{$css-prefix}radio-element {
+  @include checkable-base;
+
+  &__body {
+    border-radius: 50%;
+  }
+
+  &__inner {
+    $my-offset: 3px;
+    top: $my-offset;
+    bottom: $my-offset;
+    left: $my-offset;
+    right: $my-offset;
+    border-radius: 50%;
+    background: currentColor;
+    transform-origin: center center;
+    transition: get-duration(immediately);
+    transform: scale(0);
+  }
+
+  &--checked &__inner {
+    transform: scale(1);
+  }
+
+  // &--radio#{$my}--indeterminate:after {
+  //   $my-offset: 3px;
+  //   content: "";
+  //   display: block;
+  //   position: absolute;
+  //   left: $my-offset;
+  //   right: $my-offset;
+  //   top: calc(50% - 1px);
+  //   bottom: calc(50% - 1px);
+  //   background: currentColor;
+  //   border-radius: 2px;
+  // }
+}

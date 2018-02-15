@@ -58,29 +58,24 @@
     }
   }
 
-  &-group {
+  // &-group {
+  //   .#{$css-prefix}input-group__input-wrapper {
+  //     & > .#{$css-prefix}input-group__input {
+  //       flex-direction: column;
+  //     }
+  //   }
 
-    &--column {
-      .#{$css-prefix}input-group__input-wrapper {
-        & > .#{$css-prefix}input-group__input {
-          flex-direction: column;
-        }
-      }
-    }
+  //   &--inline {
+  //     .#{$css-prefix}input-group__input-wrapper {
+  //       & > .#{$css-prefix}input-group__input {
+  //         flex-direction: row;
+  //         flex-wrap: wrap;
+  //       }
+  //     }
 
-    &--row {
-      .#{$css-prefix}input-group__input-wrapper {
-        & > .#{$css-prefix}input-group__input {
-          flex-wrap: wrap;
-          // flex-basis: 100%;
-          // flex-direction: column;
-        }
-      }
-
-      #{$my} {
-        margin-right: 3rem;
-        // flex: 1 1;
-      }
-    }
-  }
+  //     #{$my} {
+  //       margin-right: 3rem;
+  //     }
+  //   }
+  // }
 }

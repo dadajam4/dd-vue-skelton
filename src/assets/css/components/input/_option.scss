@@ -1,0 +1,26 @@
+
+//
+// Option
+//
+.#{$css-prefix}optgroup {
+  margin: 8px 0;
+
+  &__label {
+    display: block;
+    @include font-size(sm);
+    @include theme-color(color, text-sub);
+    margin-top: get-space(md);
+    // margin-bottom: get-space(xs);
+    padding: 0 get-space(sm);
+  }
+
+  &__items {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.#{$css-prefix}option {
+  list-style: none;
+  cursor: pointer;
+}

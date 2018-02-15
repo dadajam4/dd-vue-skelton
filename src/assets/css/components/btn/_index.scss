@@ -64,8 +64,7 @@
     }
   }
 
-  &:before,
-  &:after {
+  &:before {
     content: '';
     display: block;
     position: absolute;
@@ -87,8 +86,8 @@
   }
 
   &:active {
-    &:after {
-      background-color: rgba(0, 0, 0, .5);
+    &:before {
+      opacity: .24;
     }
   }
 
@@ -113,7 +112,7 @@
     // box-shadow: none!important;
     border-radius: 50%;
     justify-content: center;
-    min-width: 0;
+    min-width: 0 !important;
 
     .#{$css-prefix}btn__content {
       padding: 0;

@@ -1,0 +1,56 @@
+//
+// Input
+//
+
+@mixin checkable-core {
+  height: get-check(size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+@mixin checkable-base {
+  @include checkable-core;
+  width: get-check(size);
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .12;
+    transition: get-duration(promptly);
+  }
+
+  &:hover,
+  &:focus {
+    &:before {
+      background: currentColor;
+    }
+  }
+
+  &:active {
+    &:before {
+      opacity: .24;
+    }
+  }
+
+  &__body {
+    display: block;
+    @include square(get-check(body-size));
+    position: relative;
+    z-index: 1;
+    border: solid 1px currentColor;
+  }
+
+  &__inner {
+    position: absolute;
+  }
+}

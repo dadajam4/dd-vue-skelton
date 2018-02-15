@@ -16,6 +16,10 @@
         @include theme-color(color, context-#{$key}-text);
       }
 
+      // &:focus {
+      //   @include theme-color(box-shadow, context-#{$key}, $suffix: 0px 0px get-border-width(field-outline-shadow) * 2);
+      // }
+
       a {
         @include theme-color(color, context-#{$key}-link);
 

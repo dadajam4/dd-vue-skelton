@@ -3,15 +3,16 @@ import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
 import TextField from './TextField';
-import Checkbox from './Checkbox';
+// import Checkbox from './Checkbox';
 import Chip from './Chip';
 import DataTable from './DataTable';
-import Radio from './Radio';
-import Select from './Select';
-import Switch from './Switch';
-import Slider from './Slider';
+// import Radio from './Radio';
+// import Select from './Select';
+// import Switch from './Switch';
+// import Slider from './Slider';
 import Overlay from './Overlay';
 import Grid from './Grid';
+import Input from './Input';
 import Badge from './Badge';
 import Breadcrumb from './Breadcrumb';
 import Btn from './Btn';
@@ -39,14 +40,15 @@ export default Object.assign({},
   Card,
   DataTable,
   TextField,
-  Checkbox,
+  // Checkbox,
   Chip,
-  Radio,
-  Select,
-  Switch,
-  Slider,
+  // Radio,
+  // Select,
+  // Switch,
+  // Slider,
   Overlay,
   Grid,
+  Input,
   Badge,
   Breadcrumb,
   Btn,

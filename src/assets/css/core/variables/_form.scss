@@ -2,18 +2,6 @@
 // Form
 //
 
-@function get-switch($key) {
-  @return map-get($switch, $key);
-}
-
-$switch: ();
-$switch: map-set($switch, track-radius, 8px);
-$switch: map-set($switch, track-min-width, 30px);
-$switch: map-set($switch, track-height, 14px);
-$switch: map-set($switch, pointer-offset, 3px);
-$switch: map-set($switch, pointer-size, 20px);
-$switch: map-set($switch, pointer-assist-size, 6px);
-
 @function get-field($key) {
   @return map-get($field, $key);
 }

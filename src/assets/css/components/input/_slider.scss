@@ -1,0 +1,182 @@
+//
+// Slider
+//
+
+.#{$css-prefix}slider {
+  $my: &;
+  @mixin my-active {
+    @at-root #{$my}--active & {
+      @content;
+    }
+  }
+
+  @mixin my-focus {
+    @at-root #{$my}:focus & {
+      @content;
+    }
+  }
+
+  @mixin my-disabled {
+    @at-root #{$my}--disabled & {
+      @content;
+    }
+  }
+
+  @mixin my-empty {
+    @at-root #{$my}--empty & {
+      @content;
+    }
+  }
+
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: get-slider(height);
+
+  &__track {
+    &-container {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: get-slider(track-height);
+      width: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transition: get-slider(thumb-pointer-transition);
+
+    &--base {
+      left: 6px;
+      right: 6px;
+
+      @include theme-color(background, get-slider(track-base-color));
+
+      @include my-focus {
+        @include theme-color(background, get-slider(track-focus-color));
+      }
+    }
+
+    &--fill {}
+  }
+
+  &__tick {
+    &-container {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: get-slider(track-height);
+      width: 100%;
+      overflow: hidden;
+    }
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    margin-left: -1px;
+
+    &:first-child,
+    &:last-child {
+      display: none;
+    }
+  }
+
+  &__thumb {
+    &-container {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: get-slider(height);
+      overflow: visible;
+      cursor: pointer;
+    }
+
+    position: absolute;
+    top: get-slider(height) * .5 - get-slider(track-height) * .5;
+    transition: left get-slider(thumb-pointer-transition);
+
+    &__pointer {
+      @include btn-base($display: flex);
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      @include square(get-slider(thumb-pointer-full-size));
+      top: get-slider(thumb-pointer-full-size) * -.5 + get-slider(track-height) * .5;
+      margin-left: get-slider(thumb-pointer-full-size) * -.5;
+
+      &__body {
+        pointer-events: none;
+        @include square(get-slider(thumb-pointer-body-size));
+        border: solid get-slider(thumb-pointer-border-size);
+        border-radius: 50%;
+        transition: get-slider(thumb-pointer-transition);
+        transform: scale(.8);
+
+        @include my-active {
+          transform: scale(1.2);
+        }
+
+        #{$my}--active#{$my}--has-thumb-label & {
+          transform: scale(0);
+        }
+
+        @include my-disabled {
+          transform: scale(.5)!important;
+          background: transparent!important;
+        }
+
+        @include my-empty {
+          background: transparent !important;
+        }
+      }
+    }
+
+    &__label {
+      position: absolute;
+      pointer-events: none;
+      transition: .3s ease-in-out;
+
+      &__body {
+        @include elevation(1);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #fff;
+        position: absolute;
+        transform: translateX(-50%);
+
+        left: 0;
+        bottom: calc(100% + 6px);
+        padding: get-space(xxs) get-space(xs);
+        border-radius: get-space(sm);
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 50%;
+          border-style: solid;
+          border-width: 7px 7px 0 7px;
+          border-top-color: inherit;
+          border-left-color: transparent;
+          border-right-color: transparent;
+          border-bottom-color: transparent;
+          top: calc(100% - 2px);
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+}

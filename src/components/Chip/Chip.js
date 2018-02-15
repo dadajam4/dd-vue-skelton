@@ -7,7 +7,7 @@ export default {
   mixins: [Colorable, Toggleable],
 
   props: {
-    close: Boolean,
+    close: [Boolean, Function],
     disabled: Boolean,
     label: Boolean,
     outline: Boolean,
@@ -51,6 +51,10 @@ export default {
         staticClass: 'vc@chip__close',
         on: {
           click: e => {
+            if (typeof this.close === 'function') {
+              return this.close(e);
+            }
+
             e.stopPropagation();
             this.$emit('input', false);
           }

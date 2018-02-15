@@ -19,7 +19,7 @@ export default {
 
     // outline
     block: Boolean,
-    icon: Boolean,
+    icon: [Boolean, String],
     left: Boolean,
     right: Boolean,
 
@@ -41,6 +41,7 @@ export default {
 
 
   computed: {
+    isIcon() { return typeof this.icon === 'string' || this.icon },
     classes() {
       const classes = this.addColorClasses({
         [this.$options.name]: true,
@@ -50,7 +51,7 @@ export default {
         'vc@btn--lg': this.lg,
 
         'vc@btn--block': this.block,
-        'vc@btn--icon': this.icon,
+        'vc@btn--icon': this.isIcon,
         'vc@btn--left': this.left,
         'vc@btn--right': this.right,
 
@@ -83,6 +84,9 @@ export default {
         staticClass: `vc@btn__label`,
       }, vnode.text);
     }) || [];
+    if (typeof this.icon === 'string' && !defaults.length) {
+      defaults.push(h('vt@icon', {}, this.icon));
+    }
     const children = [(
       <span class="vc@btn__content-wrapper">
         <span class="vc@btn__content">{defaults}</span>

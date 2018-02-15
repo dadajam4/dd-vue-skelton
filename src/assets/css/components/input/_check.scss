@@ -1,0 +1,12 @@
+//
+// Check
+//
+
+@import "./radio";
+@import "./checkbox";
+@import "./switch";
+
+.#{$css-prefix}checkable-element {
+  $my: &;
+
+}

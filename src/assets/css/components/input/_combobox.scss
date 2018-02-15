@@ -1,0 +1,198 @@
+
+//
+// Field
+//
+.#{$css-prefix}combobox {
+  $my: &;
+
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+
+  & > .#{$css-prefix}btn {
+    flex: 0 0 auto;
+    height: auto;
+    margin: 0;
+  }
+
+  &--sm { @include font-size(sm); }
+  &--md { @include font-size(md); }
+  &--lg { @include font-size(lg); }
+
+  &__body {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: center;
+    border-radius: get-combobox(radius);
+    @include theme-color(border-color, form-divider);
+    border-width: get-combobox(border-width);
+    border-style: solid;
+    transition: get-duration(promptly);
+
+    #{$my}--focused & {
+      @include theme-color(border-color, context-primary);
+    }
+
+    #{$my}--flat & {
+      border-top-color: transparent !important;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-radius: 0 !important;
+    }
+
+    #{$my}--has-left-btn & {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: 0;
+    }
+
+    #{$my}--has-right-btn & {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+    }
+  }
+
+  &__input {
+    appearance: none;
+    box-shadow: none;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    display: block;
+    flex: 1 1 100%;
+    font-size: inherit;
+    background: transparent;
+    border-radius: 0;
+    margin: 0;
+    padding: 0 get-combobox(padding-horizontal);
+    min-height: get-combobox(height-md);
+
+    #{$my}--sm & { min-height: get-combobox(height-sm); }
+    #{$my}--md & { min-height: get-combobox(height-md); }
+    #{$my}--lg & { min-height: get-combobox(height-lg); }
+
+    #{$my}--multiline & {
+      padding-top: 6px;
+      min-height: 6.8em;
+      resize: vertical;
+      overflow: auto;
+
+      &--resize-none { resize: none; }
+      &--resize-vertical { resize: vertical; }
+      &--resize-horizontal { resize: horizontal; }
+      &--resize-both { resize: both; }
+    }
+    #{$my}--multiline.#{$my}--sm & { min-height: 5.5em; }
+    #{$my}--multiline.#{$my}--md & { min-height: 6.8em; }
+    #{$my}--multiline.#{$my}--lg & { min-height: 8.3em; }
+
+    @include theme-color(caret-color, context-primary);
+    @include ellipsis;
+    transition:
+      color get-duration(promptly),
+      border-color get-duration(promptly),
+      background-color get-duration(promptly);
+
+    &[type="password"] {
+      font-family: Verdana, sans-serif;
+      letter-spacing: .25em;
+    }
+
+    &:-webkit-autofill {
+      // box-shadow: none;
+      // background: transparent;
+      // background-image: none;
+      // box-shadow: 0 0 0px 1000px white inset;
+    }
+
+    // placeholder
+    &::placeholder {
+      color: inherit;
+      opacity: .5;
+      transition: get-duration(promptly);
+      letter-spacing: normal;
+      font-size: 90%;
+    }
+
+    #{$my}--focused & {
+      &::placeholder {
+        opacity: .3;
+      }
+    }
+  }
+
+
+  &__icon {
+    @include theme-color(color, text-secondary);
+    align-items: center;
+    display: inline-flex;
+    transition: get-duration(promptly);
+    flex: 0 0 auto;
+
+    &--left {
+      margin-left: get-combobox(padding-horizontal);
+    }
+
+    &--right {
+      margin-right: get-combobox(padding-horizontal);
+    }
+
+    // &--clickable {
+    //   pointer-events: auto;
+    //   cursor: pointer;
+    // }
+
+    #{$my}--focused & {
+      @include theme-color(color, text-primary);
+    }
+  }
+
+  &__fix {
+    @include theme-color(color, text-secondary);
+    align-items: center;
+    display: inline-flex;
+    pointer-events: none;
+    user-select: none;
+    flex: 0 0 auto;
+
+    &--pre {
+      margin-left: get-combobox(padding-horizontal);
+    }
+
+    &--suf {
+      margin-right: get-combobox(padding-horizontal);
+    }
+
+    // #{$my}--focused & {
+    //   @include theme-color(color, text-primary, true);
+    // }
+  }
+
+  &__menu {
+    @include theme-color(background, background);
+  }
+
+  &__selection {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+    font-size: inherit;
+    padding: 0 get-combobox(padding-horizontal);
+    min-height: get-combobox(height-md);
+
+    #{$my}--sm & { min-height: get-combobox(height-sm); }
+    #{$my}--md & { min-height: get-combobox(height-md); }
+    #{$my}--lg & { min-height: get-combobox(height-lg); }
+
+    &__item {
+      display: block;
+      white-space: nowrap;
+    }
+
+    &__divider {
+      display: block;
+      white-space: nowrap;
+    }
+  }
+}

@@ -8,6 +8,8 @@
 
 $border-width: ();
 $border-width: map-set($border-width, thin  , 1px);
-$border-width: map-set($border-width, thick , 2px);
+$border-width: map-set($border-width, medium, 2px);
+$border-width: map-set($border-width, thick , 4px);
 $border-width: map-set($border-width, field , get-border-width(thin));
 $border-width: map-set($border-width, navbar, get-border-width(thin));
+$border-width: map-set($border-width, field-outline-shadow, get-border-width(thick));

@@ -1,0 +1,121 @@
+//
+// Input
+//
+
+.#{$css-prefix}input {
+  $my: &;
+
+  display: block;
+  margin: get-input(margin-vertical) get-input(margin-horizintal);
+
+  &__label {
+    display: inline-block;
+    vertical-align: bottom;
+    // cursor: pointer;
+
+    @include font-size(xs);
+    transition: get-duration(promptly);
+    @include theme-color(color, text-secondary);
+
+    #{$my}--focused & {
+      @include theme-color(color, text-primary);
+    }
+  }
+
+  &--sm { @include font-size(sm); }
+  &--md { @include font-size(md); }
+  &--lg { @include font-size(lg); }
+
+  &--sm &__label { @include font-size(xxs); }
+  &--md &__label { @include font-size(xs); }
+  &--lg &__label { @include font-size(sm); }
+
+  &--inline {
+    display: inline-table;
+    width: 100%;
+    max-width: calc(100% - #{get-input(margin-horizintal) * 2});
+
+    #{$my}__body,
+    #{$my}__details {
+      display: table-row;
+    }
+
+    #{$my}__details {
+      &__prefix {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      &__messages {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+
+    #{$my}__control {
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+    #{$my}__label {
+      display: table-cell;
+      vertical-align: middle;
+      white-space: nowrap;
+
+      &--left {
+        padding-right: 1em;
+      }
+
+      &--right {
+        padding-left: 1em;
+      }
+    }
+  }
+
+  &--selection {
+    width: auto;
+    margin-right: get-input(margin-horizintal) * 2;
+
+    #{$my}__label {
+      cursor: pointer;
+      padding-left: .2em;
+      user-select: none;
+    }
+
+    #{$my}__control {
+      width: auto;
+    }
+
+    // .#{$css-prefix}checkable-element {
+    //   display: block;
+    // }
+  }
+
+
+
+
+  &__counter {
+    display: block;
+    white-space: nowrap;
+    text-align: right;
+    @include theme-color(color, text-secondary);
+    @include font-size(xs);
+
+    #{$my}--sm & { @include font-size(xxs); }
+    #{$my}--md & { @include font-size(xs); }
+    #{$my}--lg & { @include font-size(sm); }
+
+    &--error {
+      @include theme-color(color, text-error, true);
+    }
+  }
+
+  &--disabled {
+    .#{$css-prefix}checkable-element,
+    #{$my}__label {
+      @include theme-color(color, text-muted);
+      pointer-events: none;
+    }
+  }
+}

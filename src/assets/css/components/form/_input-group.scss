@@ -168,3 +168,33 @@
     }
   }
 }
+
+.#{$css-prefix}selection-group {
+  .#{$css-prefix}input-group__input-wrapper {
+    & > .#{$css-prefix}input-group__input {
+      flex-direction: column;
+    }
+  }
+
+  &--inline {
+    .#{$css-prefix}input-group__input-wrapper {
+      & > .#{$css-prefix}input-group__input {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+
+    .#{$css-prefix}selection-group__item {
+      margin-right: 3rem;
+    }
+  }
+
+  &__item {
+    &.#{$css-prefix}input-group--readonly {
+      &,
+      * {
+        pointer-events: none;
+      }
+    }
+  }
+}
