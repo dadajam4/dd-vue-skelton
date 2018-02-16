@@ -24,19 +24,28 @@ export default {
       default: false,
     },
     persistentThumbLabel: Boolean,
+    persintentTicks: Boolean,
     value: {
       type: [String, Number, Array],
       default() { return this.multiple ? [0, 0] : 0 },
     },
     thumbColor: {
-      type: String,
+      type: [String, Array],
       default: 'primary',
     },
     thumbLabelColor: {
-      type: String,
+      type: [String, Array],
       default: 'primary',
     },
     trackFillColor: {
+      type: String,
+      default: 'primary',
+    },
+    tickColor: {
+      type: String,
+      default: 'primary',
+    },
+    iconActiveColor: {
       type: String,
       default: 'primary',
     },

@@ -1,4 +1,14 @@
 <style lang="scss" scoped>
+@import "./core/index";
+.my-debug {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  bottom: 0;
+  @include theme-color(background, background);
+  padding: get-space(md);
+  @include elevation(2);
+}
 </style>
 
 <template>
@@ -115,10 +125,10 @@
         sm
         inline
         prefix="$"
-        right-icon="search"
         :flat="flat"
         counter="20"
       >
+        <vt@icon right>search</vt@icon>
         <vt@btn secondary right icon="search" />
       </vt@input>
 
@@ -128,26 +138,27 @@
         lg
         inline
         prefix="$"
-        right-icon="search"
         :flat="flat"
         :counter="20"
       >
+        <vt@icon right>search</vt@icon>
         <vt@btn secondary right icon="search" />
       </vt@input>
 
       <vt@input
         v-model="input1"
         placeholder="www.hoge-fuga"
-        :left-icon="{name: 'search', click: e => { input1 = 'click!!' } }"
         prefix="http://"
         suffix=".com"
         :flat="flat"
         counter="20"
       >
+        <vt@icon left @click="e => { input1 = 'click!!' }">search</vt@icon>
         <vt@btn primary left>左ボタン</vt@btn>
         <template slot="label">ラベル</template>
       </vt@input>
       <p>{{input1}} <button @click="input1 = null">reset</button></p>
+
 
       <vt@textarea
         v-model="textarea1"
@@ -381,10 +392,174 @@
       <vt@switch v-model="switch1" value="s3" multiple>スイッチ複数</vt@switch>
       <p>{{switch1}} <button @click="switch1 = null">reset</button></p>
 -->
-      <div>
-        <vt@switch label="disabled" v-model="hasDisabled"></vt@switch>
-        <vt@switch label="error" v-model="hasError"></vt@switch>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          label="レンジ - 単一"
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
       </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          thumb-label
+          label="レンジ - ラベル"
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          persistent-thumb-label
+          label="レンジ - ラベル常時"
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range2"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          label="レンジ - 複数"
+          multiple
+        />
+        <p><code>{{JSON.stringify(range2)}}</code> <vt@btn sm secondary @click="range2 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range2"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          label="レンジ - サムネイルカラー"
+          multiple
+          thumb-color="red"
+        />
+        <p><code>{{JSON.stringify(range2)}}</code> <vt@btn sm secondary @click="range2 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range2"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          label="レンジ - サムネイルカラー（マルチ）"
+          multiple
+          :thumb-color="['pink', 'indigo']"
+        />
+        <p><code>{{JSON.stringify(range2)}}</code> <vt@btn sm secondary @click="range2 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range2"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          label="レンジ - サムネイルラベルカラー"
+          multiple
+          :thumb-color="['pink', 'indigo']"
+          :thumb-label-color="['shades-black', 'pink']"
+          persistent-thumb-label
+        />
+        <p><code>{{JSON.stringify(range2)}}</code> <vt@btn sm secondary @click="range2 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range2"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          label="レンジ - トラックカラー"
+          multiple
+          :thumb-color="['pink', 'indigo']"
+          track-fill-color="orange"
+        />
+        <p><code>{{JSON.stringify(range2)}}</code> <vt@btn sm secondary @click="range2 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          thumb-label
+          label="ステップ表示"
+          step="20"
+          ticks
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          thumb-label
+          label="ステップ表示 - 常時"
+          step="20"
+          ticks
+          persintent-ticks
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          thumb-label
+          label="ステップカラー"
+          step="20"
+          ticks
+          persintent-ticks
+          tick-color="red"
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          thumb-label
+          label="レンジ - アイコン"
+        >
+          <vt@icon>user</vt@icon>
+          <vt@icon>search</vt@icon>
+        </vt@range>
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+
+      <div class="my-sample">
+        <vt@range
+          v-model="range1"
+          :disabled="hasDisabled"
+          :has-error="hasError"
+          persistent-thumb-label
+          :thumb-label="(val) => {
+            return $createElement('div', {}, [
+              $createElement('div', {}, 'custom'),
+              val,
+            ])
+          }"
+          label="レンジ - ラベルカスタム"
+        />
+        <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
+      </div>
+<!--
       <vt@slider
         v-model="slider1"
         :disabled="hasDisabled"
@@ -400,7 +575,13 @@
         thumb-label
       ></vt@slider>
       <p>{{slider2}} <button @click="slider2 = null">reset</button></p>
+-->
     </vt@page-section>
+
+    <div class="my-debug">
+      <vt@switch label="disabled" v-model="hasDisabled"></vt@switch>
+      <vt@switch label="error" v-model="hasError"></vt@switch>
+    </div>
   </vt@page>
 </template>
 
@@ -443,6 +624,8 @@ export default {
       slider2: null,
       hasError: false,
       hasDisabled: false,
+      range1: null,
+      range2: null,
     }
   },
 }

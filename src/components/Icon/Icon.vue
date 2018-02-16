@@ -53,6 +53,7 @@ export default {
       [`${myClassName}--left`]      : props.left,
       [`${myClassName}--right`]     : props.right,
       [`${myClassName}--rotate`]    : props.rotate,
+      [`${myClassName}--clickable`] : data.on && data.on.click,
     }
 
     data.staticClass = data.staticClass || '';

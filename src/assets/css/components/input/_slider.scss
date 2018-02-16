@@ -30,8 +30,22 @@
 
   display: flex;
   align-items: center;
-  position: relative;
-  height: get-slider(height);
+
+  &__icon {
+    margin: 0 get-space(lg);
+    transition: get-transition(primary);
+    flex: 0 0 auto;
+    &--left { margin-left: 0; }
+    &--right { margin-right: 0; }
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: get-slider(height);
+    flex: 1 1 auto;
+  }
 
   &__track {
     &-container {
@@ -139,8 +153,9 @@
 
     &__label {
       position: absolute;
-      pointer-events: none;
       transition: .3s ease-in-out;
+      @include user-drag(none);
+      user-select: none;
 
       &__body {
         @include elevation(1);
@@ -152,11 +167,11 @@
         color: #fff;
         position: absolute;
         transform: translateX(-50%);
-
         left: 0;
         bottom: calc(100% + 6px);
         padding: get-space(xxs) get-space(xs);
         border-radius: get-space(sm);
+        cursor: pointer;
 
         &:before {
           content: "";

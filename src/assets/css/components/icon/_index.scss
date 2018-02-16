@@ -28,6 +28,10 @@
     // justify-content: center;
   }
 
+  &--clickable {
+    cursor: pointer;
+  }
+
   @each $size in sm, md, lg, xl {
     &--#{$size} {
       @include font-size(get-icon(size-#{$size}));

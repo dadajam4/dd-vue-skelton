@@ -9,8 +9,8 @@ export default {
     placeholder: String,
     prefix: String,
     suffix: String,
-    leftIcon: [String, Object],
-    rightIcon: [String, Object],
+    leftIcon: true,
+    rightIcon: true,
     inline: {
       type: Boolean,
       default: false,
@@ -59,35 +59,6 @@ export default {
   },
 
   methods: {
-    genIcon(position) {
-      let value = this[`${position}Icon`];
-      if (!value) return;
-      if (typeof value === 'string') {
-        value = {
-          name: value,
-        };
-      }
-
-      return this.$createElement('vt@icon', {
-        staticClass: `vc@combobox__icon vc@combobox__icon--${position}${value.click ? ' vc@combobox__icon--clickable' : ''}`,
-        on: {
-          click: e => {
-            if (value.click) return value.click(e);
-            return this.focus(e);
-          },
-        },
-      }, value.name);
-    },
-
-    genFix(position) {
-      const prop = `${position}fix`;
-      const value = this[prop];
-      if (!value) return;
-
-      return this.$createElement('span', {
-        staticClass: `vc@combobox__fix vc@combobox__fix--${position}`,
-      }, value);
-    },
     genCounter() {
       if (!this.counter) return;
       return this.$createElement('div', {
@@ -97,7 +68,6 @@ export default {
     genMoreChildren() {
       return this.genCounter();
     },
-
     focus() {
       return this.$refs.combobox.focus();
     },

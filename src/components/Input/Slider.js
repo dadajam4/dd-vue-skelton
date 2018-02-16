@@ -1,4 +1,4 @@
-import RangeProps from './mixins/range-props';
+import SliderPipeMixin from './mixins/slider-pipe-mixin';
 import { addOnceEventListener, createRange } from '~/util';
 
 
@@ -10,7 +10,7 @@ const pointerContext = typeof document === 'undefined' ? {} : document;
 export default {
   name: 'vt@slider',
 
-  mixins: [RangeProps],
+  mixins: [SliderPipeMixin],
 
   props: {
     error: Boolean,
@@ -26,24 +26,29 @@ export default {
 
   computed: {
     hasThumbLabel() { return this.thumbLabel || this.persistentThumbLabel },
-    computedThumbColor() {
-      if (this.disabled) return 'muted';
-      if (this.error) return 'error';
-      if (this.valueIsEmpty) {
-        return this.isActive ? 'active' : 'light';
-      }
-      return this.thumbColor;
-    },
-    computedThumbLabelColor() {
-      if (this.disabled) return 'muted';
-      if (this.error) return 'error';
-      return this.thumbLabelColor || this.thumbColor;
-    },
+    fromThumbColor() { return this.getThumbColor('from') },
+    toThumbColor() { return this.getThumbColor('to') },
+    fromThumbLabelColor() { return this.getThumbLabelColor('from') },
+    toThumbLabelColor() { return this.getThumbLabelColor('to') },
+
     computedTrackFillColor() {
       if (this.disabled) return 'muted';
       if (this.error) return 'error';
       return this.trackFillColor;
     },
+
+    computedTickColor() {
+      if (this.disabled) return 'muted';
+      if (this.error) return 'error';
+      return this.tickColor;
+    },
+
+    computedIconColor() {
+      if (this.disabled) return 'muted';
+      if (this.error) return 'error';
+      if (this.isActive) return this.iconActiveColor;
+    },
+
     classes() {
       return {
         'vc@slider': true,
@@ -99,6 +104,22 @@ export default {
         zIndex: this.currentPointerType === type ? 2 : 1,
       }
     },
+    getThumbColor(type) {
+      if (this.disabled) return 'muted';
+      if (this.error) return 'error';
+      if (this.valueIsEmpty) return this.isActive ? 'active' : 'light';
+      let color = this.thumbColor;
+      if (Array.isArray(color)) color = color[type === 'from' ? 0 : 1];
+      return color;
+    },
+    getThumbLabelColor(type) {
+      if (this.disabled) return 'muted';
+      if (this.error) return 'error';
+
+      let color = this.thumbLabelColor;
+      if (Array.isArray(color)) color = color[type === 'from' ? 0 : 1];
+      return color || this[`${type}ThumbColor`];
+    },
     genTracks() {
       return (
         <div class="vc@slider__track-container" ref="track">
@@ -108,7 +129,7 @@ export default {
           <div
             staticClass="vc@slider__track vc@slider__track--fill"
             class={{
-              [`vc@layer-color--${this.computedTrackFillColor}`]: true,
+              [`vc@layer-color--${this.computedTrackFillColor}`]: this.computedTrackFillColor,
             }}
             style={this.trackStyles}
           ></div>
@@ -121,6 +142,9 @@ export default {
         return h('span', {
           key: i,
           staticClass: 'vc@slider__tick',
+          class: {
+            [`vc@layer-color--${this.computedTickColor}`]: this.computedTickColor,
+          },
           style: {
             left: `${i * (100 / this.numTicks)}%`,
           },
@@ -129,15 +153,15 @@ export default {
 
       return h('div', {
         staticClass: 'vc@slider__tick-container',
-      }, ticks)
+      }, ticks);
     },
-    onPointerStart(e) {
+    onPointerStart(e, type = null) {
       if (this.disabled || e.button === 2) return;
 
       this.keyPressed = 2;
       const options = { passive: true };
       this.isActive = true;
-      this.currentPointerType = e.target.getAttribute('data-pointer-type');
+      this.currentPointerType = type;
 
       if ('touches' in e) {
         pointerContext.addEventListener('touchmove', this.onPointerMove, options);
@@ -222,6 +246,13 @@ export default {
       const value = this[`${type}Value`];
       const label = typeof this.thumbLabel === 'function' && this.thumbLabel(value, this) || value;
 
+      const onPointerStart = e => {
+        return this.onPointerStart(e, type);
+      }
+
+      const color = this[`${type}ThumbLabelColor`];
+      const colorClasses = color && {[`vc@layer-color--${color}`]: true};
+
       return h('vt@scale-transition', {
         props: { origin: 'bottom center' },
       }, [
@@ -230,25 +261,34 @@ export default {
           directives: [
             {
               name: 'show',
-              value: this.isActive,
+              value: !this.disabled && (this.isActive || this.persistentThumbLabel),
             },
-          ]
+          ],
         }, [
           h('div', {
             staticClass: 'vc@slider__thumb__label__body',
-            'class': {
-              [`vc@layer-color--${this.computedThumbLabelColor}`]: true,
+            'class': colorClasses,
+            on: {
+              touchstart: onPointerStart,
+              mousedown: onPointerStart,
             },
           }, [
             h('span', {
               staticClass: 'vc@slider__thumb__label__body__inner',
-            }, label),
+            }, [label]),
           ])
         ])
       ])
     },
 
     genThumb(type) {
+      const onPointerStart = e => {
+        return this.onPointerStart(e, type);
+      }
+
+      const color = this[`${type}ThumbColor`];
+      const colorClasses = color && {[`vc@layer-color--${color}`]: true};
+
       return (
         <div
           staticClass={`vc@slider__thumb vc@slider__thumb--${type}`}
@@ -257,15 +297,12 @@ export default {
         >
           <div
             staticClass="vc@slider__thumb__pointer"
-            onTouchstart={this.onPointerStart}
-            onMousedown={this.onPointerStart}
-            data-pointer-type={type}
+            onTouchstart={onPointerStart}
+            onMousedown={onPointerStart}
           >
             <div
               staticClass="vc@slider__thumb__pointer__body"
-              class={{
-                [`vc@layer-color--${this.computedThumbColor}`]: true,
-              }}
+              class={colorClasses}
             ></div>
           </div>
           {(this.thumbLabel || this.persistentThumbLabel) && this.genThumbLabel(type)}
@@ -283,19 +320,45 @@ export default {
   },
 
   render(h) {
-    return (
-      <div
-        class={this.classes}
-        role="slider"
-        tabindex={this.disabled ? -1 : this.tabindex}
-        onKeydown={this.onKeydown}
-        onKeyup={this.onKeyup}
-        onClick={this.onClick}
-      >
-        {this.genTracks()}
-        {this.ticks && this.genTicks()}
-        {this.genThumbs()}
-      </div>
-    );
+    const iconColorAddClass = this.computedIconColor ? ` vc@text-color--${this.computedIconColor}` : '';
+    const icons = {};
+    this.$slots.default && this.$slots.default.forEach(vnode => {
+      if (vnode.fnOptions && vnode.fnOptions.name === 'vt@icon') {
+        const positionMatch = vnode.data.staticClass.match(/vc@icon--(left|right)/);
+        let position = 'left';
+        if (positionMatch) {
+          position = positionMatch[1];
+        } else {
+          if (icons[position]) position = position === 'left' ? 'right' : 'left';
+          vnode.data.staticClass += ` vc@icon--${position}`;
+        }
+        icons[position] = h('span', {
+          staticClass: `vc@slider__icon vc@slider__icon--${position}${iconColorAddClass}`,
+        }, [vnode]);
+      }
+    });
+
+    return h('div', {
+      class: this.classes,
+      attrs: {
+        role: 'slider',
+        tabindex: this.disabled ? -1 : this.tabindex,
+      },
+      on: {
+        keydown: this.onKeydown,
+        keyup: this.onKeyup,
+        click: this.onClick,
+      },
+    }, [
+      icons.left,
+      h('div', {
+        staticClass: 'vc@slider__body',
+      }, [
+        this.genTracks(),
+        ((this.ticks && this.isActive) || this.persintentTicks) && this.genTicks(),
+        this.genThumbs(),
+      ]),
+      icons.right,
+    ]);
   },
 }

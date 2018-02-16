@@ -1,12 +1,12 @@
 import Inputable from './mixins/inputable';
-import RangeProps from './mixins/range-props';
+import SliderPipeMixin from './mixins/slider-pipe-mixin';
 
 
 
 export default {
   name: 'vt@range',
 
-  mixins: [Inputable, RangeProps],
+  mixins: [Inputable, SliderPipeMixin],
 
   props: {
   },
@@ -16,21 +16,22 @@ export default {
   },
 
   methods: {
+    genSliderProps() {
+      const props = {};
+      for (let key in SliderPipeMixin.props) {
+        props[key] = this[key];
+      }
+      return props;
+    },
     genControls() {
       return this.$createElement('vt@slider', {
-        props: {
-          multiple: this.multiple,
-          min: this.min,
-          max: this.max,
-          step: this.step,
-          value: this.value,
-        },
+        props: this.genSliderProps(),
         on: {
           input: e => {
             this.targetValue = e;
           },
         },
-      })
+      }, this.$slots.default);
     },
   },
 }
