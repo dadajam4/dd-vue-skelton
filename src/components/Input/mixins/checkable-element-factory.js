@@ -7,6 +7,7 @@ export default function(type) {
     props: {
       checked: Boolean,
       disabled: Boolean,
+      error: Boolean,
       tag: {
         type: String,
         default: 'i',
@@ -24,12 +25,17 @@ export default function(type) {
           [`vc@${type}-element`]: true,
           [`vc@${type}-element--checked`]: this.checked,
           [`vc@${type}-element--disabled`]: this.disabled,
+          [`vc@${type}-element--error`]: this.error,
+          [`vc@text-color--disabled`]: this.disabled,
+          [`vc@text-color--error`]: this.error && !this.disabled,
         }
       },
-      bodyClasses() {
-        return {
-        }
-      },
+      // bodyClasses() {
+      //   return {
+      //     [`vc@text-color--disabled`]: this.disabled,
+      //     [`vc@text-color--error`]: this.error,
+      //   }
+      // },
     },
 
     render(h) {
@@ -46,7 +52,7 @@ export default function(type) {
             if (e.keyCode === 13 && !this.disabled) this.$emit('click', e);
           }}
         >
-          <span staticClass={`vc@${type}-element__body`}>
+          <span staticClass={`vc@${type}-element__body`} class={this.bodyClasses}>
             <span staticClass={`vc@${type}-element__inner`}>
               {children}
             </span>

@@ -1,6 +1,14 @@
+import Validatable from './validatable';
+
+
+
 export default {
+  mixins: [Validatable],
+
   props: {
     name: String,
+    hint: String,
+    persistentHint: Boolean,
     readonly: Boolean,
     disabled: Boolean,
     label: String,
@@ -40,11 +48,14 @@ export default {
         'vc@input--sm': this.sm,
         'vc@input--md': this.md,
         'vc@input--lg': this.lg,
+        'vc@input--error': this.hasError,
         'vc@input--inline': this.inline,
         'vc@input--disabled': this.disabled,
       }
     },
     allowChange() { return !this.disabled && !this.readonly },
+    detailBodyIsLeft() { return this.labelPosition === 'left' || this.inputType === 'selection' },
+    detailBodyIsRight() { return this.labelPosition === 'right' && this.inputType !== 'selection' },
   },
 
   // watch: {
@@ -78,6 +89,43 @@ export default {
         },
       }, label);
     },
+
+    genHint() {
+      if (!this.focused && !this.persistentHint || this.validations.length > 0) return;
+      const hint = this.hint || this.$slots.hint;
+      if (hint) {
+        return this.$createElement('div', {
+          staticClass: 'vc@input__hint',
+          key: this.$slots.hint ? 'slot-hint' : 'prop-hint',
+        }, hint);
+      }
+    },
+
+    genError(rule) {
+      return this.$createElement('div', {
+        staticClass: 'vc@input__error',
+        key: rule.key,
+      }, rule.message);
+    },
+
+    genMessages() {
+      if (this.disabled) return;
+      const $messages = [
+        this.genHint(),
+        ...this.validations.map(rule => this.genError(rule)),
+      ].filter(r => !!r);
+
+      $messages.forEach($message => {
+        $message.data.staticClass = ($message.data.staticClass || '') + ' vc@input__message';
+      });
+      return this.$createElement('transition-group', {
+        staticClass: 'vc@input__messages',
+        props: {
+          tag: 'div',
+          name: 'vc@input-message-transition',
+        },
+      }, $messages);
+    },
   },
 
   created() {
@@ -88,22 +136,22 @@ export default {
     const $label = this.genLabel(this.labelPosition);
     const $moreChildren = this.genMoreChildren && this.genMoreChildren();
 
-
     const $detailsPrefix = (
       <div staticClass="vc@input__details__prefix">
       </div>
     );
-    const $detailsMessages = (
-      <div staticClass="vc@input__details__messages">
+    const $detailsBody = (
+      <div staticClass="vc@input__details__body">
         {$moreChildren}
+        {this.genMessages()}
       </div>
     );
 
-    const $details = this.labelPosition === 'left' ? [
+    const $details = this.detailBodyIsLeft ? [
       $detailsPrefix,
-      $detailsMessages,
+      $detailsBody,
     ] : [
-      $detailsMessages,
+      $detailsBody,
       $detailsPrefix,
     ];
 

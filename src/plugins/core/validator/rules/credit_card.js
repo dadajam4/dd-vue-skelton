@@ -1,3 +1,5 @@
 import isCreditCard from 'validator/lib/isCreditCard';
 
-export default (value) => isCreditCard(String(value));
+export default function credit_card(value) {
+  return isCreditCard(String(value));
+}

@@ -11,6 +11,9 @@ export default {
       type: String,
       default: 'blur',
     },
+    validateProp: {
+      default: 'innerValue',
+    },
   },
 
   computed: {

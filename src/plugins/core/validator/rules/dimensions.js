@@ -11,7 +11,7 @@ const validateImage = (file, width, height) => {
   });
 };
 
-export default (files, [width, height]) => {
+export default function dimensions(files, [width, height]) {
   const list = [];
   for (let i = 0; i < files.length; i++) {
     // if file is not an image, reject.

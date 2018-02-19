@@ -1,4 +1,4 @@
-export default (value, [length]) => {
+export default function min(value, [length]) {
   if (value === undefined || value === null) {
     return false;
   }

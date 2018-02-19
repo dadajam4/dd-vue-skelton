@@ -1,10 +1,11 @@
 import SelectableFactory from './selectable-factory';
 import namingRadioManager from './namingRadioManager';
+import Colorable from '~/mixins/color/colorable';
 
 
 
 export default {
-  mixins: [SelectableFactory()],
+  mixins: [SelectableFactory(), Colorable],
   inheritAttrs: false,
   props: {
     initialChecked: Boolean,
@@ -39,6 +40,7 @@ export default {
   },
 
   computed: {
+    validateRequiredInvalidateFalse() { return true },
     inputType() { return 'selection' },
     inputTypeDetail() { return this.selectionType },
     isRadio() { return this.selectionType === 'radio' },
@@ -91,10 +93,16 @@ export default {
     },
     genFaux() {
       return this.$createElement(`vt@${this.selectionType}-element`, {
+        // class: {
+        //   'vc@text-color--error': this.hasError && !this.disabled,
+        //   'vc@text-color--muted': this.disabled,
+        // },
         props: {
           checked: this.checked,
           disabled: this.disabled,
           tabindex: this.tabindex,
+          disabled: this.disabled,
+          error: this.hasError,
         },
         on: {
           click: this.click,

@@ -203,7 +203,12 @@
 -->
 
 <!--
-      <vt@checkbox v-model="check0">チェック単一</vt@checkbox>
+      <vt@checkbox
+        v-model="check0"
+        rules="required|必須すよー"
+        warning
+        :disabled="hasDisabled"
+      >チェック単一</vt@checkbox>
       <p>{{check0}} <button @click="check0 = null">reset</button></p>
 
       <vt@checkbox v-model="check1" value="s1">チェック単一</vt@checkbox>
@@ -384,24 +389,51 @@
 -->
 
 <!--
-      <vt@switch v-model="switch0">スイッチ単一</vt@switch>
+      <vt@switch
+        v-model="switch0"
+        rules="required|必須だっての！"
+        :disabled="hasDisabled"
+      >スイッチ単一</vt@switch>
       <p>{{switch0}} <button @click="switch0 = null">reset</button></p>
 
       <vt@switch v-model="switch1" value="s1" multiple>スイッチ複数</vt@switch>
       <vt@switch v-model="switch1" value="s2" multiple>スイッチ複数</vt@switch>
       <vt@switch v-model="switch1" value="s3" multiple>スイッチ複数</vt@switch>
       <p>{{switch1}} <button @click="switch1 = null">reset</button></p>
+
+
+            'myVmSomeMethod: this.arg1, this.arg2 | メッセージ',
+            'min_value:8 | 8以上でなければ、、',
+            'max_value:70 | 70以下でなければ、、',
+            {handler: val => (val !== 10 && val !== 20 && val !== 90), message: '10と20と90はダメなんだ'}
 -->
 
+<!--
       <div class="my-sample">
         <vt@range
           v-model="range1"
           :disabled="hasDisabled"
           :has-error="hasError"
           label="レンジ - 単一"
-        />
+          persistent-hint
+          :rules="[
+            'max_value:10 | 10以下でなければ、、',
+            'max_value:20 | 20以下でなければ、、',
+            'max_value:30 | 30以下でなければ、、',
+            'max_value:40 | 40以下でなければ、、',
+            'max_value:50 | 50以下でなければ、、',
+            'max_value:60 | 60以下でなければ、、',
+            'max_value:70 | 70以下でなければ、、',
+            'max_value:80 | 80以下でなければ、、',
+            'max_value:90 | 90以下でなければ、、',
+          ]"
+        >
+
+          <span slot="hint">{{hint}} <vt@chip>chip</vt@chip></span>
+        </vt@range>
         <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
       </div>
+      <p><input type="text" v-model="hint"></p>
 
       <div class="my-sample">
         <vt@range
@@ -559,6 +591,8 @@
         />
         <p><code>{{JSON.stringify(range1)}}</code> <vt@btn sm secondary @click="range1 = null">reset</vt@btn></p>
       </div>
+-->
+
 <!--
       <vt@slider
         v-model="slider1"
@@ -626,6 +660,7 @@ export default {
       hasDisabled: false,
       range1: null,
       range2: null,
+      hint: 'これはヒントです',
     }
   },
 }

@@ -1,16 +1,16 @@
-import { alpha } from './alpha_helper';
+import { alpha as helper_alpha } from './alpha_helper';
 
-const validate = (value, [locale] = [null]) => {
+const alpha = function alpha(value, [locale] = [null]) {
   if (Array.isArray(value)) {
-    return value.every(val => validate(val, [locale]));
+    return value.every(val => alpha(val, [locale]));
   }
 
   // Match at least one locale.
-  if (! locale) {
-    return Object.keys(alpha).some(loc => alpha[loc].test(value));
+  if (!locale) {
+    return Object.keys(helper_alpha).some(loc => helper_alpha[loc].test(value));
   }
 
-  return (alpha[locale] || alpha.en).test(value);
+  return (helper_alpha[locale] || helper_alpha.en).test(value);
 };
 
-export default validate;
+export default alpha;

@@ -1,8 +1,8 @@
 import { alphaSpaces } from './alpha_helper';
 
-const validate = (value, [locale] = [null]) => {
+const alpha_spaces = function alpha_spaces(value, [locale] = [null]) {
   if (Array.isArray(value)) {
-    return value.every(val => validate(val, [locale]));
+    return value.every(val => alpha_spaces(val, [locale]));
   }
 
   // Match at least one locale.
@@ -13,4 +13,4 @@ const validate = (value, [locale] = [null]) => {
   return (alphaSpaces[locale] || alphaSpaces.en).test(value);
 };
 
-export default validate;
+export default alpha_spaces;

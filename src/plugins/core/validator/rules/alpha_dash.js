@@ -1,8 +1,8 @@
 import { alphaDash } from './alpha_helper';
 
-const validate = (value, [locale] = [null]) => {
+const alpha_dash = function alpha_dash(value, [locale] = [null]) {
   if (Array.isArray(value)) {
-    return value.every(val => validate(val, [locale]));
+    return value.every(val => alpha_dash(val, [locale]));
   }
 
   // Match at least one locale.
@@ -13,4 +13,4 @@ const validate = (value, [locale] = [null]) => {
   return (alphaDash[locale] || alphaDash.en).test(value);
 };
 
-export default validate;
+export default alpha_dash;

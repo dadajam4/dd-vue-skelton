@@ -1,1 +1,3 @@
-export default (value, other) => String(value) === String(other);
+export default function confirmed(value, other) {
+  return String(value) === String(other);
+}

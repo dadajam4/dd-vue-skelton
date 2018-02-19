@@ -1,4 +1,4 @@
-export default (value, params = [false]) => {
+export default function required(value, params = [false]) {
   if (Array.isArray(value)) {
     return !! value.length;
   }

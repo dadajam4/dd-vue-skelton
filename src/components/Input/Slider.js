@@ -21,6 +21,7 @@ export default {
       innerActive: false,
       keyPressed: 0,
       currentPointerType: null,
+      innerFocused: false,
     }
   },
 
@@ -89,6 +90,12 @@ export default {
     },
     numTicks() {
       return Math.ceil((this.maxValue - this.minValue) / this.stepValue);
+    },
+    focused: {
+      get() { return this.innerFocused },
+      set(val) {
+        this.innerFocused = val;
+      },
     },
   },
 
@@ -240,7 +247,20 @@ export default {
     onClick(e) {
       if (!this.disabled && !this.isActive) return this.onPointerMove(e, true);
     },
-
+    onFocus(e) {
+      this.focused = true;
+      this.$emit('focus', e);
+    },
+    onBlur(e) {
+      this.focused = true;
+      this.$emit('blur', e);
+    },
+    focus() {
+      this.$el.focus();
+    },
+    blur() {
+      this.$el.blur();
+    },
     genThumbLabel(type) {
       const h = this.$createElement;
       const value = this[`${type}Value`];
@@ -348,6 +368,8 @@ export default {
         keydown: this.onKeydown,
         keyup: this.onKeyup,
         click: this.onClick,
+        focus: this.onFocus,
+        blur: this.onBlur,
       },
     }, [
       icons.left,

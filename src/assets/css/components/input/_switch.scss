@@ -81,7 +81,7 @@
     }
   }
 
-  &:not(&--checked) {
+  &:not(&--checked):not(&--error):not(&--disabled) {
     #{$my}__body:before {
       @include theme-color(background-color, switch-track);
     }
@@ -94,9 +94,9 @@
   }
 
   &--checked {
-    #{$my}__body {
-      @include theme-color(color, context-primary);
-    }
+    // #{$my}__body {
+    //   @include theme-color(color, context-primary);
+    // }
 
     #{$my}__inner {
       transform: translate(#{$my-offset-x-active}, #{$my-offset-y});

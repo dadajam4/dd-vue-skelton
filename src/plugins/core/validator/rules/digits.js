@@ -1,10 +1,10 @@
-const validate = (value, [length]) => {
+const digits = function digits(value, [length]) {
   if (Array.isArray(value)) {
-    return value.every(val => validate(val, [length]));
+    return value.every(val => digits(val, [length]));
   }
   const strVal = String(value);
 
   return /^[0-9]*$/.test(strVal) && strVal.length === Number(length);
 };
 
-export default validate;
+export default digits;

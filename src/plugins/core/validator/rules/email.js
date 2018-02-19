@@ -1,6 +1,6 @@
 import isEmail from 'validator/lib/isEmail';
 
-const validate = (value) => {
+const email = function email(value) {
   if (Array.isArray(value)) {
     return value.every(val => isEmail(String(val)));
   }
@@ -8,4 +8,4 @@ const validate = (value) => {
   return isEmail(String(value));
 };
 
-export default validate;
+export default email;

@@ -1,4 +1,4 @@
-export default (files, [size]) => {
+export default function size(files, [size]) {
   if (isNaN(size)) {
     return false;
   }

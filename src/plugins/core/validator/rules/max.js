@@ -1,4 +1,4 @@
-export default (value, [length]) => {
+export default function max(value, [length]) {
   if (value === undefined || value === null) {
     return length >= 0;
   }

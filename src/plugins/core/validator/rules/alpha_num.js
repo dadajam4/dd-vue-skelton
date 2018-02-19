@@ -1,8 +1,8 @@
 import { alphanumeric } from './alpha_helper';
 
-const validate = (value, [locale] = [null]) => {
+const alpha_num = function alpha_num(value, [locale] = [null]) {
   if (Array.isArray(value)) {
-    return value.every(val => validate(val, [locale]));
+    return value.every(val => alpha_num(val, [locale]));
   }
 
   // Match at least one locale.
@@ -13,4 +13,4 @@ const validate = (value, [locale] = [null]) => {
   return (alphanumeric[locale] || alphanumeric.en).test(value);
 };
 
-export default validate;
+export default alpha_num;

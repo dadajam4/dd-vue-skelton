@@ -16,7 +16,7 @@ const compare = (value, length, max) => {
   return value.length >= length && value.length <= max;
 };
 
-export default (value, [length, max = undefined]) => {
+export default function length(value, [length, max = undefined]) {
   length = Number(length);
   if (value === undefined || value === null) {
     return false;

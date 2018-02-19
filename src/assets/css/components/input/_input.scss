@@ -2,6 +2,19 @@
 // Input
 //
 
+.#{$css-prefix}input-message-transition {
+  &-enter, &-leave-to {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  &-leave-active {
+    position: absolute;
+  }
+}
+
+
+
 .#{$css-prefix}input {
   $my: &;
 
@@ -46,7 +59,7 @@
         vertical-align: middle;
       }
 
-      &__messages {
+      &__body {
         display: table-cell;
         vertical-align: middle;
       }
@@ -111,9 +124,45 @@
     }
   }
 
+  &__messages {
+    // transition: get-transition(primary);
+
+    // display: flex;
+    // flex: 1 0 100%;
+    display: block;
+
+    min-height: 26px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 4px;
+    @include font-size(xs);
+    @include theme-color(color, text-secondary);
+
+    .#{my}--sm & { @include font-size(xxs); padding-top: 2px; }
+    .#{my}--md & { @include font-size(xs); padding-top: 4px; }
+    .#{my}--lg & { @include font-size(sm); padding-top: 6px; }
+  }
+
+  &__message {
+    // transition: 2s;
+    transition: get-transition(primary);
+  }
+
+  &--error {
+    #{$my}__label,
+    #{$my}__details,
+    #{$my}__messages {
+      @include theme-color(color, text-error);
+    }
+  }
+
+
   &--disabled {
     .#{$css-prefix}checkable-element,
-    #{$my}__label {
+    #{$my}__label,
+    #{$my}__details,
+    #{$my}__messages {
       @include theme-color(color, text-muted);
       pointer-events: none;
     }

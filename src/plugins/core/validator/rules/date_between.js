@@ -1,7 +1,7 @@
 import { isAfter, isBefore, isEqual } from 'date-fns';
 import { parseDate as parse } from '~/util/date';
 
-export default (value, params) => {
+export default function date_between(value, params) {
   let min;
   let max;
   let format;

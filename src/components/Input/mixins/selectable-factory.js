@@ -11,6 +11,10 @@ export default function(modelProp = 'inputValue') {
         type: Boolean,
         default: false,
       },
+
+      validateProp: {
+        default: 'innerValue',
+      },
     },
 
     model: {

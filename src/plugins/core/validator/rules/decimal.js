@@ -1,7 +1,7 @@
-const validate = (value, params) => {
+const decimal = function decimal(value, params) {
   const decimals = Array.isArray(params) ? (params[0] || '*') : '*';
   if (Array.isArray(value)) {
-    return value.every(val => validate(val, params));
+    return value.every(val => decimal(val, params));
   }
 
   if (value === null || value === undefined || value === '') {
@@ -26,4 +26,4 @@ const validate = (value, params) => {
     return parsedValue === parsedValue;
 };
 
-export default validate;
+export default decimal;
