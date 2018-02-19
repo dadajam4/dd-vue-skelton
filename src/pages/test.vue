@@ -206,7 +206,7 @@
       <vt@checkbox
         v-model="check0"
         rules="required|必須すよー"
-        warning
+        color="primary"
         :disabled="hasDisabled"
       >チェック単一</vt@checkbox>
       <p>{{check0}} <button @click="check0 = null">reset</button></p>
@@ -393,6 +393,7 @@
         v-model="switch0"
         rules="required|必須だっての！"
         :disabled="hasDisabled"
+        color="indigo"
       >スイッチ単一</vt@switch>
       <p>{{switch0}} <button @click="switch0 = null">reset</button></p>
 
@@ -613,8 +614,8 @@
     </vt@page-section>
 
     <div class="my-debug">
-      <vt@switch label="disabled" v-model="hasDisabled"></vt@switch>
-      <vt@switch label="error" v-model="hasError"></vt@switch>
+      <vt@switch label="disabled" color="grey" v-model="hasDisabled"></vt@switch>
+      <vt@switch label="error" color="error" v-model="hasError"></vt@switch>
     </div>
   </vt@page>
 </template>

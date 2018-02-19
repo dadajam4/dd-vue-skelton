@@ -8,6 +8,10 @@ export default function(type) {
       checked: Boolean,
       disabled: Boolean,
       error: Boolean,
+      color: {
+        type: String,
+        // default: 'primary',
+      },
       tag: {
         type: String,
         default: 'i',
@@ -20,15 +24,18 @@ export default function(type) {
 
     computed: {
       classes() {
-        return {
+        const classes = {
           'vc@checkable-element': true,
           [`vc@${type}-element`]: true,
-          [`vc@${type}-element--checked`]: this.checked,
-          [`vc@${type}-element--disabled`]: this.disabled,
+          [`vc@${type}-element--checked`]: !!this.checked,
+          [`vc@${type}-element--disabled`]: !!this.disabled,
           [`vc@${type}-element--error`]: this.error,
-          [`vc@text-color--disabled`]: this.disabled,
-          [`vc@text-color--error`]: this.error && !this.disabled,
-        }
+          'vc@text-color--grey': this.disabled,
+          'vc@text-color--error': this.error && !this.disabled,
+        };
+
+        if (!classes[`vc@text-color--${this.color}`]) classes[`vc@text-color--${this.color}`] = !this.disabled && !this.error && !!this.checked;
+        return classes;
       },
       // bodyClasses() {
       //   return {
@@ -41,6 +48,7 @@ export default function(type) {
     render(h) {
       const children = this.genBodyChildren && this.genBodyChildren();
       const TagName = this.tag;
+
       return (
         <TagName
           class={this.classes}

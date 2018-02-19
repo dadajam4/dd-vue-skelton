@@ -1,11 +1,11 @@
 import SelectableFactory from './selectable-factory';
 import namingRadioManager from './namingRadioManager';
-import Colorable from '~/mixins/color/colorable';
+// import Colorable from '~/mixins/color/colorable';
 
 
 
 export default {
-  mixins: [SelectableFactory(), Colorable],
+  mixins: [SelectableFactory()],
   inheritAttrs: false,
   props: {
     initialChecked: Boolean,
@@ -31,6 +31,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    color: String,
   },
 
   data() {
@@ -99,6 +100,7 @@ export default {
         // },
         props: {
           checked: this.checked,
+          color: this.color,
           disabled: this.disabled,
           tabindex: this.tabindex,
           disabled: this.disabled,
