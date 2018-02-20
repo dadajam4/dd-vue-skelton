@@ -23,9 +23,9 @@ class ValidateRule {
     }
 
     this.handlerName = typeof this.handler === 'function' ? this.handler.name : typeof this.handler === 'string' ? this.handler : '';
-    if (this.handlerName === 'required' && context.validateRequiredInvalidateFalse && !this.args) {
-      this.args = 'true';
-    }
+    // if (this.handlerName === 'required' && context.validateRequiredInvalidateFalse && !this.args) {
+    //   this.args = 'true';
+    // }
 
     this.computedArgs = this.args ? this.evalAtContext(`[${this.args}]`) : void(0);
     this.execHandler = typeof this.handler === 'function' ? this.handler : this.context.$rules[this.handler] || this.context[this.handler];

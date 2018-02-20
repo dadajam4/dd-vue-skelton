@@ -31,7 +31,6 @@ export default function colorableFactory(name, opts = {}) {
 
     computed: {
       [computedKey]() {
-        let color;
         if (hasExpansionProps) {
           for (let name of expansionProps) {
             if (this[name]) {
@@ -58,7 +57,12 @@ export default function colorableFactory(name, opts = {}) {
     methods: {
       [getMethodKey](key = computedKey) {
         const prefix = opts.addColorPrefix ? opts.addColorPrefix.call(this) : '';
-        let classes = this[key] ? {[`vc@${name}-color-${prefix}-${this[key]}`]: true} : {};
+        let classes =
+          this.disabled ? {[`vc@${name}-color-${prefix}-muted`]: true}
+          : this.error ? {[`vc@${name}-color-${prefix}-error`]: true}
+          : this[key] ? {[`vc@${name}-color-${prefix}-${this[key]}`]: true}
+          : {};
+
         if (opts.mergeColorClasses) {
           classes = opts.mergeColorClasses.call(this, classes);
         }

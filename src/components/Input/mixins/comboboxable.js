@@ -21,6 +21,9 @@ export default {
     },
     counter: [Number, String, Object],
     multiple: Boolean,
+    color: {
+      type: String,
+    },
   },
 
   data() {
@@ -106,11 +109,13 @@ export default {
           lg: this.lg,
           autofocus: this.autofocus,
           disabled: this.disabled,
+          error: this.hasError || this.hasCounterError,
           readonly: this.readonly,
           resize: this.resize,
           prefix: this.prefix,
           suffix: this.suffix,
           selectionRenderer: this.$scopedSlots.selection,
+          color: this.color,
         },
         on: {
           input: this.onComboboxInput,

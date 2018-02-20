@@ -47,6 +47,7 @@ export default {
     suffix: String,
     autofocus: Boolean,
     disabled: Boolean,
+    error: Boolean,
     readonly: Boolean,
     type: {
       type: String,
@@ -70,6 +71,10 @@ export default {
       default() { return ', ' },
     },
     selectionRenderer: Function,
+    color: {
+      type: String,
+      default: 'primary',
+    },
   },
 
   data() {
@@ -94,6 +99,13 @@ export default {
         'vc@combobox--multiline': this.multiline,
         'vc@combobox--focused': this.focused,
         'vc@combobox--disabled': this.disabled,
+        'vc@combobox--error': this.error,
+      }
+    },
+    bodyClasses() {
+      return {
+        'vc@combobox__body': true,
+        [`vc@border-color--${this.color}`]: !this.error && !this.disabled && this.focused,
       }
     },
     isSelect() { return this.type === 'select' },
@@ -230,6 +242,7 @@ export default {
         domProps: {
           autofocus: this.autofocus,
           value: this.innerValue,
+          disabled: this.disabled,
         },
         on: {
           input: this.onInputInput,
@@ -388,6 +401,9 @@ export default {
         if (this.md) vnode.data.staticClass += ` vc@icon--md`;
         if (this.lg) vnode.data.staticClass += ` vc@icon--lg`;
 
+        vnode.data.staticClass = vnode.data.staticClass.split(' ').filter(c => !!c).filter((a, b, self) => (self.indexOf(a) === b && a.indexOf('vc@text-color--') !== 0)).join(' ');
+        if (this.focused && !this.disabled && !this.error) vnode.data.staticClass += ` vc@text-color--${this.color}`;
+
         vnode.data.on = vnode.data.on || {};
         if (typeof vnode.data.on.click !== 'function') {
           vnode.data.on.click = e => { return this.focus(e) }
@@ -406,6 +422,7 @@ export default {
         propsData.sm = this.sm;
         propsData.md = this.md;
         propsData.lg = this.lg;
+        propsData.disabled = this.disabled;
 
         classes[`vc@combobox--has-${position}-btn`] = true;
         positionables.btn[position] = vnode;
@@ -428,7 +445,7 @@ export default {
         onClick={this.focus}
       >
         {positionables.btn.left}
-        <div class="vc@combobox__body" ref="body">
+        <div class={this.bodyClasses} ref="body">
           {positionables.icon.left}
           {this.genfix('pre')}
           {this.selectionItems}

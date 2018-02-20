@@ -113,7 +113,6 @@
 
     <vt@page-section title id="はじめに" data-anchor-point>
 
-<!--
       <div>
         <p>■フラット選択</p>
         <input type="checkbox" v-model="flat" :value="true">
@@ -127,6 +126,9 @@
         prefix="$"
         :flat="flat"
         counter="20"
+        :disabled="hasDisabled"
+        rules="min:10|10文字以上必須すよー"
+        color="secondary"
       >
         <vt@icon right>search</vt@icon>
         <vt@btn secondary right icon="search" />
@@ -140,6 +142,7 @@
         prefix="$"
         :flat="flat"
         :counter="20"
+        :disabled="hasDisabled"
       >
         <vt@icon right>search</vt@icon>
         <vt@btn secondary right icon="search" />
@@ -152,6 +155,7 @@
         suffix=".com"
         :flat="flat"
         counter="20"
+        :disabled="hasDisabled"
       >
         <vt@icon left @click="e => { input1 = 'click!!' }">search</vt@icon>
         <vt@btn primary left>左ボタン</vt@btn>
@@ -166,6 +170,7 @@
         placeholder="プレースホルだ"
         :flat="flat"
         :counter="20"
+        :disabled="hasDisabled"
       >
         <vt@btn secondary>
           <vt@icon>search</vt@icon>
@@ -181,6 +186,7 @@
         sm
         :flat="flat"
         counter="20"
+        :disabled="hasDisabled"
       >
         <vt@btn secondary>
           <vt@icon>search</vt@icon>
@@ -195,11 +201,13 @@
         lg
         :flat="flat"
         :counter="20"
+        :disabled="hasDisabled"
       >
         <vt@btn secondary>
           <vt@icon>search</vt@icon>
         </vt@btn>
       </vt@textarea>
+<!--
 -->
 
 <!--
@@ -219,7 +227,6 @@
       <vt@checkbox v-model="check2" value="m3">チェック3</vt@checkbox>
       <p>{{check2}} <button @click="check2 = null">reset</button></p>
 
-
       <vt@radio v-model="radio1" value="m1">ラジオ1</vt@radio>
       <vt@radio v-model="radio1" value="m2">ラジオ2</vt@radio>
       <vt@radio v-model="radio1" value="m3">ラジオ3</vt@radio>
@@ -232,6 +239,7 @@
       <vt@radio name="radio3" value="m1" disabled>ラジオ1</vt@radio>
       <vt@radio name="radio3" value="m2">ラジオ2</vt@radio>
       <vt@radio name="radio3" value="m3" checked>ラジオ3</vt@radio>
+
 -->
 
 <!--

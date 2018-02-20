@@ -352,6 +352,7 @@ export default {
           if (icons[position]) position = position === 'left' ? 'right' : 'left';
           vnode.data.staticClass += ` vc@icon--${position}`;
         }
+        vnode.data.staticClass = vnode.data.staticClass.split(' ').filter(c => !!c).filter((a, b, self) => (self.indexOf(a) === b && a.indexOf('vc@text-color--') !== 0)).join(' ');
         icons[position] = h('span', {
           staticClass: `vc@slider__icon vc@slider__icon--${position}${iconColorAddClass}`,
         }, [vnode]);

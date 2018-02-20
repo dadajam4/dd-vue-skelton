@@ -7,10 +7,10 @@ export default {
   mixins: [Inputable, Comboboxable],
 
   props: {
-    validateTiming: {
-      type: String,
-      default: 'blur',
-    },
+    // validateTiming: {
+    //   type: String,
+    //   default: 'blur',
+    // },
     validateProp: {
       default: 'innerValue',
     },

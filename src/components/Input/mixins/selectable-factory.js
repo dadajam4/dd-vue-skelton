@@ -13,7 +13,7 @@ export default function(modelProp = 'inputValue') {
       },
 
       validateProp: {
-        default: 'innerValue',
+        default: modelProp,
       },
     },
 

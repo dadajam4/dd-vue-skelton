@@ -29,9 +29,9 @@
     border-style: solid;
     transition: get-duration(promptly);
 
-    #{$my}--focused & {
-      @include theme-color(border-color, context-primary);
-    }
+    // #{$my}--focused & {
+    //   @include theme-color(border-color, context-primary);
+    // }
 
     #{$my}--flat & {
       border-top-color: transparent !important;
@@ -87,7 +87,7 @@
     #{$my}--multiline.#{$my}--md & { min-height: 6.8em; }
     #{$my}--multiline.#{$my}--lg & { min-height: 8.3em; }
 
-    @include theme-color(caret-color, context-primary);
+    // @include theme-color(caret-color, context-primary);
     @include ellipsis;
     transition:
       color get-duration(promptly),
@@ -110,7 +110,7 @@
     &::placeholder {
       color: inherit;
       opacity: .5;
-      transition: get-duration(promptly);
+      transition: opacity get-duration(promptly);
       letter-spacing: normal;
       font-size: 90%;
     }
@@ -143,9 +143,9 @@
     //   cursor: pointer;
     // }
 
-    #{$my}--focused & {
-      @include theme-color(color, text-primary);
-    }
+    // #{$my}--focused & {
+    //   @include theme-color(color, text-primary);
+    // }
   }
 
   &__fix {
@@ -193,6 +193,33 @@
     &__divider {
       display: block;
       white-space: nowrap;
+    }
+  }
+
+  &--error {
+    // #{$my}__body,
+    #{$my}__body {
+      @include theme-color(border-color, background-error);
+    }
+
+    #{$my}__fix,
+    #{$my}__icon,
+    #{$my}__input {
+      @include theme-color(color, text-error);
+    }
+  }
+
+  &--disabled {
+    #{$my}__body {
+      @include theme-color(border-color, background-muted);
+    }
+
+    // #{$my}__body,
+    #{$my}__fix,
+    #{$my}__icon,
+    #{$my}__input {
+      @include theme-color(color, text-muted, true);
+      pointer-events: none;
     }
   }
 }

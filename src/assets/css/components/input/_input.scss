@@ -131,17 +131,32 @@
     // flex: 1 0 100%;
     display: block;
 
-    min-height: 26px;
-    overflow: hidden;
+    // min-height: 26px;
+    // overflow: hidden;
     position: relative;
     width: 100%;
-    padding-top: 4px;
     @include font-size(xs);
     @include theme-color(color, text-secondary);
 
     .#{my}--sm & { @include font-size(xxs); padding-top: 2px; }
     .#{my}--md & { @include font-size(xs); padding-top: 4px; }
     .#{my}--lg & { @include font-size(sm); padding-top: 6px; }
+
+    #{$my}__counter + & {
+      margin-top: -1.2em;
+
+      #{$my}__message:first-child {
+        max-width: calc(100% - 4.5em);
+      }
+    }
+  }
+
+  &__details {
+
+    &__body,
+    &__prefix {
+      padding-top: 4px;
+    }
   }
 
   &__message {
@@ -162,8 +177,9 @@
     .#{$css-prefix}checkable-element,
     #{$my}__label,
     #{$my}__details,
+    #{$my}__counter,
     #{$my}__messages {
-      @include theme-color(color, text-muted);
+      @include theme-color(color, text-muted, true);
       pointer-events: none;
     }
   }

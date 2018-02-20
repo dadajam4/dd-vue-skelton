@@ -10,7 +10,7 @@ export default function(type) {
       error: Boolean,
       color: {
         type: String,
-        // default: 'primary',
+        default: 'primary',
       },
       tag: {
         type: String,
