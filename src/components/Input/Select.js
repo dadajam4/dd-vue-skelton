@@ -27,6 +27,9 @@ export default {
     //   type: Array,
     //   default: () => [],
     // },
+    options: Array,
+    groups: Array,
+    autocomplete: Boolean,
   },
 
   // provide() {

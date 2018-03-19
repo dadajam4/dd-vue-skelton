@@ -64,6 +64,7 @@ export default {
     placeholder: String,
     multiple: Boolean,
     autocomplete: Boolean,
+    staticSelect: Boolean,
     options: Array,
     groups: Array,
     divider: {
@@ -84,6 +85,8 @@ export default {
       focused: false,
       menuIsActive: false,
       optionVms: [],
+      currentAutocompleteTargetIndex: null,
+      // autocompleteTarget
       // createdGroups: [],
     }
   },
@@ -108,6 +111,7 @@ export default {
         [`vc@border-color--${this.color}`]: !this.error && !this.disabled && this.focused,
       }
     },
+    searchValue() { return (this.innerValue || '').toLowerCase() },
     isSelect() { return this.type === 'select' },
     typeDefine() { return TYPES[this.type] },
     computedType() { return this.typeDefine && this.typeDefine.type },
@@ -125,11 +129,17 @@ export default {
       if (this.multiline) {
         classes[`vc@combobox__input--resize-${this.resizeType}`] = true;
       }
+
+      if (this.staticSelect) {
+        classes['vc@combobox__input--static'] = true;
+      }
+
       return classes;
     },
     inputAttrs() {
       const attrs = {
         placeholder: this.placeholder,
+        readonly: this.staticSelect,
       };
 
       if (!this.multiline) {
@@ -157,34 +167,60 @@ export default {
     },
     selectedValues() {
       if (!this.isSelect || !this.innerSelected) return;
-      return this.multiple ? this.innerSelected || [] : [this.innerSelected];
+      return Array.isArray(this.innerSelected) ? this.innerSelected : [this.innerSelected];
+      // return this.multiple ? this.innerSelected || [] : [this.innerSelected];
     },
     hasDivider() { return !this.selectionRenderer && this.divider },
     selectionItems() {
       const values = this.selectedValues;
       if (!values || !values.length) return;
       const children = [];
-      values.forEach((value, index) => {
-        children.push(this.genSelectionItemByValue(value));
-        // const item = this.genSelectionItemByValue(value, this.hasDivider && index !== values.length - 1, this.divider);
-        // children.push(item);
-        if (this.hasDivider && index !== values.length - 1) {
+      const selectionItems = [];
+      for (let value of values) {
+        const selectionItem = this.genSelectionItemByValue(value);
+        if (selectionItem) selectionItems.push(selectionItem);
+      }
+
+      for (let i = 0, l = selectionItems.length; i < l; i++) {
+        const selectionItem = selectionItems[i];
+        selectionItem.key = this.getNewSelectionItemKey();
+        children.push(selectionItem);
+        if (this.hasDivider && i !== l - 1) {
           children.push(this.$createElement('span', {
             staticClass: 'vc@combobox__selection__divider',
+            key: this.getNewSelectionItemKey(),
           }, this.divider));
-          // item.children.push(this.$createElement('span', {}, this.divider));
-          // console.log(item);
-          // console.log(item);
-          // item.children[0].text = item.children[0].text + this.divider;
-          // // item.children
         }
-        // if (index !== values.length - 1) {
-        //   console.log(item.children);
-        //   // children.push(this.$createElement('span', {
-        //   //   staticClass: 'vc@combobox__selection__divider',
-        //   // }, this.divider));
-        // }
-      });
+      }
+      // const children = [];
+      // values.forEach((value, index) => {
+      //   const selectionItem = this.genSelectionItemByValue(value);
+      //   console.log(value, selectionItem);
+      //   children.push(selectionItem);
+      //   // const item = this.genSelectionItemByValue(value, this.hasDivider && index !== values.length - 1, this.divider);
+      //   // children.push(item);
+      //   if (this.hasDivider && index !== values.length - 1) {
+      //     children.push(this.$createElement('span', {
+      //       staticClass: 'vc@combobox__selection__divider',
+      //     }, this.divider));
+      //     // item.children.push(this.$createElement('span', {}, this.divider));
+      //     // console.log(item);
+      //     // console.log(item);
+      //     // item.children[0].text = item.children[0].text + this.divider;
+      //     // // item.children
+      //   }
+      //   // if (index !== values.length - 1) {
+      //   //   console.log(item.children);
+      //   //   // children.push(this.$createElement('span', {
+      //   //   //   staticClass: 'vc@combobox__selection__divider',
+      //   //   // }, this.divider));
+      //   // }
+      // });
+
+      // for (let i = 0, l = children.length; i < l; i++) {
+      //   children[i].key = this.getNewSelectionItemKey();
+      // }
+
       return this.$createElement('div', {
         staticClass: 'vc@combobox__selection',
       }, children);
@@ -198,9 +234,37 @@ export default {
     selected(val) {
       this.innerSelected = val;
     },
+    focused(val) {
+      this.menuIsActive = val;
+
+      if (!val && this.isSelect && this.autocomplete) {
+        this.innerValue = '';
+      }
+    },
+    // menuIsActive(val) {
+    //   this.currentAutocompleteTargetIndex = null;
+    // },
   },
 
   methods: {
+    removeLastSelection() {
+      if (!this.isSelect) return;
+      let value = this.targetSelected;
+      if (this.multiple) {
+        if (value && value.length) {
+          value.splice(value.length - 1, 1);
+        } else {
+          value = [];
+        }
+      } else {
+        value = null;
+      }
+      this.targetSelected = value;
+    },
+
+    getNewSelectionItemKey() {
+      return ++this.selectionItemKey;
+    },
     getOptionByValue(value) {
       return this.optionVms.find(vm => vm.value === value);
     },
@@ -227,7 +291,23 @@ export default {
       this.focused = true;
       this.$emit('focus', e);
     },
+    elementIsInContext(el) {
+      const containers = [this.$el];
+      if (this.$refs.menu && this.$refs.menu.$refs && this.$refs.menu.$refs.content) {
+        containers.push(this.$refs.menu.$refs.content);
+      }
+      for (let container of containers) {
+        if (!container) continue;
+        if (container === el || container.contains(el)) return true;
+      }
+      return false;
+    },
     onBlurInput(e) {
+      if (this.elementIsInContext(e.relatedTarget)) {
+        e.preventDefault();
+        this.$refs.input.focus();
+        return;
+      }
       this.focused = false;
       this.$emit('blur', e);
     },
@@ -248,6 +328,37 @@ export default {
           input: this.onInputInput,
           focus: this.onFocusInput,
           blur: this.onBlurInput,
+          keydown: e => {
+            if (!this.autocomplete) return;
+            if (e.which === 9 || e.which === 13) {
+
+              // >>> enter or tab
+            } else if (e.which === 38) {
+
+              // up
+            } else if (e.which === 40) {
+
+              // down
+            } else if (e.which === 8 || e.which === 46) {
+
+              // delete or backspace
+              if (!this.innerValue) {
+                return this.removeLastSelection();
+              }
+            }
+            // console.warn(e.which);
+            // if (this.isShowSuggest) {
+            //   if (e.which === 13) {
+            //     this.settleSuggest(this.suggestSelected);
+            //   } else if (e.which === 38) {
+            //     this.shiftSuggest(-1);
+            //     e.preventDefault();
+            //   } else if (e.which === 9 || e.which === 40) {
+            //     this.shiftSuggest(1);
+            //     e.preventDefault();
+            //   }
+            // }
+          },
         },
         ref: 'input',
       };
@@ -264,28 +375,26 @@ export default {
     },
     genMenu(optgroups) {
       if (!optgroups || !optgroups.length) return;
-      // return (
-      //   <div>
-      //     <h2>メニュー</h2>
-      //     {optgroups}
-      //   </div>
-      // );
 
       const $menu = this.$createElement('vt@menu', {
+        ref: 'menu',
         props: {
+          auto: true,
           // activator: this.$el,
           activator: this.$refs.body,
           // activator: this.$refs.input,
           offsetY: true,
           // nudgeTop: 26,
-          closeOnClick: true,
+          closeOnClick: false,
           closeOnContentClick: !this.multiple,
           disabled: this.disabled,
           contentClass: 'vc@combobox__menu',
           // maxHeight: this.maxHeight,
-          // openOnClick: false,
+          openOnClick: false,
+          offsetOverflow: this.autocomplete,
 
           value: this.menuIsActive/* && (....)*/,
+          // customOpenDependentElements: () => { return [this.$refs.body] },
           // zIndex: this.menuZIndex,
         },
 
@@ -294,7 +403,7 @@ export default {
             if (!val) {
               this.menuIsActive = false;
             }
-          }
+          },
         },
       }, [
         // this.$createElement('vt@list', {}, $tiles),
@@ -331,20 +440,28 @@ export default {
         },
       });
     },
-    selectOption($vm) {
+    selectOption($vm, force = false) {
       let payload;
       if (this.multiple) {
         payload = this.targetSelected || [];
         const index = payload.indexOf($vm.value);
-        if ($vm.isActive) {
+        if ($vm.isActive && !force) {
           if (index !== -1) payload.splice(index, 1);
         } else {
-          if (index == -1) payload.push($vm.value);
+          if (index === -1) payload.push($vm.value);
         }
       } else {
         payload = $vm.value;
       }
       this.targetSelected = payload;
+
+      if (this.autocomplete) {
+        this.innerValue = '';
+
+        if (!this.multiple) {
+          this.$refs.input.blur();
+        }
+      }
     },
     deselectOption($vm) {
       let payload;
@@ -361,6 +478,10 @@ export default {
 
   mounted() {
     if (this.autofocus) this.focus();
+  },
+
+  created() {
+    this.selectionItemKey = 0;
   },
 
   render(h) {

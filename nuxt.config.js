@@ -26,50 +26,50 @@ module.exports = {
 
     // extendRoutes: routesResolver,
 
-    scrollBehavior: async (to, from, savedPosition) => {
-      if (savedPosition) {
-        // savedPosition is only available for popstate navigations.
-        return savedPosition;
-      } else {
-        const position = {};
-        // let delay = $nuxt.$routeChangeDelay;
-        let delay = 500;
+    // scrollBehavior: async (to, from, savedPosition) => {
+    //   if (savedPosition) {
+    //     // savedPosition is only available for popstate navigations.
+    //     return savedPosition;
+    //   } else {
+    //     const position = {};
+    //     // let delay = $nuxt.$routeChangeDelay;
+    //     let delay = 500;
 
-        // if no children detected
-        if (to.matched.length < 2) {
-          // scroll to the top of the page
-          position.x = 0;
-          position.y = 0;
-        } else if (to.matched.some((r) => r.components.default.options.scrollToTop)) {
-          // if one of the children has scrollToTop option set to true
-          position.x = 0;
-          position.y = 0;
-        }
+    //     // if no children detected
+    //     if (to.matched.length < 2) {
+    //       // scroll to the top of the page
+    //       position.x = 0;
+    //       position.y = 0;
+    //     } else if (to.matched.some((r) => r.components.default.options.scrollToTop)) {
+    //       // if one of the children has scrollToTop option set to true
+    //       position.x = 0;
+    //       position.y = 0;
+    //     }
 
-        // if link has anchor,  scroll to anchor by returning the selector
-        if (to.hash) {
-          if (to.name === from.name && document.querySelector(to.hash)) {
-            $nuxt.$appScrollTo(to.hash);
-            return;
-          } else {
-            const el = await $nuxt.$util.waitElementInsert(to.hash, 100, delay * 2);
-            if (el) {
-              window.scrollTo(0, 0);
-              setTimeout(() => {
-                $nuxt.$appScrollTo(to.hash);
-              }, 10);
-            }
-            return;
-          }
-        }
+    //     // if link has anchor,  scroll to anchor by returning the selector
+    //     if (to.hash) {
+    //       if (to.name === from.name && document.querySelector(to.hash)) {
+    //         $nuxt.$appScrollTo(to.hash);
+    //         return;
+    //       } else {
+    //         const el = await $nuxt.$util.waitElementInsert(to.hash, 100, delay * 2);
+    //         if (el) {
+    //           window.scrollTo(0, 0);
+    //           setTimeout(() => {
+    //             $nuxt.$appScrollTo(to.hash);
+    //           }, 10);
+    //         }
+    //         return;
+    //       }
+    //     }
 
-        // wait for the out transition to complete (if necessary)
-        await (new Promise(resolve => setTimeout(resolve, delay)));
-        // if the returned position is falsy or an empty object,
-        // will retain current scroll position.
-        return position;
-      }
-    },
+    //     // wait for the out transition to complete (if necessary)
+    //     await (new Promise(resolve => setTimeout(resolve, delay)));
+    //     // if the returned position is falsy or an empty object,
+    //     // will retain current scroll position.
+    //     return position;
+    //   }
+    // },
   },
 
   generate: {
@@ -88,6 +88,14 @@ module.exports = {
 
   head: {
     titleTemplate: '%s | dd-vue-skelton',
+
+    // htmlAttrs: {
+    //   class: useCustomScroll ? `${sassSettings.prefix}use-custom-scroll` : '',
+    // },
+
+    // bodyAttrs: {
+    //   class: useCustomScroll ? `${sassSettings.prefix}fit-window` : '',
+    // },
 
     meta: [
       { charset: 'utf-8' },

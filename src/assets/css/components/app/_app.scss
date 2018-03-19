@@ -4,10 +4,19 @@
 
 .#{$css-prefix}app {
   position: relative;
-  min-height: 100vh;
   transition-property: none;
   transition-duration: get-duration(slowly);
   transition-timing-function: get-easing(drawer);
+  // &--base {
+  //   width: 100vw;
+  //   height: 100vh;
+  // }
+
+  // overflow: hidden;
+  // display: flex;
+  // align-items: stretch;
+  // justify-content: stretch;
+
 
   &--transition-top {
     transition-property: padding-top;
@@ -53,4 +62,16 @@
   &--drawer-right-static {
     padding-right: $navigation-drawer-width;
   }
+}
+
+.#{$css-prefix}app-body {
+  width: 100%;
+  overflow: visible;
+  // flex-grow: 10;
+  // flex-shrink: 1;
+  // overflow: auto;
+  // // overflow-x: hidden;
+  // // overflow-y: auto;
+
+  // -webkit-overflow-scrolling: touch;
 }

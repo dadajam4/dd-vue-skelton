@@ -19,6 +19,9 @@ export default {
     $combobox: {
       from: '$combobox',
     },
+    '$optgroup': {
+      from: '$optgroup',
+    },
     appendVmForCombobox: {
       from: 'appendOptionVm',
     },
@@ -28,47 +31,18 @@ export default {
     deselectOption: {
       from: 'deselectOption',
     },
-    // $select: {
-    //   from: '$select',
-    // },
-    // clickOption: {
-    //   from: 'clickOption',
-    // },
-    // toggleOption: {
-    //   from: 'toggleOption',
-    // },
-    // selectOption: {
-    //   from: 'selectOption',
-    // },
-    // deselectOption: {
-    //   from: 'deselectOption',
-    // },
-    // arriveForParent: {
-    //   from: 'arriveOption',
-    // },
-    // leaveFromParent: {
-    //   from: 'leaveOption',
-    // },
   },
 
   data() {
     return {
       innerValue: this.selected,
+      searchHitValue: null,
     }
   },
 
   computed: {
     isDisabled() { return this.disabled || this.$parent.isDisabled },
     multiple() { return this.$combobox.multiple },
-    // targetValue: {
-    //   get() { return this.innerValue },
-    //   set(val) {
-    //     const before = this.innerValue;
-    //     this.innerValue = val;
-    //     if (before !== val) this.$emit('change', val);
-    //   },
-    // },
-    // selectValue() { return this.$select.innerValue },
     isActive() {
       if (this.multiple) {
         const selectedValues = this.$combobox.targetSelected || [];
@@ -84,101 +58,76 @@ export default {
         staticClass: 'vc@combobox__selection__item',
       }, child);
     },
+    searchValue() { return this.$combobox.searchValue },
+    isSearchHit() {
+      if (!this.searchHitValue) return;
+      return !this.searchValue || this.searchHitValue.includes(this.searchValue);
+    },
   },
 
+  watch: {},
+
   methods: {
-    // updateValueByParentValue() {
-    //   let myValue;
-    //   if (this.multiple) {
-    //     const selectValue = this.selectValue || [];
-    //     myValue = selectValue.includes(this.value);
-    //   } else {
-    //     myValue = this.value === this.selectValue;
-    //   }
-    //   this.targetValue = myValue;
-    // },
+    updateSearchHitValue() {
+      if (!this.$el) this.searchHitValue = null;
+      this.searchHitValue = (this.$el.innerText || '').toLowerCase();
+    },
     click(e) {
       return this.isDisabled ? e.preventDefault() : this.select();
-      if (this.isDisabled) return e.preventDefault();
-
-      return this.$combobox.onSelectOption(this);
-      // return this.clickOption(this, e);
     },
-    // toggle() {
-    //   return this.toggleOption(this);
-    // },
-    select() {
-      return this.$combobox.selectOption(this);
+    select(force = false) {
+      return this.$combobox.selectOption(this, force);
     },
     deselect() {
       return this.deselectOption(this);
     },
-    // getDisplayNode() {
-    //   return this.$slots.display || this.$slots.default;
-    // },
   },
+
   created() {
     this.appendVmForCombobox(this);
-    // this.$select.$on('change', this.updateValueByParentValue);
-    // if (this.initialSelected) this.select();
+    if (this.$optgroup) this.$optgroup.appendOptionVm(this);
+  },
+  mounted() {
+    this.updateSearchHitValue();
+  },
+  updated() {
+    this.updateSearchHitValue();
   },
   beforeDestroy() {
     this.removeVmFromCombobox(this);
-    // this.$select.$off('change', this.updateValueByParentValue);
+    if (this.$optgroup) this.$optgroup.removeOptionVm(this);
   },
 
   render(h) {
-    // return h('li', {
-    //   staticClass: 'vc@option',
-    //   on: {
-    //     click: this.click,
-    //   },
-    // }, this.$slots.default);
-
-    // console.warn(this.multiple);
     const $content = this.$createElement('vt@list-tile-content', {}, this.$slots.default)
-    const children = [$content];
-    if (this.multiple) {
-      children.unshift(h('vt@list-tile-action', {}, [
-        // ここにチェック
-        // this.$createElement('vt@checkbox', {
-        //   props: {
-        //     inputValue: true,
-        //     tabindex: -1,
-        //   },
-        // }),
-      ]));
-    }
-    // const children = this.multiple ? [
-    //   this.$createElement('vt@list-tile-action', {
-
-    //   }, [
-    //     // ここにチェック
-    //     // this.$createElement('vt@checkbox', {
-    //     //   props: {
-    //     //     inputValue: true,
-    //     //     tabindex: -1,
-    //     //   },
-    //     // }),
-    //   ]),
-    //   $content,
-    // ] : this.$slots.default;
+    const children = [
+      h('vt@list-tile-action', {}, [
+        this.$createElement(`vt@${this.multiple ? 'checkbox' : 'radio'}-element`, {
+          props: {
+            checked: this.isActive,
+            disabled: this.isDisabled,
+            tabindex: -1,
+          },
+        })
+      ]),
+      $content,
+    ];
 
     return this.$createElement('vt@list-tile', {
       staticClass: 'vc@option',
+      class: {
+        'vc@option--disabled': this.isDisabled,
+      },
       props: {
         value: this.isActive,
+        disabled: this.isDisabled,
       },
       on: {
         click: this.click,
       },
+      directives: [
+        {name: 'show', value: this.isSearchHit}
+      ],
     }, children);
-
-    // return h('li', {
-    //   staticClass: 'vc@option',
-    //   on: {
-    //     click: this.click,
-    //   },
-    // }, this.$slots.default);
   },
 }

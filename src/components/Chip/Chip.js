@@ -52,6 +52,7 @@ export default {
         on: {
           click: e => {
             if (typeof this.close === 'function') {
+              e.stopPropagation();
               return this.close(e);
             }
 

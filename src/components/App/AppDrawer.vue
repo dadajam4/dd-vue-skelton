@@ -25,6 +25,8 @@ export default {
 
   mixins: [Mq],
 
+  inject: ['$app'],
+
   directives: {
     ClickOutside,
   },

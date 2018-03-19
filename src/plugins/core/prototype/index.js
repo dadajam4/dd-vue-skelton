@@ -53,6 +53,23 @@ export default function PrototypePlugin(Vue) {
     });
   }
 
+  let $app = null;
+  Vue.prototype.$attachApp = function($vm = this) {
+    $app = $vm;
+  }
+
+  Vue.prototype.$detachApp = function($vm = this) {
+    $app = null;
+  }
+
+  Object.defineProperty(Vue.prototype, '$app', {
+    enumerable: true,
+    configurable: true,
+    get() {
+      return $app;
+    },
+  });
+
   Vue.prototype.$appScrollTo = function(el, opts = {}) {
     appIsScrolling = true;
 

@@ -14,44 +14,67 @@ export default {
     genOptionByProp: {
       from :'genOptionByProp',
     },
-    // genOptionsByProp: {
-    //   from: 'genOptionsByProp',
-    // },
-    // setupOption: {
-    //   from: 'setupOption',
-    // },
-    // parentIsDisabled: {
-    //   from: 'disabled',
-    // },
   },
 
   provide() {
     const data = {
       '$optgroup': this,
     };
-
-    // Object.defineProperty(data, 'disabled', {
-    //    enumerable: true,
-    //    get: () => this.isDisabled,
-    // });
-
     return data;
   },
 
+  data() {
+    return {
+      optionVms: [],
+    }
+  },
+
   computed: {
+    isMultiple() { return this.$combobox.multiple },
     isDisabled() { return this.disabled || this.$combobox.disabled },
+    isAllSelected() { return !this.optionVms.find($vm => !$vm.isActive) },
+    isNotSelected() { return !this.optionVms.find($vm => $vm.isActive) },
+    isIndeterminate() { return !this.isAllSelected && !this.isNotSelected },
+    searchValue() { return this.$combobox.searchValue },
   },
 
   methods: {
+    appendOptionVm($vm) {
+      if (!this.optionVms.includes($vm)) this.optionVms.push($vm);
+    },
+    removeOptionVm($vm) {
+      const index = this.optionVms.indexOf($vm);
+      if (index !== -1) this.optionVms.splice(index, 1);
+    },
+    setChildrenSelected(selected) {
+      const method = selected ? 'select' : 'deselect';
+      for (let $vm of this.optionVms) {
+        $vm[method](true);
+      }
+    },
   },
 
   render(h) {
-    // console.warn(this.genOptionByProp);
     const children = [];
     const options = [];
+    const labelChildren = [this.label];
+    if (this.isMultiple) {
+      labelChildren.unshift(h('vt@checkbox-element', {
+        props: {
+          indeterminate: this.isIndeterminate,
+          checked: this.isAllSelected,
+          disabled: this.isDisabled,
+        },
+        on: {
+          click: e => {
+            return this.setChildrenSelected(!this.isAllSelected);
+          },
+        },
+      }));
+    }
 
     if (this.label) {
-      children.push(h('vt@optgroup-label', {}, this.label));
+      children.push(h('vt@optgroup-label', {}, labelChildren));
     }
 
     this.$slots.default && this.$slots.default.forEach(vn => {
@@ -73,15 +96,5 @@ export default {
     return h('div', {
       staticClass: 'vc@optgroup',
     }, children);
-
-    // this.$slots.default && this.$slots.default.forEach(vn => {
-    //   const tag = vn.componentOptions && vn.componentOptions.tag;
-    //   if (tag === `vt@option`) {
-    //     this.setupOption(vn);
-    //   }
-    // });
-    // return h('ul', {
-    //   staticClass: 'vc@optgroup',
-    // }, [...this.genOptionsByProp(this.options), ...(this.$slots.default || [])]);
   },
 }

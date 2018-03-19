@@ -19,7 +19,7 @@ export default {
       default: 'vc@list__tile--active'
     },
     avatar: Boolean,
-    inactive: Boolean,
+    disabled: Boolean,
     tag: String
   },
 
@@ -27,7 +27,7 @@ export default {
     classes() {
       return {
         'vc@list__tile': true,
-        'vc@list__tile--link': this.isLink && !this.inactive,
+        'vc@list__tile--link': this.isLink && !this.disabled,
         'vc@list__tile--avatar': this.avatar,
         'vc@list__tile--disabled': this.disabled,
         [this.activeClass]: this.isActive,
@@ -40,7 +40,7 @@ export default {
   },
 
   render(h) {
-    const isRouteLink = !this.inactive && this.isLink;
+    const isRouteLink = !this.disabled && this.isLink;
     const { tag, data } = isRouteLink ? this.generateRouteLink() : {
       tag: this.tag || 'div',
       data: {

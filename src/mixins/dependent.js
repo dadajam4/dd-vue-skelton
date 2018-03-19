@@ -13,6 +13,10 @@ function searchChildren(children) {
 
 
 export default {
+  props: {
+    customOpenDependentElements: Function,
+  },
+
   data() {
     return {
       closeDependents: true,
@@ -33,6 +37,7 @@ export default {
         result.push(...dependent.getClickableDependentElements());
       }
 
+      if (this.customOpenDependentElements) result.push(...this.customOpenDependentElements());
       return result;
     },
 

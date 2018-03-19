@@ -1,0 +1,25 @@
+//
+// App Stacks
+//
+
+.#{$css-prefix}app-stack-container {
+  position: relative;
+  // pointer-events: none;
+  z-index: get-z-index(app-stack-base);
+  top: 0;
+  left: 0;
+  overflow: visible;
+  width: 0;
+  height: 0;
+  // right: 0;
+  // bottom: 0;
+  // overflow: hidden;
+}
+
+.#{$css-prefix}app-stack {
+  // pointer-events: auto;
+  // display: inline-block;
+  // vertical-align: bottom;
+  display: block;
+  position: absolute;
+}

@@ -58,6 +58,15 @@ export default {
       type: String,
       default: 'dark',
     },
+    detectWindiwResize: Boolean,
+    horizontalScroll: {
+      type: Boolean,
+      default: true,
+    },
+    verticalScroll: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   computed: {
@@ -89,6 +98,17 @@ export default {
     rightIsScrollable() { return this.scrollRight >= this.computedJudgeAmmount },
     topIsScrollable() { return this.scrollTop >= this.computedJudgeAmmount },
     bottomIsScrollable() { return this.scrollBottom >= this.computedJudgeAmmount },
+    dimention() { return {width: this.containerWidth, height: this.containerHeight, scrollWidth: this.scrollWidth, scrollHeight: this.scrollHeight} },
+    scrollPosition() { return {top: this.scrollTop, left: this.scrollLeft} },
+  },
+
+  watch: {
+    dimention(val) {
+      this.$emit('resize', val);
+    },
+    scrollPosition(val) {
+      this.$emit('scroll', val);
+    },
   },
 
   methods: {
@@ -144,7 +164,19 @@ export default {
     const $scroller = h('div', {
       staticClass: 'vc@scroller__context',
       class: this.addBackgroundColorClasses(),
-      directives: [{ name: 'resize', value: this.onResize }],
+      style: {
+        'overflow-x': !this.horizontalScroll && 'hidden' || 'auto',
+        'overflow-y': !this.verticalScroll && 'hidden' || 'auto',
+      },
+      directives: [
+        {
+          name: 'resize',
+          value: {
+            window: this.detectWindiwResize,
+            value: this.onResize,
+          },
+        }
+      ],
       on: {
         scroll: e => this.onScroll(e),
       },

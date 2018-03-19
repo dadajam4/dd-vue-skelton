@@ -6,11 +6,11 @@
   display: block;
   padding-bottom: 6rem;
 
-  @include page-container;
+  // @include page-container;
 
-  &__pull {
-    @include page-pull;
-  }
+  // &__pull {
+  //   @include page-pull;
+  // }
 
   &__header {
 
@@ -37,10 +37,12 @@
   &__intro {
     @include theme-color(color, text-secondary);
     margin-top: 2rem;
+    @include page-container;
   }
 
   &__section {
     margin-top: 4rem;
+    @include page-container;
 
     &-header {
       @include font-size(xxl);

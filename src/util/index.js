@@ -1,4 +1,6 @@
 import createSimpleFunctional from './createSimpleFunctional';
+import createActivatorWithContent from './createActivatorWithContent';
+import mergeComponentOptions from './mergeComponentOptions';
 import directiveConfig from './directiveConfig';
 import load from './load';
 import addOnceEventListener from './addOnceEventListener';
@@ -42,6 +44,8 @@ export const toArray = (arrayLike) => {
 
 export {
   createSimpleFunctional,
+  createActivatorWithContent,
+  mergeComponentOptions,
   directiveConfig,
   load,
   addOnceEventListener,

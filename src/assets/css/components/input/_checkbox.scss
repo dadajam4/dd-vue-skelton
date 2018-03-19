@@ -69,7 +69,8 @@
   }
 
   &--indeterminate:after {
-    $my-offset: 3px;
+    $my-offset: 3px + (get-check(size) - get-check(body-size)) / 2;
+
     content: "";
     display: block;
     position: absolute;
@@ -79,5 +80,9 @@
     bottom: calc(50% - 1px);
     background: currentColor;
     border-radius: 2px;
+  }
+
+  &--disabled {
+    pointer-events: none;
   }
 }

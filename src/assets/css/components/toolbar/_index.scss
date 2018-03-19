@@ -74,7 +74,8 @@
       bottom: 0;
       left: get-page(horizontal-padding);
     }
-    @include font-weight(regular);
+    // @include font-weight(regular);
+    @include font-weight-bolder;
     @include font-size(lg);
     @include ellipsis;
     min-width: 3em;

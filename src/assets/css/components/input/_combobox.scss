@@ -120,6 +120,10 @@
         opacity: .3;
       }
     }
+
+    &--static {
+      cursor: default;
+    }
   }
 
 
@@ -188,6 +192,7 @@
     &__item {
       display: block;
       white-space: nowrap;
+      cursor: default;
     }
 
     &__divider {
@@ -220,6 +225,21 @@
     #{$my}__input {
       @include theme-color(color, text-muted, true);
       pointer-events: none;
+    }
+
+    #{$my}__selection {
+      &__item,
+      &__divider {
+        @include theme-color(color, text-muted, true);
+        opacity: 1;
+      }
+
+      &__item {
+        * {
+          pointer-events: none!important;
+          opacity: .7;
+        }
+      }
     }
   }
 }

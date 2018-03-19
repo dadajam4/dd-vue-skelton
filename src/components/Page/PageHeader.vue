@@ -30,7 +30,6 @@ export default {
     classes() {
       return this.addColorClasses({
         'vc@page__header': true,
-        'vc@page__pull': true,
       });
     },
   },

@@ -28,13 +28,14 @@ export default function(type) {
           'vc@checkable-element': true,
           [`vc@${type}-element`]: true,
           [`vc@${type}-element--checked`]: !!this.checked,
+          [`vc@${type}-element--indeterminate`]: !!this.indeterminate,
           [`vc@${type}-element--disabled`]: !!this.disabled,
           [`vc@${type}-element--error`]: this.error,
           'vc@text-color--grey': this.disabled,
           'vc@text-color--error': this.error && !this.disabled,
         };
 
-        if (!classes[`vc@text-color--${this.color}`]) classes[`vc@text-color--${this.color}`] = !this.disabled && !this.error && !!this.checked;
+        if (!classes[`vc@text-color--${this.color}`]) classes[`vc@text-color--${this.color}`] = !this.disabled && !this.error && (!!this.checked || this.indeterminate);
         return classes;
       },
       // bodyClasses() {

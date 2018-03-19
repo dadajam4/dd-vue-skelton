@@ -6,12 +6,17 @@
   margin: 8px 0;
 
   &__label {
-    display: block;
+    display: flex;
+    align-items: center;
     @include font-size(sm);
     @include theme-color(color, text-sub);
     margin-top: get-space(md);
     // margin-bottom: get-space(xs);
     padding: 0 get-space(sm);
+
+    .#{$css-prefix}checkbox-element {
+      margin-right: .5em;
+    }
   }
 
   &__items {
@@ -23,4 +28,9 @@
 .#{$css-prefix}option {
   list-style: none;
   cursor: pointer;
+
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+  }
 }

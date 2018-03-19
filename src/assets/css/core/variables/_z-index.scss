@@ -14,6 +14,8 @@ $z-index: map-set($z-index, page-menu  , 7000  );
 $z-index: map-set($z-index, dropdown   , 6000  );
 $z-index: map-set($z-index, dialog     , 5000  );
 $z-index: map-set($z-index, popup      , 4000  );
+
+$z-index: map-set($z-index, app-stack-base , 1000);
 $z-index: map-set($z-index, app-drawer , 20    );
 $z-index: map-set($z-index, app-header , 10    );
 $z-index: map-set($z-index, default    , 1     );

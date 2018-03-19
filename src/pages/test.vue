@@ -113,11 +113,13 @@
 
     <vt@page-section title id="はじめに" data-anchor-point>
 
+<!--
       <div>
         <p>■フラット選択</p>
         <input type="checkbox" v-model="flat" :value="true">
         {{flat}}
       </div>
+
       <vt@input
         label="サイズ小＆インライン"
         placeholder="プレースホルダ"
@@ -207,7 +209,6 @@
           <vt@icon>search</vt@icon>
         </vt@btn>
       </vt@textarea>
-<!--
 -->
 
 <!--
@@ -239,14 +240,25 @@
       <vt@radio name="radio3" value="m1" disabled>ラジオ1</vt@radio>
       <vt@radio name="radio3" value="m2">ラジオ2</vt@radio>
       <vt@radio name="radio3" value="m3" checked>ラジオ3</vt@radio>
-
 -->
-
 <!--
       <vt@select
-        label="セレクト"
+        label="シングル"
+        :flat="flat"
+        :disabled="hasDisabled"
+      >
+        <vt@option value="1">項目1</vt@option>
+        <vt@option value="2">項目2</vt@option>
+        <vt@option value="3">項目3</vt@option>
+      </vt@select>
+
+
+      <vt@select
+        label="マルチ"
         v-model="select0"
         multiple
+        :flat="flat"
+        :disabled="hasDisabled"
       >
         <template slot="selection" slot-scope="option">
           <vt@chip
@@ -263,10 +275,47 @@
       </vt@select>
       <p>{{select0}}</p>
 
+
+      <vt@select
+        label="シングル - グループ"
+        :flat="flat"
+        :disabled="hasDisabled"
+      >
+        <vt@optgroup label="野菜">
+          <vt@option value="1">人参</vt@option>
+          <vt@option value="2">大根</vt@option>
+          <vt@option value="3">セロリ</vt@option>
+        </vt@optgroup>
+        <vt@optgroup label="ドリンク">
+          <vt@option value="4">コーラ</vt@option>
+          <vt@option value="5">アクエリアス</vt@option>
+        </vt@optgroup>
+      </vt@select>
+
+
+      <vt@select
+        label="マルチ - グループ"
+        multiple
+        :flat="flat"
+        :disabled="hasDisabled"
+      >
+        <vt@optgroup label="野菜">
+          <vt@option value="1">人参</vt@option>
+          <vt@option value="2">大根</vt@option>
+          <vt@option value="3">セロリ</vt@option>
+        </vt@optgroup>
+        <vt@optgroup label="ドリンク">
+          <vt@option value="4">コーラ</vt@option>
+          <vt@option value="5">アクエリアス</vt@option>
+        </vt@optgroup>
+      </vt@select>
+
       <vt@select
         label="セレクト"
         v-model="select0"
         multiple
+        :flat="flat"
+        :disabled="hasDisabled"
       >
         <vt@option value="1">項目1</vt@option>
         <vt@option value="2">項目2</vt@option>
@@ -277,25 +326,76 @@
       <vt@select
         label="セレクト"
         v-model="select0"
+        multiple
+        :flat="flat"
+        :disabled="hasDisabled"
         :groups="[
           {
+            label: 'グループ1(disabled)',
             disabled: true,
             options: [
-              {value: 1, label: 'セレクト1'},
-              {value: 2, label: 'セレクト2'},
-              {value: 3, label: 'セレクト3', disabled: true},
+              {value: '1', label: 'セレクト1'},
+              {value: '2', label: 'セレクト2'},
+              {value: '3', label: 'セレクト3', disabled: true},
             ],
           },
           {
             label: 'グループ2',
             options: [
-              {value: 4, label: 'セレクト4'},
-              {value: 5, label: 'セレクト5', selected: true},
-              {value: 6, label: 'セレクト6', disabled: true},
+              {value: '4', label: 'セレクト4'},
+              {value: '5', label: 'セレクト5', selected: true},
+              {value: '6', label: 'セレクト6', disabled: true},
             ],
           },
         ]"
       />
+
+-->
+
+      <p><input type="checkbox" v-model="usemenu">メニュー利用</p>
+      <div v-if="usemenu">
+        <vt@menu-fragment>
+          <vt@btn info slot="activator">アクチベータ</vt@btn>
+          <vt@menu>
+            <vt@list>
+              <vt@list-tile v-for="n in 5" :key="n" @click="">
+                <vt@list-tile-content>メニュー{{n}}</vt@list-tile-content>
+              </vt@list-tile>
+            </vt@list>
+          </vt@menu>
+        </vt@menu-fragment>
+      </div>
+
+      <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
+<!--
+      <vt@select
+        label="autocomplete"
+        :flat="flat"
+        :disabled="hasDisabled"
+        autocomplete
+      >
+        <vt@option value="1">項目1</vt@option>
+        <vt@option value="2">項目2</vt@option>
+        <vt@option value="3">項目3</vt@option>
+      </vt@select>
+
+      <vt@test-menu>
+        <vt-btn info slot="activator">アクチ</vt-btn>
+        <div>ボディ</div>
+      </vt@test-menu>
+
+
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
+      <p>hoge</p>
 -->
 
 <!--
@@ -621,10 +721,12 @@
 -->
     </vt@page-section>
 
+<!--
     <div class="my-debug">
       <vt@switch label="disabled" color="grey" v-model="hasDisabled"></vt@switch>
       <vt@switch label="error" color="error" v-model="hasError"></vt@switch>
     </div>
+-->
   </vt@page>
 </template>
 
@@ -670,6 +772,9 @@ export default {
       range1: null,
       range2: null,
       hint: 'これはヒントです',
+      ttt: false,
+      tttinput: '',
+      usemenu: true,
     }
   },
 }

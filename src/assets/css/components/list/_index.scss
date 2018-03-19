@@ -68,6 +68,11 @@
       @include theme-color(color, text-primary, true);
     }
 
+    &--disabled {
+      @include theme-color(color, text-muted, true);
+      pointer-events: none;
+    }
+
     &:after {
       content: '';
       position: absolute;

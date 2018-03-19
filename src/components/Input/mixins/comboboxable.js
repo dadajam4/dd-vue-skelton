@@ -116,6 +116,10 @@ export default {
           suffix: this.suffix,
           selectionRenderer: this.$scopedSlots.selection,
           color: this.color,
+          staticSelect: this.type === 'select' && !this.autocomplete,
+          options: this.options,
+          groups: this.groups,
+          autocomplete: this.autocomplete,
         },
         on: {
           input: this.onComboboxInput,
