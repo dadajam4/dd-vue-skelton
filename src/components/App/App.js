@@ -58,7 +58,7 @@ export default {
         'vc@app--has-header': this.$store.state.ui.header.use,
         'vc@app--has-drawer-left': this.$store.state.ui.leftDrawer.use,
         'vc@app--has-drawer-right': this.$store.state.ui.rightDrawer.use,
-        [`vc@app--transition-${this.transitionPropNames.join('-')}`]: this.transitionPropNames.length,
+        // [`vc@app--transition-${this.transitionPropNames.join('-')}`]: this.transitionPropNames.length,
         'vc@app--header-fixed': this.$store.state.ui.header.fixed,
         'vc@app--drawer-left-active': this.$store.state.ui.leftDrawer.active,
         'vc@app--drawer-right-active': this.$store.state.ui.rightDrawer.active,
@@ -70,10 +70,17 @@ export default {
     bodyClasses() {
       return {
         'vc@app-body': true,
+        [`vc@app-body--transition-${this.transitionPropNames.join('-')}`]: this.transitionPropNames.length,
       }
     },
 
-    styles() {
+    // styles() {
+    //   if (!this.$store.state.ui.header.fixed) return;
+    //   const headerHeight = this.$store.state.ui.header.height;
+    //   if (headerHeight) return {paddingTop: `${headerHeight}px`};
+    // },
+
+    bodyStyles() {
       if (!this.$store.state.ui.header.fixed) return;
       const headerHeight = this.$store.state.ui.header.height;
       if (headerHeight) return {paddingTop: `${headerHeight}px`};
@@ -123,6 +130,7 @@ export default {
 
     const $body = h('div', {
       class: this.bodyClasses,
+      style: this.bodyStyles,
       // props: {
       //   detectWindiwResize: this.isBaseApp,
       //   layerColor: 'shades-transparent',
@@ -146,7 +154,7 @@ export default {
 
     return h('div', {
       class: this.classes,
-      style: this.styles,
+      // style: this.styles,
       attrs: {
         'data-app': '',
       },

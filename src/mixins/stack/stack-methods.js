@@ -51,40 +51,14 @@ export default Object.assign({
    * スタックを初期化（app配下にエレメントを挿入）する
    */
   initStack() {
-    if (
-      this._isDestroyed
-      || !this.$refs.content
-    ) return;
-
-    const $target = this.$app.$el;
-
-    if (!$target) {
-      console.warn(`Unable to locate target vt@app`, this);
-      return;
-    }
-
-    $target.insertBefore(
-      this.$refs.content,
-      $target.firstChild
-    );
-
     this.$appStackContainer.attach(this);
-    this.detached = true;
   },
 
   /**
    * スタックをリセット（app配下からエレメントを削除）する
    */
   resetStack() {
-    if (!this.$refs.content) return;
-
-    // IE11 Fix
-    try {
-      this.$refs.content.parentNode.removeChild(this.$refs.content);
-    } catch (e) {}
-
     this.$appStackContainer.detach(this);
-    this.detached = false;
   },
 
   /**
@@ -107,6 +81,16 @@ export default Object.assign({
     return $activator;
   },
 
+  addClassForActivator(className) {
+    if (!this.$activator) return;
+    this.$util.addClass(this.$activator, className);
+  },
+
+  removeClassFromActivator(className) {
+    if (!this.$activator) return;
+    this.$util.removeClass(this.$activator, className);
+  },
+
   /**
    * propで指定されたアクティベータを自身のメンバ変数に保持して
    * クリックオプションを設定する
@@ -114,22 +98,70 @@ export default Object.assign({
   setupActivator() {
     this.$activator = this.getActivator();
 
-    if (!this.$activator || this.$activator.__ddActivatorClickCallBack) return;
+    if (!this.$activator) return;
 
-    const callback = e => this[this.activatorAction](e);
-    this.$activator.__ddActivatorClickCallBack = callback;
-    this.$activator.addEventListener('click', callback, false);
+    this.addClassForActivator('vc@stack-activator');
+    this.$activator.addEventListener('click', this.activatorClickHandler, false);
+    if (this.openOnHover) {
+      this.$activator.addEventListener('mouseenter', this.mouseEnterHandler, false);
+      this.$activator.addEventListener('mouseleave', this.mouseLeaveHandler, false);
+    }
+  },
+
+  activatorClickHandler(e) {
+    if (this.disabled) return;
+
+    this.absoluteX = e.clientX;
+    this.absoluteY = e.clientY;
+
+    this[this.activatorAction](e);
+  },
+
+  mouseEnterHandler(e) {
+    this.show();
+  },
+
+  mouseLeaveHandler(e) {
+    setTimeout(() => {
+      if (
+        this.$refs.content && (e.relatedTarget === this.$refs.content || this.$refs.content.contains(e.relatedTarget))
+        || this.$activator && (e.relatedTarget === this.$activator || this.$activator.contains(e.relatedTarget))
+      ) return;
+      this.close();
+    }, 200);
   },
 
   /**
    * propで指定されたアクティベータのクリックオプションを解除する
    */
   resetActivator() {
-    if (this.$activator && this.$activator.__ddActivatorClickCallBack) {
-      this.$activator.removeEventListener('click', this.$activator.__ddActivatorClickCallBack, false);
-      this.$activator.__ddActivatorClickCallBack = null;
-      delete this.$activator.__ddActivatorClickCallBack;
+    if (!this.$activator) return;
+
+    this.removeClassFromActivator([
+      'vc@stack-activator',
+      'vc@stack-activator--active',
+      'vc@stack-activator--disabled',
+    ]);
+
+    this.$activator.removeEventListener('click', this.activatorClickHandler, false);
+    if (this.openOnHover) {
+      this.$activator.removeEventListener('mouseenter', this.mouseEnterHandler, false);
+      this.$activator.removeEventListener('mouseleave', this.mouseLeaveHandler, false);
     }
+  },
+
+  activate() {
+    this.cancelVisibilityCallBacks('close');
+    this.addClassForActivator('vc@stack-activator--active');
+    this.updateDimensions(() => {
+      this.contentIsActive = true;
+    });
+  },
+
+  deactivate() {
+    this.cancelVisibilityCallBacks('show');
+    this.removeClassFromActivator('vc@stack-activator--active');
+    this.contentIsActive = false;
   },
 
   show() {
@@ -148,7 +180,81 @@ export default Object.assign({
     return this.isActive ? this.close() : this.show();
   },
 
-  startWatchDimensions() {},
+  getRoundedBoundedClientRect(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+      top: Math.round(rect.top),
+      left: Math.round(rect.left),
+      bottom: Math.round(rect.bottom),
+      right: Math.round(rect.right),
+      width: Math.round(rect.width),
+      height: Math.round(rect.height),
+    }
+  },
 
-  stopWatchDimensions() {},
+  absolutePosition() {
+    return {
+      top: this.computedY || this.absoluteY,
+      bottom: this.computedY || this.absoluteY,
+      left: this.computedX || this.absoluteX,
+      right: this.computedX || this.absoluteX,
+      height: 0,
+      width: 0,
+    }
+  },
+
+  measure(el, selector) {
+    el = selector ? el.querySelector(selector) : el;
+
+    if (!el || typeof window === 'undefined') return null;
+
+    const rect = this.getRoundedBoundedClientRect(el);
+
+    return rect;
+  },
+
+  isShownContent() {
+    return this.$refs.content && this.$refs.content.style.display !== 'none';
+  },
+
+  contentSneakPeek(cb) {
+    if (this.isShownContent()) return cb();
+    requestAnimationFrame(() => {
+      this.$refs.style.display = 'inline-block';
+      cb();
+      this.$refs.style.display = 'none';
+    })
+  },
+
+  updateActivatorDimension() {
+    const dimention = !this.$activator || this.absolute ? this.absolutePosition() : this.measure(this.$activator);
+    this.dimensions.activator = Object.assign(this.dimensions.activator, dimention);
+  },
+
+  updateContentDimension(cb) {
+    const $el = this.$refs.content;
+    if (!$el) return cb();
+
+    requestAnimationFrame(() => {
+      const originDisplay = $el.style.display;
+      $el.style.display = 'inline-block';
+      this.dimensions.content = this.measure($el);
+      $el.style.display = originDisplay;
+      requestAnimationFrame(() => {
+        cb && cb();
+      });
+    })
+  },
+
+  updateDimensions(cb) {
+    this.pageYOffset = this.$store.state.scroll.top;
+    this.updateActivatorDimension();
+    this.updateContentDimension(cb);
+  },
+
+  onResize(e) {
+    if (this.isVisible) {
+      this.updateDimensions();
+    }
+  },
 }, generators);

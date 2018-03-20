@@ -3,8 +3,8 @@
 
 <template>
   <docs-example>
-    <vt@menu offset-y>
-      <vt@btn primary dark slot="activator">Dropdown</vt@btn>
+    <vt@btn primary dark ref="activator">Dropdown</vt@btn>
+    <vt@menu offset-y :activator="() => $refs.activator">
       <vt@list>
         <vt@list-tile v-for="item in items" :key="item.title" @click="">
           <vt@list-tile-title>{{ item.title }}</vt@list-tile-title>

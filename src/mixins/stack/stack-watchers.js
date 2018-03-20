@@ -1,5 +1,9 @@
 export default {
   value(val) {
+    if (val && this.disabled) {
+      this.$emit('input', false);
+      return;
+    }
     this.innerValue = val;
   },
 
@@ -7,17 +11,25 @@ export default {
     if (val) this.isExistNode = true;
   },
 
+  disabled(val) {
+    if (val) {
+      this.addClassForActivator('vc@stack-activator--disabled');
+      this.callDeactivate();
+    } else {
+      this.removeClassFromActivator('vc@stack-activator--disabled');
+    }
+  },
+
   isActive(val) {
-    this.cancelVisibilityCallBacks(val ? 'close' : 'show');
+    if (this.disabled) return;
+    val ? this.activate() : this.deactivate();
   },
 
   isVisible(val) {
     this.$emit('changeVisible', val);
     if (val) {
-      this.startWatchDimensions();
       this.triggerShowCallBacks();
     } else {
-      this.stopWatchDimensions();
       this.triggerCloseCallBacks();
     }
   },

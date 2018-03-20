@@ -3,14 +3,18 @@
 
 <template>
   <docs-example>
-    <vt@menu offset-y open-on-hover>
-      <vt@btn primary dark slot="activator">Dropdown</vt@btn>
-      <vt@list>
-        <vt@list-tile v-for="item in items" :key="item.title" @click="">
-          <vt@list-tile-title>{{ item.title }}</vt@list-tile-title>
-        </vt@list-tile>
-      </vt@list>
-    </vt@menu>
+    <div>
+      <vt@menu-fragment>
+        <vt@btn primary dark slot="activator">Dropdown</vt@btn>
+        <vt@menu offset-y open-on-hover>
+          <vt@list>
+            <vt@list-tile v-for="item in items" :key="item.title" @click="">
+              <vt@list-tile-title>{{ item.title }}</vt@list-tile-title>
+            </vt@list-tile>
+          </vt@list>
+        </vt@menu>
+      </vt@menu-fragment>
+    </div>
   </docs-example>
 </template>
 

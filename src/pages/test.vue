@@ -351,12 +351,18 @@
       />
 
 -->
+      <vt@tooltip-fragment>
+        <vt@btn info slot="activator">abc</vt@btn>
+        <vt@tooltip>
+          これは
+        </vt@tooltip>
+      </vt@tooltip-fragment>
 
       <p><input type="checkbox" v-model="usemenu">メニュー利用</p>
       <div v-if="usemenu">
         <vt@menu-fragment>
           <vt@btn info slot="activator">アクチベータ</vt@btn>
-          <vt@menu>
+          <vt@menu offset-y switch-offset-overflow open-on-hover>
             <vt@list>
               <vt@list-tile v-for="n in 5" :key="n" @click="">
                 <vt@list-tile-content>メニュー{{n}}</vt@list-tile-content>
@@ -365,6 +371,21 @@
           </vt@menu>
         </vt@menu-fragment>
       </div>
+
+      <div>
+        <label><input type="checkbox" v-model="ttt"> メニュー</label>
+      </div>
+      <vt@menu-fragment>
+        <div style="width: 100%; height: 100px; background: #f00;" slot="activator">アクティベータ</div>
+        <vt@menu v-model="ttt" absolute>
+          <vt@list>
+            <vt@list-tile v-for="n in 5" :key="n" @click="">
+              <vt@list-tile-content>メニュー○{{n}}</vt@list-tile-content>
+            </vt@list-tile>
+          </vt@list>
+        </vt@menu>
+      </vt@menu-fragment>
+
 
       <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
 <!--

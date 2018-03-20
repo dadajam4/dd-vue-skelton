@@ -5,18 +5,62 @@
 .#{$css-prefix}app {
   position: relative;
   transition-property: none;
-  transition-duration: get-duration(slowly);
-  transition-timing-function: get-easing(drawer);
-  // &--base {
-  //   width: 100vw;
-  //   height: 100vh;
+  // transition-duration: get-duration(slowly);
+  // transition-timing-function: get-easing(drawer);
+
+
+  // &--transition-top {
+  //   transition-property: padding-top;
   // }
 
-  // overflow: hidden;
-  // display: flex;
-  // align-items: stretch;
-  // justify-content: stretch;
+  // &--transition-left {
+  //   transition-property: padding-left;
+  // }
 
+  // &--transition-right {
+  //   transition-property: padding-right;
+  // }
+
+  // &--transition-top-left {
+  //   transition-property: padding-top;
+  //   transition-property: padding-left;
+  // }
+
+  // &--transition-top-right {
+  //   transition-property: padding-top;
+  //   transition-property: padding-right;
+  // }
+
+  // &--transition-left-right {
+  //   transition-property: padding-left;
+  //   transition-property: padding-right;
+  // }
+
+  // &--transition-top-left-right {
+  //   transition-property: padding-top;
+  //   transition-property: padding-left;
+  //   transition-property: padding-right;
+  // }
+
+  // // &--header-fixed {
+  // //   padding-top: get-toolbar(row-height);
+  // // }
+
+  // &--drawer-left-static {
+  //   padding-left: $navigation-drawer-width;
+  // }
+
+  // &--drawer-right-static {
+  //   padding-right: $navigation-drawer-width;
+  // }
+}
+
+.#{$css-prefix}app-body {
+  width: 100%;
+  overflow: visible;
+
+  transition-duration: get-duration(slowly);
+  transition-timing-function: get-easing(drawer);
 
   &--transition-top {
     transition-property: padding-top;
@@ -62,11 +106,7 @@
   &--drawer-right-static {
     padding-right: $navigation-drawer-width;
   }
-}
 
-.#{$css-prefix}app-body {
-  width: 100%;
-  overflow: visible;
   // flex-grow: 10;
   // flex-shrink: 1;
   // overflow: auto;

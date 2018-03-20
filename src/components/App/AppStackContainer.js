@@ -9,11 +9,17 @@ const INACTIVE_Z_INDEX = 1;
 export default {
   name: 'vt@app-stack-container',
 
+  inject: ['appDimentions'],
+
   data() {
     return {
       stacks: [],
       frontStack: null,
     }
+  },
+
+  computed: {
+    dimension() { return {width: this.appDimentions.app.width, height: this.appDimentions.app.height } },
   },
 
   methods: {
@@ -32,21 +38,40 @@ export default {
 
     attach($vm) {
       if (this.stacks.includes($vm)) return;
+
+      if (
+        $vm._isDestroyed
+        || !$vm.$refs.content
+      ) return;
+
+      this.$el.insertBefore(
+        $vm.$refs.content,
+        this.$el.firstChild
+      );
+
       const visibilityHandler = () => this.onChangeStackVisiblility($vm);
       this.stackVisibilityHanlders[$vm._uid] = visibilityHandler;
       this.stacks.unshift($vm);
       visibilityHandler();
       $vm.$on('changeVisible', visibilityHandler);
+      $vm.detached = true;
     },
 
     detach($vm) {
       const index = this.stacks.indexOf($vm);
       if (index === -1) return;
+
+      // IE11 Fix
+      try {
+        $vm.$refs.content && this.$el.removeChild($vm.$refs.content);
+      } catch (e) {}
+
       const visibilityHandler = this.stackVisibilityHanlders[$vm._uid];
       $vm.$off('changeVisible', visibilityHandler);
       this.stackVisibilityHanlders[$vm._uid] = null;
       delete this.stackVisibilityHanlders[$vm._uid];
       this.stacks.splice(index, 1);
+      $vm.detached = false;
     },
 
     onChangeStackVisiblility($vm) {
