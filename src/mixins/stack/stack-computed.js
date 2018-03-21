@@ -97,11 +97,20 @@ export default {
     if (this.adjustActivatorCenter && !this.left && !this.right) {
       left = a.left + a.width / 2 - c.width / 2;
     } else {
-      const minWidth = a.width < c.width ? c.width : a.width;
-      left += this.left ? a.left - (minWidth - a.width) : a.left;
+      left = this.left ? a.left : a.right - c.width;
+      // const minWidth = a.width < c.width ? c.width : a.width;
+      // left += this.left ? a.left - (minWidth - a.width) : a.left;
     }
 
-    if (this.offsetX) left += this.left ? -a.width : a.width;
+    // if (this.offsetX) left += this.left ? -a.width : a.width;
+    // if (this.offsetX) left += this.left ? -c.width : a.width;
+    if (this.offsetX) {
+      if (this.adjustActivatorCenter) {
+        left += this.left ? -c.width : a.width;
+      } else {
+        left += this.left ? a.width : -a.width;
+      }
+    }
     if (this.computedNudgeLeft) left -= parseInt(this.computedNudgeLeft);
     if (this.computedNudgeRight) left += parseInt(this.computedNudgeRight);
 
@@ -113,6 +122,6 @@ export default {
       if (left < containerLeft) left += (containerLeft - left);
     }
 
-    return left
+    return left;
   },
 }

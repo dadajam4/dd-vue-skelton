@@ -56,7 +56,20 @@ export default Object.assign({
       type: String,
       default: 'toggle',
     },
+    openOnClick: {
+      type: Boolean,
+      default: true,
+    },
     openOnHover: Boolean,
+    openHoverDelay: {
+      type: [String, Number],
+      default: 0,
+    },
+    closeHoverDelay: {
+      type: [String, Number],
+      default: 200,
+    },
+    contextmenu: Boolean,
 
     // position
     fixed: Boolean,
@@ -119,6 +132,7 @@ export default Object.assign({
       detached: false,
       dimensions: getDimensionsDefaults(),
       pageYOffset: 0,
+      delayTimers: [],
     }
   },
 

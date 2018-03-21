@@ -5,7 +5,7 @@
   <docs-example>
     <div class="text-xs-center">
       <vt@menu-fragment>
-        <vt@btn primary dark slot="activator">
+        <vt@btn primary dark>
           Scale Transition
         </vt@btn>
         <vt@menu
@@ -22,7 +22,7 @@
       </vt@menu-fragment>
 
       <vt@menu-fragment>
-        <vt@btn primary dark slot="activator">
+        <vt@btn primary dark>
           Slide X Transition
         </vt@btn>
         <vt@menu
@@ -39,7 +39,7 @@
       </vt@menu-fragment>
 
       <vt@menu-fragment>
-        <vt@btn primary dark slot="activator">
+        <vt@btn primary dark>
           Slide Y Transition
         </vt@btn>
         <vt@menu

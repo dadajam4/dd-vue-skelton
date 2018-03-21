@@ -9,12 +9,14 @@
           <vt@btn @click="show = !show">toggle</vt@btn>
         </vt@flex>
         <vt@flex xs12 class="vc@m-t--xl">
-          <vt@tooltip v-model="show" top>
-            <vt@btn icon slot="activator">
+          <vt@tooltip-fragment>
+            <vt@btn icon>
               <vt@icon>shopping-cart</vt@icon>
             </vt@btn>
-            <span>Programmatic tooltip</span>
-          </vt@tooltip>
+            <vt@tooltip v-model="show" top :open-on-click="false" :open-on-hover="false">
+              <span>Programmatic tooltip</span>
+            </vt@tooltip>
+          </vt@tooltip-fragment>
         </vt@flex>
       </vt@layout>
     </vt@container>

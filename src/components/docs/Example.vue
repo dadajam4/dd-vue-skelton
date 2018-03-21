@@ -13,12 +13,14 @@
       <vt@toolbar secondary>
         <vt@toolbar-title tag="h2">{{computedTitle}}</vt@toolbar-title>
         <vt@spacer />
-        <vt@btn icon @click="sourceActive = !sourceActive" ref="btnSource">
-          <vt@icon>code</vt@icon>
-        </vt@btn>
-        <vt@tooltip bottom :activator="() => $refs.btnSource">
-          <span>View source</span>
-        </vt@tooltip>
+        <vt@tooltip-fragment>
+          <vt@btn icon @click="sourceActive = !sourceActive">
+            <vt@icon>code</vt@icon>
+          </vt@btn>
+          <vt@tooltip bottom>
+            <span>View source</span>
+          </vt@tooltip>
+        </vt@tooltip-fragment>
       </vt@toolbar>
       <vt@expand-transition v-if="source">
         <vt@tabs class="my-source" v-if="sourceActive">

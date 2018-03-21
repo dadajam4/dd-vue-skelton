@@ -28,6 +28,7 @@ export default {
   },
 
   beforeDestroy() {
+    this.clearDelay();
     if (this._parentStackUnWatcher) this._parentStackUnWatcher();
     this._parentStackUnWatcher = null;
     delete this._parentStackUnWatcher;

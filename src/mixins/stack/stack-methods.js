@@ -101,34 +101,16 @@ export default Object.assign({
     if (!this.$activator) return;
 
     this.addClassForActivator('vc@stack-activator');
+
     this.$activator.addEventListener('click', this.activatorClickHandler, false);
+
     if (this.openOnHover) {
       this.$activator.addEventListener('mouseenter', this.mouseEnterHandler, false);
       this.$activator.addEventListener('mouseleave', this.mouseLeaveHandler, false);
     }
-  },
-
-  activatorClickHandler(e) {
-    if (this.disabled) return;
-
-    this.absoluteX = e.clientX;
-    this.absoluteY = e.clientY;
-
-    this[this.activatorAction](e);
-  },
-
-  mouseEnterHandler(e) {
-    this.show();
-  },
-
-  mouseLeaveHandler(e) {
-    setTimeout(() => {
-      if (
-        this.$refs.content && (e.relatedTarget === this.$refs.content || this.$refs.content.contains(e.relatedTarget))
-        || this.$activator && (e.relatedTarget === this.$activator || this.$activator.contains(e.relatedTarget))
-      ) return;
-      this.close();
-    }, 200);
+    if (this.contextmenu) {
+      this.$activator.addEventListener('contextmenu', this.contextmenuHandler, false);
+    }
   },
 
   /**
@@ -144,10 +126,71 @@ export default Object.assign({
     ]);
 
     this.$activator.removeEventListener('click', this.activatorClickHandler, false);
+
     if (this.openOnHover) {
       this.$activator.removeEventListener('mouseenter', this.mouseEnterHandler, false);
       this.$activator.removeEventListener('mouseleave', this.mouseLeaveHandler, false);
     }
+
+    if (this.contextmenu) {
+      this.$activator.removeEventListener('contextmenu', this.contextmenuHandler, false);
+    }
+  },
+
+  activatorClickHandler(e) {
+    if (this.disabled) return;
+
+    if (this.contextmenu) {
+      if (this.isActive) this.close();
+      return;
+    }
+
+    this.absoluteX = e.clientX;
+    this.absoluteY = e.clientY;
+
+    if (this.openOnClick) {
+      this[this.activatorAction](e);
+    }
+  },
+
+  contextmenuHandler(e) {
+    e.preventDefault();
+    this.absoluteX = e.clientX;
+    this.absoluteY = e.clientY;
+
+    if (this.isActive) {
+      this.updateDimensions();
+    } else {
+      this.show(e);
+    }
+  },
+
+  clearDelay() {
+    for (let timer of this.delayTimers) {
+      clearTimeout(timer);
+    }
+    this.delayTimers = [];
+  },
+
+  runDelay(prop, cb) {
+    this.clearDelay();
+    const ammount = typeof prop === 'number' ? prop : this[prop];
+    if (!ammount) return cb();
+    this.delayTimers.push(setTimeout(cb, ammount));
+  },
+
+  mouseEnterHandler(e) {
+    this.runDelay('openHoverDelay', this.show);
+  },
+
+  mouseLeaveHandler(e) {
+    this.runDelay('closeHoverDelay', () => {
+      if (
+        this.$refs.content && (e.relatedTarget === this.$refs.content || this.$refs.content.contains(e.relatedTarget))
+        || this.$activator && (e.relatedTarget === this.$activator || this.$activator.contains(e.relatedTarget))
+      ) return;
+      this.close();
+    });
   },
 
   activate() {
@@ -232,18 +275,22 @@ export default Object.assign({
   },
 
   updateContentDimension(cb) {
-    const $el = this.$refs.content;
-    if (!$el) return cb();
 
-    requestAnimationFrame(() => {
-      const originDisplay = $el.style.display;
-      $el.style.display = 'inline-block';
-      this.dimensions.content = this.measure($el);
-      $el.style.display = originDisplay;
+    // closeWithRemoveな時はrefの描画が完了していない可能性があるのでnextTickで拾う
+    this.$nextTick(() => {
+      const $el = this.$refs.content;
+      if (!$el) return cb();
+
       requestAnimationFrame(() => {
-        cb && cb();
-      });
-    })
+        const originDisplay = $el.style.display;
+        $el.style.display = 'inline-block';
+        this.dimensions.content = this.measure($el);
+        $el.style.display = originDisplay;
+        requestAnimationFrame(() => {
+          cb && cb();
+        });
+      })
+    });
   },
 
   updateDimensions(cb) {

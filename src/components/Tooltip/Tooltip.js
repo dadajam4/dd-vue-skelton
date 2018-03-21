@@ -17,6 +17,18 @@ export default {
       type: Boolean,
       default: true,
     },
+    left: {
+      type: Boolean,
+      default: false,
+    },
+    right: {
+      type: Boolean,
+      default: false,
+    },
+    top: {
+      type: Boolean,
+      default: false,
+    },
     bottom: {
       type: Boolean,
       default() { return !this.top && !this.left && !this.right },
@@ -65,6 +77,10 @@ export default {
         if (this.bottom) return 'vc@slide-y-transition';
         if (this.left) return 'vc@slide-x-reverse-transition';
       },
+    },
+    closeWithRemove: {
+      type: Boolean,
+      default: true,
     },
   },
 
