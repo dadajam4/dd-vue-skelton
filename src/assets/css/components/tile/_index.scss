@@ -1,0 +1,284 @@
+//
+// tile
+//
+
+.#{$css-prefix}tile {
+  $my: &;
+
+  display: flex;
+  text-decoration: none;
+  align-items: stretch;
+  padding: 0 get-space(md) 1px;
+  margin: 0;
+  position: relative;
+  color: inherit;
+  transition: get-duration(promptly);
+  cursor: default;
+  min-height: 48px;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: get-duration(promptly);
+  }
+
+  &--has-divider:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.14;
+    // @include theme-color(background, divider);
+  }
+
+  &--divider-pull:after {
+    left: calc(56px + #{get-space(md)});
+  }
+
+  &--dense#{&}--divider-pull:after {
+    left: calc(44px + #{get-space(xs)});
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: inherit;
+  }
+
+  &--clickable {
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      &:before {
+        opacity: 0.07;
+      }
+    }
+
+    &:active {
+      &:before {
+        opacity: 0.14;
+      }
+    }
+  }
+
+  &--disabled {
+    &,
+    * {
+      pointer-events: none !important;
+      cursor: default !important;
+      user-select: none;
+      @include user-drag(none);
+    }
+  }
+
+  @mixin my-children {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    padding-top: get-space(xs);
+    padding-bottom: calc(#{get-space(xs)} - 1px);
+
+    .#{$css-prefix}tile--disabled & {
+      @include theme-color(color, text-muted, true);
+    }
+
+    .#{$css-prefix}tile--dense & {
+      padding-top: get-space(xxs);
+      padding-bottom: calc(#{get-space(xxs)} - 1px);
+    }
+  }
+
+  @mixin my-side-children {
+    @include my-children;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 56px;
+    padding-right: get-space(sm);
+
+    .#{$css-prefix}tile--dense & {
+      min-width: 44px;
+    }
+
+    .#{$css-prefix}icon {
+      transition: get-transition(primary);
+    }
+  }
+
+  &__avatar {
+    @include my-side-children;
+
+    .#{$css-prefix}tile--disabled & {
+      opacity: .6;
+    }
+
+    .#{$css-prefix}avatar {
+      @include square(get-avatar(size-md));
+
+      .#{$css-prefix}tile--dense & {
+        @include square(get-avatar(size-sm));
+      }
+    }
+  }
+
+  &__action {
+    @include my-side-children;
+
+    .#{$css-prefix}btn {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .#{$css-prefix}input--selection {
+      margin: 0;
+
+      .#{$css-prefix}input__details {
+        display: none;
+      }
+    }
+
+    &--stack {
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
+
+      #{$my}__content ~ & {
+        align-items: flex-end;
+      }
+      // & > * {
+      //   margin-right: 0;
+      // }
+    }
+
+    &-text {
+      @include font-size(xs);
+      @include theme-color(color, text-sub);
+
+      .#{$css-prefix}tile--dense & {
+        @include font-size(xss);
+      }
+    }
+  }
+
+  &__content {
+    @include my-children;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+
+    & ~ #{$my}__avatar,
+    & ~ #{$my}__action {
+      padding-left: get-space(sm);
+      padding-right: 0;
+
+      &:not(#{$my}__tile__action--stack) {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+
+
+
+  @mixin my-nested-children {
+    transition: get-duration(promptly);
+    .#{$css-prefix}tile--disabled & {
+      @include theme-color(color, text-muted, true);
+    }
+  }
+
+  &__title {
+    @include my-nested-children;
+    @include font-size(md);
+    line-height: inherit;
+    margin: 0;
+    font-weight: inherit;
+    @include ellipsis;
+
+    .#{$css-prefix}tile--dense & {
+      @include font-size(sm);
+    }
+  }
+
+  &__sub-title {
+    @include my-nested-children;
+    @include theme-color(color, text-secondary);
+    @include font-size(xs);
+    @include ellipsis;
+
+    .#{$css-prefix}tile--dense & {
+      @include font-size(xs);
+    }
+  }
+
+  &__text {
+    @include my-nested-children;
+    @include font-size(sm);
+    margin-bottom: 0;
+    margin-top: get-space(xs);
+    @include ellipsis;
+
+    .#{$css-prefix}tile--dense & {
+      @include font-size(xs);
+      margin-top: get-space(xxs);
+    }
+  }
+
+  &--dense {
+    padding-left: get-space(xs);
+    padding-right: get-space(xs);
+    @include font-size(sm);
+    min-height: 30px;
+  }
+
+  &--wrap {
+    // & > #{$my}__title,
+    // & > #{$my}__sub-title,
+    // & > #{$my}__text,
+    & > #{$my}__content > #{$my}__title,
+    & > #{$my}__content > #{$my}__sub-title,
+    & > #{$my}__content > #{$my}__text {
+      white-space: normal;
+    }
+  }
+}
+
+
+// grouping
+.#{$css-prefix}tile-group {
+  padding: get-space(xs) 0;
+  // transition: height .4s cubic-bezier(.4, 0, .2, 1);
+  // @include theme-color(background-color, background);
+  margin: 0;
+
+  &,
+  &__item {
+    list-style-type: none;
+  }
+
+  &__item {
+    &:last-child {
+      & > .#{$css-prefix}tile {
+        &:after {
+          opacity: 0;
+          // background: transparent;
+        }
+      }
+    }
+  }
+}

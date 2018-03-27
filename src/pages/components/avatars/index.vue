@@ -9,6 +9,7 @@
     </vt@page-intro>
 
     <dd-example is="standard-display" />
+    <dd-example is="sizing" />
     <dd-example is="icon-and-text" />
   </vt@page>
 </template>

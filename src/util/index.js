@@ -121,6 +121,31 @@ export const removeClass = ($el, classNames) => {
   $el.setAttribute('class', classes.join(' ').trim());
 }
 
+export const resolveNuxtSrcPath = (src = '') => {
+  const resolveMatch = src.match(/^([~@]+)/);
+  if (!resolveMatch) return src;
+
+  const baseAlias = resolveMatch[1];
+  const targetPath = src.replace(new RegExp('^' + baseAlias + '\/?'), '');
+  const extWithDot = targetPath.match(/\.(png|jpe?g|gif|svg)$/)[0];
+  const extRemovedPath = targetPath.replace(/\.(png|jpe?g|gif|svg)$/, '');
+  let resolvedSrc;
+
+  if (extWithDot === '.png') {
+    resolvedSrc = require('~/' + extRemovedPath + '.png');
+  } else if (extWithDot === '.jpg') {
+    resolvedSrc = require('~/' + extRemovedPath + '.jpg');
+  } else if (extWithDot === '.jpeg') {
+    resolvedSrc = require('~/' + extRemovedPath + '.jpeg');
+  } else if (extWithDot === '.gif') {
+    resolvedSrc = require('~/' + extRemovedPath + '.gif');
+  } else if (extWithDot === '.svg') {
+    resolvedSrc = require('~/' + extRemovedPath + '.svg');
+  }
+
+  return resolvedSrc;
+}
+
 
 export {
   createSimpleFunctional,

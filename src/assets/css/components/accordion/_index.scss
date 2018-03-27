@@ -1,0 +1,49 @@
+//
+// Accordion
+//
+
+.#{$css-prefix}accordion {
+  display: block;
+  list-style-type: none;
+
+  &__title {
+    .#{$css-prefix}tile__title {
+      @include font-weight-bolder;
+    }
+  }
+
+  &--active > &__title &__title__angle {
+    transform: rotate(-180deg);
+  }
+
+  &__body {
+    transition: height .4s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  &--styled > &__body {
+    @include theme-color(background, background);
+  }
+
+  &--styled > &__body > &__body__inner {
+    margin: get-space(md);
+  }
+}
+
+// grouping
+.#{$css-prefix}accordion-group {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  &--styled {
+    @include elevation(2);
+    border-radius: get-card(border-radius);
+  }
+
+  & > .#{$css-prefix}accordion {
+    & + .#{$css-prefix}accordion {
+      margin-top: 1px;
+    }
+  }
+}

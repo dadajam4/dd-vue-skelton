@@ -1,4 +1,5 @@
 import App from './App';
+import Accordion from './Accordion';
 import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
@@ -17,6 +18,7 @@ import Badge from './Badge';
 import Breadcrumb from './Breadcrumb';
 import Btn from './Btn';
 import Icon from './Icon';
+import Img from './Img';
 import List from './List';
 import Menu from './Menu';
 // import Form from './Form';
@@ -27,6 +29,7 @@ import Pagination from './Pagination';
 import Progress from './Progress';
 import Scroller from './Scroller';
 import Tabs from './Tabs';
+import Tile from './Tile';
 import Toolbar from './Toolbar';
 import Tooltip from './Tooltip';
 import Transitions from './transitions';
@@ -35,6 +38,7 @@ import Transitions from './transitions';
 
 export default Object.assign({},
   App,
+  Accordion,
   Alert,
   Avatar,
   Card,
@@ -53,6 +57,7 @@ export default Object.assign({},
   Breadcrumb,
   Btn,
   Icon,
+  Img,
   List,
   Menu,
   // Form,
@@ -63,6 +68,7 @@ export default Object.assign({},
   Progress,
   Scroller,
   Tabs,
+  Tile,
   Toolbar,
   Tooltip,
   Transitions,

@@ -10,6 +10,7 @@ const mediaQuerySettings = {
   },
 
   groups: {
+    phone          : {max: 'sm'}, // Phone
     mobile         : {max: 'md'}, // Phone, Tablet
     desktop        : {min: 'lg'}, // Desktop
     mobileLandscape: {max: 'md', orientation: 'landscape'},

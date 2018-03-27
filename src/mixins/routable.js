@@ -1,13 +1,5 @@
-// import Ripple from '~/directives/ripple';
-
-
-
 export default {
-  // directives: {
-  //   Ripple,
-  // },
-
-
+  name: 'vt@routable',
 
   props: {
     activeClass: String,
@@ -24,11 +16,9 @@ export default {
     target     : String,
   },
 
-
-
   methods: {
-    click() {},
-    generateRouteLink() {
+    // click() {},
+    generateRouteLink({tagForce} = {}) {
       let exact = this.exact
       let tag;
 
@@ -42,7 +32,7 @@ export default {
         // }],
         on: {
           ...(this.$listeners || {}),
-          click: this.click,
+          // click: this.click,
         },
       }
 
@@ -58,8 +48,9 @@ export default {
         data.props.activeClass = this.activeClass;
         data.props.append      = this.append;
         data.props.replace     = this.replace;
+        data.props.tag         = tagForce;
       } else {
-        tag = this.href && 'a' || this.tag || 'a'
+        tag = tagForce || this.href && 'a' || this.tag || 'a'
 
         if (tag === 'a') {
           data.attrs.href = this.href || 'javascript:void(0);'

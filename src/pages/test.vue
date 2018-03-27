@@ -351,41 +351,268 @@
       />
 
 -->
-      <vt@tooltip-fragment>
-        <vt@btn info slot="activator">abc</vt@btn>
-        <vt@tooltip>
-          これは
-        </vt@tooltip>
-      </vt@tooltip-fragment>
 
-      <p><input type="checkbox" v-model="usemenu">メニュー利用</p>
-      <div v-if="usemenu">
-        <vt@menu-fragment>
-          <vt@btn info slot="activator">アクチベータ</vt@btn>
-          <vt@menu offset-y switch-offset-overflow open-on-hover>
-            <vt@list>
-              <vt@list-tile v-for="n in 5" :key="n" @click="">
-                <vt@list-tile-content>メニュー{{n}}</vt@list-tile-content>
-              </vt@list-tile>
-            </vt@list>
-          </vt@menu>
-        </vt@menu-fragment>
-      </div>
+<!--
+-->
+
+      <vt@tile @click="" :disabled="tileDisabled" :dense="tileDense" divider="pull">
+        <vt@tile-avatar src="~assets/img/avatar/nigaoe_murou_saisei.png" />
+        <vt@tile-content>
+          <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+          <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+          <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+        </vt@tile-content>
+        <vt@tile-action>
+          <vt@tooltip-fragment>
+            <vt@btn icon="search" />
+            <vt@tooltip>検索</vt@tooltip>
+          </vt@tooltip-fragment>
+        </vt@tile-action>
+      </vt@tile>
+      <vt@tile :disabled="tileDisabled" :dense="tileDense" divider>
+        <vt@tile-avatar></vt@tile-avatar>
+        <vt@tile-content>
+          <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+          <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+          <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+        </vt@tile-content>
+        <vt@tile-action>
+          <vt@tile-action-text>12 hour</vt@tile-action-text>
+          <vt@tooltip-fragment>
+            <vt@btn icon="search" />
+            <vt@tooltip>検索</vt@tooltip>
+          </vt@tooltip-fragment>
+        </vt@tile-action>
+      </vt@tile>
+      <vt@tile :disabled="tileDisabled" :dense="tileDense" :to="{name: 'components-alerts'}">
+        <vt@tile-avatar src="~assets/img/avatar/boy_1.png" />
+        <vt@tile-content>
+          <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+          <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+          <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+        </vt@tile-content>
+        <vt@tile-action>
+          <vt@tile-action-text>12 hour</vt@tile-action-text>
+          <vt@tooltip-fragment>
+            <vt@btn icon="star" />
+            <vt@tooltip>お気に入りに登録</vt@tooltip>
+          </vt@tooltip-fragment>
+        </vt@tile-action>
+      </vt@tile>
+      <vt@tile :disabled="tileDisabled" :dense="tileDense" :to="{name: 'components-alerts'}">
+        <vt@tile-action>
+          <vt@tile-action-text>12 hour</vt@tile-action-text>
+          <vt@tooltip-fragment>
+            <vt@btn icon="star" />
+            <vt@tooltip>お気に入りに登録</vt@tooltip>
+          </vt@tooltip-fragment>
+        </vt@tile-action>
+        <vt@tile-content>
+          <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+          <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+          <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+        </vt@tile-content>
+        <vt@tile-avatar src="~assets/img/avatar/boy_1.png" />
+      </vt@tile>
+
+      <vt@tile :disabled="tileDisabled" :dense="tileDense">
+        <vt@tile-action>
+          <vt@checkbox></vt@checkbox>
+        </vt@tile-action>
+        <vt@tile-content>
+          タイル1つ分です
+        </vt@tile-content>
+      </vt@tile>
+
+
 
       <div>
-        <label><input type="checkbox" v-model="ttt"> メニュー</label>
+        <vt@switch v-model="tileDisabled" :value="true">tileDisabled</vt@switch>
+        <vt@switch v-model="tileDense" :value="true">tileDense</vt@switch>
       </div>
-      <vt@menu-fragment>
-        <div style="width: 100%; height: 100px; background: #f00;" slot="activator">アクティベータ</div>
-        <vt@menu v-model="ttt" absolute>
-          <vt@list>
-            <vt@list-tile v-for="n in 5" :key="n" @click="">
-              <vt@list-tile-content>メニュー○{{n}}</vt@list-tile-content>
-            </vt@list-tile>
-          </vt@list>
-        </vt@menu>
-      </vt@menu-fragment>
 
+
+
+      <vt@tile-group :disabled="tileDisabled" :dense="tileDense" divider="pull">
+        <vt@tile @click="">
+          <vt@tile-avatar src="~assets/img/avatar/nigaoe_murou_saisei.png" />
+          <vt@tile-content>
+            <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+            <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+            <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+          </vt@tile-content>
+          <vt@tile-action>
+            <vt@tooltip-fragment>
+              <vt@btn icon="search" />
+              <vt@tooltip>検索</vt@tooltip>
+            </vt@tooltip-fragment>
+          </vt@tile-action>
+        </vt@tile>
+        <vt@tile>
+          <vt@tile-avatar></vt@tile-avatar>
+          <vt@tile-content>
+            <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+            <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+            <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+          </vt@tile-content>
+          <vt@tile-action>
+            <vt@tile-action-text>12 hour</vt@tile-action-text>
+            <vt@tooltip-fragment>
+              <vt@btn icon="search" />
+              <vt@tooltip>検索</vt@tooltip>
+            </vt@tooltip-fragment>
+          </vt@tile-action>
+        </vt@tile>
+        <vt@tile :to="{name: 'components-alerts'}">
+          <vt@tile-avatar src="~assets/img/avatar/boy_1.png" />
+          <vt@tile-content>
+            <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+            <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+            <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+          </vt@tile-content>
+          <vt@tile-action>
+            <vt@tile-action-text>12 hour</vt@tile-action-text>
+            <vt@tooltip-fragment>
+              <vt@btn icon="star" />
+              <vt@tooltip>お気に入りに登録</vt@tooltip>
+            </vt@tooltip-fragment>
+          </vt@tile-action>
+        </vt@tile>
+        <vt@tile :to="{name: 'components-alerts'}">
+          <vt@tile-action>
+            <vt@tile-action-text>12 hour</vt@tile-action-text>
+            <vt@tooltip-fragment>
+              <vt@btn icon="star" />
+              <vt@tooltip>お気に入りに登録</vt@tooltip>
+            </vt@tooltip-fragment>
+          </vt@tile-action>
+          <vt@tile-content>
+            <vt@tile-title>2018/3時点における日本の経済事情から推察する水漏れ事情</vt@tile-title>
+            <vt@tile-sub-title>野村うんちゃん先生の観察日記</vt@tile-sub-title>
+            <vt@tile-text>みなさんこんにちわ。野村うんちゃん先生です。しばらく暑い日が続いていますがみなさんいかがお過ごしですか？</vt@tile-text>
+          </vt@tile-content>
+          <vt@tile-avatar src="~assets/img/avatar/boy_1.png" />
+        </vt@tile>
+
+        <vt@tile>
+          <vt@tile-action>
+            <vt@checkbox></vt@checkbox>
+          </vt@tile-action>
+          <vt@tile-content>
+            タイル1つ分です
+          </vt@tile-content>
+        </vt@tile>
+      </vt@tile-group>
+
+<!--
+      <vt@list>
+        <vt@list-group>
+          <vt@list-group-header>リストヘッダー</vt@list-group-header>
+          <vt@tile
+            v-for="tile, index in ['Breakfast &amp; brunch','New American','Sushi']"
+            :key="index"
+            @click=""
+          >
+            <vt@tile-avatar></vt@tile-avatar>
+            <vt@tile-content>{{tile}}</vt@tile-content>
+          </vt@tile>
+        </vt@list-group>
+      </vt@list>
+-->
+      <vt@accordion>
+        <vt@accordion-title icon="cube">アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。</vt@accordion-title>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+      </vt@accordion>
+      <vt@accordion>
+        <vt@accordion-title :wrap="false">アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。</vt@accordion-title>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+      </vt@accordion>
+
+      <vt@accordion styled>
+        <vt@accordion-title info icon="cube">アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。</vt@accordion-title>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+      </vt@accordion>
+      <vt@accordion styled>
+        <vt@accordion-title info :wrap="false">アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。</vt@accordion-title>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+        <p>これはアコーディオンです。</p>
+      </vt@accordion>
+
+      <h2>グループ</h2>
+      <vt@accordion-group :wrap="false">
+        <vt@accordion>
+          <vt@accordion-title icon="cube">What is a dog?</vt@accordion-title>
+          <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+        </vt@accordion>
+        <vt@tile>
+          <vt@tile-action>
+            <vt@checkbox></vt@checkbox>
+          </vt@tile-action>
+          <vt@tile-content>
+            タイル1つ分です
+          </vt@tile-content>
+        </vt@tile>
+        <vt@accordion>
+          <vt@accordion-title>What kinds of dogs are there?</vt@accordion-title>
+          <p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+        </vt@accordion>
+      </vt@accordion-group>
+
+      <vt@accordion-group styled :wrap="false">
+        <vt@accordion>
+          <vt@accordion-title info icon="cube">What is a dog?</vt@accordion-title>
+          <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
+        </vt@accordion>
+        <vt@accordion>
+          <vt@accordion-title info>What kinds of dogs are there?</vt@accordion-title>
+          <p>There are many breeds of dogs. Each breed varies in size and temperament. Owners often select a breed of dog that they find to be compatible with their own lifestyle and desires from a companion.</p>
+        </vt@accordion>
+      </vt@accordion-group>
+
+
+      <vt@tile-group>
+        <vt@tile
+          v-for="tile, index in ['Breakfast &amp; brunch','New American','Sushi']"
+          :key="index"
+          @click=""
+        >
+          <vt@tile-avatar></vt@tile-avatar>
+          <vt@tile-content>{{tile}}</vt@tile-content>
+        </vt@tile>
+      </vt@tile-group>
+
+
+      <vt@avatar>
+        <img src="~assets/img/avatar/nigaoe_murou_saisei.png" alt="">
+      </vt@avatar>
+
+      <vt@avatar :src="{
+        default: '~assets/img/avatar/nigaoe_murou_saisei.png',
+        desktop: {src: '~assets/img/avatar/boy_1.png', width: 50},
+      }" />
+
+      <vt@avatar class="vc@context-color--primary">
+        <vt@icon lg>user-circle</vt@icon>
+      </vt@avatar>
+
+      <vt@avatar class="vc@layer-color--brand-secondary vc@text-color--shades-white">
+        <span class="vc@headline">C</span>
+      </vt@avatar>
 
       <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
 <!--
@@ -796,6 +1023,9 @@ export default {
       ttt: false,
       tttinput: '',
       usemenu: true,
+
+      tileDisabled: false,
+      tileDense: false,
     }
   },
 }

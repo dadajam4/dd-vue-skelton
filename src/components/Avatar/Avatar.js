@@ -10,19 +10,22 @@ export default {
   props: {
     size: {
       type: [Number, String],
-      default: 48,
+      // default: 48,
     },
     tile: Boolean,
+    src: true,
+    alt: true,
   },
 
   computed: {
-    hasNumberSize() { return !isNaN(this.size) },
+    hasNumberSize() { return this.size !== null && !isNaN(this.size) },
+    hasKeySize() { return typeof this.size === 'string' && isNaN(this.size) },
     classes() {
       const classes = this.addColorClasses({
         'vc@avatar': true,
         'vc@avatar--tile': this.tile,
       });
-      if (!this.hasNumberSize) classes[`vc@avatar--${this.size}`] = true;
+      if (this.hasKeySize) classes[`vc@avatar--${this.size}`] = true;
       return classes;
     },
     styles() {
@@ -37,9 +40,19 @@ export default {
   },
 
   render(h) {
+    const children = this.$slots.default || [];
+    if (this.src) {
+      children.push(h('vt@img', {
+        attrs: {
+          src: this.src,
+          alt: this.alt,
+        },
+      }))
+    }
+
     return h('div', {
       class: this.classes,
       style: this.styles,
-    }, this.$slots.default);
+    }, children);
   }
 }

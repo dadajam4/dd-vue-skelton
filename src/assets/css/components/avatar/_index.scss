@@ -18,9 +18,11 @@
 
   @include square(get-avatar(size-md));
 
+  &--xs { @include square(get-avatar(size-xs)) }
   &--sm { @include square(get-avatar(size-sm)) }
   &--md { @include square(get-avatar(size-md)) }
   &--lg { @include square(get-avatar(size-lg)) }
+  &--xl { @include square(get-avatar(size-xl)) }
 
   img {
     // border-radius: 50%;

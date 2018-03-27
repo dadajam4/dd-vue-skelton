@@ -7,7 +7,9 @@
 }
 
 $avatar: ();
-$avatar: map-set($avatar, size-sm, 1rem);
-$avatar: map-set($avatar, size-md, 2.5rem);
+$avatar: map-set($avatar, size-xs, 1rem);
+$avatar: map-set($avatar, size-sm, 2rem);
+$avatar: map-set($avatar, size-md, 2.8125rem);
 $avatar: map-set($avatar, size-lg, 4rem);
+$avatar: map-set($avatar, size-xl, 7rem);
 

@@ -46,13 +46,13 @@
   // //   padding-top: get-toolbar(row-height);
   // // }
 
-  // &--drawer-left-static {
-  //   padding-left: $navigation-drawer-width;
-  // }
+  &--drawer-left-static &-body {
+    padding-left: $navigation-drawer-width;
+  }
 
-  // &--drawer-right-static {
-  //   padding-right: $navigation-drawer-width;
-  // }
+  &--drawer-right-static &-body {
+    padding-right: $navigation-drawer-width;
+  }
 }
 
 .#{$css-prefix}app-body {
@@ -99,13 +99,13 @@
   //   padding-top: get-toolbar(row-height);
   // }
 
-  &--drawer-left-static {
-    padding-left: $navigation-drawer-width;
-  }
+  // &--drawer-left-static {
+  //   padding-left: $navigation-drawer-width;
+  // }
 
-  &--drawer-right-static {
-    padding-right: $navigation-drawer-width;
-  }
+  // &--drawer-right-static {
+  //   padding-right: $navigation-drawer-width;
+  // }
 
   // flex-grow: 10;
   // flex-shrink: 1;

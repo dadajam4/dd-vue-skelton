@@ -70,6 +70,19 @@ export default function PrototypePlugin(Vue) {
     },
   });
 
+  Object.defineProperty(Vue.prototype, '$isNuxt', {
+    enumerable: true,
+    configurable: true,
+    get() {
+      return !!this.$root.nuxt;
+    },
+  });
+
+  Vue.prototype.$resolveNuxtSrcPath = function(src) {
+    if (!this.$isNuxt) return src;
+    return this.$util.resolveNuxtSrcPath(src);
+  }
+
   Vue.prototype.$appScrollTo = function(el, opts = {}) {
     appIsScrolling = true;
 

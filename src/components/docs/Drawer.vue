@@ -22,6 +22,7 @@
 
 .my-parent-name,
 .my-child-name {
+  display: block;
   &:first-letter {
     text-transform: uppercase;
   }
@@ -41,58 +42,50 @@
         DD Vue Skelton
       </router-link>
     </div>
-    <vt@list>
+
+    <vt@accordion-group>
       <template v-for="parent, parentIndex in links">
-        <vt@list-tile
+        <vt@tile
           v-if="!parent.children"
           :key="parentIndex"
           :to="{name: parent.name}"
         >
-          <vt@list-tile-action>
+          <vt@tile-action>
             <vt@icon>{{iconMap[parent.name]}}</vt@icon>
-          </vt@list-tile-action>
-          <vt@list-tile-content>
-            <vt@list-tile-title class="my-parent-name">{{parent.label}}</vt@list-tile-title>
-          </vt@list-tile-content>
-          <vt@list-tile-action />
-        </vt@list-tile>
+          </vt@tile-action>
+          <vt@tile-content>
+            <vt@tile-title class="my-parent-name">{{parent.label}}</vt@tile-title>
+          </vt@tile-content>
+          <vt@tile-action />
+        </vt@tile>
 
-        <vt@list-group
-          v-if="parent.children"
+        <vt@accordion
+          v-else
           :key="parentIndex"
-          :group="parent.path"
+          :match-route="parent.path"
         >
-          <vt@list-tile slot="item">
-            <vt@list-tile-action>
-              <vt@icon>{{iconMap[parent.name]}}</vt@icon>
-            </vt@list-tile-action>
-            <vt@list-tile-content>
-              <vt@list-tile-title class="my-parent-name">{{parent.name}}</vt@list-tile-title>
-            </vt@list-tile-content>
-            <vt@list-tile-action>
-              <vt@icon>angle-down</vt@icon>
-            </vt@list-tile-action>
-          </vt@list-tile>
+          <vt@accordion-title
+            :icon="iconMap[parent.name]"
+          ><span class="my-parent-name">{{parent.name}}</span></vt@accordion-title>
 
           <template v-for="child, childIndex in parent.children">
-            <vt@list-tile
+            <vt@tile
               :key="childIndex"
               :to="{name: child.name}"
             >
-              <vt@list-tile-action>&nbsp;</vt@list-tile-action>
-              <vt@list-tile-content>
-                <vt@list-tile-title class="my-child-name">{{child.label}}</vt@list-tile-title>
-              </vt@list-tile-content>
-              <vt@list-tile-action>
-                <!--
-                <v-icon>{{ subItem.action }}</v-icon>
-                -->
-              </vt@list-tile-action>
-            </vt@list-tile>
+              <vt@tile-action>&nbsp;</vt@tile-action>
+              <vt@tile-content>
+                <vt@tile-title class="my-child-name">{{child.label}}</vt@tile-title>
+              </vt@tile-content>
+              <vt@tile-action>
+              </vt@tile-action>
+            </vt@tile>
             <li v-if="$route.name === child.name" :key="childIndex + '-anchors'" class="my-anchor-navi">
               <vt@anchor-navi></vt@anchor-navi>
             </li>
           </template>
+        </vt@accordion>
+      </template>
   <!--
             <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
               <li v-for="anchor in child._anchors" :key="anchor.id">
@@ -107,9 +100,7 @@
               </li>
             </ul>
   -->
-        </vt@list-group>
-      </template>
-    </vt@list>
+    </vt@accordion-group>
   </vt@app-drawer>
 
 </template>
