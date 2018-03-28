@@ -77,7 +77,10 @@ export default Object.assign({
         }
       }
     }
-    $activator = $activator && ($activator.$el || $activator.elm || $activator);
+
+    // ※vnode.elmはvue2.5あたりから使えなくなったっぽい
+    //   そもそもelmを参照（信頼）するのは正しいやり方ではないっぽい
+    $activator = $activator && ($activator.$el/* || $activator.elm*/ || $activator);
     return $activator;
   },
 

@@ -4,7 +4,7 @@ export default function stackFragmentFactory(type) {
 
     functional: true,
 
-    render(h, {children, slots}) {
+    render(h, {parent, children, slots}) {
       const $slots = slots();
       // const $activator = $slots.activator && $slots.activator[0];
       // const $content = $slots.default && $slots.default[0];
@@ -18,8 +18,11 @@ export default function stackFragmentFactory(type) {
       const $activator = children.find(child => child !== $content);
 
       if ($activator) {
+        parent.$_ddStackFragmentActivatorUIndex = parent.$_ddStackFragmentActivatorUIndex || 0;
+        const activatorIndex = ++parent.$_ddStackFragmentActivatorUIndex;
+        $activator.data.attrs['data-dd-activator-index'] = activatorIndex;
         $content.componentOptions.propsData = Object.assign({
-          activator: $activator,
+          activator: `[data-dd-activator-index="${activatorIndex}"]`,
         }, $content.componentOptions.propsData);
       }
 

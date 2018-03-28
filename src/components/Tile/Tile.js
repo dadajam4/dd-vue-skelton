@@ -57,7 +57,6 @@ export default {
   render(h) {
     const { tag, data } = this.generateRouteLink();
     data.staticClass = 'vc@tile';
-
     return h(tag, data, this.$slots.default);
   },
 }

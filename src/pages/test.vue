@@ -352,9 +352,6 @@
 
 -->
 
-<!--
--->
-
       <vt@tile @click="" :disabled="tileDisabled" :dense="tileDense" divider="pull">
         <vt@tile-avatar src="~assets/img/avatar/nigaoe_murou_saisei.png" />
         <vt@tile-content>
@@ -369,6 +366,7 @@
           </vt@tooltip-fragment>
         </vt@tile-action>
       </vt@tile>
+
       <vt@tile :disabled="tileDisabled" :dense="tileDense" divider>
         <vt@tile-avatar></vt@tile-avatar>
         <vt@tile-content>
@@ -503,22 +501,12 @@
           </vt@tile-content>
         </vt@tile>
       </vt@tile-group>
-
 <!--
-      <vt@list>
-        <vt@list-group>
-          <vt@list-group-header>リストヘッダー</vt@list-group-header>
-          <vt@tile
-            v-for="tile, index in ['Breakfast &amp; brunch','New American','Sushi']"
-            :key="index"
-            @click=""
-          >
-            <vt@tile-avatar></vt@tile-avatar>
-            <vt@tile-content>{{tile}}</vt@tile-content>
-          </vt@tile>
-        </vt@list-group>
-      </vt@list>
 -->
+
+
+
+
       <vt@accordion>
         <vt@accordion-title icon="cube">アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。アコーディオンタイトルです。</vt@accordion-title>
         <p>これはアコーディオンです。</p>
@@ -615,6 +603,8 @@
       </vt@avatar>
 
       <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
+<!--
+-->
 <!--
       <vt@select
         label="autocomplete"
