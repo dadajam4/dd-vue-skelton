@@ -1,3 +1,9 @@
+const getNewActivatorId = () => {
+  return new Date().getTime().toString(16)  + Math.floor(1000 * Math.random()).toString(16);
+}
+
+
+
 export default function stackFragmentFactory(type) {
   return {
     name: `vt@${type}-fragment`,
@@ -18,11 +24,12 @@ export default function stackFragmentFactory(type) {
       const $activator = children.find(child => child !== $content);
 
       if ($activator) {
-        parent.$_ddStackFragmentActivatorUIndex = parent.$_ddStackFragmentActivatorUIndex || 0;
-        const activatorIndex = ++parent.$_ddStackFragmentActivatorUIndex;
-        $activator.data.attrs['data-dd-activator-index'] = activatorIndex;
+        const activatorId = getNewActivatorId();
+        $activator.data = $activator.data || {};
+        $activator.data.attrs = $activator.data.attrs || {};
+        $activator.data.attrs['data-dd-activator-id'] = activatorId;
         $content.componentOptions.propsData = Object.assign({
-          activator: `[data-dd-activator-index="${activatorIndex}"]`,
+          activator: `[data-dd-activator-id="${activatorId}"]`,
         }, $content.componentOptions.propsData);
       }
 

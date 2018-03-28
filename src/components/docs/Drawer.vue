@@ -49,6 +49,8 @@
           v-if="!parent.children"
           :key="parentIndex"
           :to="{name: parent.name}"
+          dense
+          :class="{'vc@text-color--primary': $route.name === parent.name}"
         >
           <vt@tile-action>
             <vt@icon>{{iconMap[parent.name]}}</vt@icon>
@@ -66,12 +68,16 @@
         >
           <vt@accordion-title
             :icon="iconMap[parent.name]"
+            active-icon-class="vc@text-color--primary"
+            dense
           ><span class="my-parent-name">{{parent.name}}</span></vt@accordion-title>
 
           <template v-for="child, childIndex in parent.children">
             <vt@tile
               :key="childIndex"
               :to="{name: child.name}"
+              dense
+              :class="{'vc@text-color--primary': $route.name === child.name}"
             >
               <vt@tile-action>&nbsp;</vt@tile-action>
               <vt@tile-content>

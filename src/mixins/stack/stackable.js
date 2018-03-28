@@ -113,6 +113,10 @@ export default Object.assign({
       default: 'top left',
     },
     closeOnEsc: Boolean,
+    closeOnContentClick: {
+      type: Boolean,
+      default: true,
+    },
     closeWithRemove: {
       type: Boolean,
       default: false,

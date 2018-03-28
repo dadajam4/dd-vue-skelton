@@ -377,38 +377,73 @@ export default {
       if (!optgroups || !optgroups.length) return;
 
       const $menu = this.$createElement('vt@menu', {
-        ref: 'menu',
+        staticClass: 'vc@combobox__menu',
         props: {
-          auto: true,
+          // auto: true,
           // activator: this.$el,
-          activator: this.$refs.body,
+          activator: () => this.$refs.body,
           // activator: this.$refs.input,
           offsetY: true,
-          // nudgeTop: 26,
-          closeOnClick: false,
+          activatorAction: null,
           closeOnContentClick: !this.multiple,
+          closeOnEsc: true,
           disabled: this.disabled,
-          contentClass: 'vc@combobox__menu',
-          // maxHeight: this.maxHeight,
-          openOnClick: false,
+          // contentClass: 'vc@combobox__menu',
+          // openOnClick: false,
           offsetOverflow: this.autocomplete,
-
-          value: this.menuIsActive/* && (....)*/,
-          // customOpenDependentElements: () => { return [this.$refs.body] },
-          // zIndex: this.menuZIndex,
+          value: this.menuIsActive,
         },
 
         on: {
+          // click: e => {
+          //   console.warn(e);
+          // },
+
           input: val => {
             if (!val) {
               this.menuIsActive = false;
             }
           },
         },
+        ref: 'menu',
       }, [
         // this.$createElement('vt@list', {}, $tiles),
         ...optgroups,
       ]);
+
+      // const $menu = this.$createElement('vt@menu', {
+      //   ref: 'menu',
+      //   props: {
+      //     auto: true,
+      //     // activator: this.$el,
+      //     activator: this.$refs.body,
+      //     // activator: this.$refs.input,
+      //     offsetY: true,
+      //     // nudgeTop: 26,
+      //     closeOnClick: false,
+      //     closeOnContentClick: !this.multiple,
+      //     disabled: this.disabled,
+      //     contentClass: 'vc@combobox__menu',
+      //     // maxHeight: this.maxHeight,
+      //     openOnClick: false,
+      //     offsetOverflow: this.autocomplete,
+
+      //     value: this.menuIsActive/* && (....)*/,
+      //     // customOpenDependentElements: () => { return [this.$refs.body] },
+      //     // zIndex: this.menuZIndex,
+      //   },
+
+      //   on: {
+      //     input: val => {
+      //       if (!val) {
+      //         this.menuIsActive = false;
+      //       }
+      //     },
+      //   },
+      // }, [
+      //   // this.$createElement('vt@list', {}, $tiles),
+      //   ...optgroups,
+      // ]);
       return $menu;
     },
     // genOptionsByProp(options) {

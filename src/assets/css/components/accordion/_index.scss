@@ -33,7 +33,7 @@
 .#{$css-prefix}accordion-group {
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: get-space(sm) 0;
   overflow: hidden;
 
   &--styled {

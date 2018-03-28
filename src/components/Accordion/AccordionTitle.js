@@ -20,6 +20,7 @@ export default {
     dense: Boolean,
     accordion: Object,
     contentClass: String,
+    activeIconClass: String,
   },
 
   computed: {
@@ -31,6 +32,7 @@ export default {
     hasIconSpace() { return this.icon !== undefined },
     hasIcon() { return !!this.icon },
     isStyled() { return this.accordion.styled },
+    isActive() { return this.accordion.isActive },
   },
 
   render(h) {
@@ -45,7 +47,12 @@ export default {
     const tileChildren = [$tileContent];
 
     if (this.hasIconSpace || this.isStyled) {
-      this.hasIconSpace && tileChildren.unshift(h('vt@tile-action', null, this.hasIcon ? [h('vt@icon', null, this.icon)] : []));
+      if (this.hasIconSpace) {
+        const actionChildren = this.hasIcon ? [h('vt@icon', {
+          staticClass: this.isActive && this.activeIconClass,
+        }, this.icon)] : [];
+        tileChildren.unshift(h('vt@tile-action', null, actionChildren));
+      }
       tileChildren.push($angleAction);
     } else {
       tileChildren.unshift($angleAction);

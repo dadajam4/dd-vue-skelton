@@ -211,7 +211,7 @@
     @include ellipsis;
 
     .#{$css-prefix}tile--dense & {
-      @include font-size(sm);
+      @include font-size(md, $tweak: -1px);
     }
   }
 
@@ -222,7 +222,7 @@
     @include ellipsis;
 
     .#{$css-prefix}tile--dense & {
-      @include font-size(xs);
+      @include font-size(sm, $tweak: -1px);
     }
   }
 
@@ -234,16 +234,16 @@
     @include ellipsis;
 
     .#{$css-prefix}tile--dense & {
-      @include font-size(xs);
+      @include font-size(sm, $tweak: -1px);
       margin-top: get-space(xxs);
     }
   }
 
   &--dense {
-    padding-left: get-space(xs);
-    padding-right: get-space(xs);
-    @include font-size(sm);
-    min-height: 30px;
+    // padding-left: get-space(xs);
+    // padding-right: get-space(xs);
+    @include font-size(md, $tweak: -1px);
+    min-height: 40px;
   }
 
   &--wrap {

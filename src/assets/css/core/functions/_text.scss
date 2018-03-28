@@ -6,8 +6,12 @@
   font-family: get-font-family($key);
 }
 
-@mixin font-size($key, $unit: null) {
-  font-size: get-font-size($key, $unit);
+@mixin font-size($key, $unit: null, $tweak: null) {
+  @if $tweak == null {
+    font-size: get-font-size($key, $unit);
+  } @else {
+    font-size: calc(#{get-font-size($key, $unit)} + #{$tweak});
+  }
 }
 
 @mixin line-height($key, $unit: null) {

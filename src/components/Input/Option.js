@@ -99,9 +99,9 @@ export default {
   },
 
   render(h) {
-    const $content = this.$createElement('vt@list-tile-content', {}, this.$slots.default)
+    const $content = this.$createElement('vt@tile-content', {}, this.$slots.default)
     const children = [
-      h('vt@list-tile-action', {}, [
+      h('vt@tile-action', {}, [
         this.$createElement(`vt@${this.multiple ? 'checkbox' : 'radio'}-element`, {
           props: {
             checked: this.isActive,
@@ -113,7 +113,7 @@ export default {
       $content,
     ];
 
-    return this.$createElement('vt@list-tile', {
+    return this.$createElement('vt@tile', {
       staticClass: 'vc@option',
       class: {
         'vc@option--disabled': this.isDisabled,

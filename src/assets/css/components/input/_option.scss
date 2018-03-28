@@ -4,6 +4,7 @@
 //
 .#{$css-prefix}optgroup {
   margin: 8px 0;
+  @include theme-color(background, background);
 
   &__label {
     display: flex;

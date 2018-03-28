@@ -30,6 +30,9 @@ export default {
     if (this.openOnHover) {
       listeners.mouseleave = this.mouseLeaveHandler;
     }
+    if (this.closeOnContentClick) {
+      listeners.click = this.close;
+    }
 
     const directives = [
       {name: 'show', value: this.contentIsActive},
@@ -60,6 +63,9 @@ export default {
     const $stack = this.isExistNode && h(tag, mergeComponentOptions({
       staticClass: 'vc@app-stack',
       style: this.stackStyles,
+      attrs: {
+        tabindex: '0', // comboboxの入力blur検知時に、relatedTargetで拾えるように、、
+      },
       directives,
       on: listeners,
       ref: 'content',

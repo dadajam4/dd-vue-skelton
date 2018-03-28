@@ -151,7 +151,7 @@ export default Object.assign({
     this.absoluteX = e.clientX;
     this.absoluteY = e.clientY;
 
-    if (this.openOnClick) {
+    if (this.openOnClick && this.activatorAction) {
       this[this.activatorAction](e);
     }
   },

@@ -241,7 +241,6 @@
       <vt@radio name="radio3" value="m2">ラジオ2</vt@radio>
       <vt@radio name="radio3" value="m3" checked>ラジオ3</vt@radio>
 -->
-<!--
       <vt@select
         label="シングル"
         :flat="flat"
@@ -251,7 +250,6 @@
         <vt@option value="2">項目2</vt@option>
         <vt@option value="3">項目3</vt@option>
       </vt@select>
-
 
       <vt@select
         label="マルチ"
@@ -274,6 +272,9 @@
         <vt@option value="3">項目3</vt@option>
       </vt@select>
       <p>{{select0}}</p>
+<!--
+
+
 
 
       <vt@select
@@ -352,6 +353,7 @@
 
 -->
 
+<!--
       <vt@tile @click="" :disabled="tileDisabled" :dense="tileDense" divider="pull">
         <vt@tile-avatar src="~assets/img/avatar/nigaoe_murou_saisei.png" />
         <vt@tile-content>
@@ -501,8 +503,6 @@
           </vt@tile-content>
         </vt@tile>
       </vt@tile-group>
-<!--
--->
 
 
 
@@ -601,10 +601,10 @@
       <vt@avatar class="vc@layer-color--brand-secondary vc@text-color--shades-white">
         <span class="vc@headline">C</span>
       </vt@avatar>
+-->
 
       <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
-<!--
--->
+
 <!--
       <vt@select
         label="autocomplete"
@@ -617,23 +617,6 @@
         <vt@option value="3">項目3</vt@option>
       </vt@select>
 
-      <vt@test-menu>
-        <vt-btn info slot="activator">アクチ</vt-btn>
-        <div>ボディ</div>
-      </vt@test-menu>
-
-
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
-      <p>hoge</p>
 -->
 
 <!--

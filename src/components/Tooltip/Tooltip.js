@@ -82,6 +82,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    closeOnContentClick: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   render(h) {
