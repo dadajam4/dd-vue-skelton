@@ -175,6 +175,16 @@
 
   &__menu {
     @include theme-color(background, background);
+
+    &--hide {
+      pointer-events: none !important;
+      opacity: 0 !important;
+    }
+
+    &__no-data {
+      @include theme-color(color, text-muted);
+      padding: get-space(md);
+    }
   }
 
   &__selection {

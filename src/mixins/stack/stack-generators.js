@@ -51,6 +51,7 @@ export default {
       directives.push({
         name: 'click-outside',
         value: e => {
+          if (!this.closeOnOutsideClick) return;
           this.runDelay(200, () => {
             if (!this.isActive) return;
             if (this.$activator && (e.target === this.$activator || this.$activator.contains(e.target))) return false;

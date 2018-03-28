@@ -241,6 +241,8 @@
       <vt@radio name="radio3" value="m2">ラジオ2</vt@radio>
       <vt@radio name="radio3" value="m3" checked>ラジオ3</vt@radio>
 -->
+
+<!--
       <vt@select
         label="シングル"
         :flat="flat"
@@ -272,10 +274,6 @@
         <vt@option value="3">項目3</vt@option>
       </vt@select>
       <p>{{select0}}</p>
-<!--
-
-
-
 
       <vt@select
         label="シングル - グループ"
@@ -293,7 +291,6 @@
         </vt@optgroup>
       </vt@select>
 
-
       <vt@select
         label="マルチ - グループ"
         multiple
@@ -310,6 +307,9 @@
           <vt@option value="5">アクエリアス</vt@option>
         </vt@optgroup>
       </vt@select>
+-->
+
+<!--
 
       <vt@select
         label="セレクト"
@@ -603,21 +603,19 @@
       </vt@avatar>
 -->
 
-      <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
-
-<!--
       <vt@select
         label="autocomplete"
         :flat="flat"
         :disabled="hasDisabled"
         autocomplete
+        multiple
       >
-        <vt@option value="1">項目1</vt@option>
-        <vt@option value="2">項目2</vt@option>
+        <vt@option value="1">This is a dog</vt@option>
+        <vt@option value="2">this IS a PEN</vt@option>
         <vt@option value="3">項目3</vt@option>
       </vt@select>
 
--->
+      <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
 
 <!--
       <p>{{select0}} <button @click="select0 = null">reset</button></p>

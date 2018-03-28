@@ -27,13 +27,20 @@ export default {
   name: 'vt@combobox',
 
   provide() {
-    return {
+    const data = {
       $combobox: this,
       genOptionByProp: this.genOptionByProp,
       appendOptionVm: this.appendOptionVm,
       removeOptionVm: this.removeOptionVm,
       deselectOption: this.deselectOption,
-    }
+    };
+
+    Object.defineProperty(data, 'highlightValue', {
+       enumerable: true,
+       get: () => this.innerValue,
+    });
+
+    return data;
   },
 
   props: {
@@ -76,6 +83,11 @@ export default {
       type: String,
       default: 'primary',
     },
+    caseSensitive: Boolean,
+    noDataText: {
+      type: String,
+      default: 'No data available',
+    },
   },
 
   data() {
@@ -85,9 +97,7 @@ export default {
       focused: false,
       menuIsActive: false,
       optionVms: [],
-      currentAutocompleteTargetIndex: null,
-      // autocompleteTarget
-      // createdGroups: [],
+      autocompleteFocusedVm: null,
     }
   },
 
@@ -111,7 +121,7 @@ export default {
         [`vc@border-color--${this.color}`]: !this.error && !this.disabled && this.focused,
       }
     },
-    searchValue() { return (this.innerValue || '').toLowerCase() },
+    searchValue() { return (this.innerValue || '') },
     isSelect() { return this.type === 'select' },
     typeDefine() { return TYPES[this.type] },
     computedType() { return this.typeDefine && this.typeDefine.type },
@@ -192,39 +202,15 @@ export default {
           }, this.divider));
         }
       }
-      // const children = [];
-      // values.forEach((value, index) => {
-      //   const selectionItem = this.genSelectionItemByValue(value);
-      //   console.log(value, selectionItem);
-      //   children.push(selectionItem);
-      //   // const item = this.genSelectionItemByValue(value, this.hasDivider && index !== values.length - 1, this.divider);
-      //   // children.push(item);
-      //   if (this.hasDivider && index !== values.length - 1) {
-      //     children.push(this.$createElement('span', {
-      //       staticClass: 'vc@combobox__selection__divider',
-      //     }, this.divider));
-      //     // item.children.push(this.$createElement('span', {}, this.divider));
-      //     // console.log(item);
-      //     // console.log(item);
-      //     // item.children[0].text = item.children[0].text + this.divider;
-      //     // // item.children
-      //   }
-      //   // if (index !== values.length - 1) {
-      //   //   console.log(item.children);
-      //   //   // children.push(this.$createElement('span', {
-      //   //   //   staticClass: 'vc@combobox__selection__divider',
-      //   //   // }, this.divider));
-      //   // }
-      // });
-
-      // for (let i = 0, l = children.length; i < l; i++) {
-      //   children[i].key = this.getNewSelectionItemKey();
-      // }
 
       return this.$createElement('div', {
         staticClass: 'vc@combobox__selection',
       }, children);
     },
+    showOptions() {
+      return this.autocomplete ? this.optionVms.filter(vm => vm.isSearchHit) : this.optionVms;
+    },
+    showOptionsIsEmpty() { return this.showOptions.length === 0 },
   },
 
   watch: {
@@ -241,12 +227,24 @@ export default {
         this.innerValue = '';
       }
     },
-    // menuIsActive(val) {
-    //   this.currentAutocompleteTargetIndex = null;
-    // },
+    menuIsActive(val) {
+      this.autocompleteFocusedVm = null;
+    },
   },
 
   methods: {
+    shiftAutocompleteIndex(ammount = 1) {
+      const searchHitOptions = this.showOptions;
+      const currentIndex = searchHitOptions.indexOf(this.autocompleteFocusedVm);
+      let newIndex = currentIndex + ammount;
+      if (newIndex >= searchHitOptions.length) {
+        newIndex -1;
+      } else if (newIndex <= -2) {
+        newIndex = searchHitOptions.length - 1;
+      }
+      const nextVm = searchHitOptions[newIndex];
+      this.autocompleteFocusedVm = nextVm || null;
+    },
     removeLastSelection() {
       if (!this.isSelect) return;
       let value = this.targetSelected;
@@ -333,12 +331,23 @@ export default {
             if (e.which === 9 || e.which === 13) {
 
               // >>> enter or tab
+              if (this.autocompleteFocusedVm) {
+                this.autocompleteFocusedVm.select();
+              }
+
+              if (!this.multiple) {
+                this.menuIsActive = false;
+              } else {
+                this.innerValue = '';
+              }
             } else if (e.which === 38) {
 
               // up
+              this.shiftAutocompleteIndex(-1);
             } else if (e.which === 40) {
 
               // down
+              this.shiftAutocompleteIndex();
             } else if (e.which === 8 || e.which === 46) {
 
               // delete or backspace
@@ -376,29 +385,28 @@ export default {
     genMenu(optgroups) {
       if (!optgroups || !optgroups.length) return;
 
+      const emptyElements = this.showOptionsIsEmpty && this.noDataText ? [this.$createElement('div', {
+        staticClass: 'vc@combobox__menu__no-data',
+      }, this.noDataText)] : [];
+
       const $menu = this.$createElement('vt@menu', {
         staticClass: 'vc@combobox__menu',
+        class: {
+          'vc@combobox__menu--hide': this.showOptionsIsEmpty && !this.noDataText,
+        },
         props: {
-          // auto: true,
-          // activator: this.$el,
           activator: () => this.$refs.body,
-          // activator: this.$refs.input,
           offsetY: true,
           activatorAction: null,
           closeOnContentClick: !this.multiple,
+          closeOnOutsideClick: false,
           closeOnEsc: true,
           disabled: this.disabled,
-          // contentClass: 'vc@combobox__menu',
-          // openOnClick: false,
           offsetOverflow: this.autocomplete,
           value: this.menuIsActive,
         },
 
         on: {
-          // click: e => {
-          //   console.warn(e);
-          // },
-
           input: val => {
             if (!val) {
               this.menuIsActive = false;
@@ -408,42 +416,9 @@ export default {
         ref: 'menu',
       }, [
         // this.$createElement('vt@list', {}, $tiles),
+        ...emptyElements,
         ...optgroups,
       ]);
-
-      // const $menu = this.$createElement('vt@menu', {
-      //   ref: 'menu',
-      //   props: {
-      //     auto: true,
-      //     // activator: this.$el,
-      //     activator: this.$refs.body,
-      //     // activator: this.$refs.input,
-      //     offsetY: true,
-      //     // nudgeTop: 26,
-      //     closeOnClick: false,
-      //     closeOnContentClick: !this.multiple,
-      //     disabled: this.disabled,
-      //     contentClass: 'vc@combobox__menu',
-      //     // maxHeight: this.maxHeight,
-      //     openOnClick: false,
-      //     offsetOverflow: this.autocomplete,
-
-      //     value: this.menuIsActive/* && (....)*/,
-      //     // customOpenDependentElements: () => { return [this.$refs.body] },
-      //     // zIndex: this.menuZIndex,
-      //   },
-
-      //   on: {
-      //     input: val => {
-      //       if (!val) {
-      //         this.menuIsActive = false;
-      //       }
-      //     },
-      //   },
-      // }, [
-      //   // this.$createElement('vt@list', {}, $tiles),
-      //   ...optgroups,
-      // ]);
       return $menu;
     },
     // genOptionsByProp(options) {

@@ -32,7 +32,8 @@ import Tabs from './Tabs';
 import Tile from './Tile';
 import Toolbar from './Toolbar';
 import Tooltip from './Tooltip';
-import Transitions from './transitions';
+import util from './util';
+import transitions from './transitions';
 
 
 
@@ -71,5 +72,6 @@ export default Object.assign({},
   Tile,
   Toolbar,
   Tooltip,
-  Transitions,
+  util,
+  transitions,
 );

@@ -36,6 +36,11 @@ export default {
     isNotSelected() { return !this.optionVms.find($vm => $vm.isActive) },
     isIndeterminate() { return !this.isAllSelected && !this.isNotSelected },
     searchValue() { return this.$combobox.searchValue },
+    isAutoComplete() { return this.$combobox.autocomplete },
+    showOptions() {
+      return this.isAutoComplete ? this.optionVms.filter(vm => vm.isSearchHit) : this.optionVms;
+    },
+    showOptionsIsEmpty() { return this.showOptions.length === 0 },
   },
 
   methods: {
@@ -74,7 +79,7 @@ export default {
     }
 
     if (this.label) {
-      children.push(h('vt@optgroup-label', {}, labelChildren));
+      children.push(h('vt@optgroup-label', null, labelChildren));
     }
 
     this.$slots.default && this.$slots.default.forEach(vn => {
@@ -89,12 +94,15 @@ export default {
       options.push(this.genOptionByProp(option));
     });
 
-    children.push(h('ul', {
+    children.push(h('vt@tile-group', {
       staticClass: 'vc@optgroup__items',
     }, options));
 
     return h('div', {
       staticClass: 'vc@optgroup',
+      directives: [
+        {name: 'show', value: !this.showOptionsIsEmpty},
+      ],
     }, children);
   },
 }

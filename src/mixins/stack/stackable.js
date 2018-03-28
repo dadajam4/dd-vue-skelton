@@ -121,6 +121,10 @@ export default Object.assign({
       type: Boolean,
       default: false,
     },
+    closeOnOutsideClick: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data() {

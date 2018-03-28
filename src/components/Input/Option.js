@@ -59,27 +59,54 @@ export default {
       }, child);
     },
     searchValue() { return this.$combobox.searchValue },
+    caseSensitive() { return this.$combobox.caseSensitive },
+    searchRegExp() { return this.searchHitValue && this.searchValue && new RegExp(`(${this.searchValue})`, this.caseSensitive ? 'g' : 'ig') },
     isSearchHit() {
       if (!this.searchHitValue) return;
-      return !this.searchValue || this.searchHitValue.includes(this.searchValue);
+      if (!this.searchValue) return true;
+      return this.searchRegExp.test(this.searchHitValue);
     },
   },
 
-  watch: {},
+  watch: {
+    isSearchHit(val) {
+      if (!val && this.$combobox.autocompleteFocusedVm === this) this.$combobox.autocompleteFocusedVm = null;
+    },
+  },
 
   methods: {
     updateSearchHitValue() {
       if (!this.$el) this.searchHitValue = null;
-      this.searchHitValue = (this.$el.innerText || '').toLowerCase();
+      this.searchHitValue = (this.$el.innerText || '');
     },
+
     click(e) {
       return this.isDisabled ? e.preventDefault() : this.select();
     },
+
     select(force = false) {
       return this.$combobox.selectOption(this, force);
     },
+
     deselect() {
       return this.deselectOption(this);
+    },
+
+    genContentChildren() {
+      return (this.$slots.default || []).map(c => {
+        if (c.text) {
+          return this.$createElement('vt@highlight', {
+            props: {
+              match: this.searchRegExp,
+              value: this.$combobox.innerValue,
+              highlightTag: 'span',
+              highlightClass: 'vc@text-color--primary',
+            },
+          }, c.text);
+        } else {
+          return c;
+        }
+      });
     },
   },
 
@@ -87,19 +114,22 @@ export default {
     this.appendVmForCombobox(this);
     if (this.$optgroup) this.$optgroup.appendOptionVm(this);
   },
+
   mounted() {
     this.updateSearchHitValue();
   },
+
   updated() {
     this.updateSearchHitValue();
   },
+
   beforeDestroy() {
     this.removeVmFromCombobox(this);
     if (this.$optgroup) this.$optgroup.removeOptionVm(this);
   },
 
   render(h) {
-    const $content = this.$createElement('vt@tile-content', {}, this.$slots.default)
+    const $content = this.$createElement('vt@tile-content', null, this.genContentChildren())
     const children = [
       h('vt@tile-action', {}, [
         this.$createElement(`vt@${this.multiple ? 'checkbox' : 'radio'}-element`, {
@@ -117,6 +147,7 @@ export default {
       staticClass: 'vc@option',
       class: {
         'vc@option--disabled': this.isDisabled,
+        'vc@tile--focused': this === this.$combobox.autocompleteFocusedVm,
       },
       props: {
         value: this.isActive,

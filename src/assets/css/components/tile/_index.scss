@@ -57,10 +57,17 @@
     color: inherit;
   }
 
+  &--focused {
+    &:before {
+      opacity: 0.07;
+    }
+  }
+
   &--clickable {
     cursor: pointer;
     user-select: none;
 
+    &:focus,
     &:hover {
       &:before {
         opacity: 0.07;
