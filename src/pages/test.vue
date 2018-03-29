@@ -113,6 +113,20 @@
 
     <vt@page-section title id="はじめに" data-anchor-point>
 
+      <vt@input
+        label="サジェスト"
+        placeholder="プレースホルダ"
+        prefix="$"
+        :flat="flat"
+        :disabled="hasDisabled"
+        rules="min:10|10文字以上必須すよー"
+        color="secondary"
+        always-suggests
+        :suggests="['This is a dog.', 'this IS A PEN!', 'サジェスト1', 'サジェスト2', 'サジェスト11']"
+      >
+        <vt@icon right>search</vt@icon>
+        <vt@btn secondary right icon="search" />
+      </vt@input>
 <!--
       <div>
         <p>■フラット選択</p>
@@ -603,21 +617,21 @@
       </vt@avatar>
 -->
 
+
+      <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
+
+<!--
       <vt@select
         label="autocomplete"
         :flat="flat"
         :disabled="hasDisabled"
         autocomplete
-        multiple
       >
         <vt@option value="1">This is a dog</vt@option>
         <vt@option value="2">this IS a PEN</vt@option>
         <vt@option value="3">項目3</vt@option>
       </vt@select>
 
-      <p v-for="n in 100" :key="n">ダミーテキスト{{n}}</p>
-
-<!--
       <p>{{select0}} <button @click="select0 = null">reset</button></p>
       <vt@select v-model="select0"
         :options="[

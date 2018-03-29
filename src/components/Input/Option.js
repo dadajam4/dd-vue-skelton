@@ -60,7 +60,7 @@ export default {
     },
     searchValue() { return this.$combobox.searchValue },
     caseSensitive() { return this.$combobox.caseSensitive },
-    searchRegExp() { return this.searchHitValue && this.searchValue && new RegExp(`(${this.searchValue})`, this.caseSensitive ? 'g' : 'ig') },
+    searchRegExp() { return /*this.searchHitValue && */this.$combobox.searchRegExp },
     isSearchHit() {
       if (!this.searchHitValue) return;
       if (!this.searchValue) return true;

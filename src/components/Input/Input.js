@@ -14,6 +14,9 @@ export default {
     },
     min: [String, Number],
     max: [String, Number],
+    suggests: [String, Array],
+    maxSuggests: [String, Number],
+    alwaysSuggests: Boolean,
   },
 
   computed: {

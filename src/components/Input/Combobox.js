@@ -35,10 +35,10 @@ export default {
       deselectOption: this.deselectOption,
     };
 
-    Object.defineProperty(data, 'highlightValue', {
-       enumerable: true,
-       get: () => this.innerValue,
-    });
+    // Object.defineProperty(data, 'highlightValue', {
+    //    enumerable: true,
+    //    get: () => this.innerValue,
+    // });
 
     return data;
   },
@@ -71,6 +71,9 @@ export default {
     placeholder: String,
     multiple: Boolean,
     autocomplete: Boolean,
+    suggests: [String, Array],
+    maxSuggests: [String, Number],
+    alwaysSuggests: Boolean,
     staticSelect: Boolean,
     options: Array,
     groups: Array,
@@ -98,10 +101,13 @@ export default {
       menuIsActive: false,
       optionVms: [],
       autocompleteFocusedVm: null,
+      suggestIndex: -1,
     }
   },
 
   computed: {
+    suggestValue() { return this.hitSuggests[this.suggestIndex] },
+    hasNoDataText() { return this.autocomplete && !!this.noDataText },
     classes() {
       return {
         'vc@combobox': true,
@@ -122,6 +128,7 @@ export default {
       }
     },
     searchValue() { return (this.innerValue || '') },
+    searchRegExp() { return this.searchValue && new RegExp(`(${this.searchValue})`, this.caseSensitive ? 'g' : 'ig') },
     isSelect() { return this.type === 'select' },
     typeDefine() { return TYPES[this.type] },
     computedType() { return this.typeDefine && this.typeDefine.type },
@@ -178,7 +185,6 @@ export default {
     selectedValues() {
       if (!this.isSelect || !this.innerSelected) return;
       return Array.isArray(this.innerSelected) ? this.innerSelected : [this.innerSelected];
-      // return this.multiple ? this.innerSelected || [] : [this.innerSelected];
     },
     hasDivider() { return !this.selectionRenderer && this.divider },
     selectionItems() {
@@ -211,6 +217,39 @@ export default {
       return this.autocomplete ? this.optionVms.filter(vm => vm.isSearchHit) : this.optionVms;
     },
     showOptionsIsEmpty() { return this.showOptions.length === 0 },
+    computedSuggests() {
+      if (this.hasSuggests) {
+        return typeof this.suggests === 'string' ? this.suggests.split(',') : this.suggests;
+      }
+    },
+    hasSuggests() { return !!this.suggests },
+    suggestsIsEmpty() { return !this.hasSuggests || this.computedSuggests.length === 0 },
+    computedMaxSuggests() {
+      const type = typeof this.maxSuggests;
+      if (type === 'number') return this.maxSuggests;
+      if (type === 'string') return parseInt(this.maxSuggests, 10);
+      return false;
+    },
+    hitSuggests() {
+      if (
+        this.suggestsIsEmpty
+        || !this.searchValue && !this.alwaysSuggests
+      ) return [];
+
+      const hitSuggests = [];
+      const re = this.searchRegExp;
+      for (let suggest of this.computedSuggests) {
+        if (!this.searchValue) {
+          hitSuggests.push(suggest);
+        } else {
+          if (re.test(suggest)) hitSuggests.push(suggest);
+        }
+        if (hitSuggests.length === this.computedMaxSuggests) break;
+      }
+      return hitSuggests;
+    },
+    hitSuggestsIsEmpty() { return !this.hasSuggests || this.hitSuggests.length === 0 },
+    hasSearch() { return this.autocomplete || this.hasSuggests },
   },
 
   watch: {
@@ -224,11 +263,12 @@ export default {
       this.menuIsActive = val;
 
       if (!val && this.isSelect && this.autocomplete) {
-        this.innerValue = '';
+        this.input = '';
       }
     },
     menuIsActive(val) {
       this.autocompleteFocusedVm = null;
+      this.suggestIndex = -1;
     },
   },
 
@@ -244,6 +284,15 @@ export default {
       }
       const nextVm = searchHitOptions[newIndex];
       this.autocompleteFocusedVm = nextVm || null;
+    },
+    shiftSuggestIndex(ammount = 1) {
+      let newIndex = this.suggestIndex + ammount;
+      if (newIndex <= -2) {
+        newIndex = this.hitSuggests.length - 1;
+      } else if (newIndex >= this.hitSuggests.length) {
+        newIndex = -1;
+      }
+      this.suggestIndex = newIndex;
     },
     removeLastSelection() {
       if (!this.isSelect) return;
@@ -311,7 +360,12 @@ export default {
     },
     onInputInput(e) {
       if (this.disallowChange) return e.preventDefault();
+      this.suggestIndex = -1;
       this.input = e.target.value;
+    },
+    resolveSuggest(suggestValue = this.suggestValue) {
+      if (suggestValue) this.input = suggestValue;
+      this.menuIsActive = false;
     },
     genInput() {
       const data = {
@@ -319,7 +373,7 @@ export default {
         attrs: this.inputAttrs,
         domProps: {
           autofocus: this.autofocus,
-          value: this.innerValue,
+          value: this.suggestValue ? this.suggestValue : this.innerValue,
           disabled: this.disabled,
         },
         on: {
@@ -327,46 +381,41 @@ export default {
           focus: this.onFocusInput,
           blur: this.onBlurInput,
           keydown: e => {
-            if (!this.autocomplete) return;
+            if (!this.hasSearch) return;
+
             if (e.which === 9 || e.which === 13) {
 
               // >>> enter or tab
-              if (this.autocompleteFocusedVm) {
-                this.autocompleteFocusedVm.select();
-              }
+              if (this.autocomplete) {
+                if (this.autocompleteFocusedVm) {
+                  this.autocompleteFocusedVm.select();
+                }
 
-              if (!this.multiple) {
-                this.menuIsActive = false;
+                if (!this.multiple) {
+                  this.menuIsActive = false;
+                } else {
+                  this.input = '';
+                }
               } else {
-                this.innerValue = '';
+                this.resolveSuggest();
               }
             } else if (e.which === 38) {
 
               // up
-              this.shiftAutocompleteIndex(-1);
+              this.autocomplete ? this.shiftAutocompleteIndex(-1) : this.shiftSuggestIndex(-1);
             } else if (e.which === 40) {
 
               // down
-              this.shiftAutocompleteIndex();
+              this.autocomplete ? this.shiftAutocompleteIndex() : this.shiftSuggestIndex();
             } else if (e.which === 8 || e.which === 46) {
 
               // delete or backspace
-              if (!this.innerValue) {
-                return this.removeLastSelection();
+              if (this.autocomplete) {
+                if (!this.input) {
+                  return this.removeLastSelection();
+                }
               }
             }
-            // console.warn(e.which);
-            // if (this.isShowSuggest) {
-            //   if (e.which === 13) {
-            //     this.settleSuggest(this.suggestSelected);
-            //   } else if (e.which === 38) {
-            //     this.shiftSuggest(-1);
-            //     e.preventDefault();
-            //   } else if (e.which === 9 || e.which === 40) {
-            //     this.shiftSuggest(1);
-            //     e.preventDefault();
-            //   }
-            // }
           },
         },
         ref: 'input',
@@ -382,17 +431,59 @@ export default {
         staticClass: `vc@combobox__fix vc@combobox__fix--${position}`,
       }, fix);
     },
-    genMenu(optgroups) {
-      if (!optgroups || !optgroups.length) return;
 
-      const emptyElements = this.showOptionsIsEmpty && this.noDataText ? [this.$createElement('div', {
+    genSuggests() {
+      if (this.hitSuggestsIsEmpty) return [];
+
+      const h = this.$createElement;
+
+      const suggests = this.hitSuggests.map((suggest, index) => {
+        const $highlight = h('vt@highlight', {
+          props: {
+            match: this.searchRegExp,
+            value: this.searchValue,
+            highlightTag: 'span',
+            highlightClass: 'vc@text-color--primary',
+          },
+        }, suggest);
+
+        const $title = h('vt@tile-title', null, [$highlight]);
+        const $content = h('vt@tile-content', null, [$title]);
+
+        return h('vt@tile', {
+          class: {
+            'vc@tile--focused': index === this.suggestIndex,
+          },
+          on: {
+            click: e => {
+              this.resolveSuggest(suggest);
+            },
+          },
+        }, [$content]);
+      });
+
+      return [h('vt@tile-group', {
+        props: {
+          dense: true,
+        },
+      }, suggests)];
+    },
+
+    genMenu(optgroups = []) {
+      if (
+        !optgroups.length
+        && !this.hasSuggests
+      ) return;
+
+      const isEmpty = this.hasSuggests ? this.hitSuggestsIsEmpty : this.showOptionsIsEmpty;
+      const emptyElements = isEmpty && this.hasNoDataText ? [this.$createElement('div', {
         staticClass: 'vc@combobox__menu__no-data',
       }, this.noDataText)] : [];
 
       const $menu = this.$createElement('vt@menu', {
         staticClass: 'vc@combobox__menu',
         class: {
-          'vc@combobox__menu--hide': this.showOptionsIsEmpty && !this.noDataText,
+          'vc@combobox__menu--hide': isEmpty && !this.hasNoDataText,
         },
         props: {
           activator: () => this.$refs.body,
@@ -418,6 +509,7 @@ export default {
         // this.$createElement('vt@list', {}, $tiles),
         ...emptyElements,
         ...optgroups,
+        ...this.genSuggests(),
       ]);
       return $menu;
     },
@@ -466,7 +558,7 @@ export default {
       this.targetSelected = payload;
 
       if (this.autocomplete) {
-        this.innerValue = '';
+        this.input = '';
 
         if (!this.multiple) {
           this.$refs.input.blur();
@@ -509,7 +601,7 @@ export default {
         if (optgroup) {
           optgroup.componentOptions.children.push(vnode);
         } else {
-          optgroup = h('vt@optgroup', {}, [vnode]);
+          optgroup = h('vt@optgroup', null, [vnode]);
           optgroups.push(optgroup);
         }
       } else if (vnode.componentOptions && vnode.componentOptions.tag === 'vt@optgroup') {
