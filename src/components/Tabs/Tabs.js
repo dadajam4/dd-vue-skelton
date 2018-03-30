@@ -75,18 +75,20 @@ export default {
       const isReverse = now < before;
       const hasTransition = hasBefore;
 
-      const $nowContent = this.getContentByIndex(now);
-      const $nowTrigger = this.getTriggerByIndex(now);
+      this.$nextTick(() => {
+        const $nowContent = this.getContentByIndex(now);
+        const $nowTrigger = this.getTriggerByIndex(now);
 
-      $nowContent.toggle(true, hasTransition, isReverse);
-      $nowTrigger.toggle(true, hasTransition, isReverse);
+        $nowContent && $nowContent.toggle(true, hasTransition, isReverse);
+        $nowTrigger && $nowTrigger.toggle(true, hasTransition, isReverse);
 
-      if (hasBefore) {
-        const $beforeContent = this.getContentByIndex(before);
-        const $beforeTrigger = this.getTriggerByIndex(before);
-        $beforeContent.toggle(false, hasTransition, isReverse);
-        $beforeTrigger.toggle(false, hasTransition, isReverse);
-      }
+        if (hasBefore) {
+          const $beforeContent = this.getContentByIndex(before);
+          const $beforeTrigger = this.getTriggerByIndex(before);
+          $beforeContent.toggle(false, hasTransition, isReverse);
+          $beforeTrigger.toggle(false, hasTransition, isReverse);
+        }
+      });
     },
   },
 
@@ -167,7 +169,7 @@ export default {
     });
 
     this.items = items;
-    if (!this.value) this.currentId = items[0].id;
+    if (!this.value && !this.currentId) this.currentId = items[0].id;
 
     const $nav = h('vt@tabs-nav', {
       class: this.addColorClasses(),

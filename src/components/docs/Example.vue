@@ -1,10 +1,6 @@
 <style lang="scss" scoped>
 @import "core/index";
 
-.my-source {
-  transition: get-transition(primary);
-}
-
 .my-description {
   @include font-size(sm);
   margin: get-space(md) 0;
@@ -38,8 +34,8 @@
           </vt@tooltip>
         </vt@tooltip-fragment>
       </vt@toolbar>
-      <vt@expand-transition v-if="source">
-        <vt@tabs class="my-source" v-if="sourceActive">
+      <vt@accordion v-model="sourceActive">
+        <vt@tabs class="my-source">
           <vt@tabs-item
             v-for="tab in tabs"
             :key="tab.name"
@@ -53,7 +49,7 @@
             </vt@tabs-content>
           </vt@tabs-item>
         </vt@tabs>
-      </vt@expand-transition>
+      </vt@accordion>
       <vt@card-text>
         <slot />
       </vt@card-text>
