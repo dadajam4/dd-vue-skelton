@@ -21,6 +21,9 @@ export default {
     accordion: Object,
     contentClass: String,
     activeIconClass: String,
+    to: true,
+    href: true,
+    linkActiveClass: String,
   },
 
   computed: {
@@ -33,6 +36,7 @@ export default {
     hasIcon() { return !!this.icon },
     isStyled() { return this.accordion.styled },
     isActive() { return this.accordion.isActive },
+    hasLink() { return !!(this.to || this.href) },
   },
 
   render(h) {
@@ -64,12 +68,23 @@ export default {
         tag: this.tag,
         wrap: this.wrap,
         dense: this.dense,
+        to: this.to,
+        href: this.href,
+        activeClass: this.linkActiveClass,
       },
-      on: {
+      nativeOn: {
         click: e => {
           this.accordion.toggle();
         },
       },
+      on: {
+        click: e => {},
+      },
+      // on: {
+      //   click: e => {
+      //     this.accordion.toggle();
+      //   },
+      // },
     }, tileChildren);
 
     return $tile;

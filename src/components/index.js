@@ -22,8 +22,8 @@ import Img from './Img';
 import List from './List';
 import Menu from './Menu';
 // import Form from './Form';
+import Navigation from './Navigation';
 import NavigationDrawer from './NavigationDrawer';
-import AnchorNavi from './AnchorNavi';
 import Page from './Page';
 import Pagination from './Pagination';
 import Progress from './Progress';
@@ -62,7 +62,7 @@ export default Object.assign({},
   List,
   Menu,
   // Form,
-  AnchorNavi,
+  Navigation,
   NavigationDrawer,
   Page,
   Pagination,

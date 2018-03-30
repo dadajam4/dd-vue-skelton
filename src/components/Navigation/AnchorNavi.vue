@@ -79,7 +79,7 @@ export default {
     },
 
     updateCurrentId() {
-      if (!process.browser || !this.$store.state.scroll.loaded || this.$appIsScrolling()) return;
+      if (typeof window === 'undefined' || !this.$store.state.scroll.loaded || this.$appIsScrolling()) return;
 
       const headerHeight = this.$store.getters['ui/header/fixedHeight'];
       const scrollTop = this.$store.state.scroll.top;

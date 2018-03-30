@@ -48,4 +48,9 @@
       text-transform: uppercase;
     }
   }
+
+  .#{$css-prefix}app-drawer & {
+    border-right: solid 4px;
+    @include theme-border-color(context-primary);
+  }
 }

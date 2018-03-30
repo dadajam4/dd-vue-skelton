@@ -19,19 +19,6 @@
     }
   }
 }
-
-.my-parent-name,
-.my-child-name {
-  display: block;
-  &:first-letter {
-    text-transform: uppercase;
-  }
-}
-
-.my-anchor-navi {
-  border-right: solid 4px;
-  @include theme-border-color(context-primary);
-}
 </style>
 
 <template>
@@ -42,79 +29,20 @@
         DD Vue Skelton
       </router-link>
     </div>
-
-    <vt@accordion-group>
-      <template v-for="parent, parentIndex in links">
-        <vt@tile
-          v-if="!parent.children"
-          :key="parentIndex"
-          :to="{name: parent.name}"
-          dense
-          :class="{'vc@text-color--primary': $route.name === parent.name}"
-        >
-          <vt@tile-action>
-            <vt@icon>{{iconMap[parent.name]}}</vt@icon>
-          </vt@tile-action>
-          <vt@tile-content>
-            <vt@tile-title class="my-parent-name">{{parent.label}}</vt@tile-title>
-          </vt@tile-content>
-          <vt@tile-action />
-        </vt@tile>
-
-        <vt@accordion
-          v-else
-          :key="parentIndex"
-          :match-route="parent.path"
-        >
-          <vt@accordion-title
-            :icon="iconMap[parent.name]"
-            active-icon-class="vc@text-color--primary"
-            dense
-          ><span class="my-parent-name">{{parent.name}}</span></vt@accordion-title>
-
-          <template v-for="child, childIndex in parent.children">
-            <vt@tile
-              :key="childIndex"
-              :to="{name: child.name}"
-              dense
-              :class="{'vc@text-color--primary': $route.name === child.name}"
-            >
-              <vt@tile-action>&nbsp;</vt@tile-action>
-              <vt@tile-content>
-                <vt@tile-title class="my-child-name">{{child.label}}</vt@tile-title>
-              </vt@tile-content>
-              <vt@tile-action>
-              </vt@tile-action>
-            </vt@tile>
-            <li v-if="$route.name === child.name" :key="childIndex + '-anchors'" class="my-anchor-navi">
-              <vt@anchor-navi></vt@anchor-navi>
-            </li>
-          </template>
-        </vt@accordion>
-      </template>
-  <!--
-            <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
-              <li v-for="anchor in child._anchors" :key="anchor.id">
-                <a
-                  :href="`${child.path}/#${anchor.id}`"
-                  v-scroll-to="{
-                    element: `#${anchor.id}`,
-                    offset: -30,
-                    onDone: () => { onDoneScroll(`${child.path}/#${anchor.id}`) },
-                  }"
-                >{{anchor.label}}</a>
-              </li>
-            </ul>
-  -->
-    </vt@accordion-group>
+    <vt@route-navigator :settings="navigatorSettings" />
   </vt@app-drawer>
-
 </template>
 
 <script>
-const toLabel = str => {
-  return str.replace(/-/g, ' ');
-}
+const navigatorSettings = [
+  {match: '/getting-started', label: '始めに', order: 0, icon: 'cube'},
+  {match: /^\/layout$/, order: 1, icon: 'th-list'},
+  {match: /^\/components$/, order: 2, icon: 'th-large'},
+  {match: /^\/elements$/, order: 3, icon: 'truck'},
+  {match: /^\/style$/, order: 4, icon: 'columns'},
+];
+
+
 
 export default {
   name: 'docs-drawer',
@@ -128,86 +56,14 @@ export default {
   data() {
     return {
       isActive: this.value,
-      iconMap: {
-        'getting-started': 'cube',
-        elements  : 'truck',
-        components: 'th-large',
-        layout    : 'th-list',
-        style     : 'columns',
-      },
     }
   },
 
   computed: {
+    navigatorSettings() { return navigatorSettings },
     lastRequested: {
       get() { return this.$refs.drawer.lastRequested },
       set(lastRequested) { this.$refs.drawer.lastRequested = lastRequested },
-    },
-    links() {
-      const links = [];
-      const routes = this.$router.options.routes;
-      const levels = [];
-
-      routes.forEach(route => {
-        const tmp = route.path.replace(/^\//, '').split('/');
-        const level = tmp.length - 1;
-
-        if (!levels[level]) levels[level] = [];
-        levels[level].push(route);
-      });
-
-      levels.forEach((level, index) => {
-        if (index === 0) {
-          level.forEach(route => {
-            if (route.name !== 'index') {
-              links.push({
-                path : route.path,
-                name : route.name,
-                label: toLabel(route.name),
-              });
-            }
-          });
-        } else {
-          level.forEach(route => {
-            const tmp = route.path.replace(/^\//, '').split('/');
-            const myParentName = tmp[0];
-            let parent = links.find(parent => parent.name === myParentName);
-            if (!parent) {
-              parent = {
-                name: myParentName,
-                path: '/' + myParentName,
-                children: [],
-              };
-              links.push(parent);
-            }
-            parent.children.push({
-              name : route.name,
-              path : route.path,
-              label: toLabel(tmp[1]),
-            });
-          });
-        }
-      });
-
-      links.forEach(link => {
-        if (link.children) {
-          link.children.sort((a, b) => {
-            if (a.name < b.name) return -1;
-            if (a.name > b.name) return 1;
-            return 0;
-          });
-        }
-      });
-
-      links.sort((a, b) => {
-        if (a.children && !b.children) return 1;
-        if (!a.children && b.children) return -1;
-        if (a.name < b.name) return -1;
-        if (a.name > b.name) return 1;
-        return 0;
-      })
-
-      return links;
     },
   },
 
@@ -218,12 +74,6 @@ export default {
 
     isActive() {
       this.$emit('input', this.isActive);
-    },
-  },
-
-  methods: {
-    onDoneScroll(path) {
-      window.history.pushState(null, null, path);
     },
   },
 }

@@ -12,6 +12,7 @@ import getObjectValueByPath from './getObjectValueByPath';
 import getZIndex from './getZIndex';
 import waitElementInsert from './waitElementInsert';
 import locationHashChange from './locationHashChange';
+import convertRouterRoutesToTree from './convertRouterRoutesToTree';
 
 
 
@@ -162,4 +163,5 @@ export {
   getZIndex,
   waitElementInsert,
   locationHashChange,
+  convertRouterRoutesToTree,
 }
