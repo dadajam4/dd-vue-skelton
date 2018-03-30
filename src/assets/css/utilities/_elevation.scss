@@ -1,0 +1,11 @@
+//
+// Elevation
+//
+
+.#{$css-prefix}elevation {
+  @each $key, $val in $elevation {
+    &--#{$key} {
+      @include elevation($key);
+    }
+  }
+}

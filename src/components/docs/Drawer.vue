@@ -29,13 +29,18 @@
         DD Vue Skelton
       </router-link>
     </div>
+
+    <vt@input placeholder="Search">
+      <vt@icon right>search</vt@icon>
+    </vt@input>
+
     <vt@route-navigator :settings="navigatorSettings" />
   </vt@app-drawer>
 </template>
 
 <script>
 const navigatorSettings = [
-  {match: '/getting-started', label: '始めに', order: 0, icon: 'cube'},
+  {match: '/getting-started', order: 0, icon: 'cube'},
   {match: /^\/layout$/, order: 1, icon: 'th-list'},
   {match: /^\/components$/, order: 2, icon: 'th-large'},
   {match: /^\/elements$/, order: 3, icon: 'truck'},
@@ -49,13 +54,14 @@ export default {
 
   props: {
     value: {
+      type: Boolean,
       required: false,
     },
   },
 
   data() {
     return {
-      isActive: this.value,
+      innerValue: this.value,
     }
   },
 
@@ -65,15 +71,18 @@ export default {
       get() { return this.$refs.drawer.lastRequested },
       set(lastRequested) { this.$refs.drawer.lastRequested = lastRequested },
     },
+    isActive: {
+      get() { return this.innerValue },
+      set(val) {
+        this.innerValue = val;
+        this.$emit('input', val);
+      },
+    },
   },
 
   watch: {
-    value() {
-      this.isActive = this.value;
-    },
-
-    isActive() {
-      this.$emit('input', this.isActive);
+    value(val) {
+      this.innerValue = val;
     },
   },
 }

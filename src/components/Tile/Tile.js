@@ -26,7 +26,7 @@ export default {
   computed: {
     classes() {
       return {
-        'vc@tile': true,
+        // 'vc@tile': true,
         'vc@tile--clickable': this.isClickable && !this.isDisabled,
         'vc@tile--disabled': this.isDisabled,
         'vc@tile--dense': this.isDense,

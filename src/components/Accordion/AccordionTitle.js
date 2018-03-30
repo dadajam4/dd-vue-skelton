@@ -75,6 +75,7 @@ export default {
       nativeOn: {
         click: e => {
           this.accordion.toggle();
+          this.$emit('click', e);
         },
       },
       on: {

@@ -12,8 +12,10 @@ export default {
   },
 
   mounted() {
-    this.setupActivator();
-    this.initStack();
+    this.$nextTick(() => {
+      this.setupActivator();
+      this.initStack();
+    });
     this.$emit('mounted', this);
   },
 

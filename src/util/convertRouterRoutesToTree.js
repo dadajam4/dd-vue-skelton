@@ -55,6 +55,10 @@ export default function convertRouterRoutesToTree(routes, settings = []) {
       children[child.order] = child;
       children[currentIndex] = tmp;
     });
+
+    for (let child of children) {
+      sort(child.children);
+    }
   }
 
   sort(rootRoute.children);

@@ -17,30 +17,22 @@
 
 
 <script>
-import ClickOutside from '~/directives/click-outside';
-
-
-
 export default {
   name: 'vt@navigation-drawer',
 
-  directives: {
-    ClickOutside,
-  },
-
   props: {
-    value: { required: false },
+    value: {
+      type: Boolean,
+      required: false,
+    },
+    permanent: Boolean,
   },
-
-
 
   data() {
     return {
-      isActive: this.value,
+      innerValue: this.value,
     }
   },
-
-
 
   computed: {
     classes() {
@@ -50,16 +42,24 @@ export default {
         [`${this.$options.name}--close`]: !this.isActive,
       }
     },
+
+    isActive: {
+      get() { return this.innerValue },
+      set(val) {
+        this.innerValue = val;
+        this.$emit('input', val);
+      },
+    },
   },
 
   watch: {
-    isActive(val) {
-      this.$emit('input', val);
-    },
-
     value(val) {
-      if (this.permanent) return;
-      if (val !== this.isActive) this.isActive = val;
+      if (!val && this.permanent) {
+        this.$emit('input', true);
+        return;
+      }
+
+      this.innerValue = val;
     },
   },
 

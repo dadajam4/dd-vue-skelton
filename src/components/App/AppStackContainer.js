@@ -82,7 +82,7 @@ export default {
         this.frontStack = $vm;
       } else if ($vm === this.frontStack) {
         this.frontStack = null;
-        this.$util.blurActiveElement();
+        // this.$util.blurActiveElement();
       }
 
       for (let $target of this.stacks) {

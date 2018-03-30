@@ -5,10 +5,14 @@
   <vt@page>
     <vt@page-header>Text fields</vt@page-header>
     <vt@page-intro>
-      Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span>
+      <code>vt@input</code> コンポーネントを利用する事で、IMEによるユーザーの入力を受け付ける事ができます。<br>
+      このコンポーネントは1行、または複数行の入力を制御可能です。
     </vt@page-intro>
 
     <dd-example is="basic" />
+    <dd-example is="label" />
+    <dd-example is="icon" />
+    <dd-example is="prefix-and-suffix" />
   </vt@page>
 </template>
 

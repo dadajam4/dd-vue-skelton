@@ -66,6 +66,7 @@
   &--clickable {
     cursor: pointer;
     user-select: none;
+    @include user-drag(none);
 
     &:focus,
     &:hover {

@@ -5,13 +5,29 @@
   transition: get-transition(primary);
 }
 
+.my-description {
+  @include font-size(sm);
+  margin: get-space(md) 0;
+}
 </style>
 
 <template>
   <vt@page-section :id="id">
+    <h2 class="vc@page__section-header">
+      <vt@icon>link</vt@icon>
+      {{computedTitle}}
+    </h2>
+    <div v-if="$slots.description" class="my-description"><slot name="description" /></div>
     <vt@card>
-      <vt@toolbar secondary>
+      <vt@toolbar
+        class="vc@elevation--0"
+        background-color="light"
+        text-color="grey-darken-1"
+        dense
+      >
+<!--
         <vt@toolbar-title tag="h2">{{computedTitle}}</vt@toolbar-title>
+-->
         <vt@spacer />
         <vt@tooltip-fragment>
           <vt@btn icon @click="sourceActive = !sourceActive">

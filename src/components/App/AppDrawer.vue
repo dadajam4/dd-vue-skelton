@@ -27,10 +27,6 @@ export default {
 
   inject: ['$app'],
 
-  directives: {
-    ClickOutside,
-  },
-
   props: {
     value: {
       required: false,
@@ -43,15 +39,11 @@ export default {
     },
   },
 
-
-
   data() {
     return {
       lastRequested: null,
     }
   },
-
-
 
   computed: {
     classes() {
@@ -64,6 +56,7 @@ export default {
         'vc@app-drawer--static': this.isStatic,
       }
     },
+
     vec() { return this.left ? 'left' : 'right' },
 
     isActive: {
@@ -118,14 +111,6 @@ export default {
     this.checkStatic();
     this.$emit('input', this.isActive);
     this.$store.commit(`${this.storePath}set`);
-    // this.checkStatic();
-  },
-
-  mounted() {
-    // this.checkStatic();
-  },
-
-  beforeDestroy() {
   },
 
   destroyed() {
