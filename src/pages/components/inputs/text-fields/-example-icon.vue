@@ -20,6 +20,20 @@
     <vt@input label="リスナー登録">
       <vt@icon @click="onClick">search</vt@icon>
     </vt@input>
+
+    <vt@input label="ツールチップ">
+      <vt@tooltip-fragment>
+        <vt@icon>search</vt@icon>
+        <vt@tooltip>ツールチップ</vt@tooltip>
+      </vt@tooltip-fragment>
+    </vt@input>
+
+    <vt@input label="ツールチップ &amp; position">
+      <vt@tooltip-fragment>
+        <vt@icon right>search</vt@icon>
+        <vt@tooltip>ツールチップ</vt@tooltip>
+      </vt@tooltip-fragment>
+    </vt@input>
   </docs-example>
 </template>
 

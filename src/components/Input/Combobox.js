@@ -590,6 +590,7 @@ export default {
     const classes = {};
     const positionables = {'btn': {}, 'icon': {}};
     const optgroups = [];
+    const otherChildren = [];
     let optgroup;
 
     this.groups && this.groups.forEach(group => {
@@ -608,7 +609,8 @@ export default {
         optgroups.push(vnode);
       }
 
-      if (vnode.fnOptions && vnode.fnOptions.name === 'vt@icon') {
+      // if (vnode.fnOptions && vnode.fnOptions.name === 'vt@icon') {
+      if (vnode.data && /(^|\s)vt@icon/.test(vnode.data.staticClass || '')) {
         vnode.data.staticClass += ` vc@combobox__icon`;
 
         let position = POSITIONABLE_DEFAULT_POSITION.icon;
@@ -649,6 +651,8 @@ export default {
 
         classes[`vc@combobox--has-${position}-btn`] = true;
         positionables.btn[position] = vnode;
+      } else {
+        otherChildren.push(vnode);
       }
     });
 
@@ -675,6 +679,7 @@ export default {
           {this.genInput()}
           {this.genfix('suf')}
           {positionables.icon.right}
+          {otherChildren}
         </div>
         {positionables.btn.right}
 

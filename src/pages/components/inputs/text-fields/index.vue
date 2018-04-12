@@ -5,14 +5,14 @@
   <vt@page>
     <vt@page-header>Text fields</vt@page-header>
     <vt@page-intro>
-      <code>vt@input</code> コンポーネントを利用する事で、IMEによるユーザーの入力を受け付ける事ができます。<br>
-      このコンポーネントは1行、または複数行の入力を制御可能です。
+      <code>vt@input</code> 、及び <code>vt@textarea</code> コンポーネントを利用する事で、IMEによるユーザーの入力を受け付ける事ができます。
     </vt@page-intro>
 
     <dd-example is="basic" />
     <dd-example is="label" />
     <dd-example is="icon" />
     <dd-example is="prefix-and-suffix" />
+    <dd-example is="button" />
   </vt@page>
 </template>
 

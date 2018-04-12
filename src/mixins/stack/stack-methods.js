@@ -142,6 +142,7 @@ export default Object.assign({
 
   activatorClickHandler(e) {
     if (this.disabled) return;
+    if (this.openOnHover) return;
 
     if (this.contextmenu) {
       if (this.isActive) this.close();

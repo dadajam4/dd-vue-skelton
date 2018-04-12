@@ -271,7 +271,7 @@
 .#{$css-prefix}tile-group {
   padding: get-space(xs) 0;
   // transition: height .4s cubic-bezier(.4, 0, .2, 1);
-  // @include theme-color(background-color, background);
+  @include theme-color(background-color, background);
   margin: 0;
 
   &,
