@@ -9,10 +9,15 @@
     </vt@page-intro>
 
     <dd-example is="basic" />
+<!--
     <dd-example is="label" />
+-->
     <dd-example is="icon" />
     <dd-example is="prefix-and-suffix" />
     <dd-example is="button" />
+    <dd-example is="sizing" />
+    <dd-example is="suggest" />
+
   </vt@page>
 </template>
 

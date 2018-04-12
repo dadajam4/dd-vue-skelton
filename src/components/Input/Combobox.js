@@ -248,7 +248,8 @@ export default {
       }
       return hitSuggests;
     },
-    hitSuggestsIsEmpty() { return !this.hasSuggests || this.hitSuggests.length === 0 },
+    hitSuggestsLength() { return this.hitSuggests.length },
+    hitSuggestsIsEmpty() { return !this.hasSuggests || this.hitSuggestsLength === 0 },
     hasSearch() { return this.autocomplete || this.hasSuggests },
   },
 
@@ -269,6 +270,11 @@ export default {
     menuIsActive(val) {
       this.autocompleteFocusedVm = null;
       this.suggestIndex = -1;
+    },
+    hitSuggestsLength() {
+      this.$timeout(() => {
+        this.$refs.menu && this.$refs.menu.onResize();
+      }, 500, 'suggests-length-menu-resize');
     },
   },
 

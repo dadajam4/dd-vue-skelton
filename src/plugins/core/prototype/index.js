@@ -19,6 +19,48 @@ export default function PrototypePlugin(Vue) {
   Vue.prototype.$nextAnimationFreame = nextAnimationFreame;
   Vue.prototype.$findParentByName = findParentByName;
 
+  Vue.prototype.$live = function(cb) {
+    return this._isDestroyed ? false : cb();
+  }
+
+  Vue.prototype.$clearTagedTimeoutCanceller = function(tag) {
+    if (this.$tagedTimeoutCallbacks && this.$tagedTimeoutCallbacks[tag]) {
+      this.$tagedTimeoutCallbacks[tag] = null;
+      delete this.$tagedTimeoutCallbacks[tag];
+    }
+  }
+
+  Vue.prototype.$timeout = function(cb, interval = 0, tag) {
+    tag && this.$clearTagedTimeoutCanceller(tag);
+    const _cb = () => {
+      this.$live(() => {
+        if (
+          !tag
+          || !this.$tagedTimeoutCallbacks
+          || this.$tagedTimeoutCallbacks[tag]
+          || this.$tagedTimeoutCallbacks[tag] === _cb
+        ) {
+          tag && this.$clearTagedTimeoutCanceller(tag);
+          cb();
+        }
+      });
+    }
+
+    if (tag) {
+      this.$tagedTimeoutCallbacks = this.$tagedTimeoutCallbacks || {};
+      this.$tagedTimeoutCallbacks[tag] = _cb;
+    }
+
+    let timerId = setTimeout(_cb, interval);
+
+    const canceller = () => {
+      tag && this.$clearTagedTimeoutCanceller(tag);
+      clearTimeout(timerId);
+    }
+
+    return canceller;
+  }
+
   Vue.prototype.$currentRouteOptions = function() {
     if (this.$route.matched[0] && this.$route.matched[0].components.default) {
       return this.$route.matched[0].components.default.options || this.$route.matched[0].components.default;
