@@ -45,6 +45,9 @@ const navigatorSettings = [
   {match: /^\/components$/, order: 2, icon: 'th-large'},
   {match: /^\/elements$/, order: 3, icon: 'truck'},
   {match: /^\/style$/, order: 4, icon: 'columns'},
+
+  {match: /introduction/, order: 0},
+
 ];
 
 

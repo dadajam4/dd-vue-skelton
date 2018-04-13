@@ -41,7 +41,8 @@ export default {
   },
 
   computed: {
-    isDisabled() { return this.disabled || this.$parent.isDisabled },
+    $group() { return this.$parent.$parent },
+    isDisabled() { return this.disabled || this.$group.isDisabled },
     multiple() { return this.$combobox.multiple },
     isActive() {
       if (this.multiple) {

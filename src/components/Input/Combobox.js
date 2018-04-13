@@ -603,6 +603,13 @@ export default {
       optgroups.push(this.genGroupByProp(group));
     });
 
+    if (this.options) {
+      optgroup = h('vt@optgroup', null, this.options.map(o => {
+        return this.genOptionByProp(o);
+      }));
+      optgroups.push(optgroup);
+    }
+
     this.$slots.default && this.$slots.default.forEach(vnode => {
       if (vnode.componentOptions && vnode.componentOptions.tag === 'vt@option') {
         if (optgroup) {
@@ -613,10 +620,7 @@ export default {
         }
       } else if (vnode.componentOptions && vnode.componentOptions.tag === 'vt@optgroup') {
         optgroups.push(vnode);
-      }
-
-      // if (vnode.fnOptions && vnode.fnOptions.name === 'vt@icon') {
-      if (vnode.data && /(^|\s)vt@icon/.test(vnode.data.staticClass || '')) {
+      } else if (vnode.data && /(^|\s)vt@icon/.test(vnode.data.staticClass || '')) {
         vnode.data.staticClass += ` vc@combobox__icon`;
 
         let position = POSITIONABLE_DEFAULT_POSITION.icon;

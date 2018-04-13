@@ -4,4 +4,8 @@
 
 @mixin font-weight-bolder() {
   text-shadow: 0.1px 0.1px 0px currentColor;
+
+  .#{$css-prefix}icon {
+    text-shadow: none;
+  }
 }

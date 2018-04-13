@@ -144,6 +144,9 @@ export default Object.assign({
     if (this.disabled) return;
     if (this.openOnHover) return;
 
+    // selectコントロールの中とかでイベント伝播してフォーカスしちゃうのを防止
+    e.stopPropagation();
+
     if (this.contextmenu) {
       if (this.isActive) this.close();
       return;
