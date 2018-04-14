@@ -16,5 +16,6 @@ export default {
       type: Boolean,
       default: true,
     },
+    indeterminate: Boolean,
   },
 }

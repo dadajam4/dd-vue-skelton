@@ -8,7 +8,7 @@ export default {
   mixins: [SelectableFactory()],
   inheritAttrs: false,
   props: {
-    initialChecked: Boolean,
+    inputChecked: Boolean,
     value: {
       default() {
         return this._uid;
@@ -26,7 +26,7 @@ export default {
       type: [String, Function],
       default: 'click',
     },
-    inputValue: true,
+    inputValue: true, // v-model
     inline: {
       type: Boolean,
       default: true,
@@ -36,7 +36,7 @@ export default {
 
   data() {
     return {
-      innerValue: this.initialChecked,
+      innerValue: this.inputChecked,
     }
   },
 
@@ -73,6 +73,12 @@ export default {
     },
   },
 
+  watch: {
+    inputChecked(val) {
+      this.checked = val;
+    },
+  },
+
   methods: {
     genNode() {
       return this.$createElement('input', {
@@ -104,6 +110,7 @@ export default {
           disabled: this.disabled,
           tabindex: this.tabindex,
           disabled: this.disabled,
+          indeterminate: this.indeterminate,
           error: this.hasError,
         },
         on: {
@@ -118,6 +125,12 @@ export default {
       ];
     },
     click(e) {
+      if (this.$listeners.click) {
+        const result = this.$listeners.click(e);
+        if (result === false || e.defaultPrevented) {
+          return;
+        }
+      }
       e.preventDefault();
       if (!this.allowChange) return;
       this.checked = this.isRadio ? true : !this.checked;
@@ -141,8 +154,12 @@ export default {
   },
 
   beforeCreate() {
-    this.$options.propsData.initialChecked = this.$attrs.checked;
-    delete this.$attrs.checked;
+
+    // コンポーネントインスタンス化の時だけ checked を inputChecked にフォローしてあげる
+    if (this.$attrs.checked !== undefined) {
+      this.$options.propsData.inputChecked = this.$attrs.checked;
+      delete this.$attrs.checked;
+    }
   },
 
   beforeDestroy() {

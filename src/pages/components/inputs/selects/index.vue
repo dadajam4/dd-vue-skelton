@@ -14,6 +14,7 @@
     <dd-example is="icon" />
     <dd-example is="prefix-and-suffix" />
     <dd-example is="button" />
+    <dd-example is="flat" />
     <dd-example is="sizing" />
     <dd-example is="autocomplete" />
     <dd-example is="customize-selection" />
