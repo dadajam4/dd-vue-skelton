@@ -343,7 +343,6 @@ export default {
     const iconColorAddClass = this.computedIconColor ? ` vc@text-color--${this.computedIconColor}` : '';
     const icons = {};
     this.$slots.default && this.$slots.default.forEach(vnode => {
-      // if (vnode.fnOptions && vnode.fnOptions.name === 'vt@icon') {
       if (vnode.data && /(^|\s)vt@icon/.test(vnode.data.staticClass || '')) {
         const positionMatch = vnode.data.staticClass.match(/vc@icon--(left|right)/);
         let position = 'left';
@@ -379,7 +378,7 @@ export default {
         staticClass: 'vc@slider__body',
       }, [
         this.genTracks(),
-        ((this.ticks && this.isActive) || this.persintentTicks) && this.genTicks(),
+        ((this.ticks && this.isActive) || this.persistentTicks) && this.genTicks(),
         this.genThumbs(),
       ]),
       icons.right,

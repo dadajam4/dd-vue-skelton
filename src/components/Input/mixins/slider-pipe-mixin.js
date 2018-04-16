@@ -24,7 +24,7 @@ export default {
       default: false,
     },
     persistentThumbLabel: Boolean,
-    persintentTicks: Boolean,
+    persistentTicks: Boolean,
     value: {
       type: [String, Number, Array],
       default() { return this.multiple ? [0, 0] : 0 },

@@ -45,7 +45,10 @@ export default {
       type: String,
       default: null,
     },
-    thumbLabel: Boolean,
+    thumbLabel: {
+      type: [Boolean, Function],
+      default: false,
+    },
     trackColor: {
       type: String,
       default: null,
@@ -54,7 +57,6 @@ export default {
       type: [Number, String],
       default: 0,
     },
-    thumbLabelAssist: Function,
   },
 
   computed: {
@@ -67,6 +69,7 @@ export default {
         'vc@input-group--ticks': !this.disabled && this.stepNumeric && this.ticks,
       }
     },
+    hasThumbLabel() { return !!this.thumbLabel },
     computedColor() {
       return this.disabled ? null : (this.layerColor || this.defaultLayerColor)
     },
@@ -113,7 +116,7 @@ export default {
       }
     },
     trackPadding() {
-      if (this.thumbLabel && this.isActive) return 0;
+      if (this.hasThumbLabel && this.isActive) return 0;
 
       return 6 + (this.isActive && !this.disabled ? 3 : 0);
     },
@@ -239,7 +242,7 @@ export default {
       }
     },
     genThumbLabel(h) {
-      const label = this.thumbLabelAssist && this.thumbLabelAssist(this.inputValue) || this.inputValue;
+      const label = typeof this.thumbLabel === 'function' ? this.thumbLabel(this.inputValue) : this.inputValue;
 
       return h('vt@scale-transition', {
         props: { origin: 'bottom center' },
@@ -259,7 +262,7 @@ export default {
               [`vc@layer-color--${this.computedThumbColor}`]: this.computedThumbColor,
             },
           }, [
-            h('span', {}, label),
+            h('span', null, [label]),
           ])
         ])
       ])
@@ -286,12 +289,12 @@ export default {
         },
       })]))
 
-      this.thumbLabel && children.push(this.genThumbLabel(h));
+      this.hasThumbLabel && children.push(this.genThumbLabel(h));
 
       return h('div', {
         staticClass: 'vc@slider__thumb-container',
         'class': {
-          'vc@slider__thumb-container--label': this.thumbLabel,
+          'vc@slider__thumb-container--label': this.hasThumbLabel,
         },
         style: this.thumbStyles,
         on: {
