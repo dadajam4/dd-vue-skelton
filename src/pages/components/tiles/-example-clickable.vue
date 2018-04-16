@@ -12,7 +12,8 @@
         <li>to 属性が設定されている時</li>
       </ol>
 
-      つまり本要素は、メニュー要素やリンク要素にも利用可能です。
+      つまり本要素は、メニュー要素やリンク要素にも利用可能です。<br>
+      また従って、本要素は <vt@chip info sm>routable</vt@chip> な要素です。
     </template>
 
     <vt@tile href="https://www.google.co.jp/" target="_blank">
