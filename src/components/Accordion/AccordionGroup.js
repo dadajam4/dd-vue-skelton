@@ -3,6 +3,7 @@ export default {
 
   props: {
     styled: Boolean,
+    titleNowrap: Boolean,
     tag: {
       type: String,
       default: 'ul',

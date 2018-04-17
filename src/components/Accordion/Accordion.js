@@ -8,6 +8,7 @@ export default {
       default: 'div',
     },
     styled: Boolean,
+    titleNowrap: Boolean,
     group: Object,
     matchRoute: String,
   },
@@ -30,6 +31,7 @@ export default {
     hasGroup() { return !!this.group },
 
     isStyled() { return this.hasGroup && this.group.styled || this.styled },
+    isTitleNowrap() { return this.hasGroup && this.group.titleNowrap || this.titleNowrap },
 
     isActive: {
       get() { return this.innerValue },

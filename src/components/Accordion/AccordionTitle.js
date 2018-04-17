@@ -34,8 +34,10 @@ export default {
     },
     hasIconSpace() { return this.icon !== undefined },
     hasIcon() { return !!this.icon },
-    isStyled() { return this.accordion.styled },
+    isStyled() { return this.accordion.isStyled },
     isActive() { return this.accordion.isActive },
+    isNowrap() { return this.accordion.isTitleNowrap || !this.wrap },
+    isWrap() { return !this.isNowrap },
     hasLink() { return !!(this.to || this.href) },
   },
 
@@ -66,7 +68,7 @@ export default {
       class: this.classes,
       props: {
         tag: this.tag,
-        wrap: this.wrap,
+        wrap: this.isWrap,
         dense: this.dense,
         to: this.to,
         href: this.href,

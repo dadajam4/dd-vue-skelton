@@ -11,6 +11,10 @@
     </vt@page-intro>
 
     <dd-example is="basic" />
+    <dd-example is="styled" />
+    <dd-example is="text-wrap" />
+    <dd-example is="grouping" />
+
   </vt@page>
 </template>
 

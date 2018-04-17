@@ -59,7 +59,7 @@ export default function colorableFactory(name, opts = {}) {
         const prefix = opts.addColorPrefix ? opts.addColorPrefix.call(this) : '';
         let classes =
           this.disabled ? {[`vc@${name}-color-${prefix}-muted`]: true}
-          : this.error ? {[`vc@${name}-color-${prefix}-error`]: true}
+          // : this.error ? {[`vc@${name}-color-${prefix}-error`]: true}
           : this[key] ? {[`vc@${name}-color-${prefix}-${this[key]}`]: true}
           : {};
 
