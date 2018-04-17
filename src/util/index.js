@@ -8,6 +8,7 @@ import blurActiveElement from './blurActiveElement';
 import createRange from './createRange';
 import createJavaScriptTransition from './createJavaScriptTransition';
 import createSimpleTransition from './createSimpleTransition';
+import findParentByName from './findParentByName';
 import getObjectValueByPath from './getObjectValueByPath';
 import getZIndex from './getZIndex';
 import waitElementInsert from './waitElementInsert';
@@ -161,6 +162,7 @@ export {
   createSimpleTransition,
   getObjectValueByPath,
   getZIndex,
+  findParentByName,
   waitElementInsert,
   locationHashChange,
   convertRouterRoutesToTree,

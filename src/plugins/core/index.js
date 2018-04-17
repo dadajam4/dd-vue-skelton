@@ -1,58 +1,57 @@
-import '../polyfill';
-import Vue         from 'vue';
+// import '../polyfill';
+import * as helpers from '~/helpers';
+import * as util from '~/util';
 import components  from '~/components';
 import directives  from '~/directives';
-import Prototype   from './prototype';
+import App from './app';
+import NuxtResolver from './nuxt-resolver';
+import RouterHelper from './router-helper';
+import Living from './living';
+import Scroll from './scroll';
+import Theme from './theme';
 import Validator   from './validator';
-import VueScrollTo from 'vue-scrollto';
-import themes from '~~/config/css/themes';
-
-// const TEXT_COLORS = themes['color-keys'].text;
 
 
 
-function plugin(Vue, opt = {}) {
+const plugin = {
+  install(Vue, opt = {}) {
+    if (this.installed) return;
+    this.installed = true;
 
-  // plugins
-  Vue.use(Prototype, opt);
-  Vue.use(Validator, opt);
-  Vue.use(VueScrollTo);
+    // utilities
+    Vue.prototype.$util = util;
+    Vue.prototype.$helper = helpers;
 
-  // Directives
-  Object.keys(directives).forEach(key => {
-    const directive = directives[key];
-    Vue.directive(directive.name, directive);
-  });
+    // child plugins
+    Vue.use(App, opt);
+    Vue.use(NuxtResolver, opt);
+    Vue.use(RouterHelper, opt);
+    Vue.use(Living, opt);
+    Vue.use(Scroll, opt);
+    Vue.use(Validator, opt);
+    Vue.use(Theme, opt);
 
-  // Components
-  Object.keys(components).forEach(key => {
-    const component = components[key];
-    Vue.component(component.name, component);
-  });
+    // Directives
+    Object.keys(directives).forEach(key => {
+      const directive = directives[key];
+      Vue.directive(directive.name, directive);
+    });
 
-  const THEME_KEYS = [];
-  for (let key in themes.themes) {
-    THEME_KEYS.push(key);
-  }
-  THEME_KEYS.sort((a, b) => {
-    if (a === themes.default) return -1;
-    if (b === themes.default) return 1;
-    return 0;
-  });
+    // Components
+    Object.keys(components).forEach(key => {
+      const component = components[key];
+      Vue.component(component.name, component);
+    });
 
-  Vue.mixin({
-    computed: {
-      THEMES() { return themes.themes },
-      THEME_KEYS() { return THEME_KEYS },
-      THEME_DEFAULT() { return themes.default },
-      TEXT_COLORS() { return themes['color-keys'].text },
-      BACKGROUND_COLORS() { return themes['color-keys'].background },
-      CONTEXT_TYPES() { return themes['color-keys'].context },
-      PALETTE() { return themes.palette },
-    },
-  });
+  },
+};
+
+
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(plugin);
 }
 
 
 
-Vue.use(plugin);
+export default plugin;

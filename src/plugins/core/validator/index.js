@@ -2,11 +2,19 @@ import rules from './rules';
 
 
 
-export default function ValidatorPlugin(Vue) {
+const Validator = {
+  install(Vue, opts = {}) {
+    if (this.installed) return;
+    this.installed = true;
 
-  Vue.prototype.$rules = rules;
+    Vue.prototype.$rules = rules;
 
-  Vue.mixin({
-    $errors() {},
-  });
-}
+    Vue.mixin({
+      $errors() {},
+    });
+  },
+};
+
+
+
+export default Validator;

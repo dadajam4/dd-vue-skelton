@@ -5,7 +5,6 @@ const uiSettings = require('../../../config/css/ui-settings');
 sassVariables = Object.assign({}, sassVariables, uiSettings);
 
 // Themes
-// import themes from '../../../config/css/themes';
 const themes = require('../../../config/css/themes');
 sassVariables = Object.assign({}, sassVariables, {themes});
 

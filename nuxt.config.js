@@ -218,6 +218,5 @@ module.exports = {
   plugins: [
     '~/plugins/core',
     '~/plugins/docs',
-    '~/plugins/highlightjs',
   ],
 }

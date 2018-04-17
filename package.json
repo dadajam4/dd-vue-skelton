@@ -29,6 +29,7 @@
     "del": "^3.0.0",
     "element-resize-event": "^2.0.9",
     "este-watch": "^0.1.1",
+    "event-source-polyfill": "0.0.12",
     "event-stream": "^3.3.4",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
