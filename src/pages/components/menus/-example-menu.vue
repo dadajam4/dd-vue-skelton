@@ -11,26 +11,28 @@
         <vt@menu-fragment>
           <vt@toolbar-side-icon></vt@toolbar-side-icon>
           <vt@menu bottom left>
-            <vt@list>
-              <vt@list-tile v-for="item in items" :key="item.title" @click="">
-                <vt@list-tile-title>{{ item.title }}</vt@list-tile-title>
-              </vt@list-tile>
-            </vt@list>
+            <vt@tile-group>
+              <vt@tile v-for="item in items" :key="item.title" @click="">
+                <vt@tile-content>
+                  <vt@tile-title>{{ item.title }}</vt@tile-title>
+                </vt@tile-content>
+              </vt@tile>
+            </vt@tile-group>
           </vt@menu>
         </vt@menu-fragment>
       </vt@toolbar>
 
-      <vt@list>
-        <vt@list-tile @click="">
-          <vt@list-tile-avatar>
+      <vt@tile-group>
+        <vt@tile @click="">
+          <vt@tile-avatar>
             <img src="~assets/img/avatar/boy_1.png" alt="">
-          </vt@list-tile-avatar>
-          <vt@list-tile-content>
-            <vt@list-tile-title>タイトル</vt@list-tile-title>
-            <vt@list-tile-sub-title>サブタイトル</vt@list-tile-sub-title>
-          </vt@list-tile-content>
-        </vt@list-tile>
-      </vt@list>
+          </vt@tile-avatar>
+          <vt@tile-content>
+            <vt@tile-title>タイトル</vt@tile-title>
+            <vt@tile-sub-title>サブタイトル</vt@tile-sub-title>
+          </vt@tile-content>
+        </vt@tile>
+      </vt@tile-group>
     </vt@card>
   </docs-example>
 </template>

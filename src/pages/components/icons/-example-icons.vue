@@ -12,13 +12,14 @@
   <docs-example :source="false">
     <div>
       <div>
-        <vt@text-field
+        <vt@input
           label="Search"
           type="search"
-          left-icon="search"
           v-model="search"
-          :suggest="tags"
-        ></vt@text-field>
+          :suggests="tags"
+        >
+          <vt@icon>search</vt@icon>
+        </vt@input>
       </div>
 
       <vt@container grid-list-md>

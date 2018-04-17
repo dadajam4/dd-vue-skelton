@@ -10,11 +10,13 @@
       class="vc@p-a--md"
     >
       <vt@toolbar dense floating class="vc@m-t--none">
-        <vt@text-field
+        <vt@input
           type="search"
-          left-icon="search"
           flat
-        />
+          sm
+        >
+          <vt@icon>search</vt@icon>
+        </vt@input>
         <vt@btn icon>
           <vt@icon>map-marker</vt@icon>
         </vt@btn>

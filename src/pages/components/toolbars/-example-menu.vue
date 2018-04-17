@@ -5,17 +5,21 @@
   <docs-example>
     <vt@toolbar>
       <vt@toolbar-side-icon />
-      <vt@menu :nudge-width="100">
-        <vt@toolbar-title slot="activator">
+      <vt@menu-fragment>
+        <vt@toolbar-title>
           <span>{{selected}}</span>
           <vt@icon dark>caret-down</vt@icon>
         </vt@toolbar-title>
-        <vt@list>
-          <vt@list-tile v-for="item in items" :key="item" @click="selected = item">
-            <vt@list-tile-title v-text="item"></vt@list-tile-title>
-          </vt@list-tile>
-        </vt@list>
-      </vt@menu>
+        <vt@menu :nudge-width="100">
+          <vt@tile-group>
+            <vt@tile v-for="item in items" :key="item" @click="selected = item">
+              <vt@tile-content>
+                <vt@tile-title v-text="item"></vt@tile-title>
+              </vt@tile-content>
+            </vt@tile>
+          </vt@tile-group>
+        </vt@menu>
+      </vt@menu-fragment>
       <vt@spacer />
       <vt@btn icon>
         <vt@icon>search</vt@icon>

@@ -6,11 +6,13 @@
     <vt@menu-fragment>
       <vt@btn primary dark>Dropdown</vt@btn>
       <vt@menu offset-y open-on-hover>
-        <vt@list>
-          <vt@list-tile v-for="item in items" :key="item.title" @click="">
-            <vt@list-tile-title>{{ item.title }}</vt@list-tile-title>
-          </vt@list-tile>
-        </vt@list>
+        <vt@tile-group>
+          <vt@tile v-for="item in items" :key="item.title" @click="">
+            <vt@tile-content>
+              <vt@tile-title>{{ item.title }}</vt@tile-title>
+            </vt@tile-content>
+          </vt@tile>
+        </vt@tile-group>
       </vt@menu>
     </vt@menu-fragment>
   </docs-example>

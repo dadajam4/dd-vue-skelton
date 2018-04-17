@@ -512,7 +512,6 @@ export default {
         },
         ref: 'menu',
       }, [
-        // this.$createElement('vt@list', {}, $tiles),
         ...emptyElements,
         ...optgroups,
         ...this.genSuggests(),

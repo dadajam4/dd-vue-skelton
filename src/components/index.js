@@ -3,9 +3,7 @@ import Accordion from './Accordion';
 import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
-import TextField from './TextField';
 import Chip from './Chip';
-import DataTable from './DataTable';
 import Overlay from './Overlay';
 import Grid from './Grid';
 import Input from './Input';
@@ -14,7 +12,6 @@ import Breadcrumb from './Breadcrumb';
 import Btn from './Btn';
 import Icon from './Icon';
 import Img from './Img';
-import List from './List';
 import Menu from './Menu';
 import Navigation from './Navigation';
 import NavigationDrawer from './NavigationDrawer';
@@ -37,8 +34,6 @@ export default Object.assign({},
   Alert,
   Avatar,
   Card,
-  DataTable,
-  TextField,
   Chip,
   Overlay,
   Grid,
@@ -48,7 +43,6 @@ export default Object.assign({},
   Btn,
   Icon,
   Img,
-  List,
   Menu,
   Navigation,
   NavigationDrawer,

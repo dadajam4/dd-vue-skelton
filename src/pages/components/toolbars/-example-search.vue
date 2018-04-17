@@ -5,11 +5,12 @@
   <docs-example>
     <vt@toolbar>
       <vt@toolbar-side-icon />
-      <vt@text-field
+      <vt@input
         type="search"
-        left-icon="search"
         flat
-      />
+      >
+        <vt@icon>search</vt@icon>
+      </vt@input>
       <vt@spacer />
       <vt@btn icon>
         <vt@icon>th</vt@icon>
