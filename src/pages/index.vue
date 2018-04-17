@@ -38,7 +38,7 @@ export default {
 
   head() {
     return {
-      title: 'Vue.js 2 Ui Component Skelton',
+      title: 'Vue.js 2 application\'s skeleton',
       hasNavigation: false,
     }
   },

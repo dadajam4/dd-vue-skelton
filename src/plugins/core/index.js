@@ -1,4 +1,3 @@
-// import '../polyfill';
 import * as helpers from '~/helpers';
 import * as util from '~/util';
 import components  from '~/components';

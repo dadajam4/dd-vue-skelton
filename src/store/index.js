@@ -1,7 +1,7 @@
 import Vuex   from 'vuex';
 import scroll from './scroll';
-import mq     from './mq';
-import ui     from './ui';
+import mq from './mq';
+import ui from './ui';
 
 
 
@@ -14,8 +14,10 @@ const createStore = () => {
     },
   });
 
-  store.dispatch('scroll/start');
-  store.dispatch('mq/start');
+  if (typeof window !== 'undefined') {
+    store.dispatch('scroll/start');
+    store.dispatch('mq/start');
+  }
 
   return store;
 }

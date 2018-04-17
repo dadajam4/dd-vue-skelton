@@ -3,7 +3,7 @@ const webpack             = require('webpack');
 const sassSettings        = config.path.require('config/css/sass-settings');
 const babelLoaderSettings = config.path.require('config/webpack/babel-loader-settings');
 const postcssConfig       = config.path.require('config/css/postcss.config');
-const routesResolver      = config.path.require('lib/dd-vue-routes-resolver');
+// const routesResolver      = config.path.require('lib/dd-vue-routes-resolver');
 
 
 
@@ -26,50 +26,51 @@ module.exports = {
 
     // extendRoutes: routesResolver,
 
-    // scrollBehavior: async (to, from, savedPosition) => {
-    //   if (savedPosition) {
-    //     // savedPosition is only available for popstate navigations.
-    //     return savedPosition;
-    //   } else {
-    //     const position = {};
-    //     // let delay = $nuxt.$routeChangeDelay;
-    //     let delay = 500;
+    scrollBehavior: async (to, from, savedPosition) => {
+      let position;
 
-    //     // if no children detected
-    //     if (to.matched.length < 2) {
-    //       // scroll to the top of the page
-    //       position.x = 0;
-    //       position.y = 0;
-    //     } else if (to.matched.some((r) => r.components.default.options.scrollToTop)) {
-    //       // if one of the children has scrollToTop option set to true
-    //       position.x = 0;
-    //       position.y = 0;
-    //     }
+      if (savedPosition) {
 
-    //     // if link has anchor,  scroll to anchor by returning the selector
-    //     if (to.hash) {
-    //       if (to.name === from.name && document.querySelector(to.hash)) {
-    //         $nuxt.$appScrollTo(to.hash);
-    //         return;
-    //       } else {
-    //         const el = await $nuxt.$util.waitElementInsert(to.hash, 100, delay * 2);
-    //         if (el) {
-    //           window.scrollTo(0, 0);
-    //           setTimeout(() => {
-    //             $nuxt.$appScrollTo(to.hash);
-    //           }, 10);
-    //         }
-    //         return;
-    //       }
-    //     }
+        // only pageback
+        position = savedPosition;
+      } else {
 
-    //     // wait for the out transition to complete (if necessary)
-    //     await (new Promise(resolve => setTimeout(resolve, delay)));
-    //     // if the returned position is falsy or an empty object,
-    //     // will retain current scroll position.
-    //     return position;
-    //   }
-    // },
+        // 同ページ内のアンカーリンクはスクロールで処理する
+        if (
+          to.hash
+          && to.name === from.name
+          && document.querySelector(to.hash)
+        ) {
+          $nuxt.$appScrollTo(to.hash);
+          return;
+        }
+
+        position = {};
+
+        // if no children detected
+        if (to.matched.length < 2) {
+          // scroll to the top of the page
+          position.x = 0;
+          position.y = 0;
+        } else if (to.matched.some((r) => r.components.default.options.scrollToTop)) {
+          // if one of the children has scrollToTop option set to true
+          position.x = 0;
+          position.y = 0;
+        }
+      }
+
+      return new Promise(resolve => {
+        window.$nuxt.$once('triggerScroll', () => {
+          // セレクタが渡されなかったとき、
+          // または、セレクタがどの要素にもマッチしなかったときは、座標が用いられる
+          if (to.hash && document.querySelector(to.hash)) {
+            // セレクタを返すことでアンカーまでスクロールする
+            position = { selector: to.hash }
+          }
+          resolve(position)
+        })
+      });
+    },
   },
 
   generate: {
