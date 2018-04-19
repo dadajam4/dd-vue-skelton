@@ -158,6 +158,9 @@ export default {
       attrs: {
         'data-app': '',
       },
+      on: {
+        click: e => this.$emit('click', e),
+      },
     }, [$stackContainer, $body]);
   },
 }

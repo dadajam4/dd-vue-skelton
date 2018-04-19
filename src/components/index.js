@@ -14,7 +14,6 @@ import Icon from './Icon';
 import Img from './Img';
 import Menu from './Menu';
 import Navigation from './Navigation';
-import NavigationDrawer from './NavigationDrawer';
 import Page from './Page';
 import Pagination from './Pagination';
 import Progress from './Progress';
@@ -45,7 +44,6 @@ export default Object.assign({},
   Img,
   Menu,
   Navigation,
-  NavigationDrawer,
   Page,
   Pagination,
   Progress,

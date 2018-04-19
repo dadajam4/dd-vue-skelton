@@ -1,79 +1,80 @@
 function directive(e, el, binding, v) {
-  // The include element callbacks below can be expensive
-  // so we should avoid calling them when we're not active.
-  // Explicitly check for false to allow fallback compatibility
-  // with non-toggleable components
-  if (!e || v.context.isActive === false) return
 
-  // If click was triggered programmaticaly (domEl.click()) then
-  // it shouldn't be treated as click-outside
-  // Chrome/Firefox support isTrusted property
-  // IE/Edge support pointerType property (empty if not triggered
-  // by pointing device)
-  if (!e.isTrusted || ('pointerType' in e && !e.pointerType)) return
+  // 以下の、クリック座標が要素内に存在するかをチェックするコールバックは、
+  // コストが大きくなる可能性が高いため、対象の要素がアクティブでないときに呼び出すことは避けてください。
+  // トグル不可能なコンポーネント配下では、isActiveがfalseと一致しないようにしてください
+  // falseと一致した場合はキャンセルされます
+  if (!e || v.context.isActive === false) return;
 
-  // Get value passed to directive
-  const val = binding.value || (() => true)
-  // Check if callback was passed in object or as the value
-  const cb = val.callback || val
-  // Check if additional elements were passed to be included in check
-  // (click must be outside all included elements, if any)
-  const elements = (val.include || (() => []))()
-  // Add the root element for the component this directive was defined on
-  elements.push(el)
+  // クリックがプログラム的にトリガされた場合（domEl.click()）、
+  // それをクリック外として扱うべきではありません
+  // Chrome / Firefoxは Trustedプロパティでサポートをします。
+  // IE / EdgeはpointerTypeプロパティでサポートします。（ポインティングデバイスによってトリガされない場合は空）
+  if (!e.isTrusted || ('pointerType' in e && !e.pointerType)) return;
 
-  // Check if it's a click outside our elements, and then if our callback returns true.
-  // Non-toggleable components should take action in their callback and return falsy.
-  // Toggleable can return true if it wants to deactivate.
-  // Note that, because we're in the capture phase, this callback will occure before
-  // the bubbling click event on any outside elements.
+  // ディレクティブに渡された値を取得
+  const val = binding.value || (() => true);
 
-  if (!clickedInEls(e, elements) && cb(e)) {
-    // Delay setting toggleable inactive to avoid conflicting
-    // with an outside click on any activator toggling our state.
-    setTimeout(() => (v.context.isActive = false), 0)
+  // コールバックがオブジェクトで渡されたか、値として渡されたかをチェックする
+  const cb = val.callback || val;
+
+  // 追加要素が渡されたかどうかを確認する
+  // （クリック座標が、これらすべての要素の外にあった時にコールバックは発火します）
+  const elements = (val.include || (() => []))();
+
+  // このディレクティブが定義されたコンポーネントのルート要素を追加する
+  elements.push(el);
+
+  // クリック座標が関連要素全ての外側にあった場合コールバックを実行します
+  // キャプチャフェーズに入っているので、このコールバックは外部要素のバブリングクリックイベントの前に発生します
+  // 要素が所属するコンテキストコンポーネントがトグル可能（isActiveがbooleanである場合）
+  // コールバックがtrueであればisActiveをfalseに設定します
+  if (!clickedInEls(e, elements)) {
+    const res = cb(e);
+    if (typeof v.context.isActive === 'boolean' && res) {
+      setTimeout(() => (v.context.isActive = false), 0);
+    }
   }
 }
 
-function clickedInEls(e, elements) {
-  // Get position of click
-  const { clientX: x, clientY: y } = e
+export function clickedInEls(clickEvent, elements) {
+
+  // クリックイベントから座標を取得する
+  const { clientX: x, clientY: y } = clickEvent;
+
   // Loop over all included elements to see if click was in any of them
   for (const el of elements) {
-    if (clickedInEl(el, x, y)) return true
+    if (clickedInEl(el, x, y)) return true;
   }
 
-  return false
+  return false;
 }
 
-function clickedInEl (el, x, y) {
-  // Get bounding rect for element
-  // (we're in capturing event and we want to check for multiple elements,
-  //  so can't use target.)
-  const b = el.getBoundingClientRect()
-  // Check if the click was in the element's bounding rect
-  return x >= b.left && x <= b.right && y >= b.top && y <= b.bottom
+export function clickedInEl(el, x, y) {
+
+  // 要素の境界矩形を取得する
+  // （私たちはイベントをキャプチャしており、複数の要素をチェックしたいので、event.target属性を使用することはできません）
+  const rect = el.getBoundingClientRect();
+
+  // 要素の境界矩形内にクリックポイントがあるかどうかを確認する
+  return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
 }
 
 export default {
   name: 'click-outside',
 
-  bind (el, binding, v) {
+  bind(el, binding, v) {
     v.context.$util.load(() => {
-      const onClick = e => directive(e, el, binding, v)
-      // iOS does not recognize click events on document
-      // or body, this is the entire purpose of the v-app
-      // component and [data-app], stop removing this
-      const app = document.querySelector('[data-app]') ||
-        document.body // This is only for unit tests
-      app.addEventListener('click', onClick, true)
-      el._clickOutside = onClick
+      const onClick = e => directive(e, el, binding, v);
+
+      // iOSはドキュメントや本文上のクリックイベントを認識しないので、
+      // vt@appコンポーネントでキャッチする
+      v.context.$app.$on('click', onClick);
+      el._clickOutside = onClick;
     })
   },
 
-  unbind (el) {
-    const app = document.querySelector('[data-app]') ||
-      document.body // This is only for unit tests
-    app && app.removeEventListener('click', el._clickOutside, true)
-  }
+  unbind(el) {
+    v.context.$app.$off('click', onClick);
+  },
 }
