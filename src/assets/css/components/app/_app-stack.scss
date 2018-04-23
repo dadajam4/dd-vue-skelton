@@ -11,5 +11,22 @@
 }
 
 .#{$css-prefix}app-stack {
-  display: inline-block;
+  // display: inline-block;
+
+  &__backdrop {
+    $my-overflow-size: 64px;
+
+    position: fixed;
+    top: -$my-overflow-size;
+    left: -$my-overflow-size;
+    right: -$my-overflow-size;
+    bottom: -$my-overflow-size;
+
+    @include theme-color(background-color, backdrop);
+    transition: opacity .5s;
+  }
+
+  &__element {
+    display: inline-block;
+  }
 }

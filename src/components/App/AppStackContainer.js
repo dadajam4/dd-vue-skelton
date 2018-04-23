@@ -1,7 +1,3 @@
-import AppStack from './AppStack';
-
-
-
 const INACTIVE_Z_INDEX = 1;
 
 
@@ -24,12 +20,18 @@ export default {
 
   methods: {
 
-    getMaxZIndex() {
+    getMaxZIndex(exclude) {
       let max = INACTIVE_Z_INDEX;
       for (let $vm of this.stacks) {
+        if ($vm === exclude) continue;
         max = Math.max($vm.zIndex, max);
       }
       return max;
+    },
+
+    getMaxZIndexVm(exclude) {
+      const maxZIndex = this.getMaxZIndex(exclude);
+      if (maxZIndex) return this.stacks.find($vm => $vm !== exclude && $vm.zIndex === maxZIndex);
     },
 
     getNewZIndexByVm($vm) {
@@ -41,11 +43,11 @@ export default {
 
       if (
         $vm._isDestroyed
-        || !$vm.$refs.content
+        || !$vm.$refs.element
       ) return;
 
       this.$el.insertBefore(
-        $vm.$refs.content,
+        $vm.$refs.element,
         this.$el.firstChild
       );
 
@@ -63,7 +65,7 @@ export default {
 
       // IE11 Fix
       try {
-        $vm.$refs.content && this.$el.removeChild($vm.$refs.content);
+        $vm.$refs.element && this.$el.removeChild($vm.$refs.element);
       } catch (e) {}
 
       const visibilityHandler = this.stackVisibilityHanlders[$vm._uid];
@@ -81,7 +83,8 @@ export default {
       if ($vm.isVisible) {
         this.frontStack = $vm;
       } else if ($vm === this.frontStack) {
-        this.frontStack = null;
+        const maxZIndexVm = this.getMaxZIndexVm($vm);
+        this.frontStack = maxZIndexVm || null;
         // this.$util.blurActiveElement();
       }
 

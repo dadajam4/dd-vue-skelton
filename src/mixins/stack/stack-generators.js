@@ -31,39 +31,33 @@ export default {
       listeners.mouseleave = this.mouseLeaveHandler;
     }
     if (this.closeOnContentClick) {
-      listeners.click = this.close;
+      // listeners.click = this.close;
+      listeners.click = e => {
+        e.stopPropagation();
+        this.close(e);
+      }
     }
 
-    const directives = [
-      {name: 'show', value: this.contentIsActive},
-      {
+    const directives = [{name: 'show', value: this.contentIsActive}];
+    if (!this.isFixWindow) {
+      directives.push({
         name: 'resize',
         value: {
           debounce: 250,
           window: true,
           element: false,
           value: this.onResize,
-        }
-      },
-    ];
-
-    if (!this.openOnHover) {
-      directives.push({
-        name: 'click-outside',
-        value: e => {
-          if (!this.closeOnOutsideClick) return;
-          this.runDelay(200, () => {
-            if (!this.isActive) return;
-            if (this.$activator && (e.target === this.$activator || this.$activator.contains(e.target))) return false;
-            this.close();
-          });
         },
       });
     }
 
+    if (!this.openOnHover) {
+      directives.push(this.createClickOutsideDirective());
+    }
+
     const $stack = this.isExistNode && h(tag, mergeComponentOptions({
-      staticClass: 'vc@app-stack',
-      style: this.stackStyles,
+      staticClass: 'vc@app-stack__element',
+      style: this.stackElementStyles,
       attrs: {
         tabindex: '0', // comboboxの入力blur検知時に、relatedTargetで拾えるように、、
       },
@@ -72,6 +66,26 @@ export default {
       ref: 'content',
     }, data), children);
 
-    return this.genTransition([$stack]);
+    const $stackTransition = this.genTransition([$stack]);
+    const wrapperChildren = [$stackTransition];
+
+    if (this.backdrop) {
+      const $backdrop = h('div', {
+        staticClass: 'vc@app-stack__backdrop',
+        directives: [{name: 'show', value: this.contentIsActive}],
+        style: this.zIndexStyles,
+      });
+
+      const $backdropTransition = h('vt@fade-transition', null, [$backdrop]);
+      wrapperChildren.unshift($backdropTransition);
+    }
+
+    const $wrapper = h('div', {
+      staticClass: 'vc@app-stack',
+      // style: this.stackStyles,
+      ref: 'element',
+    }, wrapperChildren);
+
+    return $wrapper;
   },
 }

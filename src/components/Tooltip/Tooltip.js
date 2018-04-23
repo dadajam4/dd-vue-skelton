@@ -1,16 +1,13 @@
-import Stackable from '~/mixins/stack';
+import factory from '~/mixins/stack/stackable-factory';
 import Colorable from '~/mixins/color/colorable';
 
-
-
+const mixin = factory('tooltip');
 const DEFAULT_NUDGE_AMMOUNT = 8;
-
-
 
 export default {
   name: 'vt@tooltip',
 
-  mixins: [Stackable, Colorable],
+  mixins: [mixin, Colorable],
 
   props: {
     openOnHover: {

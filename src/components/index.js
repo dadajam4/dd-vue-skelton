@@ -4,6 +4,7 @@ import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
 import Chip from './Chip';
+import Dialog from './Dialog';
 import Overlay from './Overlay';
 import Grid from './Grid';
 import Input from './Input';
@@ -34,6 +35,7 @@ export default Object.assign({},
   Avatar,
   Card,
   Chip,
+  Dialog,
   Overlay,
   Grid,
   Input,

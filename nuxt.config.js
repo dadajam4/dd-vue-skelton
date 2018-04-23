@@ -28,6 +28,7 @@ module.exports = {
 
     scrollBehavior: async (to, from, savedPosition) => {
       let position;
+      const unescapedHash = to.hash && unescape(to.hash);
 
       if (savedPosition) {
 
@@ -37,11 +38,11 @@ module.exports = {
 
         // 同ページ内のアンカーリンクはスクロールで処理する
         if (
-          to.hash
+          unescapedHash
           && to.name === from.name
-          && document.querySelector(to.hash)
+          && document.querySelector(unescapedHash)
         ) {
-          $nuxt.$appScrollTo(to.hash);
+          $nuxt.$appScrollTo(unescapedHash);
           return;
         }
 
@@ -61,11 +62,12 @@ module.exports = {
 
       return new Promise(resolve => {
         window.$nuxt.$once('triggerScroll', () => {
+
           // セレクタが渡されなかったとき、
           // または、セレクタがどの要素にもマッチしなかったときは、座標が用いられる
-          if (to.hash && document.querySelector(to.hash)) {
+          if (unescapedHash && document.querySelector(unescapedHash)) {
             // セレクタを返すことでアンカーまでスクロールする
-            position = { selector: to.hash }
+            position = { selector: unescapedHash }
           }
           resolve(position)
         })

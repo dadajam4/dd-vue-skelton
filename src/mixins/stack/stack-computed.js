@@ -8,15 +8,21 @@ export default {
     },
   },
 
-  stackStyles() {
-    const styles = {
+  isFixWindow() { return !!this.dialog },
+
+  zIndexStyles() {
+    if (this.zIndex !== null) return {'z-index': this.zIndex};
+  },
+
+  stackElementStyles() {
+    const styles = Object.assign({
       position: this.fixed ? 'fixed' : 'absolute',
       transformOrigin: this.origin,
-    };
+    }, this.zIndexStyles);
 
-    if (this.zIndex !== null) styles['z-index'] = this.zIndex;
+    // if (this.zIndex !== null) styles['z-index'] = this.zIndex;
 
-    if (this.detached && this.isVisible) {
+    if (!this.isFixWindow && this.detached && this.isVisible) {
       if (this.calculatedMaxWidth !== null) styles['max-width'] = this.calculatedMaxWidth + 'px';
       if (this.calculatedMinWidth !== null) styles['min-width'] = this.calculatedMinWidth + 'px';
       if (this.computedTop !== null && this.computedTop !== undefined) styles.top = this.computedTop + 'px';

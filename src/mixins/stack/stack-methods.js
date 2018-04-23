@@ -301,6 +301,7 @@ export default Object.assign({
   },
 
   updateDimensions(cb) {
+    if (this.isFixWindow) return cb();
     this.pageYOffset = this.$store.state.scroll.top;
     this.updateActivatorDimension();
     this.updateContentDimension(cb);
@@ -310,5 +311,27 @@ export default Object.assign({
     if (this.isVisible) {
       this.updateDimensions();
     }
+  },
+
+  isFront() {
+    return this.$appStackContainer.frontStack === this;
+  },
+
+  createClickOutsideDirective() {
+    return {
+      name: 'click-outside',
+      value: e => {
+        if (!this.closeOnOutsideClick) return;
+        if (!this.isFront()) return;
+        this.runDelay(200, () => {
+          if (!this.isActive) return;
+          if (
+            this.$activator
+            && (e.target === this.$activator || this.$activator.contains(e.target))
+          ) return false;
+          this.close();
+        });
+      },
+    };
   },
 }, generators);

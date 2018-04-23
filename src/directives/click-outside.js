@@ -3,7 +3,7 @@ function directive(e, el, binding, v) {
   // 以下の、クリック座標が要素内に存在するかをチェックするコールバックは、
   // コストが大きくなる可能性が高いため、対象の要素がアクティブでないときに呼び出すことは避けてください。
   // トグル不可能なコンポーネント配下では、isActiveがfalseと一致しないようにしてください
-  // falseと一致した場合はキャンセルされます
+  // falseと一致した場合はキャンセルされます（つまりclick-outsideのコールバックは実行されません）
   if (!e || v.context.isActive === false) return;
 
   // クリックがプログラム的にトリガされた場合（domEl.click()）、
@@ -65,16 +65,19 @@ export default {
 
   bind(el, binding, v) {
     v.context.$util.load(() => {
-      const onClick = e => directive(e, el, binding, v);
+      v.context.$live(() => {
+        const onClick = e => directive(e, el, binding, v);
 
-      // iOSはドキュメントや本文上のクリックイベントを認識しないので、
-      // vt@appコンポーネントでキャッチする
-      v.context.$app.$on('click', onClick);
-      el._clickOutside = onClick;
+        // iOSはドキュメントや本文上のクリックイベントを認識しないので、
+        // vt@appコンポーネントでキャッチする
+        v.context.$app.$on('click', onClick);
+        el._clickOutside = onClick;
+      });
     })
   },
 
-  unbind(el) {
-    v.context.$app.$off('click', onClick);
+  unbind(el, binding, v) {
+    el._clickOutside && v.context.$app.$off('click', el._clickOutside);
+    delete el._clickOutside;
   },
 }

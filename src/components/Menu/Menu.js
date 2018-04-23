@@ -1,10 +1,11 @@
-import Stackable from '~/mixins/stack';
+import factory from '~/mixins/stack/stackable-factory';
 
+const mixin = factory('menu');
 
 export default {
   name: 'vt@menu',
 
-  mixins: [Stackable],
+  mixins: [mixin],
 
   props: {
     top: Boolean,

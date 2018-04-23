@@ -1,0 +1,10 @@
+//
+// Chip
+//
+
+@function get-dialog($key) {
+  @return map-get($dialog, $key);
+}
+
+$dialog: ();
+$dialog: map-set($dialog, margin, get-space(md));
