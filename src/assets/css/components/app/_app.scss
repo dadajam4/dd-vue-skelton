@@ -115,3 +115,9 @@
 
   // -webkit-overflow-scrolling: touch;
 }
+
+.#{$css-prefix}app-dialog-container {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}

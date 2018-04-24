@@ -136,8 +136,8 @@ export default {
     setupEscKeyListener() {
       if (typeof document === 'undefined') return;
       document.addEventListener('keydown', e => {
-        if (this.frontStack && this.frontStack.closeOnEsc && !this.frontStack.persistent && e.which === 27) {
-          this.frontStack.close();
+        if (this.frontStack && e.which === 27) {
+          this.frontStack.onEsc(e);
         }
       }, false);
     },

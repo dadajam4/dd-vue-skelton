@@ -9,6 +9,9 @@
     </vt@page-intro>
 
     <dd-example is="basic" />
+    <dd-example is="alert" />
+    <dd-example is="confirm" />
+    <dd-example is="prompt" />
 
   </vt@page>
 </template>

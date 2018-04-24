@@ -144,8 +144,10 @@ export default Object.assign({
     if (this.disabled) return;
     if (this.openOnHover) return;
 
-    // selectコントロールの中とかでイベント伝播してフォーカスしちゃうのを防止
-    e.stopPropagation();
+    this.$util.blurActiveElement();
+
+    // // selectコントロールの中とかでイベント伝播してフォーカスしちゃうのを防止
+    // e.stopPropagation();
 
     if (this.contextmenu) {
       if (this.isActive) this.close();
@@ -219,11 +221,22 @@ export default Object.assign({
   },
 
   close() {
-    const cb = e => {
-      if (this.closeWithRemove) this.isExistNode = false;
+    return new Promise(resolve => {
+      const cb = e => {
+        if (this.closeWithRemove) this.isExistNode = false;
+        resolve();
+        this.$emit('close');
+      }
+      this.addCloseCallBack(cb);
+      this.isActive = false;
+    });
+  },
+
+  onEsc(e) {
+    if (this.closeOnEsc && !this.persistent) {
+      this.$emit('esc', e);
+      this.close();
     }
-    this.addCloseCallBack(cb);
-    this.isActive = false;
   },
 
   toggle() {
@@ -329,6 +342,7 @@ export default Object.assign({
             this.$activator
             && (e.target === this.$activator || this.$activator.contains(e.target))
           ) return false;
+          this.$emit('click-outside-close');
           this.close();
         });
       },

@@ -74,6 +74,14 @@ export default {
 
       this.$emit('click', e);
     },
+
+    focus() {
+      this.$el.focus();
+    },
+
+    blur() {
+      this.$el.blur();
+    },
   },
 
   render(h) {
@@ -101,6 +109,14 @@ export default {
           {[loader]}
         </span>
       );
+    }
+
+    data.on = data.on || {};
+    data.on.focus = e => {
+      this.$emit('focus');
+    }
+    data.on.blur = e => {
+      this.$emit('blur');
     }
 
     return h(tag, data, children);

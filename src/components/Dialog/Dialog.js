@@ -16,13 +16,6 @@ const mixin = factory('dialog', {
       if (this.computedMaxHeight) styles['max-height'] = this.computedMaxHeight;
       return styles;
     },
-    dialogBodyClasses() {
-      if (this.elevation) {
-        return {
-          [`vc@elevation--${this.elevation}`]: true,
-        }
-      }
-    },
   },
 });
 
@@ -62,22 +55,21 @@ export default {
       type: String,
       default: 'center center',
     },
-    elevation: {
-      type: [String, Number],
-      default: 24,
-    },
     persistent: Boolean,
   },
 
   render(h) {
+    const $element = h('div', {
+      staticClass: 'vc@dialog__element',
+      directives: [this.createClickOutsideDirective()],
+    }, this.$slots.default);
 
     // inline-block
     const $body = h('div', {
       staticClass: 'vc@dialog__body',
-      class: this.dialogBodyClasses,
       style: this.dialogBodyStyles,
-      directives: [this.createClickOutsideDirective()],
-    }, this.$slots.default);
+      // directives: [this.createClickOutsideDirective()],
+    }, [$element]);
 
     // table-cell
     const $inner = h('div', {

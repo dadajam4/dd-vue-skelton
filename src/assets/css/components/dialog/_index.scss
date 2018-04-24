@@ -25,11 +25,19 @@
   }
 
   &__body {
-    position: relative;
     display: inline-block;
     text-align: left;
     margin: get-dialog(margin);
     width: calc(100% - #{get-dialog(margin) * 2});
+  }
+
+  &__element {
+    position: relative;
+    width: 100%;
+
+    & > .#{$css-prefix}card {
+      @include elevation(24);
+    }
   }
 
   // &--scrollable {
@@ -44,12 +52,24 @@
     }
 
     .#{$css-prefix}dialog__inner {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
     }
 
     .#{$css-prefix}dialog__body {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       height: 100%;
       max-height: calc(100% - #{get-dialog(margin) * 2});
+    }
+
+    .#{$css-prefix}dialog__element {
+      display: flex;
+      flex: 1 1 auto;
+      max-height: 100%;
 
       & > .#{$css-prefix}card {
         display: flex;
@@ -85,6 +105,14 @@
       display: flex;
       width: 100%;
       margin: 0;
+      max-height: none;
+
+    }
+
+    .#{$css-prefix}dialog__element {
+      display: flex;
+      width: 100%;
+      height: 100%;
       max-height: none;
 
       & > .#{$css-prefix}card {

@@ -1,5 +1,6 @@
 import Themeable from '~/mixins/themeable';
 import AppStackContainer from './AppStackContainer';
+import AppDialogContainer from './AppDialogContainer';
 
 
 
@@ -28,6 +29,7 @@ export default {
 
   components: {
     [AppStackContainer.name]: AppStackContainer,
+    [AppDialogContainer.name]: AppDialogContainer,
   },
 
   props: {
@@ -145,6 +147,18 @@ export default {
       const index = this.scrollStopers.indexOf(stoper);
       index !== -1 && this.scrollStopers.splice(index, 1);
     },
+    alert(body, opts = {}) {
+      const data = Object.assign({type: 'alert', body}, opts);
+      return this.$refs.dialogContainer.push(data);
+    },
+    confirm(body, opts = {}) {
+      const data = Object.assign({type: 'confirm', body}, opts);
+      return this.$refs.dialogContainer.push(data);
+    },
+    prompt(body, opts = {}) {
+      const data = Object.assign({type: 'prompt', body}, opts);
+      return this.$refs.dialogContainer.push(data);
+    },
   },
 
   created() {
@@ -163,6 +177,7 @@ export default {
 
   render(h) {
     const $stackContainer = h(AppStackContainer.name, {ref: 'stackContainer'});
+    const $dialogContainer = h(AppDialogContainer.name, {ref: 'dialogContainer'});
 
     const $body = h('div', {
       class: this.bodyClasses,
@@ -197,6 +212,6 @@ export default {
       on: {
         click: e => this.$emit('click', e),
       },
-    }, [$stackContainer, $body]);
+    }, [$stackContainer, $dialogContainer, $body]);
   },
 }
