@@ -40,6 +40,7 @@ export default {
         body: {width: 0, height: 0, scrollWidth: 0, scrollHeight: 0},
       },
       scrollPosition: {top: 0, left: 0},
+      scrollStopers: [],
     }
   },
 
@@ -85,9 +86,35 @@ export default {
       const headerHeight = this.$store.state.ui.header.height;
       if (headerHeight) return {paddingTop: `${headerHeight}px`};
     },
+
+    scrollStoperCount() { return this.scrollStopers.length },
+    hasScrollStoper() { return this.scrollStoperCount > 0 },
+  },
+
+  watch: {
+    hasScrollStoper() {
+      this.checkScrollStoperAndSetupScroll();
+    },
   },
 
   methods: {
+    checkScrollStoperAndSetupScroll() {
+      const hasScrollStoper = this.hasScrollStoper;
+      if (hasScrollStoper) {
+        this.stopDocumentScroll();
+      } else {
+        this.startDocumentScroll();
+      }
+    },
+
+    stopDocumentScroll() {
+      document.documentElement.classList.add('vc@overflow-hidden');
+    },
+
+    startDocumentScroll() {
+      document.documentElement.classList.remove('vc@overflow-hidden');
+    },
+
     updateDimentions() {
       // const appRect = this.$el.getBoundingClientRect();
       // this.dimentions.app.width  = appRect.width;
@@ -110,6 +137,14 @@ export default {
     //   this.scrollPosition.top = scrollPosition.top;
     //   this.scrollPosition.left = scrollPosition.left;
     // },
+    addScrollStoper(stoper) {
+      if (this.scrollStopers.find(s => s === stoper)) return;
+      this.scrollStopers.push(stoper);
+    },
+    removeScrollStoper(stoper) {
+      const index = this.scrollStopers.indexOf(stoper);
+      index !== -1 && this.scrollStopers.splice(index, 1);
+    },
   },
 
   created() {
@@ -121,6 +156,7 @@ export default {
   },
 
   mounted() {
+    this.checkScrollStoperAndSetupScroll();
     this.$forceUpdate();
     this.updateDimentions();
   },

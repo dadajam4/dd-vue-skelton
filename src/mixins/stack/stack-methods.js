@@ -321,7 +321,7 @@ export default Object.assign({
     return {
       name: 'click-outside',
       value: e => {
-        if (!this.closeOnOutsideClick) return;
+        if (!this.closeOnOutsideClick || this.persistent) return;
         if (!this.isFront()) return;
         this.runDelay(200, () => {
           if (!this.isActive) return;

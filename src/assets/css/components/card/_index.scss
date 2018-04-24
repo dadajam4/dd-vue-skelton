@@ -50,7 +50,8 @@
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    padding: 16px;
+    padding: 16px 16px 15px;
+    border-bottom: solid 1px transparent;
 
     &--primary {
       padding-top: 24px;
@@ -109,10 +110,18 @@
   &__actions {
     align-items: center;
     display: flex;
-    padding: 8px 4px;
+    padding: 7px 4px 8px;
+    border-top: solid 1px transparent;
 
-    & > * {
+    & > *:not(.every) {
       margin: 0 4px;
+    }
+  }
+
+  &__title,
+  &__actions {
+    &--divider {
+      @include theme-color(border-color, divider-light);
     }
   }
 }

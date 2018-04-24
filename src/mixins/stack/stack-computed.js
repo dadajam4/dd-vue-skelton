@@ -38,6 +38,7 @@ export default {
   computedMinWidth() { return this.$util.pixcelatedValue(this.minWidth, {prop: 'width', ...this.containerDimension}) },
   computedOverflowMargin() { return this.overflowMargin && parseFloat(this.overflowMargin) },
   computedMaxWidth() { return this.$util.pixcelatedValue(this.maxWidth, {prop: 'width', ...this.containerDimension}) },
+  computedMaxHeight() { return this.$util.pixcelatedValue(this.maxHeight, {prop: 'height', ...this.containerDimension}) },
   computedNudgeWidth() { return this.$util.pixcelatedValue(this.nudgeWidth, {prop: 'width', ...this.containerDimension}) },
   computedNudgeTop() { return this.$util.pixcelatedValue(this.nudgeTop, {prop: 'height', ...this.containerDimension}) },
   computedNudgeBottom() { return this.$util.pixcelatedValue(this.nudgeBottom, {prop: 'height', ...this.containerDimension}) },

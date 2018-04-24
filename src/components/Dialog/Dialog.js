@@ -1,6 +1,30 @@
 import factory from '~/mixins/stack/stackable-factory';
 
-const mixin = factory('dialog');
+const toMaxSizeString = val => {
+  if (!val) return;
+  val = String(val);
+  return val.match(/\d$/) ? val + 'px' : val;
+}
+
+const mixin = factory('dialog', {
+  computed: {
+    computedMaxWidth() { return toMaxSizeString(this.maxWidth) },
+    computedMaxHeight() { return toMaxSizeString(this.maxHeight) },
+    dialogBodyStyles() {
+      const styles = {};
+      if (this.computedMaxWidth) styles['max-width'] = this.computedMaxWidth;
+      if (this.computedMaxHeight) styles['max-height'] = this.computedMaxHeight;
+      return styles;
+    },
+    dialogBodyClasses() {
+      if (this.elevation) {
+        return {
+          [`vc@elevation--${this.elevation}`]: true,
+        }
+      }
+    },
+  },
+});
 
 export default {
   name: 'vt@dialog',
@@ -28,6 +52,8 @@ export default {
       type: Boolean,
       default: true,
     },
+    fullscreen: Boolean,
+    scrollable: Boolean,
     transition: {
       type: String,
       default: 'vc@scale-transition',
@@ -36,6 +62,11 @@ export default {
       type: String,
       default: 'center center',
     },
+    elevation: {
+      type: [String, Number],
+      default: 24,
+    },
+    persistent: Boolean,
   },
 
   render(h) {
@@ -43,6 +74,8 @@ export default {
     // inline-block
     const $body = h('div', {
       staticClass: 'vc@dialog__body',
+      class: this.dialogBodyClasses,
+      style: this.dialogBodyStyles,
       directives: [this.createClickOutsideDirective()],
     }, this.$slots.default);
 
@@ -58,6 +91,10 @@ export default {
 
     return this.genStack('div', {
       staticClass: 'vc@dialog',
+      class: {
+        'vc@dialog--fullscreen': this.fullscreen,
+        'vc@dialog--scrollable': this.scrollable,
+      },
     }, [$content]);
   },
 }

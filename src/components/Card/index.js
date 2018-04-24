@@ -3,9 +3,9 @@ import {
 } from '~/util';
 
 import Card from './Card';
-const CardTitle = createSimpleFunctional('card__title');
+const CardTitle = createSimpleFunctional('card__title', {classProps: {divider: true}});
 const CardText = createSimpleFunctional('card__text');
-const CardActions = createSimpleFunctional('card__actions');
+const CardActions = createSimpleFunctional('card__actions', {classProps: {divider: true}});
 
 
 

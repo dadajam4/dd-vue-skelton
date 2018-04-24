@@ -16,9 +16,34 @@ export default {
 
   computed: {
     dimension() { return {width: this.appDimentions.app.width, height: this.appDimentions.app.height } },
+    dialogs() { return this.stacks.filter($vm => $vm.dialog) },
+    activeDialogs() { return this.dialogs.filter($vm => $vm.isActive) },
+    activeDialogsCount() { return this.activeDialogs.length },
+  },
+
+  watch: {
+    activeDialogsCount(val) {
+      this.checkDialogAndSetupScroll();
+    },
   },
 
   methods: {
+    checkDialogAndSetupScroll() {
+      const activeDialogsCount = this.activeDialogsCount;
+      if (activeDialogsCount) {
+        this.hideScroll();
+      } else {
+        this.showScroll();
+      }
+    },
+
+    hideScroll() {
+      this.$app.addScrollStoper(this);
+    },
+
+    showScroll() {
+      this.$app.removeScrollStoper(this);
+    },
 
     getMaxZIndex(exclude) {
       let max = INACTIVE_Z_INDEX;
@@ -111,7 +136,7 @@ export default {
     setupEscKeyListener() {
       if (typeof document === 'undefined') return;
       document.addEventListener('keydown', e => {
-        if (this.frontStack && this.frontStack.closeOnEsc && e.which === 27) {
+        if (this.frontStack && this.frontStack.closeOnEsc && !this.frontStack.persistent && e.which === 27) {
           this.frontStack.close();
         }
       }, false);
@@ -121,6 +146,10 @@ export default {
   created() {
     this.stackVisibilityHanlders = {};
     this.setupEscKeyListener();
+  },
+
+  mounted() {
+    this.checkDialogAndSetupScroll();
   },
 
   render(h) {

@@ -15,3 +15,9 @@
 //     @include scrollable--y;
 //   }
 // }
+
+.#{$css-prefix}overflow {
+  &-hidden {
+    overflow: hidden !important;
+  }
+}

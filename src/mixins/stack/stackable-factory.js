@@ -142,14 +142,14 @@ const data = function() {
   }
 }
 
-export default function(type) {
+export default function(type, opts = {}) {
   const mixin = Object.assign({
     name: `vt@${type}-stackable`,
     provide,
     inject,
     props,
     data,
-    computed,
+    computed: Object.assign({}, computed, opts.computed),
     watch,
     methods,
   }, lifecycles);
