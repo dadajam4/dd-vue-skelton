@@ -24,6 +24,7 @@
   &__label {
     display: inline-block;
     vertical-align: bottom;
+    @include remove-tap-highlight;
     // cursor: pointer;
 
     @include font-size(xs);
