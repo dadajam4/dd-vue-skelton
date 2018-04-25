@@ -144,7 +144,7 @@ export default Object.assign({
     if (this.disabled) return;
     if (this.openOnHover) return;
 
-    this.$util.blurActiveElement();
+    // this.$util.blurActiveElement();
 
     // // selectコントロールの中とかでイベント伝播してフォーカスしちゃうのを防止
     // e.stopPropagation();

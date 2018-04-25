@@ -57,6 +57,7 @@ export default {
 
     const $stack = this.isExistNode && h(tag, mergeComponentOptions({
       staticClass: 'vc@app-stack__element',
+      class: this.computedElementClasses,
       style: this.stackElementStyles,
       attrs: {
         tabindex: '0', // comboboxの入力blur検知時に、relatedTargetで拾えるように、、

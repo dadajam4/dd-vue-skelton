@@ -19,6 +19,7 @@
     @include theme-color(background-color, background);
     box-shadow: 0 0 4px rgba(0, 0, 0, .4);
     transition: get-page(drawer-transition);
+    will-change: transform, box-shadow;
   }
 
   &--left &__base {
@@ -50,11 +51,13 @@
     }
 
     &.#{$css-prefix}app-drawer--left .#{$css-prefix}app-drawer__base {
-      left: -$navigation-drawer-width;
+      // left: -$navigation-drawer-width;
+      transform: translateX(-$navigation-drawer-width);
     }
 
     &.#{$css-prefix}app-drawer--right .#{$css-prefix}app-drawer__base {
-      right: -$navigation-drawer-width;
+      // right: -$navigation-drawer-width;
+      transform: translateX($navigation-drawer-width);
     }
   }
 

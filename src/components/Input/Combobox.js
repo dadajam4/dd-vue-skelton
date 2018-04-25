@@ -91,6 +91,10 @@ export default {
       type: String,
       default: 'No data available',
     },
+    tabindex: {
+      type: [String, Number],
+      default: 0,
+    },
   },
 
   data() {
@@ -157,6 +161,7 @@ export default {
       const attrs = {
         placeholder: this.placeholder,
         readonly: this.staticSelect,
+        tabindex: '-1',
       };
 
       if (!this.multiline) {
@@ -261,7 +266,7 @@ export default {
       this.innerSelected = val;
     },
     focused(val) {
-      this.menuIsActive = val;
+      // this.menuIsActive = val;
 
       if (!val && this.isSelect && this.autocomplete) {
         this.input = '';
@@ -334,7 +339,7 @@ export default {
       return vm && vm.displayVNode;
     },
     focus() {
-      if (this.disallowChange) return;
+      if (this.disabled) return;
       return this.$refs.input.focus();
     },
     blur() {
@@ -343,6 +348,19 @@ export default {
     onFocusInput(e) {
       this.focused = true;
       this.$emit('focus', e);
+    },
+    onBlurInput(e) {
+      if (this.elementIsInContext(e.relatedTarget)) {
+        e.preventDefault();
+        this.$refs.input.focus();
+        return;
+      }
+      this.focused = false;
+      if (this.isSelect) this.menuIsActive = false;
+      this.$emit('blur', e);
+    },
+    onFocusBody(e) {
+      this.focus();
     },
     elementIsInContext(el) {
       const containers = [this.$el];
@@ -354,15 +372,6 @@ export default {
         if (container === el || container.contains(el)) return true;
       }
       return false;
-    },
-    onBlurInput(e) {
-      if (this.elementIsInContext(e.relatedTarget)) {
-        e.preventDefault();
-        this.$refs.input.focus();
-        return;
-      }
-      this.focused = false;
-      this.$emit('blur', e);
     },
     onInputInput(e) {
       if (this.disallowChange) return e.preventDefault();
@@ -383,9 +392,9 @@ export default {
           disabled: this.disabled,
         },
         on: {
-          input: this.onInputInput,
           focus: this.onFocusInput,
           blur: this.onBlurInput,
+          input: this.onInputInput,
           keydown: e => {
             if (!this.hasSearch) return;
 
@@ -487,11 +496,11 @@ export default {
       }, this.noDataText)] : [];
 
       const $menu = this.$createElement('vt@menu', {
-        staticClass: 'vc@combobox__menu',
-        class: {
-          'vc@combobox__menu--hide': isEmpty && !this.hasNoDataText,
-        },
         props: {
+          elementClass: {
+            'vc@combobox__menu': true,
+            'vc@combobox__menu--hide': isEmpty && !this.hasNoDataText,
+          },
           activator: () => this.$refs.body,
           offsetY: true,
           activatorAction: null,
@@ -580,6 +589,13 @@ export default {
         payload = null;
       }
       this.targetSelected = payload;
+    },
+    onClickBody(e) {
+      if (this.disabled) return;
+      this.focus();
+      if (this.isSelect) {
+        this.menuIsActive = true;
+      }
     },
   },
 
@@ -678,10 +694,15 @@ export default {
     return (
       <div
         class={Object.assign(classes, this.classes)}
-        onClick={this.focus}
       >
         {positionables.btn.left}
-        <div class={this.bodyClasses} ref="body">
+        <div
+          class={this.bodyClasses}
+          tabindex={this.disabled ? '-1' : this.tabindex}
+          onFocus={this.onFocusBody}
+          onClick={this.onClickBody}
+          ref="body"
+        >
           {positionables.icon.left}
           {this.genfix('pre')}
           {this.selectionItems}

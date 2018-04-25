@@ -123,6 +123,7 @@ export default {
           options: this.options,
           groups: this.groups,
           autocomplete: this.autocomplete,
+          tabindex: this.tabindex,
         },
         on: {
           input: this.onComboboxInput,

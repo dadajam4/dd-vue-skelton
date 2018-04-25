@@ -99,6 +99,10 @@ const props = {
   nudgeWidth: [String, Number],
 
   // advance
+  elementClass: {
+    type: [String, Object],
+    default: null,
+  },
   transition: {
     type: String,
     default: 'vc@menu-transition',

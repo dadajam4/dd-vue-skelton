@@ -8,6 +8,14 @@ export default {
     },
   },
 
+  computedElementClasses() {
+    if (!this.elementClass) return {}
+    if (typeof this.elementClass === 'string') {
+      return {[this.elementClass]: true};
+    }
+    return this.elementClass;
+  },
+
   isFixWindow() { return !!this.dialog },
 
   zIndexStyles() {

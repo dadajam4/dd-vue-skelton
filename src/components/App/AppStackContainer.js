@@ -25,6 +25,9 @@ export default {
     activeDialogsCount(val) {
       this.checkDialogAndSetupScroll();
     },
+    // frontStack(now, old) {
+    //   console.log(now, old);
+    // },
   },
 
   methods: {
