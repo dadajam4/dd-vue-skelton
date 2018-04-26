@@ -44,6 +44,7 @@
   &--md &__label { @include font-size(xs); }
   &--lg &__label { @include font-size(sm); }
 
+  &--selection,
   &--inline {
     display: inline-table;
     width: 100%;
@@ -89,7 +90,14 @@
 
   &--selection {
     width: auto;
-    margin-right: get-input(margin-horizintal) * 2;
+    display: table;
+
+    &#{$my}--inline {
+      display: inline-table;
+      margin-right: get-input(margin-horizintal) * 2;
+    }
+    // margin-right: get-input(margin-horizintal) * 2;
+    // max-width: calc(100% - #{get-input(margin-horizintal) * 2});
 
     #{$my}__label {
       cursor: pointer;

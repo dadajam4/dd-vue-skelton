@@ -16,6 +16,7 @@
     <dd-example is="checkbox-indeterminate" />
     <dd-example is="colors" />
     <dd-example is="block-layout" />
+    <dd-example is="grouping" />
 
   </vt@page>
 </template>

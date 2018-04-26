@@ -2,8 +2,11 @@ import Input from './Input';
 import Combobox from './Combobox';
 import Textarea from './Textarea';
 import Checkbox from './Checkbox';
+import CheckboxGroup from './CheckboxGroup';
 import Radio from './Radio';
+import RadioGroup from './RadioGroup';
 import Switch from './Switch';
+import SwitchGroup from './SwitchGroup';
 import RadioElement from './RadioElement';
 import CheckboxElement from './CheckboxElement';
 import SwitchElement from './SwitchElement';
@@ -21,8 +24,11 @@ export default {
   Combobox,
   Textarea,
   Checkbox,
+  CheckboxGroup,
   Radio,
+  RadioGroup,
   Switch,
+  SwitchGroup,
   RadioElement,
   CheckboxElement,
   SwitchElement,

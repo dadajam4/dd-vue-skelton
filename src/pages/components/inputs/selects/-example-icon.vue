@@ -49,7 +49,7 @@ export default {
 
   methods: {
     onClick(e) {
-      alert('click!');
+      this.$alert('click!');
     },
   },
 }

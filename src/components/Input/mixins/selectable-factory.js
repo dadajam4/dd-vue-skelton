@@ -39,5 +39,9 @@ export default function(modelProp = 'inputValue') {
         }
       },
     },
+
+    created() {
+      this.updateInnerValue();
+    },
   }
 }
