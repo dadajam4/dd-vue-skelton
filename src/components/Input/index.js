@@ -1,3 +1,4 @@
+import Form from './Form';
 import Input from './Input';
 import Combobox from './Combobox';
 import Textarea from './Textarea';
@@ -20,6 +21,7 @@ import Slider from './Slider';
 
 
 export default {
+  Form,
   Input,
   Combobox,
   Textarea,

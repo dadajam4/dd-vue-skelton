@@ -45,7 +45,8 @@ export default {
 
   props: {
     value: [String, Number],
-    selected: Array,
+    // selected: Array,
+    selected: true,
     flat: Boolean,
     sm: Boolean,
     md: Boolean,

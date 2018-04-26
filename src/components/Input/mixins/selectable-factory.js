@@ -22,12 +22,6 @@ export default function(modelProp = 'inputValue') {
       event: 'change',
     },
 
-    watch: {
-      [modelProp](val) {
-        this.updateInnerValue();
-      },
-    },
-
     methods: {
       updateInnerValue() {
         let val = this[modelProp];
@@ -41,7 +35,17 @@ export default function(modelProp = 'inputValue') {
     },
 
     created() {
-      this.updateInnerValue();
+      if (!this.isSelect) {
+        this._checkedWatcher = this.$watch(modelProp, this.updateInnerValue);
+        this.updateInnerValue();
+      }
+    },
+
+    beforeDestroy() {
+      if (!this.isSelect && this._checkedWatcher) {
+        this._checkedWatcher();
+        delete this._checkedWatcher;
+      }
     },
   }
 }

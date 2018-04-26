@@ -17,6 +17,9 @@ export default {
     options: Array,
     groups: Array,
     autocomplete: Boolean,
+    validateProp: {
+      default: 'innerValue',
+    },
   },
 
   data() {
