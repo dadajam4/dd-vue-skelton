@@ -56,12 +56,14 @@ export default {
       //   return {top: `-64px`}
       // }
       if (this.isHidden && this.innerHeight) {
-        return {top: `-${this.innerHeight}px`}
+        // return {top: `-${this.innerHeight}px`}
+        return {transform: `translateY(-${this.innerHeight}px)`}
       }
     },
     isHidden() { return this.hidden || this.isScrollOffHidden },
     isScrollOffHidden() {
       const params = this.scrollOffParams;
+
       if (
         !params.enabled
         || (!this.lastVerticalIsBottom && this.appScrollLastAmmountTop <= -SCROLL_JUDGE_AMMOUNT)
@@ -74,6 +76,7 @@ export default {
       } else {
         threshold = params.threshold;
       }
+
       return this.appScrollTop >= threshold;
     },
     autoScrollOffThreshold() {

@@ -6,6 +6,7 @@
   transition-property: all;
   transition-duration: get-duration(slowly);
   transition-timing-function: get-easing(drawer);
+  will-change: transform, box-shadow, padding;
 
   &--fixed {
     position: fixed;

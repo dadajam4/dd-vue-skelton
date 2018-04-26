@@ -5,6 +5,10 @@ import Validatable from './validatable';
 export default {
   mixins: [Validatable],
 
+  inject: {
+    $form: { default: null },
+  },
+
   props: {
     name: String,
     hint: String,
@@ -56,6 +60,7 @@ export default {
     allowChange() { return !this.disabled && !this.readonly },
     detailBodyIsLeft() { return this.labelPosition === 'left' || this.inputType === 'selection' },
     detailBodyIsRight() { return this.labelPosition === 'right' && this.inputType !== 'selection' },
+    hasContextForm() { return !this.silent && !!this.$form },
   },
 
   // watch: {

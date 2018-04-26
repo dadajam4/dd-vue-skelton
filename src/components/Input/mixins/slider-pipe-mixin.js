@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       innerValue: this.value,
+      initialValue: this.value,
     }
   },
 

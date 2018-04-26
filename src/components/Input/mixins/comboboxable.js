@@ -62,6 +62,14 @@ export default {
   },
 
   methods: {
+    reset() {
+      this.$refs.combobox.reset();
+      this.onResetAfter();
+    },
+    clear() {
+      this.$refs.combobox.clear();
+      this.onClearAfter();
+    },
     genCounter() {
       if (!this.counter) return;
       return this.$createElement('div', {

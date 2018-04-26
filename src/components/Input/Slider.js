@@ -100,6 +100,12 @@ export default {
   },
 
   methods: {
+    reset() {
+      this.targetValue = this.initialValue;
+    },
+    clear() {
+      this.targetValue = this.multiple ? [0, 0] : 0;
+    },
     getThumbLeftPer(type) {
       const value = this[`${type}Value`];
       return this[`${type}Value`] / (this.maxValue - this.minValue);

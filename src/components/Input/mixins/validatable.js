@@ -47,12 +47,12 @@ class ValidateRule {
 export default {
   data() {
     return {
-      errorBucket   : [],
-      hasFocused    : false,
-      hasInput      : false,
+      errorBucket: [],
+      hasFocused: false,
+      hasInput: false,
       shouldValidate: false,
-      // valid         : false,
-      initialValue  : null,
+      validateCancel: false,
+      validateState: 'indeterminate',
     }
   },
 
@@ -77,8 +77,10 @@ export default {
     validateOnBlur() { return this.validateTiming === 'blur' },
     validateOnInput() { return this.validateTiming === 'input' },
     validateOnAlways() { return this.validateTiming === 'always' },
-    valid() { return this.errorBucket.length === 0 },
-    invalid() { return !this.valid },
+    validateIndeterminate() { return this.validateState === 'indeterminate' },
+    errorCount() { return this.errorBucket.length },
+    valid() { return this.validateState === 'valid' },
+    invalid() { return this.validateState === 'invalid' },
 
     computedRules() {
       const rules = Array.isArray(this.rules) ? this.rules : [this.rules];
@@ -138,44 +140,16 @@ export default {
     },
   },
 
-  created() {
-    this._validatableWatcher = this.$watch(this.validateProp, this.onUpdateValidateProp);
-  },
-
-  mounted() {
-    this.shouldValidate = !!this.error;
-    this.validate();
-  },
-
-  beforeDestroy() {
-    if (this._validatableWatcher) {
-      this._validatableWatcher();
-      this._validatableWatcher = null;
-      delete this._validatableWatcher;
-    }
-  },
-
   methods: {
     onUpdateValidateProp(val) {
+      if (this.validateCancel) return;
       if (!!val && !this.hasInput) this.hasInput = true;
       if (this.validateOnAlways || (this.hasInput && this.validateOnInput)) this.shouldValidate = true;
       if (this.shouldValidate) this.validate();
     },
 
-    // reset() {
-    //   // TODO: Do this another way!
-    //   // This is so that we can reset all types of inputs
-    //   this.$emit('input', this.isMultiple ? [] : null);
-    //   this.$emit('change', null);
-
-    //   this.$nextTick(() => {
-    //     this.shouldValidate = false;
-    //     this.hasFocused = false;
-    //     this.validate();
-    //   })
-    // },
-
     validate(force = false, value = this[this.validateProp]) {
+      if (this.validateCancel) return;
       if (force) this.shouldValidate = true;
 
       this.errorBucket = [];
@@ -192,7 +166,62 @@ export default {
         }
       });
 
+      this.validateState = this.errorCount === 0 ? 'valid' : 'invalid';
       return this.valid;
+    },
+
+    resetErrorBucket() {
+      this.validateState = 'indeterminate';
+      this.shouldValidate = false;
+      this.validateCancel = true;
+      this.focused = false;
+      this.errorBucket = [];
+      this.$nextTick(() => {
+        this.validateCancel = false;
+      });
+    },
+
+    onResetAfter() {
+      this.resetErrorBucket();
+    },
+
+    onClearAfter() {
+      this.resetErrorBucket();
+    },
+
+    attachForm() {
+      if (!this.hasContextForm) return;
+      this.$form.attachInput(this);
+      this._invalidUnWatcher = this.$watch('invalid', invalid => {
+        this.$form.onChildValidChange(this);
+      }, { immediate: true });
+    },
+
+    detachForm() {
+      if (!this.hasContextForm) return;
+      this.$form.detachInput(this);
+      if (this._invalidUnWatcher) {
+        this._invalidUnWatcher();
+        delete this._invalidUnWatcher;
+      }
+    },
+  },
+
+  created() {
+    this.attachForm();
+    this._validatableUnWatcher = this.$watch(this.validateProp, this.onUpdateValidateProp);
+  },
+
+  mounted() {
+    this.shouldValidate = !!this.error;
+    this.validate();
+  },
+
+  beforeDestroy() {
+    if (this._validatableUnWatcher) {
+      this._validatableUnWatcher();
+      delete this._validatableUnWatcher;
     }
-  }
+    this.detachForm();
+  },
 }

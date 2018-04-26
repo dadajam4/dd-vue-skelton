@@ -20,6 +20,13 @@ export default function(type) {
   return {
     mixins: [Inputable],
 
+    provide() {
+      const payload = {
+        $selectionGroup: this,
+      };
+      return payload;
+    },
+
     props: {
       validateProp: {
         default: 'innerValue',
@@ -34,6 +41,8 @@ export default function(type) {
     data() {
       return {
         innerValue: this.value,
+        initialValue: this.multiple ? (this.value || []) : this.value,
+        children: [],
       }
     },
 
@@ -41,7 +50,7 @@ export default function(type) {
       inputValue: {
         get() { return this.innerValue },
         set(val) {
-          this.innerValue = val;
+          this.innerValue = Array.isArray(val) ? val.slice() : val;
           this.$emit('input', val);
         },
       },
@@ -54,6 +63,35 @@ export default function(type) {
     },
 
     methods: {
+      callChildren(funcName, args = []) {
+        const results = [];
+        for (const child of this.children) {
+          results.push(child[funcName](...args));
+        }
+        return results;
+      },
+
+      reset() {
+        this.inputValue = this.initialValue;
+        this.onResetAfter();
+      },
+
+      clear() {
+        this.inputValue = this.multiple ? [] : null;
+        this.onClearAfter();
+      },
+
+      attachChild($vm) {
+        if (this.children.indexOf($vm) !== -1) return;
+        this.children.push($vm);
+      },
+
+      detachChild($vm) {
+        const index = this.children.indexOf($vm);
+        if (index === -1) return;
+        this.children.splice(index, 1);
+      },
+
       onChildChange(e) {
         this.inputValue = e;
       },
@@ -65,7 +103,7 @@ export default function(type) {
       },
 
       genItemProps(origin) {
-        const props = Object.assign({}, origin);
+        const props = Object.assign({silent: true}, origin);
         for (let prop of PASS_PROPS) {
           if (props[prop] === undefined) props[prop] = this[prop];
         }

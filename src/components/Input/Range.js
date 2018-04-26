@@ -23,6 +23,14 @@ export default {
   },
 
   methods: {
+    reset() {
+      this.$refs.slider.reset();
+      this.onResetAfter();
+    },
+    clear() {
+      this.$refs.slider.clear();
+      this.onClearAfter();
+    },
     onSliderFocus(e) {
       this.focused = true;
       this.$emit('focus', e);

@@ -34,6 +34,8 @@ const Scroll = {
     Vue.prototype.$appScrollTo = function(el, opts = {}) {
       appIsScrolling = true;
 
+      el = typeof el === 'object' && el._isVue ? el.$el : el;
+
       const originOnDone = opts.onDone;
       const originOnCancel = opts.onCancel;
       const done = () => {

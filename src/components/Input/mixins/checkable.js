@@ -7,6 +7,11 @@ import namingRadioManager from './namingRadioManager';
 export default {
   mixins: [SelectableFactory()],
   inheritAttrs: false,
+
+  inject: {
+    $selectionGroup: { default: null },
+  },
+
   props: {
     inputChecked: Boolean,
     value: {
@@ -32,11 +37,13 @@ export default {
       default: true,
     },
     color: String,
+    silent: Boolean,
   },
 
   data() {
     return {
-      innerValue: this.inputChecked,
+      innerValue: !!this.inputChecked,
+      initialValue: !!this.inputChecked,
     }
   },
 
@@ -80,6 +87,14 @@ export default {
   },
 
   methods: {
+    reset() {
+      this.checked = this.initialValue;
+      this.onResetAfter();
+    },
+    clear() {
+      this.checked = false;
+      this.onClearAfter();
+    },
     genNode() {
       return this.$createElement('input', {
         staticClass: 'vc@hidden-input',
@@ -162,8 +177,13 @@ export default {
     }
   },
 
+  created() {
+    this.$selectionGroup && this.$selectionGroup.attachChild(this);
+  },
+
   beforeDestroy() {
     if (this.name) namingRadioManager.remove(this);
     this._radioNameWatcher && this._radioNameWatcher();
+    this.$selectionGroup && this.$selectionGroup.attachChild(this);
   },
 }

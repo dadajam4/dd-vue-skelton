@@ -102,6 +102,8 @@ export default {
     return {
       innerValue: this.value,
       innerSelected: this.selected,
+      initialInput: this.value,
+      initialSelected: this.selected,
       focused: false,
       menuIsActive: false,
       optionVms: [],
@@ -320,7 +322,22 @@ export default {
       }
       this.targetSelected = value;
     },
-
+    clearSelection() {
+      if (!this.isSelect) return;
+      this.targetSelected = this.multiple ? [] : null;
+    },
+    resetSelection() {
+      if (!this.isSelect) return;
+      this.targetSelected = this.multiple ? (this.initialSelected || []) : this.initialSelected;
+    },
+    reset() {
+      this.input = this.initialInput;
+      this.resetSelection();
+    },
+    clear() {
+      this.input = null;
+      this.clearSelection();
+    },
     getNewSelectionItemKey() {
       return ++this.selectionItemKey;
     },
