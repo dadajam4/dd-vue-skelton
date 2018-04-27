@@ -111,6 +111,7 @@
       height: get-date-picker(week-height);
       padding: 0;
       user-select: none;
+      @include font-size(xxs);
     }
 
     td {
@@ -119,6 +120,9 @@
 
       .#{$css-prefix}btn {
         margin: 0;
+        @include square(get-date-picker(cell-btn-size));
+        line-height: 1;
+        @include font-size(sm);
       }
     }
   }
@@ -136,7 +140,7 @@
       padding: get-space(xs) 0;
 
       .#{$css-prefix}btn {
-        min-width: 80px;
+        // min-width: 80px;
         margin: 0;
       }
     }
@@ -152,6 +156,7 @@
     .#{$css-prefix}scroller__content {
       padding: 0;
       margin: 0;
+      @include font-size(sm, $tweak: 1px);
 
       & > li {
         list-style-type: none;
@@ -174,13 +179,13 @@
         &:active {
           @include theme-color(background, background-active);
         }
+
+        &.#{$css-prefix}date-picker__year--active {
+          font-size: 160%;
+          @include font-weight(bold);
+          @include theme-color(color, text-primary);
+        }
       }
     }
-  }
-
-  &__year--active {
-    @include font-size(xxl);
-    @include font-weight(bold);
-    @include theme-color(color, text-primary);
   }
 }

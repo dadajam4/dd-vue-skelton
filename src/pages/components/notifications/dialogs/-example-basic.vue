@@ -19,7 +19,7 @@
       >
         <vt@card>
           <vt@toolbar info>
-            <vt@btn icon="close" @click.stop="$refs.dialog1.close" />
+            <vt@btn flat icon="close" @click.stop="$refs.dialog1.close" />
             <vt@toolbar-title>Settings</vt@toolbar-title>
             <vt@spacer />
             <vt@toolbar-items>
@@ -86,7 +86,7 @@
             <p v-for="n in 20" :key="n">これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。</p>
           </vt@card-text>
           <vt@card-actions>
-            <vt@btn text-color="info" @click.stop="$refs.dialog2.close">CLOSE</vt@btn>
+            <vt@btn info flat @click.stop="$refs.dialog2.close">CLOSE</vt@btn>
           </vt@card-actions>
         </vt@card>
       </vt@dialog>
@@ -118,7 +118,7 @@
             <vt@btn info @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
           </vt@card-text>
           <vt@card-actions>
-            <vt@btn text-color="info" @click.stop="$refs.dialog3.close">CLOSE</vt@btn>
+            <vt@btn info flat @click.stop="$refs.dialog3.close">CLOSE</vt@btn>
           </vt@card-actions>
         </vt@card>
       </vt@dialog>
@@ -143,8 +143,8 @@
           </vt@card-text>
           <vt@card-actions divider>
             <vt@spacer />
-            <vt@btn text-color="info" @click.stop="$refs.dialog4.close">キャンセル</vt@btn>
-            <vt@btn text-color="info" @click.stop="$refs.dialog4.close">OK</vt@btn>
+            <vt@btn info flat @click.stop="$refs.dialog4.close">キャンセル</vt@btn>
+            <vt@btn info flat @click.stop="$refs.dialog4.close">OK</vt@btn>
           </vt@card-actions>
         </vt@card>
       </vt@dialog>

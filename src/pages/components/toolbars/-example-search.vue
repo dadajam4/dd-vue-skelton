@@ -12,13 +12,13 @@
         <vt@icon>search</vt@icon>
       </vt@input>
       <vt@spacer />
-      <vt@btn icon>
+      <vt@btn flat icon>
         <vt@icon>th</vt@icon>
       </vt@btn>
-      <vt@btn icon>
+      <vt@btn flat icon>
         <vt@icon>refresh</vt@icon>
       </vt@btn>
-      <vt@btn icon>
+      <vt@btn flat icon>
         <vt@icon>ellipsis-v</vt@icon>
       </vt@btn>
     </vt@toolbar>

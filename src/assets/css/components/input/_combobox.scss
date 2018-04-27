@@ -194,6 +194,7 @@
     font-size: inherit;
     padding: 0 get-combobox(padding-horizontal);
     min-height: get-combobox(height-md);
+    // flex-wrap: wrap;
 
     #{$my}--sm & { min-height: get-combobox(height-sm); }
     #{$my}--md & { min-height: get-combobox(height-md); }

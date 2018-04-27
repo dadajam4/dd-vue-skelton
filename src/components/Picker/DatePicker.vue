@@ -2,12 +2,12 @@
 <div class="vc@date-picker">
   <div class="vc@date-picker__stack vc@date-picker__stack--base vc@date-picker__stack--date">
     <div class="vc@date-picker__header">
-      <vt@btn class="vc@date-picker__header__action" icon="angle-left" />
+      <vt@btn class="vc@date-picker__header__action" flat icon="angle-left" />
       <strong class="vc@date-picker__header__values">
         <span class="vc@date-picker__header__value vc@date-picker__header__month" @click.stop="monthActive = true">April</span>
         <span class="vc@date-picker__header__value vc@date-picker__header__year" @click.stop="yearActive = true">2018</span>
       </strong>
-      <vt@btn class="vc@date-picker__header__action" icon="angle-right" />
+      <vt@btn class="vc@date-picker__header__action" flat icon="angle-right" />
     </div>
     <div class="vc@date-picker__body">
       <table class="vc@date-picker__table">
@@ -145,29 +145,29 @@
 
   <div class="vc@date-picker__stack vc@date-picker__stack--month" :class="monthActive && 'vc@date-picker__stack--active'">
     <div class="vc@date-picker__header">
-      <vt@btn class="vc@date-picker__header__action" icon="angle-left" />
+      <vt@btn class="vc@date-picker__header__action" flat icon="angle-left" />
       <strong class="vc@date-picker__header__values">
         <span class="vc@date-picker__header__value vc@date-picker__header__year">2018</span>
       </strong>
-      <vt@btn class="vc@date-picker__header__action" icon="angle-right" />
+      <vt@btn class="vc@date-picker__header__action" flat icon="angle-right" />
     </div>
     <div class="vc@date-picker__body">
       <ol class="vc@date-picker__month-list">
-        <li><vt@btn flat @click.stop="monthActive = false">JAN</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">FEB</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">MAR</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">APR</vt@btn></li>
-        <li><vt@btn outline primary @click.stop="monthActive = false">MAY</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">JUN</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">JUL</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">AUG</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">SEP</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">OCT</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">NOV</vt@btn></li>
-        <li><vt@btn flat @click.stop="monthActive = false">DEC</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">JAN</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">FEB</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">MAR</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">APR</vt@btn></li>
+        <li><vt@btn sm outline primary @click.stop="monthActive = false">MAY</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">JUN</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">JUL</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">AUG</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">SEP</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">OCT</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">NOV</vt@btn></li>
+        <li><vt@btn sm flat @click.stop="monthActive = false">DEC</vt@btn></li>
       </ol>
     </div>
-    <vt@btn class="vc@date-picker__stack__close" icon="close" @click.stop="monthActive = false" />
+    <vt@btn class="vc@date-picker__stack__close" flat icon="close" @click.stop="monthActive = false" />
   </div>
 
   <div class="vc@date-picker__stack vc@date-picker__stack--year" :class="yearActive && 'vc@date-picker__stack--active'">
@@ -182,7 +182,7 @@
          @click.stop="yearActive = false"
       >{{n}}</li>
     </vt@scroller>
-    <vt@btn class="vc@date-picker__stack__close" icon="close" @click.stop="yearActive = false" />
+    <vt@btn class="vc@date-picker__stack__close" flat icon="close" @click.stop="yearActive = false" />
   </div>
 </div>
 </template>

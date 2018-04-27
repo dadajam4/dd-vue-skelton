@@ -18,7 +18,7 @@
       </vt@tile-content>
       <vt@tile-action>
         <vt@tooltip-fragment>
-          <vt@btn icon="search" />
+          <vt@btn flat icon="search" />
           <vt@tooltip>検索</vt@tooltip>
         </vt@tooltip-fragment>
       </vt@tile-action>
@@ -33,7 +33,7 @@
       </vt@tile-content>
       <vt@tile-action>
         <vt@tooltip-fragment>
-          <vt@btn icon="search" />
+          <vt@btn flat icon="search" />
           <vt@tooltip>検索</vt@tooltip>
         </vt@tooltip-fragment>
       </vt@tile-action>

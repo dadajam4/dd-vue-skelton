@@ -17,10 +17,10 @@
         >
           <vt@icon>search</vt@icon>
         </vt@input>
-        <vt@btn icon>
+        <vt@btn flat icon>
           <vt@icon>map-marker</vt@icon>
         </vt@btn>
-        <vt@btn icon>
+        <vt@btn flat icon>
           <vt@icon>ellipsis-v</vt@icon>
         </vt@btn>
       </vt@toolbar>

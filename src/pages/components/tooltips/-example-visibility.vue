@@ -10,7 +10,7 @@
         </vt@flex>
         <vt@flex xs12 class="vc@m-t--xl">
           <vt@tooltip-fragment>
-            <vt@btn icon>
+            <vt@btn flat icon>
               <vt@icon>shopping-cart</vt@icon>
             </vt@btn>
             <vt@tooltip v-model="show" top :open-on-click="false" :open-on-hover="false">

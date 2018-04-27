@@ -4,7 +4,6 @@ import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
 import Chip from './Chip';
-import DatePicker from './DatePicker';
 import Dialog from './Dialog';
 import Overlay from './Overlay';
 import Grid from './Grid';
@@ -18,6 +17,7 @@ import Menu from './Menu';
 import Navigation from './Navigation';
 import Page from './Page';
 import Pagination from './Pagination';
+import Picker from './Picker';
 import Progress from './Progress';
 import Scroller from './Scroller';
 import Tabs from './Tabs';
@@ -36,7 +36,6 @@ export default Object.assign({},
   Avatar,
   Card,
   Chip,
-  DatePicker,
   Dialog,
   Overlay,
   Grid,
@@ -50,6 +49,7 @@ export default Object.assign({},
   Navigation,
   Page,
   Pagination,
+  Picker,
   Progress,
   Scroller,
   Tabs,

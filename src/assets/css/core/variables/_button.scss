@@ -14,6 +14,8 @@ $button: map-set($button, margin-vertical, 6px);
 $button: map-set($button, margin-horizontal, 8px);
 $button: map-set($button, padding-horizontal, 16px);
 $button: map-set($button, icon-margin, get-space(xs));
+$button: map-set($button, elevation, 2);
+$button: map-set($button, active-elevation, 8);
 
 $button: map-set($button, height-sm, 28px);
 $button: map-set($button, height-md, 36px);

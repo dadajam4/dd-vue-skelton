@@ -26,7 +26,7 @@
 -->
         <vt@spacer />
         <vt@tooltip-fragment>
-          <vt@btn icon @click="sourceActive = !sourceActive">
+          <vt@btn icon flat @click="sourceActive = !sourceActive">
             <vt@icon>code</vt@icon>
           </vt@btn>
           <vt@tooltip bottom>

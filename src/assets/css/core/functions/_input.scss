@@ -9,6 +9,7 @@
   justify-content: center;
   cursor: pointer;
   position: relative;
+  @include remove-tap-highlight;
 }
 
 @mixin checkable-base {

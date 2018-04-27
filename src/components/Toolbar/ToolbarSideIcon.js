@@ -13,6 +13,7 @@ export default {
       props: Object.assign(props, {
         icon: true,
         lg: true,
+        flat: true,
       }),
       on: listeners,
     })

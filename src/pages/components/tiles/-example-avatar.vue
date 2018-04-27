@@ -19,7 +19,7 @@
         </vt@tile-content>
         <vt@tile-action>
           <vt@tooltip-fragment>
-            <vt@btn icon="edit" />
+            <vt@btn flat icon="edit" />
             <vt@tooltip>編集</vt@tooltip>
           </vt@tooltip-fragment>
         </vt@tile-action>
@@ -32,7 +32,7 @@
         </vt@tile-content>
         <vt@tile-action>
           <vt@tooltip-fragment>
-            <vt@btn icon="edit" />
+            <vt@btn flat icon="edit" />
             <vt@tooltip>編集</vt@tooltip>
           </vt@tooltip-fragment>
         </vt@tile-action>

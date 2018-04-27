@@ -36,12 +36,14 @@ export default {
       type: String,
       default: 'button'
     },
+    depressed: Boolean,
   },
 
 
 
   computed: {
     isIcon() { return typeof this.icon === 'string' || this.icon },
+    isDepressed() { return this.depressed || this.flat || this.outline },
     classes() {
       const classes = this.addColorClasses({
         [this.$options.name]: true,
@@ -56,6 +58,7 @@ export default {
         'vc@btn--right': this.right,
 
         // states
+        'vc@btn--depressed': this.isDepressed,
         'vc@btn--loading': this.loading,
         'vc@btn--disabled': this.disabled,
       });

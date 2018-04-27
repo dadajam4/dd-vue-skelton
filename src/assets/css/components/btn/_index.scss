@@ -30,8 +30,23 @@
   border-radius: get-button(radius);
   border: $my-border-width solid transparent;
   position: relative;
+  transition: box-shadow get-transition(primary);
   // text-transform: uppercase;
   // @include theme-color(color, text-inverted);
+
+  &:not(.#{$css-prefix}btn--depressed) {
+    will-change: box-shadow;
+    @include elevation(get-button(elevation));
+
+    &:active {
+      @include elevation(get-button(active-elevation));
+    }
+  }
+
+  &--left,
+  &--right {
+    box-shadow: none !important;
+  }
 
   &__content {
     &-wrapper {
