@@ -4,21 +4,56 @@
 
 .#{$css-prefix}date-picker {
   display: inline-flex;
+  vertical-align: bottom;
   flex-direction: column;
+  width: get-date-picker(width);
+  height: get-date-picker(height);
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
 
-  & > :first-child {
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-  }
+  &__stack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+    @include theme-color(background, background);
+    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 
-  & > :last-child {
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
+    &:not(.#{$css-prefix}date-picker__stack--base) {
+      transform: translateY(get-date-picker(height));
+    }
+
+    &--active {
+      transform: translateY(0) !important;
+    }
+
+    // & > :first-child {
+    //   border-top-left-radius: inherit;
+    //   border-top-right-radius: inherit;
+    // }
+
+    // & > :last-child {
+    //   border-bottom-left-radius: inherit;
+    //   border-bottom-right-radius: inherit;
+    // }
+
+    &__close {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 
   &__header {
     display: flex;
     align-items: center;
+    width: 100%;
+    height: get-date-picker(header-height);
+    margin: 0 auto;
 
     &__values {
       display: flex;
@@ -33,15 +68,27 @@
 
       &:hover,
       &:focus {
-        transform: scale(1.1);
-        opacity: .8;
-        // @include theme-color(color, text-primary);
+        @include theme-color(color, text-primary);
+      }
+    }
+
+    .#{$css-prefix}date-picker__stack--month & {
+      justify-content: center;
+
+      &__values {
+        margin: 0 get-space(sm);
       }
     }
   }
 
   &__body {
-    padding-top: get-space(xxs);
+    position: relative;
+    width: get-date-picker(body-width);
+    height: get-date-picker(body-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
 
   &__table {
@@ -59,24 +106,81 @@
     }
 
     th {
-      padding: get-space(xxs);
       @include theme-color(color, text-sub);
+      width: get-date-picker(cell-size);
+      height: get-date-picker(week-height);
+      padding: 0;
+      user-select: none;
     }
 
     td {
       padding: 0;
+      @include square(get-date-picker(cell-size));
 
       .#{$css-prefix}btn {
-        margin: get-space(xxs);
+        margin: 0;
       }
     }
+  }
 
-    // thead {
-    //   th {
-    //     paddin
-    //   }
-    // }
+  &__month-list {
+    margin: 0 get-space(sm);
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
-    tbody {}
+    &,
+    & > li {
+      list-style-type: none;
+      padding: get-space(xs) 0;
+
+      .#{$css-prefix}btn {
+        min-width: 80px;
+        margin: 0;
+      }
+    }
+  }
+
+  &__year-scroller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .#{$css-prefix}scroller__content {
+      padding: 0;
+      margin: 0;
+
+      & > li {
+        list-style-type: none;
+      }
+
+      & > li {
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        @include user-drag(none);
+        padding: get-space(xs);
+        text-align: center;
+        transition: get-transition(primary);
+
+        &:hover,
+        &:focus {
+          @include theme-color(background, background-light);
+        }
+
+        &:active {
+          @include theme-color(background, background-active);
+        }
+      }
+    }
+  }
+
+  &__year--active {
+    @include font-size(xxl);
+    @include font-weight(bold);
+    @include theme-color(color, text-primary);
   }
 }

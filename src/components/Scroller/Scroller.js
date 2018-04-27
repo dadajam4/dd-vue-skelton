@@ -32,6 +32,10 @@ export default {
       type: String,
       default: 'div',
     },
+    contentTag: {
+      type: String,
+      default: 'div',
+    },
     horizontal: Boolean,
     vertical: Boolean,
     width: {
@@ -140,7 +144,7 @@ export default {
   },
 
   render(h) {
-    const $content = h('div', {
+    const $content = h(this.contentTag, {
       staticClass: 'vc@scroller__content',
       ref: 'content',
       directives: [{ name: 'resize', value: this.onResize }],

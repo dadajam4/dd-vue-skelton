@@ -1,0 +1,16 @@
+//
+// Picker
+//
+
+@function get-date-picker($key) {
+  @return map-get($date-picker, $key);
+}
+
+$date-picker: ();
+$date-picker: map-set($date-picker, header-height, 48px);
+$date-picker: map-set($date-picker, cell-size, 44px);
+$date-picker: map-set($date-picker, week-height, 28px);
+$date-picker: map-set($date-picker, body-width, get-date-picker(cell-size) * 7);
+$date-picker: map-set($date-picker, body-height, get-date-picker(cell-size) * 5 + get-date-picker(week-height));
+$date-picker: map-set($date-picker, width, get-date-picker(body-width));
+$date-picker: map-set($date-picker, height, get-date-picker(header-height) + get-date-picker(body-height));
