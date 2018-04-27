@@ -3,11 +3,18 @@
 
 <template>
   <docs-example>
+    <vt@switch
+      v-model="disabled"
+      :inline="false"
+      color="grey"
+    >disabled</vt@switch>
+
     <vt@btn
       v-for="size in ['sm', 'default', 'lg']"
       :key="size"
       v-bind="{[size]: size !== 'default'}"
       icon
+      :disabled="disabled"
     ><vt@icon>bars</vt@icon></vt@btn>
 
     <vt@btn
@@ -16,6 +23,7 @@
       v-bind="{[size]: size !== 'default'}"
       icon
       primary
+      :disabled="disabled"
     ><vt@icon>bars</vt@icon></vt@btn>
 
     <vt@btn
@@ -25,11 +33,17 @@
       icon
       outline
       info
+      :disabled="disabled"
     ><vt@icon>bars</vt@icon></vt@btn>
   </docs-example>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      disabled: false,
+    }
+  },
 }
 </script>

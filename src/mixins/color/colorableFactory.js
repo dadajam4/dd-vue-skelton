@@ -57,11 +57,17 @@ export default function colorableFactory(name, opts = {}) {
     methods: {
       [getMethodKey](key = computedKey) {
         const prefix = opts.addColorPrefix ? opts.addColorPrefix.call(this) : '';
-        let classes =
-          this.disabled ? {[`vc@${name}-color-${prefix}-muted`]: true}
-          // : this.error ? {[`vc@${name}-color-${prefix}-error`]: true}
-          : this[key] ? {[`vc@${name}-color-${prefix}-${this[key]}`]: true}
-          : {};
+        let classes = {};
+        if (name === 'context' && this.disabled) {
+          classes[`vc@context-color-${prefix}-muted`] = true;
+        } else if (this[key]) {
+          classes[`vc@${name}-color-${prefix}-${this[key]}`] = true;
+        }
+        // let classes =
+        //   this.disabled ? {[`vc@${name}-color-${prefix}-muted`]: true}
+        //   // : this.error ? {[`vc@${name}-color-${prefix}-error`]: true}
+        //   : this[key] ? {[`vc@${name}-color-${prefix}-${this[key]}`]: true}
+        //   : {};
 
         if (opts.mergeColorClasses) {
           classes = opts.mergeColorClasses.call(this, classes);

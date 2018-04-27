@@ -147,10 +147,10 @@
     @include theme-color(color, context-muted-text, true);
     pointer-events: none;
 
-    &:not(.#{$css-prefix}btn--icon) {
-      @include theme-color(background-color, context-muted, true);
-      @include theme-color(border-color, context-muted-border, true);
-    }
+    // &:not(.#{$css-prefix}btn--icon) {
+    //   @include theme-color(background-color, context-muted, true);
+    //   @include theme-color(border-color, context-muted-border, true);
+    // }
   }
 
   &--left,
