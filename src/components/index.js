@@ -4,6 +4,7 @@ import Alert from './Alert';
 import Avatar from './Avatar';
 import Card from './Card';
 import Chip from './Chip';
+import DatePicker from './DatePicker';
 import Dialog from './Dialog';
 import Overlay from './Overlay';
 import Grid from './Grid';
@@ -35,6 +36,7 @@ export default Object.assign({},
   Avatar,
   Card,
   Chip,
+  DatePicker,
   Dialog,
   Overlay,
   Grid,

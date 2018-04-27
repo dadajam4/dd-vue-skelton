@@ -14,6 +14,8 @@ import getZIndex from './getZIndex';
 import waitElementInsert from './waitElementInsert';
 import locationHashChange from './locationHashChange';
 import convertRouterRoutesToTree from './convertRouterRoutesToTree';
+import createNativeLocaleFormatter from './createNativeLocaleFormatter';
+import pad from './pad';
 
 
 
@@ -166,4 +168,6 @@ export {
   waitElementInsert,
   locationHashChange,
   convertRouterRoutesToTree,
+  createNativeLocaleFormatter,
+  pad,
 }
