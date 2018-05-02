@@ -37,6 +37,7 @@ export default {
       default: 'button'
     },
     depressed: Boolean,
+    hidden: Boolean,
   },
 
 
@@ -61,6 +62,7 @@ export default {
         'vc@btn--depressed': this.isDepressed,
         'vc@btn--loading': this.loading,
         'vc@btn--disabled': this.disabled,
+        'vc@btn--hidden': this.hidden,
       });
 
       return classes;

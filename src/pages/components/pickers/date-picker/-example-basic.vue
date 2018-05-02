@@ -8,7 +8,7 @@
 
     <vt@card style="display: inline-block;">
       <vt@date-picker
-        min="2018-5-11"
+        min="2018-5-2"
         max="2018-5-25"
       />
     </vt@card>

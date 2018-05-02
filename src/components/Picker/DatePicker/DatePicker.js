@@ -32,6 +32,10 @@ export default {
     },
     min: String,
     max: String,
+    currentTimeUpdateInterval: {
+      type: Number,
+      default: 1000,
+    },
   },
 
   provide() {
@@ -46,6 +50,7 @@ export default {
       displayMonth: 3,
       monthActive: this.type === 'month' ? true : false,
       yearActive: false,
+      currentDateTime: new Date().getTime(),
     }
   },
 
@@ -60,7 +65,14 @@ export default {
   methods: {
     safeDate(str) { return str && new Date(str.replace(/-/g, '/')) },
     checkAllowedDate(date) {
-      const testTarget = typeof date === 'object' && date.i instanceof Date ? date.i : date;
+      let testTarget = date;
+      if (typeof testTarget === 'object') {
+        if (typeof testTarget.m === 'number') {
+          testTarget = testTarget.m;
+        } else if (testTarget.i instanceof Date) {
+          testTarget = testTarget.i;
+        }
+      }
       let time;
       const dateType = typeof testTarget;
 
@@ -91,10 +103,33 @@ export default {
     onClickHeaderValue(key) {
       this.activateStack(key);
     },
+
+    updateCurrentDateTime() {
+      const tmp = new Date();
+      const date = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate());
+      this.currentDateTime = date.getTime();
+    },
+
+    startWatchCurrentDateTime() {
+      this.stopWatchCurrentDateTime();
+      this._watchCurrentTimeIntervalId = setInterval(this.updateCurrentDateTime, this.currentTimeUpdateInterval);
+    },
+
+    stopWatchCurrentDateTime() {
+      if (this._watchCurrentTimeIntervalId) {
+        clearInterval(this._watchCurrentTimeIntervalId);
+        delete this._watchCurrentTimeIntervalId;
+      }
+    },
   },
 
   mounted() {
     console.log(this.dateFormatDefine);
+    this.startWatchCurrentDateTime();
+  },
+
+  beforeDestroy() {
+    this.stopWatchCurrentDateTime();
   },
 
   render(h) {

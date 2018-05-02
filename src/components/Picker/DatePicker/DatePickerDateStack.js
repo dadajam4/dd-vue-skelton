@@ -32,15 +32,19 @@ export default {
   methods: {
     createDayInfo(year, month, day, fill = false) {
       const value = `${year}/${month + 1}/${day}`;
+      const i = new Date(value);
+      const m = i.getTime();
       const info = {
         year,
         month,
         day,
         fill,
         value,
-        i: new Date(value),
+        i,
+        m,
       }
       info.disabled = !this.$context.checkAllowedDate(info);
+      info.current = this.$context.currentDateTime === info.m;
       return info;
     },
     createDaysInfo(year, month) {
@@ -84,13 +88,13 @@ export default {
       const $days = days.map(info => {
         const $btn = h('vt@btn', {
           props: {
-            // flat: !current,
-            flat: true,
+            flat: !info.current,
+            // flat: true,
             icon: true,
             grey: info.fill,
             disabled: info.disabled,
-            // outline: current,
-            // primary: current,
+            outline: info.current,
+            primary: info.current,
           },
         }, info.day);
         const $cell = h('td', {key: info.value}, [$btn]);
@@ -117,6 +121,20 @@ export default {
           </tbody>
         </table>
       );
+    },
+    shiftBody(vec) {
+      let nextMonth = this.month + vec;
+      let nextYear = this.year;
+      if (nextMonth === -1) {
+        nextMonth = 11;
+        nextYear = nextYear - 1;
+      } else if (nextMonth === 12) {
+        nextMonth = 0;
+        nextYear = nextYear + 1;
+      }
+      this.year = nextYear;
+      this.month = nextMonth;
+      // console.warn(nextYear, nextMonth);
     },
   },
 

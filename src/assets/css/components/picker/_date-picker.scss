@@ -60,6 +60,7 @@
       margin: 0 auto;
       // padding: 0 get-space(xs);
       padding: 0;
+      @include font-size(sm);
     }
 
     &__value {

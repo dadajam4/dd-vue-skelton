@@ -44,6 +44,22 @@ export default {
     displayYear() { return this.dateFormatDefine.numericYearByValue(this.year) },
     displayMonth() { return this.dateFormatDefine.longMonthByValue(this.month) },
     ymIndexOrder() { return this.dateFormatDefine.ymIndexOrder },
+    prevYearAllowed() {
+      const time = new Date(this.year, 0, 0).getTime();
+      return this.$context.checkAllowedDate(time);
+    },
+    nextYearAllowed() {
+      const time = new Date(this.year + 1, 0, 1).getTime();
+      return this.$context.checkAllowedDate(time);
+    },
+    prevMonthAllowed() {
+      const time = new Date(this.year, this.month, 0).getTime();
+      return this.$context.checkAllowedDate(time);
+    },
+    nextMonthAllowed() {
+      const time = new Date(this.year, this.month + 1, 1).getTime();
+      return this.$context.checkAllowedDate(time);
+    },
   },
 
   methods: {
@@ -58,16 +74,24 @@ export default {
     },
 
     genHeaderControl(vec) {
+      let disabled;
+      if (this.type === 'date') {
+        disabled = vec === -1 ? !this.prevMonthAllowed : !this.nextMonthAllowed;
+      } else if (this.type === 'month') {
+        disabled = vec === -1 ? !this.prevYearAllowed : !this.nextYearAllowed;
+      }
+
       return this.$createElement('vt@btn', {
         staticClass: 'vc@date-picker__header__action',
         props: {
           flat: true,
           icon: 'angle-' + (vec === -1 ? 'left' : 'right'),
+          disabled,
+          hidden: disabled,
         },
         on: {
           click: e => {
-            // e.stopPropagation();
-            // this.$emit('clickControl', e);
+            this.shiftBody(vec);
           },
         },
       })
@@ -76,7 +100,7 @@ export default {
     genHeaderValues() {
       const values = [];
       for (const key of this.ymIndexOrder) {
-        if (this[key]) values.push(this.genHeaderValue(key));
+        if (typeof this[key] === 'number') values.push(this.genHeaderValue(key));
       }
       return this.$createElement('strong', {
         staticClass: 'vc@date-picker__header__values',
