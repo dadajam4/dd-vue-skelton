@@ -47,6 +47,7 @@
     "gulp.spritesmith": "^6.5.0",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-pngquant": "^5.0.1",
+    "intl": "^1.2.5",
     "node-sass-js-importer": "^3.0.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",

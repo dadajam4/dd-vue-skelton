@@ -7,7 +7,10 @@
     </template>
 
     <vt@card style="display: inline-block;">
-      <vt@date-picker />
+      <vt@date-picker
+        min="2018-5-11"
+        max="2018-5-25"
+      />
     </vt@card>
 
     <div class="vc@m-t--lg">

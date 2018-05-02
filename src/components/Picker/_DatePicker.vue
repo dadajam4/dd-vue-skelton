@@ -191,11 +191,30 @@
 export default {
   name: 'vt@date-picker',
 
+  props: {
+    // year: {
+    //   type: [String, Number],
+    //   default:
+    // },
+  },
+
   data() {
     return {
       monthActive: false,
       yearActive: false,
+      year: 2018,
+      month: 4,
     }
+  },
+
+  methods: {
+    getDays() {
+
+    },
+  },
+
+  mounted() {
+    this.getDays();
   },
 }
 </script>

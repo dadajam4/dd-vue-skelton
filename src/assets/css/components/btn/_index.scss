@@ -139,6 +139,12 @@
         @include my-icon-size($size);
       }
     }
+
+    .#{$css-prefix}icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   // includes icon
