@@ -1,21 +1,28 @@
 import Stack from './mixins/stack';
+import CalendarDateStackItem from './CalendarDateStackItem';
 
 
 
 export default {
-  name: 'vt@date-picker-date-stack',
+  name: 'vt@calendar-date-stack',
 
   mixins: [Stack],
 
   data() {
     return {
       type: 'date',
-      year: 2018,
-      month: 4,
     }
   },
 
   computed: {
+    year: {
+      get() { return this.$context.year },
+      set(val) { this.$context.year = val },
+    },
+    month: {
+      get() { return this.$context.month },
+      set(val) { this.$context.month = val },
+    },
     computedFirstDayOfWeek() { return parseInt(this.$context.firstDayOfWeek, 10) },
     narrowWeeks() { return this.dateFormatDefine.weekday.narrow },
     computedWeeks() {
@@ -27,79 +34,60 @@ export default {
       }
       return weeks;
     },
+    days() { return this.createDaysInfo() },
   },
 
   methods: {
-    createDayInfo(year, month, day, fill = false) {
-      const value = `${year}/${month + 1}/${day}`;
-      const i = new Date(value);
-      const m = i.getTime();
-      const info = {
-        year,
-        month,
-        day,
-        fill,
-        value,
-        i,
-        m,
-      }
-      info.disabled = !this.$context.checkAllowedDate(info);
-      info.current = this.$context.currentDateTime === info.m;
-      return info;
-    },
-    createDaysInfo(year, month) {
+    createDaysInfo(year = this.year, month = this.month) {
       const prevMonth = month === 0 ? 11 : month - 1;
       const nextMonth = month === 11 ? 0 : month + 1;
       const prevMonthYear = month === 0 && year - 1 || year;
       const nextMonthYear = month === 11 && year + 1 || year;
-      const startDate = new Date(year, month, 1);
+      const startDate = new Date(Date.UTC(year, month, 1));
       const endDate = new Date(year, month + 1, 0);
       const startWeek = startDate.getDay();
       const endWeek = endDate.getDay();
       const endDay = endDate.getDate();
       const needBefore = startWeek - this.computedFirstDayOfWeek;
       const needAfter = 6 - endWeek + this.computedFirstDayOfWeek;
-      const prevMonthEndDate = new Date(year, month, 0);
+      const prevMonthEndDate = new Date(Date.UTC(year, month, 0));
       const prevMonthEndDay = prevMonthEndDate.getDate();
       const days = [];
 
       for (let i = 0; i < needBefore; i++) {
         const day = prevMonthEndDay - needBefore + i + 1;
-        const info = this.createDayInfo(prevMonthYear, prevMonth, day, true);
-        days.push(info);
+        days.push({year: prevMonthYear, month: prevMonth, day, fill: true});
       }
 
       for (let i = 0; i < endDay; i++) {
         const day = i + 1;
-        const info = this.createDayInfo(year, month, day);
-        days.push(info);
+        days.push({year, month, day, fill: false});
       }
 
       for (let i = 0; i < needAfter; i++) {
         const day = i + 1;
-        const info = this.createDayInfo(nextMonthYear, nextMonth, day, true);
-        days.push(info);
+        days.push({year: nextMonthYear, month: nextMonth, day, fill: true});
       }
       return days;
     },
-    genDateTable() {
-      const days = this.createDaysInfo(this.year, this.month);
+
+    genDateTable(days = this.days, opts = {}) {
       const $weeks = this.computedWeeks.map(w => h('th', null, w));
-      const $days = days.map(info => {
-        const $btn = h('vt@btn', {
-          props: {
-            flat: !info.current,
-            // flat: true,
-            icon: true,
-            grey: info.fill,
-            disabled: info.disabled,
-            outline: info.current,
-            primary: info.current,
+      const $days = days.map(d => h(CalendarDateStackItem, {
+        props: {
+          year: d.year,
+          month: d.month,
+          day: d.day,
+          fill: d.fill,
+        },
+        on: {
+          click: e => {
+            this.$context.targetValue = e.value;
+            if (!this.base) this.isActive = false;
           },
-        }, info.day);
-        const $cell = h('td', {key: info.value}, [$btn]);
-        return $cell;
-      });
+        },
+        key: d.year + '-' + d.month + '-' + d.day,
+      }));
 
       const rows = [];
       for (let i = 0; i < 5; i++) {
@@ -110,7 +98,7 @@ export default {
       const $rows = rows.map((r, index) => h('tr', {key: index}, r));
 
       return (
-        <table class="vc@date-picker__table">
+        <table staticClass="vc@calendar__table vc@calendar__body__slide">
           <thead>
             <tr>
               {$weeks}
@@ -122,7 +110,8 @@ export default {
         </table>
       );
     },
-    shiftBody(vec) {
+
+    shiftValue(vec) {
       let nextMonth = this.month + vec;
       let nextYear = this.year;
       if (nextMonth === -1) {
@@ -132,9 +121,9 @@ export default {
         nextMonth = 0;
         nextYear = nextYear + 1;
       }
+
       this.year = nextYear;
       this.month = nextMonth;
-      // console.warn(nextYear, nextMonth);
     },
   },
 

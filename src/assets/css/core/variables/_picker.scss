@@ -2,16 +2,16 @@
 // Picker
 //
 
-@function get-date-picker($key) {
-  @return map-get($date-picker, $key);
+@function get-calendar($key) {
+  @return map-get($calendar, $key);
 }
 
-$date-picker: ();
-$date-picker: map-set($date-picker, header-height, 48px);
-$date-picker: map-set($date-picker, cell-size, 36px);
-$date-picker: map-set($date-picker, cell-btn-size, get-date-picker(cell-size) - 2px);
-$date-picker: map-set($date-picker, week-height, 28px);
-$date-picker: map-set($date-picker, body-width, get-date-picker(cell-size) * 7);
-$date-picker: map-set($date-picker, body-height, get-date-picker(cell-size) * 5 + get-date-picker(week-height));
-$date-picker: map-set($date-picker, width, get-date-picker(body-width));
-$date-picker: map-set($date-picker, height, get-date-picker(header-height) + get-date-picker(body-height));
+$calendar: ();
+$calendar: map-set($calendar, header-height, 48px);
+$calendar: map-set($calendar, cell-size, 36px);
+$calendar: map-set($calendar, cell-btn-size, get-calendar(cell-size) - 2px);
+$calendar: map-set($calendar, week-height, 28px);
+$calendar: map-set($calendar, body-width, get-calendar(cell-size) * 7);
+$calendar: map-set($calendar, body-height, get-calendar(cell-size) * 5 + get-calendar(week-height));
+$calendar: map-set($calendar, width, get-calendar(body-width));
+$calendar: map-set($calendar, height, get-calendar(header-height) + get-calendar(body-height));

@@ -25,7 +25,7 @@ for (const key of PATH_PROPS) {
 
 
 export default {
-  name: 'vt@date-picker-context',
+  name: 'vt@calendar-context',
 
   inject: ['$context'],
 

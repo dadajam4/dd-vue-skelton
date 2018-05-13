@@ -7,19 +7,34 @@
     </template>
 
     <vt@card style="display: inline-block;">
-      <vt@date-picker
+      <vt@calendar
+        v-model="date1"
+      />
+    </vt@card>
+    <pre><code>{{date1}}</code></pre>
+
+<!--
+    <div class="vc@m-t--lg">
+      <vt@calendar
+        v-model="date2"
         min="2018-5-2"
         max="2018-5-25"
       />
-    </vt@card>
-
-    <div class="vc@m-t--lg">
-      <vt@date-picker />
     </div>
+    <pre><code>{{date2}}</code></pre>
+-->
+
+
   </docs-example>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      date1: null,
+      date2: '2018-03',
+    }
+  },
 }
 </script>
