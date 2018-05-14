@@ -27,7 +27,7 @@ export default {
   },
 
   render(h) {
-    const $btn = h('vt@btn', {
+    const $btn = this.showFillDay || !this.fill && h('vt@btn', {
       props: {
         flat: true,
         icon: true,

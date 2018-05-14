@@ -108,16 +108,18 @@ export default {
       const $rows = rows.map((r, index) => h('tr', {key: index}, r));
 
       return (
-        <table staticClass="vc@calendar__table vc@calendar__body__slide">
-          <thead>
-            <tr>
-              {this.genWeeks()}
-            </tr>
-          </thead>
-          <tbody>
-            {$rows}
-          </tbody>
-        </table>
+        <div class="vc@calendar__table-wrapper vc@calendar__body__slide">
+          <table staticClass="vc@calendar__table">
+            <thead>
+              <tr>
+                {this.genWeeks()}
+              </tr>
+            </thead>
+            <tbody>
+              {$rows}
+            </tbody>
+          </table>
+        </div>
       );
     },
 

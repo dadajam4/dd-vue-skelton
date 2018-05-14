@@ -46,7 +46,7 @@ export default {
     locale: {
       type: String,
       // default: 'en-us',
-      default: 'ja',
+      // default: 'ja',
       // default: 'ja-JP',
     },
     firstDayOfWeek: {
@@ -85,6 +85,7 @@ export default {
       type: String,
       default: 'primary',
     },
+    showFillDay: Boolean,
   },
 
   provide() {
@@ -101,6 +102,8 @@ export default {
       yearActive: false,
       currentDateTime: new Date().getTime(),
       innerValue: this.value,
+      innerLocale: this.locale,
+      mounted: false,
     }
   },
 
@@ -113,7 +116,7 @@ export default {
     currentMonth() { return this.currentDate.getMonth() },
     typeIsDate() { return this.type === 'date' },
     typeIsMonth() { return this.type === 'month' },
-    dateFormatDefine() { return this.$util.createDateFormatDefine(this.locale) },
+    dateFormatDefine() { return this.$util.createDateFormatDefine(this.innerLocale) },
     minDate() { return this.min && this.safeDate(this.min) },
     minTime() { return this.minDate && this.minDate.getTime() },
     minYear() { return this.minDate && this.minDate.getFullYear() },
@@ -221,6 +224,10 @@ export default {
   watch: {
     value(val) {
       this.innerValue = val;
+    },
+
+    locale(val) {
+      this.setupLocale();
     },
   },
 
@@ -378,6 +385,10 @@ export default {
       this.targetValue = dateToISOString(new Date());
     },
 
+    setupLocale() {
+      this.innerLocale = this.locale || this.$util.getClientLanguage();
+    },
+
     setupInitialValue() {
       if (!this.value) {
         this.setValuesAtToday();
@@ -402,13 +413,22 @@ export default {
       this.year = year;
       if (this.$refs.monthStack) this.$refs.monthStack.year = year;
     },
+
+    tryMount() {
+      if (typeof window !== 'undefined') {
+        this.setupLocale();
+        this.mounted = true;
+      }
+    },
   },
 
   created() {
+    this.tryMount();
     this.setupInitialValue();
   },
 
   mounted() {
+    this.tryMount();
     this.startWatchCurrentDateTime();
   },
 
@@ -417,6 +437,7 @@ export default {
   },
 
   render(h) {
+    if (!this.mounted) return;
     const children = [
       h(CalendarMonthStack, {
         props: { value: this.monthActive, base: this.typeIsMonth },

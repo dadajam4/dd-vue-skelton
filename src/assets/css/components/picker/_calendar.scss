@@ -144,6 +144,11 @@
   }
 
   &__table {
+    &-wrapper {
+      top: 0;
+      width: 100%;
+      padding: 0 get-calendar(body-padding);
+    }
 
     // remove divider
     tr:not(:last-child),
@@ -198,7 +203,7 @@
       padding: get-space(xs) 0;
 
       .#{$css-prefix}btn {
-        // min-width: 80px;
+        min-width: 80px;
         margin: 0;
       }
     }

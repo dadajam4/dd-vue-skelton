@@ -15,6 +15,7 @@ import waitElementInsert from './waitElementInsert';
 import locationHashChange from './locationHashChange';
 import convertRouterRoutesToTree from './convertRouterRoutesToTree';
 import createDateFormatDefine from './createDateFormatDefine';
+import { getClientLanguage, getClientAcceptingLanguages } from './clientLanguage';
 
 
 
@@ -168,4 +169,6 @@ export {
   locationHashChange,
   convertRouterRoutesToTree,
   createDateFormatDefine,
+  getClientLanguage,
+  getClientAcceptingLanguages,
 }

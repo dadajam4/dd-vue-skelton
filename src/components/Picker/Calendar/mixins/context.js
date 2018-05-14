@@ -3,6 +3,7 @@ const PATH_PROPS = [
   'showCurrent',
   'holidayColor',
   'currentColor',
+  'showFillDay',
 ];
 
 const computed = {};
