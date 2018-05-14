@@ -46,20 +46,20 @@ export default {
     displayMonth() { return this.dateFormatDefine.longMonthByValue(this.month) },
     ymIndexOrder() { return this.dateFormatDefine.ymIndexOrder },
     prevYearAllowed() {
-      const time = new Date(this.year, 0, 0).getTime();
-      return this.$context.checkAllowedDate(time);
+      const info = this.$context.createAdvancedValueInfo(this.year - 1);
+      return info.allowed;
     },
     nextYearAllowed() {
-      const time = new Date(this.year + 1, 0, 1).getTime();
-      return this.$context.checkAllowedDate(time);
+      const info = this.$context.createAdvancedValueInfo(this.year + 1);
+      return info.allowed;
     },
     prevMonthAllowed() {
-      const time = new Date(this.year, this.month, 0).getTime();
-      return this.$context.checkAllowedDate(time);
+      const info = this.$context.createAdvancedValueInfo(this.year, this.month - 1);
+      return info.allowed;
     },
     nextMonthAllowed() {
-      const time = new Date(this.year, this.month + 1, 1).getTime();
-      return this.$context.checkAllowedDate(time);
+      const info = this.$context.createAdvancedValueInfo(this.year, this.month + 1);
+      return info.allowed;
     },
   },
 

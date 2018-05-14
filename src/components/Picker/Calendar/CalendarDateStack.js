@@ -30,7 +30,9 @@ export default {
       const seeds = this.narrowWeeks;
       const firstDayOfWeek = this.computedFirstDayOfWeek;
       for (let i = 0; i < 7; i++) {
-        weeks.push(seeds[(i + firstDayOfWeek) % 7]);
+        const week = (i + firstDayOfWeek) % 7;
+        const isHoliday = this.$context.checkIsHolidayWeek(week);
+        weeks.push({week, isHoliday, label: seeds[week]});
       }
       return weeks;
     },
@@ -71,8 +73,16 @@ export default {
       return days;
     },
 
+    genWeeks() {
+      return this.computedWeeks.map(w => {
+        const options = w.isHoliday && this.holidayColor ? {
+          staticClass: 'vc@text-color--' + this.holidayColor,
+        } : null;
+        return this.$createElement('th', options, w.label);
+      });
+    },
+
     genDateTable(days = this.days, opts = {}) {
-      const $weeks = this.computedWeeks.map(w => h('th', null, w));
       const $days = days.map(d => h(CalendarDateStackItem, {
         props: {
           year: d.year,
@@ -101,7 +111,7 @@ export default {
         <table staticClass="vc@calendar__table vc@calendar__body__slide">
           <thead>
             <tr>
-              {$weeks}
+              {this.genWeeks()}
             </tr>
           </thead>
           <tbody>

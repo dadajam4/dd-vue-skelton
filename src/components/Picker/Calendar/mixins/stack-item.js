@@ -21,8 +21,13 @@ export default {
       if (this.day !== undefined) args.push(this.day);
       return new Date(...args);
     },
+    info() {
+      return this.$context.createAdvancedValueInfo(this.year, this.month, this.day);
+    },
     isCurrent() { return this.$context.checkValueIsCurrentDate(this.value) },
-    isAllowed() { return this.$context.checkAllowedDate(this.date) },
+    isDisplayCurrent() { return this.showCurrent &&  this.isCurrent },
+    isActive() { return this.$context.checkValueIsActive(this.value) },
+    isAllowed() { return this.info.allowed },
   },
 
   methods: {

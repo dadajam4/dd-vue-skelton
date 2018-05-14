@@ -5,11 +5,18 @@ export default {
 
   mixins: [StackItem],
 
+  data() {
+    return {
+      checkAllowedType: 'year',
+    }
+  },
+
   render(h) {
     return h('li', {
       class: {
-        // 'vc@calendar__year--active': isActive,
-        'vc@calendar__year--current': this.isCurrent,
+        'vc@calendar__year--current': this.isDisplayCurrent,
+        'vc@calendar__year--disabled': !this.isAllowed,
+        'vc@calendar__year--active': this.isActive,
       },
       on: {
         click: this.onClick,

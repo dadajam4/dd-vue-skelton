@@ -9,18 +9,31 @@ export default {
     fill: Boolean,
   },
 
+  data() {
+    return {
+      checkAllowedType: 'date',
+    }
+  },
+
   computed: {
+    isHoliday() { return this.info.holiday },
+    holidayInfo() { return this.info.holidayInfo },
+    textColor() {
+      if (!this.isAllowed) return;
+      if (this.fill) return 'grey';
+      if (this.isDisplayCurrent) return this.currentColor;
+      if (this.isHoliday) return this.holidayColor;
+    },
   },
 
   render(h) {
     const $btn = h('vt@btn', {
       props: {
-        flat: !this.isCurrent,
+        flat: true,
         icon: true,
-        grey: this.fill,
         disabled: !this.isAllowed,
-        outline: this.isCurrent,
-        primary: this.isCurrent,
+        textColor: this.textColor,
+        // primary: this.isDisplayCurrent,
       },
     }, this.day);
     return h('td', null, [$btn]);

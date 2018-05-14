@@ -62,6 +62,9 @@ export default {
       type: String,
       default: 'dark',
     },
+    layerActiveOpacity: {
+      type: [Number, String],
+    },
     detectWindiwResize: Boolean,
     horizontalScroll: {
       type: Boolean,
@@ -152,11 +155,15 @@ export default {
 
     const $layers = ['top', 'right', 'bottom', 'left'].map(vec => {
       const type = (vec === 'top' || vec === 'bottom') ? 'vertical' : 'horizontal';
+      const isActive = this[`${vec}IsScrollable`];
+      const style = isActive && this.layerActiveOpacity && {opacity: this.layerActiveOpacity};
+
       return h('div', {
         staticClass: `vc@scroller__layer vc@scroller__layer--${vec}  vc@scroller__layer--${type}`,
         class: {
-          'vc@scroller__layer--active': this[`${vec}IsScrollable`],
+          'vc@scroller__layer--active': isActive,
         },
+        style,
       })
     });
 

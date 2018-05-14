@@ -249,6 +249,12 @@
           @include font-weight(bold);
           @include theme-color(color, text-primary);
         }
+
+        &.#{$css-prefix}calendar__year--disabled {
+          @include theme-color(color, text-muted);
+          cursor: default;
+          pointer-events: none;
+        }
       }
     }
   }

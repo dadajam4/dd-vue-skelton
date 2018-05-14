@@ -26,6 +26,7 @@ export default {
       this.year = this.$context.year;
     },
   },
+
   methods: {
     createMonthsInfo(year = this.year) {
       const months = [];

@@ -5,17 +5,24 @@ export default {
 
   mixins: [StackItem],
 
+  data() {
+    return {
+      checkAllowedType: 'month',
+    }
+  },
+
   computed: {
-    label() { return this.dateFormatDefine.month.narrow[this.month] },
+    label() { return this.dateFormatDefine.month.short[this.month] },
   },
 
   render(h) {
     const $btn = h('vt@btn', {
       props: {
         sm: true,
-        flat: true,
-        outline: this.isCurrent,
-        primary: this.isCurrent,
+        flat: !this.isActive,
+        depressed: this.isActive,
+        outline: this.isDisplayCurrent && !this.isActive,
+        primary: this.isDisplayCurrent || this.isActive,
         disabled: !this.isAllowed,
       },
       on: {

@@ -24,7 +24,7 @@ const dateToISOString = (year, month, day) => {
   }
 
   let str = date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0');
-  if (day !== undefined) str += (dat === true ? '01' : String(date.getDate() + 1).padStart(2, '0'));
+  if (day === true) str += '-' + String(date.getDate()).padStart(2, '0');
   return str;
 }
 
@@ -35,6 +35,7 @@ export default {
 
   props: {
     value: String,
+    picker: Boolean,
     type: {
       type: String,
       default: 'date',
@@ -53,7 +54,7 @@ export default {
       default: 0,
     },
     allowedDates: {
-      type: [Array, Function],
+      type: [String, Array, Function], // ex. ['2018-3-1', '2018-1', ...] or info => (info.value === '2012-02-11')
     },
     min: String,
     max: String,
@@ -64,6 +65,25 @@ export default {
     refreshCurrentTimeInterval: {
       type: [String, Number],
       default: 60000,
+    },
+    showCurrent: {
+      type: Boolean,
+      default: true,
+    },
+    holidayWeeks: {
+      type: [String, Array],
+      default: () => [0],
+    },
+    holidays: {
+      type: [String, Array, Function],
+    },
+    holidayColor: {
+      type: String,
+      // default: 'red-accent-1',
+    },
+    currentColor: {
+      type: String,
+      default: 'primary',
     },
   },
 
@@ -87,7 +107,7 @@ export default {
   computed: {
     computedRefreshCurrentTimeInterval() { return this.refreshCurrentTimeInterval && parseInt(this.refreshCurrentTimeInterval, 10) },
     currentDate() { return new Date(this.currentDateTime) },
-    currentDateValue() { return dateToISOString(this.currentDate) },
+    currentDateValue() { return dateToISOString(this.currentDate, void(0), true) },
     currentYear() { return this.currentDate.getFullYear() },
     currentDay() { return this.currentDate.getDate() },
     currentMonth() { return this.currentDate.getMonth() },
@@ -97,9 +117,15 @@ export default {
     minDate() { return this.min && this.safeDate(this.min) },
     minTime() { return this.minDate && this.minDate.getTime() },
     minYear() { return this.minDate && this.minDate.getFullYear() },
+    minMonth() { return this.minDate && this.minDate.getMonth() },
+    minDay() { return this.minDate && this.minDate.getDate() },
+    minValue() { return this.min && this.createValue(this.minYear, this.minMonth, this.minDay) },
     maxDate() { return this.max && this.safeDate(this.max) },
     maxTime() { return this.maxDate && this.maxDate.getTime() },
     maxYear() { return this.maxDate && this.maxDate.getFullYear() },
+    maxMonth() { return this.maxDate && this.maxDate.getMonth() },
+    maxDay() { return this.maxDate && this.maxDate.getDate() },
+    maxValue() { return this.max && this.createValue(this.maxYear, this.maxMonth, this.maxDay) },
     computedYearRange() { return this.yearRange && parseInt(this.yearRange, 10) },
     computedYearRangeInfo() {
       const currentYear = this.currentYear;
@@ -142,6 +168,54 @@ export default {
         this.targetValue = targetValue.split('-')[0] + '-' + String(val + 1).padStart(2, '0');
       },
     },
+    allowedCheckers() {
+      const sources = this.allowedDates;
+      if (!sources) return [];
+      const checkers = (Array.isArray(sources) ? sources : [sources]).map(source => {
+        if (typeof source === 'function') return source;
+        const allowed = this.createValueInfo(source);
+        return target => {
+          if (allowed.year !== undefined && target.year !== undefined && target.year !== allowed.year) return false;
+          if (allowed.month !== undefined && target.month !== undefined && target.month !== allowed.month) return false;
+          if (allowed.day !== undefined && target.day !== undefined && target.day !== allowed.day) return false;
+          if (allowed.week !== undefined && target.week !== undefined && target.week !== allowed.week) return false;
+          return true;
+        }
+      });
+      return checkers;
+    },
+    computedHolidayWeeks() {
+      const holidayWeeks = this.holidayWeeks;
+      if (!holidayWeeks) return [];
+      if (typeof holidayWeeks === 'string') {
+        return holidayWeeks.split(',').map(str => parseInt(str.trim(), 10));
+      } else {
+        return Array.isArray(holidayWeeks) ? holidayWeeks : [holidayWeeks];
+      }
+    },
+    computedHolidays() {
+      const holidays = this.holidays;
+      if (!holidays) return [];
+      return Array.isArray(holidays) ? holidays : [];
+    },
+    holidayCheckers() {
+      const holidayWeeks = this.computedHolidayWeeks;
+      const holidays = this.computedHolidays;
+      const sources = holidays.concat(holidayWeeks);
+      const checkers = (Array.isArray(sources) ? sources : [sources]).map(source => {
+        if (typeof source === 'function') return source;
+        const hit = typeof source === 'string' ? this.createValueInfo(source) : source;
+        return target => {
+          if (typeof hit === 'number') return target.week === hit;
+          if (hit.year !== undefined && target.year !== undefined && target.year !== hit.year) return false;
+          if (hit.month !== undefined && target.month !== undefined && target.month !== hit.month) return false;
+          if (hit.day !== undefined && target.day !== undefined && target.day !== hit.day) return false;
+          if (hit.week !== undefined && target.week !== undefined && target.week !== hit.week) return false;
+          return true;
+        }
+      });
+      return checkers;
+    },
   },
 
   watch: {
@@ -165,6 +239,51 @@ export default {
       return value;
     },
 
+    valueStringSplitter(str) {
+      const tmp = str.split(/[-\/]/);
+      return {
+        year: parseInt(tmp[0], 10),
+        month: parseInt(tmp[1], 10) - 1,
+        day: parseInt(tmp[2], 10),
+      }
+    },
+
+    createValueInfo(year, month, day) {
+      if (typeof year === 'string') {
+        ({ year, month, day } = this.valueStringSplitter(year));
+      } else if (year instanceof Date) {
+        year = year.getFullYear();
+        month = year.getMonth();
+        day = year.getDay();
+      }
+
+      const value = this.createValue(year, month, day);
+      const date = safeDate(value);
+      const type = day ? 'date' : (month === undefined ? 'year' : 'month');
+      const info = {
+        year,
+        month,
+        day,
+        week: day ? date.getDay() : void(0),
+        value,
+        type,
+        date,
+      }
+      return info;
+    },
+
+    createAdvancedValueInfo(year, month, day) {
+      const info = this.createValueInfo(year, month, day);
+      if (info.type === 'date') {
+        const holidayInfo = this.getHolidayByInfo(info);
+        info.holiday = !!holidayInfo;
+        info.holidayInfo = typeof holidayInfo !== 'boolean' ? holidayInfo : null;
+      }
+      info.overflowed = this.checkDateIsOverflow(info);
+      info.allowed = this.checkDateIsAllowed(info);
+      return info;
+    },
+
     setValueByTime(time) {
       this.targetValue = dateToISOString(time);
     },
@@ -172,6 +291,14 @@ export default {
     setValues(year, month) {
       const value = year + '-' + String(month + 1).padStart(2, '0');
       this.targetValue = value;
+    },
+
+    checkIsHolidayWeek(week) {
+      return this.computedHolidayWeeks.includes(week);
+    },
+
+    checkValueIsActive(value) {
+      return this.targetValue.indexOf(value) === 0;
     },
 
     checkValueIsCurrentDate(value) {
@@ -185,38 +312,42 @@ export default {
       return isCurrent;
     },
 
-    checkAllowedDate(date) {
-      let testTarget = date;
-      if (typeof testTarget === 'object') {
-        if (typeof testTarget.m === 'number') {
-          testTarget = testTarget.m;
-        } else if (testTarget.i instanceof Date) {
-          testTarget = testTarget.i;
-        }
-      }
-      let time;
-      const dateType = typeof testTarget;
-
-      if (dateType === 'number') {
-        time = testTarget;
-      } else if (dateType === 'string') {
-        time = this.safeDate(testTarget).getTime();
-      } else if (testTarget instanceof Date) {
-        time = testTarget.getTime();
-      } else {
-        throw new Error('[checkAllowedDate] 引数の型が正しくありません');
-      }
-
-      if (this.minTime && this.minTime > time) return false;
-      if (this.maxTime && this.maxTime < time) return false;
-      if (this.allowedDates) {
-        if (typeof this.allowedDates === 'function') return this.allowedDates(date);
-        for (const allowedDate of this.allowedDates) {
-          if (this.safeDate(allowedDate).getTime() !== time) return false;
-        }
-      }
-      return true;
+    checkDateIsOverflow(info) {
+      if (this.minYear !== undefined && info.year < this.minYear) return true;
+      if (this.minMonth !== undefined && info.month !== undefined && info.month < this.minMonth) return true;
+      if (this.minDay !== undefined && info.day !== undefined && info.day < this.minDay) return true;
+      if (this.maxYear !== undefined && info.year > this.maxYear) return true;
+      if (this.maxMonth !== undefined && info.month !== undefined && info.month > this.maxMonth) return true;
+      if (this.maxDay !== undefined && info.day !== undefined && info.day > this.maxDay) return true;
+      return false;
     },
+
+    checkDateIsAllowed(info) {
+      const overflowed = info.overflowed;
+      const checkers = this.allowedCheckers;
+      if (checkers.length === 0) return !overflowed;
+
+      let isAllowed = false;
+
+      for (let checker of checkers) {
+        if (checker(info)) {
+          isAllowed = true;
+          break;
+        }
+      }
+      return isAllowed;
+    },
+
+    getHolidayByInfo(info) {
+      let holidayInfo = null;
+      const checkers = this.holidayCheckers;
+      for (let checker of checkers) {
+        holidayInfo = checker(info);
+        if (holidayInfo) break;
+      }
+      return holidayInfo;
+    },
+
     activateStack(key) {
       this[`${key}Active`] = true;
     },

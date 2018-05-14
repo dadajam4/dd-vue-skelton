@@ -14,7 +14,29 @@ export default {
     }
   },
 
+  watch: {
+    innerValue(val) {
+      if (!val) return;
+      const $scroller = this.$refs.scroller;
+      this.$nextTick(() => {
+        this.initScrollPosition();
+      });
+    },
+  },
+
   methods: {
+    initScrollPosition() {
+      const $scroller = this.$refs.scroller;
+      $scroller.update();
+
+      const $container = $scroller.$refs.scroller;
+      const $target = $container.querySelector(`[data-calendar-year-${this.$context.year}]`);
+      if (!$target) return;
+
+      const $targetRect = $target.getBoundingClientRect();
+      $container.scrollTop = $target.offsetTop - Math.round($container.offsetHeight / 2 - $target.offsetHeight / 2);
+    },
+
     genScroller() {
       const yearRangeInfo = this.$context.computedYearRangeInfo;
       const h = this.$createElement;
@@ -23,6 +45,9 @@ export default {
         return h(CalendarYearStackItem, {
           props: {
             year,
+          },
+          attrs: {
+            [`data-calendar-year-${year}`]: '',
           },
           on: {
             click: e => {
@@ -38,7 +63,10 @@ export default {
         staticClass: 'vc@calendar__year-scroller',
         props: {
           contentTag: 'ul',
+          layerColor: 'inverted',
+          layerActiveOpacity: 0.8,
         },
+        ref: 'scroller',
       }, $years);
       return $scroller;
     },
