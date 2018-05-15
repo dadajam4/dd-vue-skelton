@@ -36,6 +36,7 @@ export default {
   props: {
     value: String,
     picker: Boolean,
+    pickedValue: String,
     type: {
       type: String,
       default: 'date',
@@ -86,6 +87,13 @@ export default {
       default: 'primary',
     },
     showFillDay: Boolean,
+    events: {
+      type: [Array, Object, String],
+    },
+    eventColor: {
+      type: [String, Function],
+      default: 'warning',
+    },
   },
 
   provide() {
@@ -104,6 +112,7 @@ export default {
       innerValue: this.value,
       innerLocale: this.locale,
       mounted: false,
+      innerPickedValue: this.pickedValue,
     }
   },
 
@@ -129,6 +138,30 @@ export default {
     maxMonth() { return this.maxDate && this.maxDate.getMonth() },
     maxDay() { return this.maxDate && this.maxDate.getDate() },
     maxValue() { return this.max && this.createValue(this.maxYear, this.maxMonth, this.maxDay) },
+    computedEvents() {
+      const propEvents = this.events;
+      if (!propEvents) return [];
+      let events;
+
+      if (Array.isArray(propEvents)) {
+        events = propEvents;
+      } else {
+        if (typeof propEvents === 'object' && !propEvents.value) {
+          for (const value in events) {
+            events.push({ value, ...events[value] });
+          }
+        } else {
+          events = [propEvents];
+        }
+      }
+
+      return events.map(event => {
+        const info = typeof event === 'string' ? { value: event } : event;
+        const colorSource = info.color || this.eventColor;
+        const color = typeof colorSource === 'function' ? colorSource(info) : colorSource;
+        return Object.assign({ source: info, color }, this.createValueInfo(info.value));
+      });
+    },
     computedYearRange() { return this.yearRange && parseInt(this.yearRange, 10) },
     computedYearRangeInfo() {
       const currentYear = this.currentYear;
@@ -219,6 +252,14 @@ export default {
       });
       return checkers;
     },
+
+    pickedDate: {
+      get() { return this.innerPickedValue },
+      set(val) {
+        this.innerPickedValue = val;
+        this.$emit('inputPickedDate', val);
+      },
+    },
   },
 
   watch: {
@@ -228,6 +269,10 @@ export default {
 
     locale(val) {
       this.setupLocale();
+    },
+
+    pickedValue(val) {
+      this.innerPickedValue = val;
     },
   },
 
@@ -275,6 +320,7 @@ export default {
         value,
         type,
         date,
+        _isInfo: true,
       }
       return info;
     },
@@ -288,6 +334,8 @@ export default {
       }
       info.overflowed = this.checkDateIsOverflow(info);
       info.allowed = this.checkDateIsAllowed(info);
+      info.events = this.getEvents(info);
+      info._isAdvanceInfo = true;
       return info;
     },
 
@@ -419,6 +467,29 @@ export default {
         this.setupLocale();
         this.mounted = true;
       }
+    },
+
+    isInfo(target) {
+      return typeof target === 'object'
+    },
+
+    getSafeInfo(year, month, day) {
+      return year && typeof year === 'object' && year._isInfo ? year : this.createAdvancedValueInfo(year, month, day);
+    },
+
+    isPicked(year, month, day) {
+      const info = this.getSafeInfo(year, month, day);
+      return this.pickedDate === info.value;
+    },
+
+    pickDate(year, month, day) {
+      const info = this.getSafeInfo(year, month, day);
+      this.pickedDate = info.value;
+    },
+
+    getEvents(year, month, day) {
+      const info = this.getSafeInfo(year, month, day);
+      return this.computedEvents.filter(event => event.value === info.value);
     },
   },
 

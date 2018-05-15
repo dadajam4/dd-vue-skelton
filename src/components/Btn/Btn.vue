@@ -25,7 +25,8 @@ export default {
 
     // states
     loading: Boolean,
-    disabled: Boolean,
+    // disabled: Boolean,
+    // noaction: Boolean,
 
     // values
     tag: {
@@ -38,6 +39,10 @@ export default {
     },
     depressed: Boolean,
     hidden: Boolean,
+    loadingWithNoaction: {
+      type: Boolean,
+      default: true,
+    },
   },
 
 
@@ -45,6 +50,8 @@ export default {
   computed: {
     isIcon() { return typeof this.icon === 'string' || this.icon },
     isDepressed() { return this.depressed || this.flat || this.outline },
+    advanceClickNotAllowed() { return this.loadingWithNoaction && this.loading },
+
     classes() {
       const classes = this.addColorClasses({
         [this.$options.name]: true,
@@ -63,6 +70,7 @@ export default {
         'vc@btn--loading': this.loading,
         'vc@btn--disabled': this.disabled,
         'vc@btn--hidden': this.hidden,
+        'vc@btn--noaction': this.noaction,
       });
 
       return classes;
@@ -73,12 +81,13 @@ export default {
 
   methods: {
     // Prevent focus to match md spec
-    click(e) {
-      e.detail &&
-        this.$el.blur();
+    // click(e) {
+    //   console.warn(e);
+    //   e.detail &&
+    //     this.$el.blur();
 
-      this.$emit('click', e);
-    },
+    //   this.$emit('click', e);
+    // },
 
     focus() {
       this.$el.focus();

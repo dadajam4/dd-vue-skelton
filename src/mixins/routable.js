@@ -5,6 +5,7 @@ export default {
     activeClass: String,
     append     : Boolean,
     disabled   : Boolean,
+    noaction   : Boolean,
     exact      : Boolean,
     href       : [String, Object],
     to         : [String, Object],
@@ -16,14 +17,29 @@ export default {
     target     : String,
   },
 
+  computed: {
+    clickNotAllowed() { return this.disabled || this.noaction || this.advanceClickNotAllowed },
+  },
+
   methods: {
     // click() {},
     generateRouteLink({tagForce} = {}) {
       let exact = this.exact
       let tag;
 
+      const listeners = (this.$listeners || {});
+      const originClick = listeners.click;
+      if (originClick) {
+        listeners.click = e => {
+          if (this.clickNotAllowed) return;
+          originClick(e);
+        }
+      }
+
       const data = {
-        attrs: { disabled: this.disabled },
+        attrs: {
+          disabled: this.disabled,
+        },
         class: this.classes,
         props: {},
         // directives: [{
@@ -31,9 +47,12 @@ export default {
         //   value: this.ripple || false,
         // }],
         on: {
-          ...(this.$listeners || {}),
-          // click: this.click,
+          ...listeners,
         },
+      }
+
+      if (this.clickNotAllowed) {
+        data.attrs.tabindex = '-1';
       }
 
       if (typeof this.exact === 'undefined') {

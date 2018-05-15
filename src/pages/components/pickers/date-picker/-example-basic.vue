@@ -18,9 +18,13 @@
         :locale="locale"
         v-model="date1"
         picker
+        :pickedValue="date1Picked"
+        @inputPickedDate="date1Picked = $event"
+        :events="['2018-5-1', '2018-5-19', {value: '2018-5-19', color: 'red'}]"
       />
     </vt@card>
     <pre><code>{{date1}}</code></pre>
+    <pre><code>{{date1Picked}}</code></pre>
 
     <div class="vc@m-t--lg">
       <vt@calendar
@@ -42,7 +46,7 @@ export default {
     return {
       date1: null,
       date2: '2018-04',
-      selects1: ['2018-5-10'],
+      date1Picked: null,
       locale: null,
     }
   },

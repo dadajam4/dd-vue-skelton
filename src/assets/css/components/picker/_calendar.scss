@@ -11,6 +11,7 @@
   position: relative;
   overflow: hidden;
   border-radius: inherit;
+  @include theme-color(background, background);
 
   &__stack {
     position: absolute;
@@ -172,6 +173,7 @@
     }
 
     td {
+      position: relative;
       padding: 0;
       @include square(get-calendar(cell-size));
 
@@ -180,6 +182,31 @@
         @include square(get-calendar(cell-btn-size));
         line-height: 1;
         @include font-size(sm);
+      }
+    }
+
+    &__events {
+      position: absolute;
+      // z-index: 1;
+      left: 0;
+      width: 100%;
+      bottom: 2px;
+      display: block;
+      text-align: center;
+      overflow: hidden;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    &__event {
+      display: inline-block;
+      vertical-align: bottom;
+      @include square(5px);
+      background: currentColor;
+      border-radius: 50%;
+
+      &:not(:first-child) {
+        margin-left: 1px;
       }
     }
   }

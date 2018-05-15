@@ -4,6 +4,7 @@ const PATH_PROPS = [
   'holidayColor',
   'currentColor',
   'showFillDay',
+  'picker',
 ];
 
 const computed = {};

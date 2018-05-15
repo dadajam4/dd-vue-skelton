@@ -95,8 +95,10 @@
 
   &:hover,
   &:focus {
-    &:before {
-      background-color: currentColor;
+    &:not(.#{$css-prefix}btn--disabled):not(.#{$css-prefix}btn--noaction) {
+      &:before {
+        background-color: currentColor;
+      }
     }
   }
 
@@ -164,9 +166,14 @@
     }
   }
 
+  &#{&}--disabled,
+  &#{&}--noaction {
+    pointer-events: none;
+    cursor: default;
+  }
+
   &#{&}--disabled {
     @include theme-color(color, context-muted-text, true);
-    pointer-events: none;
 
     // &:not(.#{$css-prefix}btn--icon) {
     //   @include theme-color(background-color, context-muted, true);
@@ -199,7 +206,7 @@
 
   // loader
   &--loading {
-    pointer-events: none;
+    // pointer-events: none;
 
     .#{$css-prefix}btn__content {
       opacity: 0;
