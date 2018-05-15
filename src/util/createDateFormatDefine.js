@@ -2,27 +2,49 @@ const cache = {};
 
 
 
-// for node process polyfill
-if (typeof process !== 'undefined' && process.pid) {
-  Intl = require('intl');
-}
+// // for node process polyfill
+// if (typeof process !== 'undefined' && process.pid) {
+//   Intl = require('intl');
+// }
 
 
 
 class DateFormatDefine {
   constructor(define) {
-    define = JSON.parse(JSON.stringify(define));
+    // define = JSON.parse(JSON.stringify(define));
+
+    this._numericYearCaches = [];
+    this._numericDayCaches = [];
+
     for (let key in define) {
       this[key] = define[key];
     }
   }
 
-  numericYearByValue(value) {
-    return this.year.numeric.replace('{y}', value);
+  numericYearByValue(value, numericSkip = false) {
+    const cacheKey = (numericSkip ? 'n' : '') + value;
+    const cache = this._numericYearCaches[cacheKey];
+    if (cache) return cache;
+    const date = new Date(value, 0, 1);
+    const label = this.year.numeric(date);
+    const result = numericSkip && label.match(/\d/) ? value : label;
+    this._numericYearCaches[cacheKey] = result;
+    return result;
   }
 
   longMonthByValue(value) {
     return this.month.long[value];
+  }
+
+  numericDayByValue(value, numericSkip = false) {
+    const cacheKey = (numericSkip ? 'n' : '') + value;
+    const cache = this._numericDayCaches[cacheKey];
+    if (cache) return cache;
+    const date = new Date(2018, 0, value);
+    const label = this.day.numeric(date);
+    const result = numericSkip && label.match(/\d/) ? value : label;
+    this._numericDayCaches[cacheKey] = result;
+    return result;
   }
 }
 
@@ -82,7 +104,7 @@ export default function createDateFormatDefine(locale) {
     const date = new Date(Date.UTC(1111, 0, 1));
     for (const key in define.year) {
       const formatter = new Intl.DateTimeFormat(locale, { year: key });
-      define.year[key] = formatter.format(date).replace(/1+/, '{y}');
+      define.year[key] = formatter.format;
     }
   }
 
@@ -103,7 +125,11 @@ export default function createDateFormatDefine(locale) {
     const date = new Date(Date.UTC(1111, 0, 11));
     for (const key in define.day) {
       const formatter = new Intl.DateTimeFormat(locale, { day: key });
-      define.day[key] = formatter.format(date).replace(/1+/, '{d}');
+      define.day[key] = formatter.format;
+      // for (let d = 1; d < 32; d++) {
+      //   const date = new Date(Date.UTC(1111, 0, d));
+      //   // define.day[key].push(formatter.format(date));
+      // }
     }
   }
 

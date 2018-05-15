@@ -96,6 +96,11 @@ export default {
       type: [String, Number],
       default: 0,
     },
+    maxHeight: {
+      type: [String, Number],
+      default: 300,//'75vh',
+    },
+    switchOffsetOverflow: Boolean,
   },
 
   data() {
@@ -361,7 +366,16 @@ export default {
       return this.$refs.input.focus();
     },
     blur() {
-      return this.$refs.input.blur();
+      if (typeof document !== 'undefined' && document.activeElement === this.$refs.input) {
+        this.$refs.input.blur();
+      } else {
+        if (this.focused) {
+          this.focused = false;
+          this.$emit('blur');
+        }
+      }
+      // this.focused = false;
+      // return this.$refs.input.blur();
     },
     onFocusInput(e) {
       this.focused = true;
@@ -370,7 +384,7 @@ export default {
     onBlurInput(e) {
       if (this.elementIsInContext(e.relatedTarget)) {
         e.preventDefault();
-        this.$refs.input.focus();
+        // this.$refs.input.focus();
         return;
       }
       this.focused = false;
@@ -519,14 +533,14 @@ export default {
             'vc@combobox__menu': true,
             'vc@combobox__menu--hide': isEmpty && !this.hasNoDataText,
           },
+          maxHeight: this.maxHeight,
           activator: () => this.$refs.body,
           offsetY: true,
           activatorAction: null,
           closeOnContentClick: !this.multiple,
-          closeOnOutsideClick: false,
           closeOnEsc: true,
           disabled: this.disabled,
-          offsetOverflow: this.autocomplete,
+          switchOffsetOverflow: this.switchOffsetOverflow || this.autocomplete || this.multiple,
           value: this.menuIsActive,
         },
 
@@ -534,6 +548,8 @@ export default {
           input: val => {
             if (!val) {
               this.menuIsActive = false;
+              // this.focused = false;
+              // this.blur();
             }
           },
         },
@@ -615,14 +631,32 @@ export default {
         this.menuIsActive = true;
       }
     },
-  },
-
-  mounted() {
-    if (this.autofocus) this.focus();
+    startBlurClickListener() {
+      this.stopBlurClickListener();
+      document.addEventListener('click', this.blurClickListener, false);
+    },
+    blurClickListener(e) {
+      if (!this.focused) return;
+      if (!this.elementIsInContext(e.target)) {
+        this.blur();
+      }
+    },
+    stopBlurClickListener() {
+      document.addEventListener('click', this.blurClickListener, false);
+    },
   },
 
   created() {
     this.selectionItemKey = 0;
+  },
+
+  mounted() {
+    if (this.autofocus) this.focus();
+    this.startBlurClickListener();
+  },
+
+  beforeDestroy() {
+    this.stopBlurClickListener();
   },
 
   render(h) {

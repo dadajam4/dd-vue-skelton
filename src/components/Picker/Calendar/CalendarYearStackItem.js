@@ -11,6 +11,10 @@ export default {
     }
   },
 
+  computed: {
+    label() { return this.dateFormatDefine.numericYearByValue(this.year, true) },
+  },
+
   render(h) {
     return h('li', {
       class: {
@@ -21,6 +25,6 @@ export default {
       on: {
         click: this.onClick,
       },
-    }, this.year);
+    }, this.label);
   },
 }

@@ -8,6 +8,7 @@
 
     <vt@select
       label="locale"
+      autocomplete
       v-model="locale"
       :options="locales"
     />

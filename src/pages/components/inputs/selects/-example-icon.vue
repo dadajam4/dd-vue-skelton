@@ -6,7 +6,7 @@
     <template slot="description">
       フィールド内にアイコンを挿入する際は、コンポーネント内に直接 <code>vt@icon</code> コンポーネントを挿入します。<br>
       その際、 <code>left</code> 、もしくは <code>right</code> をpropsで指定します。デフォルトはleftです。<br>
-      もちろんクリック等のリスナは自由に設定可能です。
+      クリック等のリスナは自由に設定可能です。（※event.stopPropagation が必要です）
     </template>
 
     <vt@select label="デフォルト（left）" :options="options">
@@ -18,7 +18,7 @@
     </vt@select>
 
     <vt@select label="リスナー登録" :options="options">
-      <vt@icon @click="onClick">search</vt@icon>
+      <vt@icon @click.stop="onClick">search</vt@icon>
     </vt@select>
 
     <vt@select label="ツールチップ" :options="options">

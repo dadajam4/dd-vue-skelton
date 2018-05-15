@@ -24,6 +24,7 @@ export default {
       if (this.isDisplayCurrent) return this.currentColor;
       if (this.isHoliday) return this.holidayColor;
     },
+    label() { return this.dateFormatDefine.numericDayByValue(this.day, true) },
   },
 
   render(h) {
@@ -35,7 +36,7 @@ export default {
         textColor: this.textColor,
         // primary: this.isDisplayCurrent,
       },
-    }, this.day);
+    }, this.label);
     return h('td', null, [$btn]);
   },
 }

@@ -31,6 +31,7 @@ export default {
 
   beforeDestroy() {
     this.clearDelay();
+    this.stopOutsideClickCanceler();
     if (this._parentStackUnWatcher) this._parentStackUnWatcher();
     this._parentStackUnWatcher = null;
     delete this._parentStackUnWatcher;

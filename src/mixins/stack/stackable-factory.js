@@ -95,7 +95,7 @@ const props = {
     default: true,
   },
   minWidth: [String, Number],
-  maxWidth: [String, Number],
+  maxHeight: [String, Number],
   nudgeWidth: [String, Number],
 
   // advance

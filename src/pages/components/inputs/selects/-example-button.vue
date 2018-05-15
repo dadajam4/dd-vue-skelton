@@ -6,16 +6,16 @@
     <template slot="description">
       フィールド左右にボタンを設置可能です。コンポーネント内に直接 <code>vt@btn</code> コンポーネントを挿入します。<br>
       その際、 <code>left</code> 、もしくは <code>right</code> をpropsで指定します。デフォルトはrightです。<br>
-      もちろんクリック等のリスナは自由に設定可能です。<br>
+      クリック等のリスナは自由に設定可能です。（※event.stopPropagationは不要です）<br>
       ボタンは、 <code>vt@tooltip-fragment</code> や、 <code>vt@menu-fragment</code> でラップする事も可能です。
     </template>
 
     <vt@select label="デフォルト（right）" :options="options">
-      <vt@btn info @click="onClick">ボタン</vt@btn>
+      <vt@btn info @click.stop="onClick">ボタン</vt@btn>
     </vt@select>
 
     <vt@select label="left" :options="options">
-      <vt@btn primary icon="search" left @click="onClick" />
+      <vt@btn primary icon="search" left @click.stop="onClick" />
     </vt@select>
 
     <vt@select label="with menu" :options="options">
@@ -35,7 +35,7 @@
 
     <vt@select label="left &amp; tooltip" :options="options">
       <vt@tooltip-fragment>
-        <vt@btn primary icon="search" left @click="onClick" />
+        <vt@btn primary icon="search" left @click.stop="onClick" />
         <vt@tooltip top>
           Tooltip!
         </vt@tooltip>

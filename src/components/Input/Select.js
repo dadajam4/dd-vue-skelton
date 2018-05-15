@@ -20,6 +20,8 @@ export default {
     validateProp: {
       default: 'innerValue',
     },
+    maxHeight: [String, Number],
+    switchOffsetOverflow: Boolean,
   },
 
   data() {

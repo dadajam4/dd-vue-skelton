@@ -132,6 +132,8 @@ export default {
           groups: this.groups,
           autocomplete: this.autocomplete,
           tabindex: this.tabindex,
+          maxHeight: this.maxHeight,
+          switchOffsetOverflow: this.switchOffsetOverflow,
         },
         on: {
           input: this.onComboboxInput,

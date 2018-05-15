@@ -206,8 +206,24 @@ export default Object.assign({
     this.cancelVisibilityCallBacks('close');
     this.addClassForActivator('vc@stack-activator--active');
     this.updateDimensions(() => {
+      if (!this.isActive) return;
       this.contentIsActive = true;
     });
+    this.startOutsideClickCanceler();
+  },
+
+  startOutsideClickCanceler() {
+    if (typeof window === 'undefined') return;
+    this.stopOutsideClickCanceler();
+    this._outsideClickCancelerTimerId = setTimeout(() => {
+      delete this._outsideClickCancelerTimerId;
+    }, 100);
+  },
+  stopOutsideClickCanceler() {
+    if (this._outsideClickCancelerTimerId) {
+      clearTimeout(this._outsideClickCancelerTimerId);
+      delete this._outsideClickCancelerTimerId;
+    }
   },
 
   deactivate() {
@@ -334,8 +350,13 @@ export default Object.assign({
     return {
       name: 'click-outside',
       value: e => {
-        if (!this.closeOnOutsideClick || this.persistent) return;
-        if (!this.isFront()) return;
+        if (
+          !this.closeOnOutsideClick
+          || this.persistent
+          || !!this._outsideClickCancelerTimerId
+          || !this.isFront()
+        ) return;
+
         this.runDelay(200, () => {
           if (!this.isActive) return;
           if (

@@ -29,12 +29,15 @@ export default {
     }, this.zIndexStyles);
 
     // if (this.zIndex !== null) styles['z-index'] = this.zIndex;
-
-    if (!this.isFixWindow && this.detached && this.isVisible) {
+    if (!this.isFixWindow && this.detached) {
       if (this.calculatedMaxWidth !== null) styles['max-width'] = this.calculatedMaxWidth + 'px';
       if (this.calculatedMinWidth !== null) styles['min-width'] = this.calculatedMinWidth + 'px';
-      if (this.computedTop !== null && this.computedTop !== undefined) styles.top = this.computedTop + 'px';
-      if (this.computedLeft !== null && this.computedLeft !== undefined) styles.left = this.computedLeft + 'px';
+      if (this.calculatedMaxHeight !== null) styles['max-height'] = this.calculatedMaxHeight + 'px';
+
+      if (this.isVisible) {
+        if (this.computedTop !== null && this.computedTop !== undefined) styles.top = this.computedTop + 'px';
+        if (this.computedLeft !== null && this.computedLeft !== undefined) styles.left = this.computedLeft + 'px';
+      }
     }
 
     return styles;
@@ -54,6 +57,7 @@ export default {
   computedNudgeRight() { return this.$util.pixcelatedValue(this.nudgeRight, {prop: 'width', ...this.containerDimension}) },
 
   calculatedMaxWidth() { return this.computedMinWidth },
+  calculatedMaxHeight() { return this.computedMaxHeight },
   calculatedMinWidth() {
     if (this.computedMinWidth !== null) return this.computedMinWidth;
 
