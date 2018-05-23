@@ -36,7 +36,11 @@ export default {
   props: {
     value: String,
     picker: Boolean,
-    pickedValue: String,
+    multiplePicker: Boolean,
+    pickedValues: {
+      type: Array,
+      default: () => [],
+    },
     type: {
       type: String,
       default: 'date',
@@ -78,6 +82,10 @@ export default {
     holidays: {
       type: [String, Array, Function],
     },
+    pickedColor: {
+      type: String,
+      default: 'primary',
+    },
     holidayColor: {
       type: String,
       // default: 'red-accent-1',
@@ -112,7 +120,7 @@ export default {
       innerValue: this.value,
       innerLocale: this.locale,
       mounted: false,
-      innerPickedValue: this.pickedValue,
+      innerPickedValues: this.pickedValues,
     }
   },
 
@@ -253,12 +261,15 @@ export default {
       return checkers;
     },
 
-    pickedDate: {
-      get() { return this.innerPickedValue },
+    pickedDates: {
+      get() { return this.innerPickedValues },
       set(val) {
-        this.innerPickedValue = val;
+        this.innerPickedValues = val;
         this.$emit('inputPickedDate', val);
       },
+    },
+    pickedDateTimes() {
+      return this.pickedDates.map(value => safeDate(value).getTime());
     },
   },
 
@@ -271,8 +282,8 @@ export default {
       this.setupLocale();
     },
 
-    pickedValue(val) {
-      this.innerPickedValue = val;
+    pickedValues(val) {
+      this.innerPickedValues = val;
     },
   },
 
@@ -477,14 +488,70 @@ export default {
       return year && typeof year === 'object' && year._isInfo ? year : this.createAdvancedValueInfo(year, month, day);
     },
 
+    getSafeValue(year, month, day) {
+      if (typeof year === 'string') return year;
+      return this.getSafeInfo(year, month, day).value;
+    },
+
     isPicked(year, month, day) {
-      const info = this.getSafeInfo(year, month, day);
-      return this.pickedDate === info.value;
+      const value = this.getSafeValue(year, month, day);
+      return this.pickedDates.includes(value);
+    },
+
+    isFromPick(year, month, day) {
+      const value = this.getSafeValue(year, month, day);
+      return value === this.pickedDates[0];
+    },
+
+    isToPick(year, month, day) {
+      const value = this.getSafeValue(year, month, day);
+      return value === this.pickedDates[1];
+    },
+
+    isInPickedRange(year, month, day) {
+      const pickedDateTimes = this.pickedDateTimes;
+      if (pickedDateTimes.length === 0) return false;
+      const value = this.getSafeValue(year, month, day);
+      if (pickedDateTimes.length === 1) return value === this.pickedDates[0];
+      const time = safeDate(value).getTime();
+      return pickedDateTimes[0] <= time && time <= pickedDateTimes[1];
     },
 
     pickDate(year, month, day) {
       const info = this.getSafeInfo(year, month, day);
-      this.pickedDate = info.value;
+      const [from, to] = this.pickedDates;
+      const value = info.value;
+      const newValues = [];
+
+      if (!this.multiplePicker || !from || from && to) {
+        newValues.push(value);
+      } else {
+        const pickedTime = safeDate(value).getTime();
+        const fromTime = from && safeDate(from).getTime();
+        const toTime = to && safeDate(to).getTime();
+
+        if (!to) {
+          newValues.push(from, value);
+        } else {
+          if (pickedTime === fromTime || pickedTime === toTime) {
+            newValues.push(value, value);
+          } else {
+            newValues.push(value);
+          }
+        }
+
+        newValues.sort(this.pickedDatesSorter);
+      }
+
+      this.pickedDates = newValues;
+    },
+
+    pickedDatesSorter(a, b) {
+      const at = safeDate(a).getTime();
+      const bt = safeDate(b).getTime();
+      if (at < bt) return -1;
+      if (at > bt) return 1;
+      return 0;
     },
 
     getEvents(year, month, day) {

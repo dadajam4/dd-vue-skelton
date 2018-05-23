@@ -25,9 +25,24 @@ export default {
       if (this.isHoliday) return this.holidayColor;
     },
     label() { return this.dateFormatDefine.numericDayByValue(this.day, true) },
-    isPicked() { return this.$context.isPicked(this.info) },
+    isPicked() { return this.$context.isPicked(this.value) },
+    isFromPick() { return this.$context.isFromPick(this.value) },
+    isToPick() { return this.$context.isToPick(this.value) },
+    isBothPick() { return this.isFromPick && this.isToPick },
+    isNotBothPick() { return !this.isFromPick && !this.isToPick },
+    isInPickedRange() { return this.isPicked || this.$context.isInPickedRange(this.value) },
+    hasFromRangeGuide() { return this.isNotBothPick && this.isInPickedRange || this.isFromPick },
+    hasToRangeGuide() { return this.isNotBothPick && this.isInPickedRange || this.isToPick },
     events() { return this.info.events },
     hasEvent() { return this.events.length > 0 },
+    classes() {
+      return {
+        'vc@calendar__table__cell--picked': this.isPicked,
+        'vc@calendar__table__cell--picked-from': this.isFromPick,
+        'vc@calendar__table__cell--picked-to': this.isToPick,
+        'vc@calendar__table__cell--picked-in': this.isInPickedRange,
+      }
+    },
   },
 
   methods: {
@@ -47,29 +62,43 @@ export default {
         staticClass: 'vc@calendar__table__events',
       }, children);
     },
+
+    genRangeGuide(type) {
+      const h = this.$createElement;
+      return h('i', {
+        staticClass: `vc@calendar__table__cell__range-guide vc@calendar__table__cell__range-guide--${type} vc@context-color--${this.$context.pickedColor}`,
+        key: type,
+      });
+    },
   },
 
   render(h) {
-    const $btn = this.showFillDay || !this.fill && h('vt@btn', {
-      props: {
-        flat: !this.isPicked,
-        icon: true,
-        disabled: !this.isAllowed,
-        textColor: !this.isPicked && this.textColor,
-        noaction: !this.picker,
-        primary: this.isPicked,
-        depressed: this.isPicked,
-      },
-      on: {
-        click: this.onClick,
-      },
-    }, this.label);
+    const children = [];
+    if (this.showFillDay || !this.fill) {
+      const $btn = h('vt@btn', {
+        props: {
+          flat: !this.isPicked,
+          icon: true,
+          disabled: !this.isAllowed,
+          textColor: !this.isPicked && this.textColor,
+          noaction: !this.picker,
+          [this.$context.pickedColor]: this.isPicked,
+          depressed: this.isPicked,
+        },
+        on: {
+          click: this.onClick,
+        },
+      }, this.label);
+      children.push($btn);
 
-    const children = [$btn];
-    if (this.hasEvent) {
-      children.push(this.genEvents());
+      if (this.hasEvent) children.push(this.genEvents());
+      if (this.hasFromRangeGuide) children.push(this.genRangeGuide('from'));
+      if (this.hasToRangeGuide) children.push(this.genRangeGuide('to'));
     }
 
-    return h('td', null, children);
+    return h('td', {
+      staticClass: 'vc@calendar__table__cell',
+      class: this.classes,
+    }, children);
   },
 }

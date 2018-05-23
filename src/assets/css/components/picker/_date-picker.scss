@@ -3,4 +3,7 @@
 //
 
 .#{$css-prefix}date-picker {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
 }

@@ -18,6 +18,7 @@
         :locale="locale"
         v-model="date1"
         picker
+        multiple-picker
         :pickedValue="date1Picked"
         @inputPickedDate="date1Picked = $event"
         :events="['2018-5-1', '2018-5-19', {value: '2018-5-19', color: 'red'}]"
@@ -36,6 +37,13 @@
       />
     </div>
     <pre><code>{{date2}}</code></pre>
+<!--
+    <vt@date-picker
+      v-model="date1Picked"
+      :locale="locale"
+      :events="['2018-5-1', '2018-5-19', {value: '2018-5-19', color: 'red'}]"
+    />
+-->
 
   </docs-example>
 </template>

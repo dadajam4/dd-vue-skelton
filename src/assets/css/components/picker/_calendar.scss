@@ -15,6 +15,7 @@
 
   &__stack {
     position: absolute;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
@@ -172,7 +173,7 @@
       @include font-size(xxs);
     }
 
-    td {
+    &__cell {
       position: relative;
       padding: 0;
       @include square(get-calendar(cell-size));
@@ -183,6 +184,28 @@
         line-height: 1;
         @include font-size(sm);
       }
+
+      // &--picked {
+      //   &-in {
+      //     border-bottom: solid 1px #000;
+      //   }
+      // }
+      &__range-guide {
+        position: absolute;
+        z-index: 1;
+        height: 1px;
+        bottom: 1px;
+        background: #f00;
+        width: 50%;
+
+        &--from {
+          left: 50%;
+        }
+
+        &--to {
+          left: 0;
+        }
+      }
     }
 
     &__events {
@@ -190,7 +213,7 @@
       // z-index: 1;
       left: 0;
       width: 100%;
-      bottom: 2px;
+      bottom: 3px;
       display: block;
       text-align: center;
       overflow: hidden;
