@@ -13,6 +13,13 @@
       :options="locales"
     />
 
+    <vt@date-picker
+      v-model="picked"
+      :locale="locale"
+    />
+
+    <pre><code>{{picked}}</code></pre>
+<!--
     <vt@card style="display: inline-block;">
       <vt@calendar
         :locale="locale"
@@ -37,7 +44,7 @@
       />
     </div>
     <pre><code>{{date2}}</code></pre>
-<!--
+
     <vt@date-picker
       v-model="date1Picked"
       :locale="locale"
@@ -52,9 +59,10 @@
 export default {
   data() {
     return {
-      date1: null,
-      date2: '2018-04',
-      date1Picked: null,
+      picked: null,
+      // date1: null,
+      // date2: '2018-04',
+      // date1Picked: null,
       locale: null,
     }
   },

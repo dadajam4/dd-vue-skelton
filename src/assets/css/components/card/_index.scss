@@ -24,6 +24,11 @@
     }
   }
 
+  &--inline {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
   &--raised {
     @include elevation(3);
   }

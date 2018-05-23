@@ -31,6 +31,7 @@ export default {
     isBothPick() { return this.isFromPick && this.isToPick },
     isNotBothPick() { return !this.isFromPick && !this.isToPick },
     isInPickedRange() { return this.isPicked || this.$context.isInPickedRange(this.value) },
+    hasRangeGuide() { return this.$context.multiplePicker },
     hasFromRangeGuide() { return this.isNotBothPick && this.isInPickedRange || this.isFromPick },
     hasToRangeGuide() { return this.isNotBothPick && this.isInPickedRange || this.isToPick },
     events() { return this.info.events },
@@ -47,6 +48,7 @@ export default {
 
   methods: {
     onClick(e) {
+      if (!this.$context.picker) return;
       return this.$context.pickDate(this.info);
     },
 
@@ -92,8 +94,10 @@ export default {
       children.push($btn);
 
       if (this.hasEvent) children.push(this.genEvents());
-      if (this.hasFromRangeGuide) children.push(this.genRangeGuide('from'));
-      if (this.hasToRangeGuide) children.push(this.genRangeGuide('to'));
+      if (this.hasRangeGuide) {
+        if (this.hasFromRangeGuide) children.push(this.genRangeGuide('from'));
+        if (this.hasToRangeGuide) children.push(this.genRangeGuide('to'));
+      }
     }
 
     return h('td', {

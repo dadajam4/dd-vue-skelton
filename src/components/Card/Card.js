@@ -17,6 +17,7 @@ export default {
     hover: Boolean,
     img: String,
     raised: Boolean,
+    inline: Boolean,
     tag: {
       type: String,
       default: 'div',
@@ -28,6 +29,7 @@ export default {
     classes() {
       return this.addColorClasses({
         'vc@card': true,
+        'vc@card--inline': this.inline,
         'vc@card--flat': this.flat,
         // 'vc@card--horizontal': this.horizontal,
         // 'vc@card--hover': this.hover,

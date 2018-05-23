@@ -14,6 +14,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    openHoverDelay: {
+      type: [String, Number],
+      default: 300,
+    },
     left: {
       type: Boolean,
       default: false,
