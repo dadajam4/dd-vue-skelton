@@ -4,8 +4,6 @@
 <template>
   <docs-example>
     <template slot="description">
-      <code>vt@date-picker</code> は <code>locale</code> 属性を注入する事で言語の設定が可能です。<br>
-      未指定の場合、ブラウザがサポートしているデフォルトの言語が設定されます。
     </template>
 
     <vt@select
@@ -21,6 +19,39 @@
     />
 
     <pre><code>{{picked}}</code></pre>
+<!--
+    <vt@card style="display: inline-block;">
+      <vt@calendar
+        :locale="locale"
+        v-model="date1"
+        picker
+        multiple-picker
+        :pickedValue="date1Picked"
+        @inputPickedDate="date1Picked = $event"
+        :events="['2018-5-1', '2018-5-19', {value: '2018-5-19', color: 'red'}]"
+      />
+    </vt@card>
+    <pre><code>{{date1}}</code></pre>
+    <pre><code>{{date1Picked}}</code></pre>
+
+    <div class="vc@m-t--lg">
+      <vt@calendar
+        :locale="locale"
+        v-model="date2"
+        min="2018-5-2"
+        max="2018-5-25"
+        allowed-dates="2018-5-6"
+      />
+    </div>
+    <pre><code>{{date2}}</code></pre>
+
+    <vt@date-picker
+      v-model="date1Picked"
+      :locale="locale"
+      :events="['2018-5-1', '2018-5-19', {value: '2018-5-19', color: 'red'}]"
+    />
+-->
+
   </docs-example>
 </template>
 

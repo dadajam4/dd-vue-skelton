@@ -5,5 +5,5 @@ import DatePicker from './DatePicker';
 
 export default {
   Calendar,
-  DatePicker,
+  ...DatePicker,
 }

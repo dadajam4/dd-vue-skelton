@@ -546,6 +546,7 @@ export default {
 
         on: {
           input: val => {
+            console.warn(val);
             if (!val) {
               this.menuIsActive = false;
               // this.focused = false;

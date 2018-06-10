@@ -1,6 +1,7 @@
 import Calendar from '../Calendar';
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerBody from './DatePickerBody';
+import mountable from '~/mixins/mountable';
 
 
 
@@ -34,8 +35,8 @@ const ACTION_TYPES = [
   {name: 'today', label: 'Today', icon: 'reply', color: 'info', default: true },
   {name: 'clear', label: 'Clear', icon: 'times', color: 'info', default: true },
   {name: 'spacer'},
-  {name: 'cancel', label: 'CANCEL', color: 'info', default: true },
-  {name: 'ok', label: 'OK', color: 'info', default: true },
+  {name: 'cancel', label: 'CANCEL', color: 'info', default() { return this.cancellable } },
+  {name: 'ok', label: 'OK', color: 'info', default() { return this.cancellable } },
 ];
 
 for (const TYPE of ACTION_TYPES) {
@@ -63,11 +64,50 @@ for (const TYPE of ACTION_TYPES) {
 export default {
   name: 'vt@date-picker',
 
+  mixins: [mountable],
+
   props: {
-    ..._props,
+    value: {
+      type: [String, Array],
+    },
+    multiple: Boolean,
+    cancellable: Boolean,
     actions: {
       type: Boolean,
       default: true,
+    },
+    ..._props,
+  },
+
+  data() {
+    return {
+      innerValue: this.value,
+      hasContextStack: false,
+    }
+  },
+
+  computed: {
+    targetValue: {
+      get() { return this.innerValue },
+      set(val) {
+        val = Array.isArray(val) ? val.slice() : val;
+        this.innerValue = val;
+        this.$emit('input', val);
+      },
+    },
+    forCalenderPickedValues() {
+      const targetValue = this.targetValue;
+      if (this.multiple) {
+        return targetValue || [];
+      } else {
+        return targetValue ? [targetValue] : [];
+      }
+    },
+  },
+
+  watch: {
+    value(val) {
+      this.innerValue = val;
     },
   },
 
@@ -102,9 +142,26 @@ export default {
       return h(Calendar, {
         props: {
           picker: true,
+          multiplePicker: this.multiple,
           ...pathProps,
+          pickedValues: this.forCalenderPickedValues,
         },
+        on: {
+          inputPickedDate: e => {
+            this.catchPickedDates(e);
+            if (!this.cancellable) this.deactivateContextStack();
+          },
+        },
+        ref: 'calendar',
       });
+    },
+
+    catchPickedDates(dates) {
+      if (this.multiple) {
+        this.targetValue = dates;
+      } else {
+        this.targetValue = dates[0];
+      }
     },
 
     genAction(type, cb) {
@@ -151,13 +208,71 @@ export default {
       }, children);
     },
 
-    today() {},
-    clear() {},
-    cancel() {},
-    ok() {},
+    today() {
+      return this.$refs.calendar.setValuesAtToday();
+    },
+    clear() {
+      this.targetValue = null;
+      if (!this.cancellable) this.deactivateContextStack();
+    },
+    deactivateContextStack() {
+      // this.hasContextStack && this._contextStack.deactivate();
+      if (this.hasContextStack) {
+        this._contextStack.isActive = false;
+      }
+    },
+    cancel() {
+      if (this.hasContextStack) {
+        this.resetByStackValue();
+        this.deactivateContextStack();
+      }
+    },
+    ok() {
+      this.deactivateContextStack();
+    },
+
+    setupParentStack() {
+      this.hasContextStack = !!this.$parent.$appStackContainer;
+      if (!this.hasContextStack) return;
+      this._contextStack = this.$parent;
+      this._contextStack.$on('activate', this.onStackActivate);
+      this._contextStack.$on('esc', this.onCancelLikeStackAction);
+      this._contextStack.$on('click-outside-close', this.onCancelLikeStackAction);
+    },
+    clearParentStack() {
+      if (!this.hasContextStack) return;
+      this._contextStack.$off('activate', this.onStackActivate);
+      this._contextStack.$off('esc', this.onCancelLikeStackAction);
+      this._contextStack.$off('click-outside-close', this.onCancelLikeStackAction);
+      delete this._contextStack;
+    },
+    saveStackResetValue() {
+      let resetValue = this.targetValue;
+      resetValue = Array.isArray(resetValue) ? resetValue.slice() : resetValue;
+      this._stackResetValue = resetValue;
+    },
+    resetByStackValue() {
+      this.targetValue = this._stackResetValue;
+      delete this._stackResetValue;
+    },
+    onStackActivate() {
+      this.saveStackResetValue();
+    },
+    onCancelLikeStackAction() {
+      if (this.cancellable) this.resetByStackValue();
+    },
+  },
+
+  mounted() {
+    this.setupParentStack();
+  },
+
+  beforeDestroy() {
+    this.clearParentStack();
   },
 
   render(h) {
+    if (!this.isMounted) return;
     return h('vt@card', {
       staticClass: 'vc@date-picker',
       props: {

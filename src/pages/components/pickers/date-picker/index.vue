@@ -9,6 +9,7 @@
     </vt@page-intro>
 
     <dd-example is="basic" />
+    <dd-example is="menu-and-dialog" />
 
   </vt@page>
 </template>

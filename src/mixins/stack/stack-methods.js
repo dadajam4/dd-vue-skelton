@@ -203,6 +203,7 @@ export default Object.assign({
   },
 
   activate() {
+    this.$emit('activate');
     this.cancelVisibilityCallBacks('close');
     this.addClassForActivator('vc@stack-activator--active');
     this.updateDimensions(() => {
@@ -227,6 +228,7 @@ export default Object.assign({
   },
 
   deactivate() {
+    this.$emit('deactivate');
     this.cancelVisibilityCallBacks('show');
     this.removeClassFromActivator('vc@stack-activator--active');
     this.contentIsActive = false;
