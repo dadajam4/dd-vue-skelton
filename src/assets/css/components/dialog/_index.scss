@@ -29,11 +29,20 @@
     text-align: left;
     margin: get-dialog(margin);
     width: calc(100% - #{get-dialog(margin) * 2});
+    text-align: center;
   }
 
   &__element {
     position: relative;
-    width: 100%;
+    // width: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: left;
+    // margin-left: auto;
+    // margin-right: auto;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 
     & > .#{$css-prefix}card {
       @include elevation(24);
