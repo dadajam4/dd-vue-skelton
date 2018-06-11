@@ -13,14 +13,14 @@ export default {
   },
 
   render(h, { children, data, props }) {
-    const { attrs, model } = data;
-    const { value } = model;
+    const { attrs } = data;
+    const $input = children.find(c => c.componentOptions && c.componentOptions.tag === 'vt@input');
+    const inputProps = $input.componentOptions.propsData;
+    const inputListeners = $input.componentOptions.listeners;
+    const { value } = inputProps;
     const { dialog, cancellable } = props;
     const type = dialog ? 'dialog' : 'menu';
 
-    const $input = children.find(c => c.componentOptions && c.componentOptions.tag === 'vt@input');
-    const inputProps = $input.componentOptions.propsData;
-    inputProps.value = value;
     if (inputProps.readonly === undefined) inputProps.readonly = true;
 
     const $picker = h('vt@date-picker', {
@@ -30,7 +30,7 @@ export default {
         ...attrs,
       },
       on: {
-        input: model.callback,
+        input: inputListeners.input,
       },
     });
 
