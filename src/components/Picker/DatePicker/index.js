@@ -1,9 +1,9 @@
 import DatePicker from './DatePicker';
-import DatePickerMenu from './DatePickerMenu';
+import DatePickerFragment from './DatePickerFragment';
 
 
 
 export default {
   DatePicker,
-  DatePickerMenu,
+  DatePickerFragment,
 };

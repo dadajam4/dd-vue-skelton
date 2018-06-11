@@ -1,5 +1,5 @@
 export default {
-  name: 'vt@date-picker-menu',
+  name: 'vt@date-picker-fragment',
 
   functional: true,
 
@@ -16,6 +16,7 @@ export default {
     const { attrs, model } = data;
     const { value } = model;
     const { dialog, cancellable } = props;
+    const type = dialog ? 'dialog' : 'menu';
 
     const $input = children.find(c => c.componentOptions && c.componentOptions.tag === 'vt@input');
     const inputProps = $input.componentOptions.propsData;

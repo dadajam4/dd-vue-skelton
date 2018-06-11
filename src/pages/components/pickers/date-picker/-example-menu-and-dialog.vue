@@ -13,52 +13,27 @@
 
     <vt@layout wrap row>
       <vt@flex xs12 sm6 md4>
-        <vt@menu-fragment>
-          <vt@input
-            v-model="picked"
-          >
+        <vt@date-picker-fragment cancellable v-model="picked">
+          <vt@input>
             <vt@icon>calendar</vt@icon>
           </vt@input>
-          <vt@date-picker-menu
-            v-model="picked"
-            cancellable
-            abc="hoge"
-          />
-        </vt@menu-fragment>
+        </vt@date-picker-fragment>
       </vt@flex>
       <vt@flex xs12 sm6 md4>
-        <vt@dialog-fragment>
-          <vt@input
-            v-model="picked"
-          >
+        <vt@date-picker-fragment cancellable dialog v-model="picked">
+          <vt@input>
             <vt@icon>calendar</vt@icon>
           </vt@input>
-          <vt@date-picker-dialog
-            v-model="picked"
-            cancellable
-          />
-        </vt@dialog-fragment>
+        </vt@date-picker-fragment>
       </vt@flex>
       <vt@flex xs12 sm6 md4>
-        <vt@dialog-fragment>
-          <vt@input
-            v-model="picked"
-          >
+        <vt@date-picker-fragment dialog v-model="picked">
+          <vt@input>
             <vt@icon>calendar</vt@icon>
           </vt@input>
-          <vt@date-picker-dialog
-            v-model="picked"
-          />
-        </vt@dialog-fragment>
+        </vt@date-picker-fragment>
       </vt@flex>
     </vt@layout>
-
-    <vt@date-picker-fragment v-model="picked">
-      <vt@input>
-        <vt@icon>calendar</vt@icon>
-      </vt@input>
-    </vt@date-picker-fragment>
-
   </docs-example>
 </template>
 
