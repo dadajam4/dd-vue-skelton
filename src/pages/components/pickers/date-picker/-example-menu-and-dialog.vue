@@ -22,6 +22,7 @@
           <vt@date-picker-menu
             v-model="picked"
             cancellable
+            abc="hoge"
           />
         </vt@menu-fragment>
       </vt@flex>
@@ -51,6 +52,12 @@
         </vt@dialog-fragment>
       </vt@flex>
     </vt@layout>
+
+    <vt@date-picker-fragment v-model="picked">
+      <vt@input>
+        <vt@icon>calendar</vt@icon>
+      </vt@input>
+    </vt@date-picker-fragment>
 
   </docs-example>
 </template>

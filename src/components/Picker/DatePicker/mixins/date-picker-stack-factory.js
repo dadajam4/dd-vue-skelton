@@ -11,7 +11,7 @@ export default function(type) {
     },
 
     render(h, { data, listeners, parent, props }) {
-      const { model } = data;
+      const { attrs, model } = data;
       const { value } = model;
       const cancellable = props.cancellable;
 
@@ -19,6 +19,7 @@ export default function(type) {
         props: {
           value,
           cancellable,
+          ...attrs,
         },
         on: {
           input: model.callback,

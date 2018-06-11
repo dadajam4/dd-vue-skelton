@@ -168,7 +168,7 @@ export default {
     inputAttrs() {
       const attrs = {
         placeholder: this.placeholder,
-        readonly: this.staticSelect,
+        readonly: this.staticSelect || this.readonly,
         tabindex: '-1',
       };
 

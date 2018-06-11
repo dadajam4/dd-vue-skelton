@@ -5,6 +5,7 @@ const DEFAULT_COUNTER_FORMAT = '${count} / ${max}';
 export default {
   props: {
     value: [String, Number, Array],
+    readonly: Boolean,
     autofocus: Boolean,
     placeholder: String,
     prefix: String,

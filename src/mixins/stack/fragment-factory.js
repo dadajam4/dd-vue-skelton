@@ -4,7 +4,10 @@ const getNewActivatorId = () => {
 
 
 
-export default function stackFragmentFactory(type) {
+export default function stackFragmentFactory(type, includes = []) {
+  includes = Array.isArray(includes) ? includes : [includes];
+  includes.unshift(`vt@${type}`);
+
   return {
     name: `vt@${type}-fragment`,
 
@@ -22,7 +25,7 @@ export default function stackFragmentFactory(type) {
 
       if (typeof window === 'undefined') return [];
 
-      const $content = children.find(child => child.componentOptions && child.componentOptions.tag === `vt@${type}`);
+      const $content = children.find(child => child.componentOptions && includes.includes(child.componentOptions.tag));
       let $activator = children.find(child => child !== $content);
 
       if ($activator) {
