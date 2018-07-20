@@ -22,6 +22,7 @@ const CALENDAR_PATH_PROPS = [
   'showFillDay',
   'events',
   'eventColor',
+  'pickedColor',
 ];
 
 const pathPropsDefine = {};
@@ -212,7 +213,7 @@ export default {
       return this.$refs.calendar.setValuesAtToday();
     },
     clear() {
-      this.targetValue = null;
+      this.targetValue = this.multiple ? [] : null;
       if (!this.cancellable) this.deactivateContextStack();
     },
     deactivateContextStack() {

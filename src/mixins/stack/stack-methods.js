@@ -34,6 +34,7 @@ export default Object.assign({
   triggerVisibilityCallBacks(type) {
     const callbacks = this[`_${type}CallBacks`];
     for (let cb of callbacks) {
+      if (typeof cb.cb !== 'function') console.warn('ここだーーー！！！', typeof cb.cb , cb.cb);
       cb.cb(this);
     }
     this.removeVisibilityCallBacks();
@@ -317,7 +318,10 @@ export default Object.assign({
     // closeWithRemoveな時はrefの描画が完了していない可能性があるのでnextTickで拾う
     this.$nextTick(() => {
       const $el = this.$refs.content;
-      if (!$el) return cb();
+      if (!$el) {
+        cb && cb();
+        return;
+      }
 
       requestAnimationFrame(() => {
         const originDisplay = $el.style.display;
@@ -332,7 +336,10 @@ export default Object.assign({
   },
 
   updateDimensions(cb) {
-    if (this.isFixWindow) return cb();
+    if (this.isFixWindow) {
+      cb && cb();
+      return;
+    }
     this.pageYOffset = this.$store.state.scroll.top;
     this.updateActivatorDimension();
     this.updateContentDimension(cb);

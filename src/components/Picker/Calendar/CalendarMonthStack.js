@@ -61,6 +61,11 @@ export default {
       let nextYear = this.year + vec;
       this.year = nextYear;
     },
+
+    setYear(year) {
+      const shiftAmmount = year - this.year;
+      return this.shiftValue(shiftAmmount);
+    },
   },
 
   render(h) {

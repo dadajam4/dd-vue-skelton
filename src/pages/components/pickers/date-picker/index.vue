@@ -10,6 +10,12 @@
 
     <dd-example is="basic" />
     <dd-example is="menu-and-dialog" />
+    <dd-example is="allowed-dates" />
+    <dd-example is="holidays" />
+    <dd-example is="events" />
+    <dd-example is="coloring-and-more" />
+    <dd-example is="multiple" />
+    <dd-example is="month-picker" />
 
   </vt@page>
 </template>

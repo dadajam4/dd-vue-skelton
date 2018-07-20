@@ -5,22 +5,31 @@
   <docs-example>
     <template slot="description">
       <code>vt@date-picker</code> は <code>locale</code> 属性を注入する事で言語の設定が可能です。<br>
-      未指定の場合、ブラウザがサポートしているデフォルトの言語が設定されます。
+      未指定の場合、ブラウザがサポートしているデフォルトの言語が設定されます。<br>
+      週の始まりを変更する場合、 <code>first-day-of-week</code> で設定可能です。デフォルトは <var>0</var>（日曜） です。
     </template>
 
-    <vt@select
-      label="locale"
-      autocomplete
-      v-model="locale"
-      :options="locales"
-    />
+    <vt@layout align-end wrap>
+      <vt@flex xs12 sm6>
+        <vt@select
+          label="locale"
+          autocomplete
+          v-model="locale"
+          :options="locales"
+        />
+      </vt@flex>
+      <vt@flex xs12 sm6>
+        <vt@input v-model="picked">
+          <vt@icon>calendar</vt@icon>
+        </vt@input>
+      </vt@flex>
+    </vt@layout>
 
     <vt@date-picker
       v-model="picked"
       :locale="locale"
+      first-day-of-week="1"
     />
-
-    <pre><code>{{picked}}</code></pre>
   </docs-example>
 </template>
 

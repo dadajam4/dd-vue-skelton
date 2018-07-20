@@ -4,12 +4,9 @@ export default {
   functional: true,
 
   props: {
-    // type: {
-    //   type: String,
-    //   default: 'menu',
-    // },
     cancellable: Boolean,
     dialog: Boolean,
+    persistent: Boolean,
   },
 
   render(h, { children, data, props }) {
@@ -18,7 +15,7 @@ export default {
     const inputProps = $input.componentOptions.propsData;
     const inputListeners = $input.componentOptions.listeners;
     const { value } = inputProps;
-    const { dialog, cancellable } = props;
+    const { dialog, cancellable, persistent } = props;
     const type = dialog ? 'dialog' : 'menu';
 
     if (inputProps.readonly === undefined) inputProps.readonly = true;
@@ -41,6 +38,7 @@ export default {
         switchOffsetOverflow: true,
         closeOnContentClick: false,
         closeOnEsc: true,
+        persistent,
         // activatorAction: null,
         // disabled: this.disabled,
         // switchOffsetOverflow: this.switchOffsetOverflow || this.autocomplete || this.multiple,

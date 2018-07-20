@@ -112,8 +112,8 @@ export default {
 
   data() {
     return {
-      displayYear: 2018,
-      displayMonth: 3,
+      // displayYear: 2018,
+      // displayMonth: 3,
       monthActive: this.type === 'month' ? true : false,
       yearActive: false,
       currentDateTime: new Date().getTime(),
@@ -192,6 +192,9 @@ export default {
       get() { return this.innerValue },
       set(val) {
         this.innerValue = val;
+        if (this.$refs.monthStack && this.monthActive) {
+          this.$refs.monthStack.setYear(this.year);
+        }
         this.$emit('input', val);
       },
     },
@@ -240,7 +243,7 @@ export default {
     computedHolidays() {
       const holidays = this.holidays;
       if (!holidays) return [];
-      return Array.isArray(holidays) ? holidays : [];
+      return Array.isArray(holidays) ? holidays : [holidays];
     },
     holidayCheckers() {
       const holidayWeeks = this.computedHolidayWeeks;
@@ -304,10 +307,13 @@ export default {
 
     valueStringSplitter(str) {
       const tmp = str.split(/[-\/]/);
+      const year = parseInt(tmp[0], 10);
+      const month = tmp[1] === undefined ? undefined : parseInt(tmp[1], 10) - 1;
+      const day = tmp[2] === undefined ? undefined : parseInt(tmp[2], 10);
       return {
-        year: parseInt(tmp[0], 10),
-        month: parseInt(tmp[1], 10) - 1,
-        day: parseInt(tmp[2], 10),
+        year,
+        month,
+        day,
       }
     },
 

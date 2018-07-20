@@ -13,20 +13,28 @@ export default {
 
   computed: {
     label() { return this.dateFormatDefine.month.short[this.month] },
+    myActive() { return this.$context.typeIsMonth ? this.$context.isPicked(this.value) : this.isActive },
   },
 
   render(h) {
+    const isActive = this.myActive;
     const $btn = h('vt@btn', {
       props: {
         sm: true,
-        flat: !this.isActive,
-        depressed: this.isActive,
-        outline: this.isDisplayCurrent && !this.isActive,
-        primary: this.isDisplayCurrent || this.isActive,
+        flat: !isActive,
+        depressed: isActive,
+        outline: this.isDisplayCurrent && !isActive,
+        primary: this.isDisplayCurrent || isActive,
         disabled: !this.isAllowed,
       },
       on: {
-        click: this.onClick,
+        click: e => {
+          if (this.$context.typeIsMonth) {
+            if (this.$context.picker) return this.$context.pickDate(this.info);
+          } else {
+            return this.onClick(e);
+          }
+        },
       },
     }, this.label);
     return h('li', null, [$btn]);
