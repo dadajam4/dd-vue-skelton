@@ -1,0 +1,108 @@
+//
+// Data table
+//
+
+.#{$css-prefix}data-table {
+  &-context {
+
+    & > *:first-child {
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+
+    th {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    th,
+    td {
+      vertical-align: middle;
+    }
+
+    thead {
+
+      tr {
+        height: 56px;
+      }
+
+      th,
+      td {
+        transition: get-transition(primary);
+        @include theme-color(color, text-sub);
+
+        &.#{$css-prefix}sortable {
+          cursor: pointer;
+
+          &:hover {
+            @include theme-color(color, text);
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: get-transition(primary);
+
+        &:hover {
+          @include theme-color(background-color, background-light);
+        }
+      }
+    }
+  }
+
+  width: 100%;
+
+
+
+  // &__header {
+
+  //   &__collapse {
+
+  //     .#{$css-prefix}data-table--header-fixed & {
+  //       height: 0;
+  //       overflow-y: hidden;
+  //     }
+  //   }
+  // }
+
+  &--header-fixed {
+    .#{$css-prefix}data-table__header {
+      border-bottom: 0 !important;
+      height: 0 !important;
+
+      tr {
+        height: 0 !important;
+      }
+
+      th {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: 0 !important;
+        line-height: 0 !important;
+
+        object {
+          height: 0 !important;
+        }
+      }
+
+      &__collapse {
+        height: 0;
+        overflow-y: hidden;
+      }
+    }
+  }
+
+  &-fixed-header-scroll {
+    position: relative;
+    z-index: 2;
+  }
+
+  // dd-data-table--only-header
+  &--only-header {
+    width: 100%;
+  }
+}
+
+

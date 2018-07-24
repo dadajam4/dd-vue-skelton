@@ -15,18 +15,6 @@ export default {
 
   mixins: [Mountable, BackgroundColorable, TextColorable],
 
-  data() {
-    return {
-      scrollLeft      : 0,
-      scrollTop       : 0,
-      containerWidth  : 0,
-      containerHeight : 0,
-      scrollWidth     : 0,
-      scrollHeight    : 0,
-      defaultTextColor: this.layerColor,
-    };
-  },
-
   props: {
     tag: {
       type: String,
@@ -62,6 +50,10 @@ export default {
       type: String,
       default: 'dark',
     },
+    layerWidth: {
+      type: [String, Number],
+      default: 40,
+    },
     layerActiveOpacity: {
       type: [Number, String],
     },
@@ -74,6 +66,18 @@ export default {
       type: Boolean,
       default: true,
     },
+  },
+
+  data() {
+    return {
+      scrollLeft: 0,
+      scrollTop: 0,
+      containerWidth: 0,
+      containerHeight: 0,
+      scrollWidth: 0,
+      scrollHeight: 0,
+      defaultTextColor: this.layerColor,
+    };
   },
 
   computed: {
@@ -131,19 +135,20 @@ export default {
     },
     updateScrollPosition() {
       this.scrollLeft = this.$refs.scroller.scrollLeft;
-      this.scrollTop  = this.$refs.scroller.scrollTop;
+      this.scrollTop = this.$refs.scroller.scrollTop;
     },
     updateSize() {
       const { width, height } = this.$refs.scroller.getBoundingClientRect();
-      this.containerWidth  = width;
+      this.containerWidth = width;
       this.containerHeight = height;
-      this.scrollWidth     = this.$refs.scroller.scrollWidth;
-      this.scrollHeight    = this.$refs.scroller.scrollHeight;
+      this.scrollWidth = this.$refs.scroller.scrollWidth;
+      this.scrollHeight = this.$refs.scroller.scrollHeight;
     },
   },
 
   mounted() {
     this.update();
+    this.$emit('mount');
   },
 
   render(h) {
@@ -156,10 +161,12 @@ export default {
     const $layers = ['top', 'right', 'bottom', 'left'].map(vec => {
       const type = (vec === 'top' || vec === 'bottom') ? 'vertical' : 'horizontal';
       const isActive = this[`${vec}IsScrollable`];
-      const style = isActive && this.layerActiveOpacity && {opacity: this.layerActiveOpacity};
+      const layerWidth = getSanitizedPropSize(this.layerWidth);
+      const style = { width: layerWidth, height: layerWidth };
+      if (isActive && this.layerActiveOpacity) style.opacity = this.layerActiveOpacity;
 
       return h('div', {
-        staticClass: `vc@scroller__layer vc@scroller__layer--${vec}  vc@scroller__layer--${type}`,
+        staticClass: `vc@scroller__layer vc@scroller__layer--${vec} vc@scroller__layer--${type}`,
         class: {
           'vc@scroller__layer--active': isActive,
         },

@@ -47,12 +47,14 @@
       top: 0;
       bottom: 0;
       width: $my-layer-width;
+      height: 100% !important;
     }
 
     &--vertical {
       left: 0;
       right: 0;
       height: $my-layer-width;
+      width: 100% !important;
     }
 
     $my-layer-from-color: currentColor;
