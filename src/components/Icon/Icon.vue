@@ -2,6 +2,8 @@
 
 
 
+const ROTATE_AMMOUNT_CHECKER = /^\d+$/;
+
 export default {
   name: 'vt@icon',
 
@@ -14,20 +16,10 @@ export default {
     xl: Boolean,
     left: Boolean,
     right: Boolean,
-    rotate: Boolean,
+    rotate: {
+      type: [String, Number, Boolean],
+    },
   },
-
-
-
-  // computed: {
-  //   classes() {
-  //     return {
-  //       'vc@icon': true,
-  //     }
-  //   },
-  // },
-
-
 
   render(h, { props, data, children = [] }) {
     let iconName = '';
@@ -42,18 +34,27 @@ export default {
     }
 
     const myClassName = 'vc@icon';
+    const hasLoopRotate = props.rotate === '' || props.rotate === true;
+    const hasAmmountRotate = !hasLoopRotate && props.rotate !== false;
+    if (hasAmmountRotate) {
+      const rotateAmmount = ROTATE_AMMOUNT_CHECKER.test(props.rotate) ? parseInt(props.rotate, 10) + 'deg' : props.rotate;
+      data.style = {
+        'transform': `rotate(${rotateAmmount})`,
+      };
+    }
 
     const classes = {
-      [myClassName]                 : true,
+      [myClassName]: true,
       [`${myClassName}-${iconName}`]: true,
-      [`${myClassName}--sm`]        : props.sm,
-      [`${myClassName}--md`]        : props.md,
-      [`${myClassName}--lg`]        : props.lg,
-      [`${myClassName}--xl`]        : props.xl,
-      [`${myClassName}--left`]      : props.left,
-      [`${myClassName}--right`]     : props.right,
-      [`${myClassName}--rotate`]    : props.rotate,
-      [`${myClassName}--clickable`] : data.on && data.on.click,
+      [`${myClassName}--sm`]: props.sm,
+      [`${myClassName}--md`]: props.md,
+      [`${myClassName}--lg`]: props.lg,
+      [`${myClassName}--xl`]: props.xl,
+      [`${myClassName}--left`]: props.left,
+      [`${myClassName}--right`]: props.right,
+      [`${myClassName}--rotate`]: hasAmmountRotate,
+      [`${myClassName}--loop-rotate`]: hasLoopRotate,
+      [`${myClassName}--clickable`]: data.on && data.on.click,
     }
 
     data.staticClass = data.staticClass || '';

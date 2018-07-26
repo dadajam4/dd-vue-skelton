@@ -10,7 +10,7 @@ h1,
   letter-spacing: -.02em;
   margin-bottom: get-space(xxl);
 
-  @include mq-min(md) {
+  @include mq(mdAndUp) {
     @include font-size(xxxxl);
   }
 }

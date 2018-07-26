@@ -12,6 +12,7 @@
       header-fixed
       :headers="headers"
       :items="items"
+      default-sort-target="iron"
       max-height="50vh"
     />
   </docs-example>

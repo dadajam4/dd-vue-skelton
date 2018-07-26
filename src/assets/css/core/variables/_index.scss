@@ -19,6 +19,7 @@ $basic-direction-keys: all, vertical, horizontal, top, right, bottom, left;
 @import "./font-size";
 @import "./icon";
 @import "./line-height";
+@import "./media-query";
 @import "./font-weight";
 @import "./space";
 @import "./size";
@@ -38,3 +39,10 @@ $basic-direction-keys: all, vertical, horizontal, top, right, bottom, left;
 @import "./chip";
 @import "./page";
 @import "./picker";
+
+$ui-values: (
+  breakPoints: $ui-break-points,
+  mediaMatches: $ui-media-matches,
+  mediaMatchAliases: $ui-media-match-aliases,
+  toolbarHeights: $ui-toolbar-heights,
+);

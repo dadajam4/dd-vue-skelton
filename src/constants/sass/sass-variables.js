@@ -1,8 +1,8 @@
 let sassVariables = {};
 
-// UI Settings
-const uiSettings = require('../../../config/css/ui-settings');
-sassVariables = Object.assign({}, sassVariables, uiSettings);
+// // UI Settings
+// const uiSettings = require('../../../config/css/ui-settings');
+// sassVariables = Object.assign({}, sassVariables, uiSettings);
 
 // Themes
 const themes = require('../../../config/css/themes');

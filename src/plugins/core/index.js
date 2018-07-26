@@ -3,6 +3,7 @@ import * as util from '~/util';
 import components  from '~/components';
 import directives  from '~/directives';
 import App from './app';
+import Ui from './ui';
 import NuxtResolver from './nuxt-resolver';
 import RouterHelper from './router-helper';
 import Living from './living';
@@ -17,6 +18,8 @@ const plugin = {
   install(Vue, opt = {}) {
     if (this.installed) return;
     this.installed = true;
+
+    Vue.use(Ui, opt);
 
     // utilities
     Vue.prototype.$util = util;

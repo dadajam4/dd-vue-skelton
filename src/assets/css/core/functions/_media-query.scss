@@ -11,98 +11,35 @@ $mq-each-prefix: null !global;
   $len: length($targets);
   @for $i from 1 through $len {
     $target: nth($targets, $i);
+    $condition: null;
 
-    $define: map-get($media-query-groups, $target);
-
-    @if $define != null {
-      $conditions: append($conditions, $define);
+    @if map-has-key($ui-media-match-aliases, $target) {
+      $condition: map-get($ui-media-match-maps, map-get($ui-media-match-aliases, $target));
     } @else {
-      $define: map-get($media-query-breakpoints, $target);
-
-      @if $define == null {
-        @warn #{"メディアクエリキー `" + $target + "` は未定義です。"}
-      } @else {
-        $condition: map-get($define, conditions);
-        $conditions: append($conditions, $condition);
-      }
+      $condition: map-get($ui-media-match-maps, $target);
     }
+    $conditions: append($conditions, $condition);
   }
 
   $conditionsStr: to-string($conditions, ", ");
-  @media #{$media-query-target} and #{$conditionsStr} { @content; }
+  @media #{$conditionsStr} { @content; }
 }
 
-// Max
-@mixin mq-max($target) {
-  $define: map-get($media-query-breakpoints, $target);
-  @if $define == null {
-    @warn #{"メディアクエリキー `" + $target + "` は未定義です。"}
-  } @else {
-    $max: map-get($define, max);
-    @if $max == null {
-      @content;
-    } @else {
-      @media #{$media-query-target} and (max-width: #{$max}px) {
-        @content;
-      }
-    }
-  }
-}
-
-// Min
-@mixin mq-min($target) {
-  $define: map-get($media-query-breakpoints, $target);
-  @if $define == null {
-    @warn #{"メディアクエリキー `" + $target + "` は未定義です。"}
-  } @else {
-    $min: map-get($define, min);
-    @if $min == null {
-      @content;
-    } @else {
-      @media #{$media-query-target} and (min-width: #{$min}px) {
-        @content;
-      }
-    }
-  }
-}
-
-// // each targets
-// // default: group only
-// @mixin mq-targets($type: group) {
-//   $mq-each-target: null !global;
-//   $mq-each-prefix: null !global;
-
-//   @if $type == all or $type == group {
-//     @each $target, $define in $media-query-groups {
-//       $mq-each-target: $target !global;
-//       $mq-each-prefix: #{$target + "-"} !global;
-//       @include mq($target) { @content; }
-//     }
-//   }
-
-//   @if $type == all or $type == key {
-//     @each $target, $define in $media-query-breakpoints {
-//       $mq-each-target: $target !global;
-//       $mq-each-prefix: #{$target + "-"} !global;
-//       @include mq($target) { @content; }
-//     }
-//   }
-// }
-
-@mixin mq-each($vec: min) {
+@mixin mq-each() {
   $mq-each-target: null !global;
   $mq-each-prefix: null !global;
 
-  @each $target, $define in $media-query-breakpoints {
+  @each $define in $ui-media-match-each-targets {
+    $target: map-get($define, key);
+    $condition-target: map-get($define, condition);
+
     $mq-each-target: $target !global;
     $mq-each-prefix: #{$target + "-"} !global;
 
-    @if $vec == min {
-      @include mq-min($target) { @content; }
-    } @else if $vec == max {
-      @include mq-max($target) { @content; }
+    @if $condition-target == null {
+      @content;
     } @else {
-      @include mq($target) { @content; }
+      @include mq($condition-target) { @content; }
     }
   }
 }

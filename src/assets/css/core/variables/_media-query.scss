@@ -1,0 +1,102 @@
+//
+// Media query
+//
+
+// mixin (mq-each) で処理されるのはこのリストだけです
+$ui-break-points: (
+  (key: xs, min: 0px, content: 100%, description: "Phone (Narrow)"),
+  (key: sm, min: 576px, content: 100%, description: "Phone"),
+  (key: md, min: 768px, content: 100%, description: "Tablet"),
+  (key: lg, min: 992px, content: 992px, description: "Console"),
+  (key: xl, min: 1200px, content: 1200px, description: "Console (Wide)"),
+) !default;
+
+// 以下2つのリストは mixin(mq) もしくはJavaScriptのstateとしてのみ参照できます
+$ui-media-match-customs: (
+  (key: narrowHeight, condition: "(max-height:320px)"),
+);
+
+$ui-media-match-aliases: (
+  phone: smAndDown,
+  mobile: mdAndDown,
+  desktop: lgAndUp,
+) !default;
+
+
+
+@function my-create-condition($output: all, $min: null, $max: null, $more: null) {
+  $condition: $output;
+  @if $min != null and $min > 0px {
+    $condition: $condition + " and (min-width:" + $min + ")";
+  }
+
+  @if $max != null {
+    $condition: $condition + " and (max-width:" + $max + ")";
+  }
+
+  @if $more != null {
+    $condition: $condition + " and " + $more;
+  }
+  @return $condition;
+}
+
+$ui-media-matches: ();
+$ui-media-match-maps: ();
+$ui-media-match-each-targets: ();
+
+@each $define in $ui-break-points {
+  $key: map-get($define, key);
+  $index: index($ui-break-points, $define);
+  $before-index: $index - 1;
+  $next-index: $index + 1;
+  $before-define: null;
+  $next-define: null;
+  $each-define: null;
+
+  @if $before-index != 0 {
+    $before-define: nth($ui-break-points, $before-index);
+  } @else {
+    $each-define: (key: $key, condition: null);
+  }
+
+  @if $next-index <= length($ui-break-points) {
+    $next-define: nth($ui-break-points, $next-index);
+
+    @if $each-define == null {
+      $each-define: (key: $key, condition: $key + "AndUp");
+    }
+  } @else {
+    $each-define: (key: $key, condition: $key);
+  }
+
+  $ui-media-match-each-targets: append($ui-media-match-each-targets, $each-define);
+
+  $min: map-get($define, min);
+  $max: null;
+
+  @if $next-define != null {
+    $max: map-get($next-define, min) - 1;
+  }
+
+  @if $before-define != null and $next-define != null {
+    $down-key: $key + "AndDown";
+    $down-condition: my-create-condition($max: $max);
+    $ui-media-match-maps: map-set($ui-media-match-maps, $down-key, $down-condition);
+
+    $up-key: $key + "AndUp";
+    $up-condition: my-create-condition($min: $min);
+    $ui-media-match-maps: map-set($ui-media-match-maps, $up-key, $up-condition);
+  }
+
+  $condition: my-create-condition($min: $min, $max: $max);
+  $ui-media-match-maps: map-set($ui-media-match-maps, $key, $condition);
+}
+
+@each $define in $ui-media-match-customs {
+  $condition: my-create-condition($more: map-get($define, condition));
+  $ui-media-match-maps: map-set($ui-media-match-maps, map-get($define, key), $condition);
+}
+
+@each $key, $condition in $ui-media-match-maps {
+  $ui-media-matches: append($ui-media-matches, (key: $key, condition: $condition));
+}

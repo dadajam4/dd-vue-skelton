@@ -3,10 +3,10 @@
 //
 
 // ブレイクポイントごとのコンテナの最大幅の設定
-$ignore-page-max-width-breakpoints: xs, sm, md;
 $page-max-widths: ();
-@each $target, $define in $media-query-breakpoints {
-  $width: if(index($ignore-page-max-width-breakpoints, $target), 100%, map-get($define, min) * 1px);
+@each $define in $ui-break-points {
+  $target: map-get($define, key);
+  $width: map-get($define, content);
   $page-max-widths: map-set($page-max-widths, $target, $width);
 }
 

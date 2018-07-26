@@ -15,15 +15,12 @@
 
 
 <script>
-import Mq from '~/mixins/mq';
 import ClickOutside from '~/directives/click-outside';
 
 
 
 export default {
   name: 'vt@app-drawer',
-
-  mixins: [Mq],
 
   inject: ['$app'],
 
@@ -65,7 +62,7 @@ export default {
     },
 
     isStatic() {
-      return this.static && this.mq[this.static];
+      return this.static && this.$ui.mq[this.static];
     },
 
     state() { return this.$store.state.ui[`${this.vec}Drawer`] },

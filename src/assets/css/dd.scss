@@ -9,6 +9,11 @@
 // Core
 @import "./core/index";
 
+// dump for JavaScript
+.#{$css-prefix}css-values {
+  @include dump-ui-values;
+}
+
 :root {
   @include dump-default-theme;
 }

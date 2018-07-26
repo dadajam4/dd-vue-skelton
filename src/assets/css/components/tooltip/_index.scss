@@ -2,53 +2,23 @@
 // Tooltip
 //
 
-
 .#{$css-prefix}tooltip {
-  // position: relative;
-
-  // &__content {
-  //   @include theme-color(background, background-darken);
-  //   @include theme-color(color, text-inverted);
-  //   // background: $grey.darken-2;
-  //   border-radius: 2px;
-  //   // color: #fff;
-  //   @include font-size(xs);
-  //   display: inline-block;
-  //   padding: 5px 8px;
-  //   position: absolute;
-  //   text-transform: initial;
-  //   transition: .15s get-easing(swing);
-  //   width: auto;
-  //   @include elevation(2);
-
-  //   &[class*="-active"] {
-  //     pointer-events: none;
-  //   }
-
-  //   @include mq-max(sm) {
-  //     padding: 10px 16px;
-  //   }
-  // }
 
   @include theme-color(background, background-darken);
   @include theme-color(color, text-inverted);
-  // background: $grey.darken-2;
   border-radius: 2px;
-  // color: #fff;
   @include font-size(xs);
   display: inline-block;
   padding: 5px 8px;
-  // position: absolute;
   text-transform: initial;
   transition: .15s get-easing(swing);
-  // width: auto;
   @include elevation(2);
 
   &[class*="-active"] {
     pointer-events: none;
   }
 
-  @include mq-max(sm) {
+  @include mq(smAndDown) {
     padding: 10px 16px;
   }
 }

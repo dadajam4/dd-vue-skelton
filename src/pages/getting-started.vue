@@ -10,6 +10,7 @@
 
     <vt@page-section title id="はじめに" data-anchor-point>
       <p>コンテンツが入ります</p>
+      {{ $ui.mq }}
     </vt@page-section>
   </vt@page>
 </template>

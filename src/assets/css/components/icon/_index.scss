@@ -17,11 +17,19 @@
   // display: inline-block;
   // line-height: 1em;
 
-  &--rotate {
-    // display: inline-flex;
+  &--loop-rotate {
+
     &:before {
       display: block;
       animation: #{$css-prefix}icon-rotate 1s infinite;
+    }
+  }
+
+  &--rotate {
+    // display: inline-flex;
+    transition: get-transition(primary);
+    &:before {
+      display: block;
     }
 
     // align-items: center;

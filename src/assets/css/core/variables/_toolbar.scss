@@ -6,9 +6,16 @@
   @return map-get($toolbar, $key);
 }
 
+$ui-toolbar-heights: (
+  dense: 48,
+  narrowHeight: 48,
+  mobile: 56,
+  desktop: 64,
+) !default;
+
 $toolbar: ();
 $toolbar: map-set($toolbar, content-margin, get-space(xs));
-$toolbar: map-set($toolbar, height-mobile-landscape, $toolbar-height-mobile-landscape * 1px);
-$toolbar: map-set($toolbar, height-mobile, $toolbar-height-mobile * 1px);
-$toolbar: map-set($toolbar, height-desktop, $toolbar-height-desktop * 1px);
-$toolbar: map-set($toolbar, height-dense, $toolbar-height-dense * 1px);
+// $toolbar: map-set($toolbar, height-mobile-landscape, $toolbar-height-mobile-landscape * 1px);
+// $toolbar: map-set($toolbar, height-mobile, $toolbar-height-mobile * 1px);
+// $toolbar: map-set($toolbar, height-desktop, $toolbar-height-desktop * 1px);
+// $toolbar: map-set($toolbar, height-dense, $toolbar-height-dense * 1px);

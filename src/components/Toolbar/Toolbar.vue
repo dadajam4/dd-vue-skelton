@@ -1,27 +1,15 @@
 <script>
-import uiSettings from '~~/config/css/ui-settings';
 import Colorable from '~/mixins/color';
 import { snake2camel } from '~/helpers';
-import Mq from '~/mixins/mq';
 
 
 
 let MINIMUM_HEIGHT;
-const HEIGHT_SETTINGS = {};
-const heightKeys = Object.keys(uiSettings).filter(setting => setting.indexOf('toolbar-height-') === 0);
-heightKeys.forEach(key => {
-  const _key   = snake2camel(key.replace(/^toolbar-height-/, ''));
-  const height = uiSettings[key];
-  HEIGHT_SETTINGS[_key] = height;
-  if (MINIMUM_HEIGHT === undefined || height < MINIMUM_HEIGHT) MINIMUM_HEIGHT = height;
-});
-
-
 
 export default {
   name: 'vt@toolbar',
 
-  mixins: [Colorable, Mq],
+  mixins: [Colorable],
 
   props: {
     tag: {
@@ -50,11 +38,11 @@ export default {
       if (this.height) {
         height = parseInt(this.height, 10);
       } else if (this.dense) {
-        height = HEIGHT_SETTINGS.dense;
+        height = this.$ui.toolbarHeights.dense;
       } else {
-        for (let key in HEIGHT_SETTINGS) {
-          if (this.mq[key]) {
-            height = HEIGHT_SETTINGS[key];
+        for (const key in this.$ui.toolbarHeights) {
+          if (this.$ui.mq[key]) {
+            height = this.$ui.toolbarHeights[key];
             break;
           }
         }
@@ -94,6 +82,17 @@ export default {
   },
 
   methods: {
+    setupMinimumHeight() {
+      if (MINIMUM_HEIGHT !== undefined) return;
+      for (const key in this.$ui.toolbarHeights) {
+        const height = this.$ui.toolbarHeights[key];
+        if (MINIMUM_HEIGHT === undefined || height < MINIMUM_HEIGHT) MINIMUM_HEIGHT = height;
+      }
+    },
+  },
+
+  created() {
+    if (this.$ui.hasWindow) this.setupMinimumHeight();
   },
 
   render(h) {

@@ -1,12 +1,9 @@
-import Mq from '~/mixins/mq';
 const extendsProps = ['src', 'width', 'height', 'alt'];
 
 
 
 export default {
   name: 'vt@img',
-
-  mixins: [Mq],
 
   props: {
     src: {
@@ -76,7 +73,7 @@ export default {
       if (!this.hasMqSetting) return this.settings.default;
       for (let matchKey in this.settings) {
         if (matchKey === 'default') continue;
-        if (this.mq[matchKey]) return this.settings[matchKey];
+        if (this.$ui.mq[matchKey]) return this.settings[matchKey];
       }
       return this.settings.default;
     },

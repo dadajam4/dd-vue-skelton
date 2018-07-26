@@ -9,16 +9,6 @@
     @include z-index(app-drawer);
   }
 
-  // position: fixed;
-
-  // @include z-index(app-drawer);
-  // top: -$my-overflow-size;
-  // left: -$my-overflow-size;
-  // right: -$my-overflow-size;
-  // bottom: -$my-overflow-size;
-  // background: rgba(0, 0, 0, .4);
-  // pointer-events: none;
-
   &__base {
     z-index: get-z-index(app-drawer) + 1;
     position: fixed;
@@ -40,12 +30,6 @@
     right: 0;
     overflow: auto;
   }
-
-  // @include mq-min(lg) {
-  //   &__overlay {
-  //     display: none!important;
-  //   }
-  // }
 
   &--close &__base {
     left: -$navigation-drawer-width;

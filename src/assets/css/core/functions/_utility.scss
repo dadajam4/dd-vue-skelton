@@ -2,6 +2,66 @@
 // Utilitiy
 //
 
+@function is-number($value) {
+  @return type-of($value) == 'number';
+}
+
+@function is-nounit-number($value) {
+  @return is-number($value) and unit($value) == "";
+}
+
+@function is-time($value) {
+  @return is-number($value) and index('ms' 's', unit($value)) != null;
+}
+
+@function is-duration($value) {
+  @return is-time($value);
+}
+
+@function is-angle($value) {
+  @return is-number($value) and index('deg' 'rad' 'grad' 'turn', unit($value)) != null;
+}
+
+@function is-frequency($value) {
+  @return is-number($value) and index('Hz' 'kHz', unit($value)) != null;
+}
+
+@function is-integer($value) {
+  @return is-number($value) and round($value) == $value;
+}
+
+@function is-relative-length($value) {
+  @return is-number($value) and index('em' 'ex' 'ch' 'rem' 'vw' 'vh' 'vmin' 'vmax', unit($value)) != null;
+}
+
+@function is-absolute-length($value) {
+  @return is-number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
+}
+
+@function is-percentage($value) {
+  @return is-number($value) and unit($value) == '%';
+}
+
+@function is-length($value) {
+  @return is-relative-length($value) or is-absolute-length($value);
+}
+
+@function is-resolution($value) {
+  @return is-number($value) and index('dpi' 'dpcm' 'dppx', unit($value)) != null;
+}
+
+@function is-position($value) {
+  @return is-length($value) or is-percentage($value) or index('top' 'right' 'bottom' 'left' 'center', $value) != null;
+}
+
+@function is-map($value) {
+  @return type-of($value) == 'map';
+}
+
+@function is-list($value) {
+  @return type-of($value) == 'list';
+}
+
 @function nounit($value) {
   $_nounit_divisor: (floor($value) * 2) % 2 + 1;
   @return ($value / $_nounit_divisor);
@@ -184,3 +244,56 @@
 //   #{$prop}: get-var($key)#{$_important};
 //   #{$prop}: var(--#{$key})#{$_important};
 // }
+
+@function map-to-json($map) {
+  $str: "{";
+  $index: 0;
+  $keys: map-keys($map);
+  $count: length($keys);
+  @each $key, $value in $map {
+    $index: $index + 1;
+    $str: $str + "\"" + $key + "\":" + to-json($value);
+    @if $index != $count {
+      $str: $str + ",";
+    }
+  }
+  $str: $str + "}";
+  @return $str;
+}
+
+@function list-to-json($list) {
+  $str: "[";
+  $count: length($list);
+  @each $value in $list {
+    $index: index($list, $value);
+    $str: $str + to-json($value);
+    @if $index != $count {
+      $str: $str + ",";
+    }
+  }
+  $str: $str + "]";
+  @return $str;
+}
+
+@function to-json($value) {
+  $str: "";
+  $type: type-of($value);
+  @if is-map($value) {
+    $str: $str + map-to-json($value);
+  } @else if is-list($value) {
+    $str: $str + list-to-json($value);
+  } @else if is-nounit-number($value) {
+    $str: $str + $value;
+  } @else if $type == "null" {
+    $str: $str + "null";
+  } @else if $type == "bool" {
+    $str: $str + $value;
+  } @else {
+    $str: $str + "\"" + $value + "\"";
+  }
+  @return $str;
+}
+
+@mixin dump-ui-values() {
+  content: to-json($ui-values);
+}
