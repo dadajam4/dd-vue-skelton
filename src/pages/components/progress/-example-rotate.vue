@@ -4,7 +4,7 @@
 <template>
   <docs-example>
     <vt@spinner
-      class="vc@m-a--md"
+      class="vc@ma-md"
       v-for="define in rotateDefines"
       :key="define.color"
       :rotate="define.rotate"

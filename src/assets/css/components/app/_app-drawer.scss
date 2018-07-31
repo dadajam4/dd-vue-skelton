@@ -18,7 +18,7 @@
     max-width: 100%;
     @include theme-color(background-color, background);
     box-shadow: 0 0 4px rgba(0, 0, 0, .4);
-    transition: get-page(drawer-transition);
+    transition: get-transition(drawer);
     will-change: transform, box-shadow;
   }
 

@@ -22,20 +22,18 @@
         </vt@input>
       </div>
 
-      <vt@container grid-list-md>
-        <vt@layout row wrap justify-center>
-          <vt@flex
-            v-for="icon in computedIcons"
-            :key="icon.name"
-             class="my-container"
-          >
-            <my-icon
-              :name="icon.name"
-              :label="icon.label"
-            />
-          </vt@flex>
-        </vt@layout>
-      </vt@container>
+      <vt@row justify-center>
+        <vt@col
+          v-for="icon in computedIcons"
+          :key="icon.name"
+          class="my-container"
+        >
+          <my-icon
+            :name="icon.name"
+            :label="icon.label"
+          />
+        </vt@col>
+      </vt@row>
     </div>
   </docs-example>
 </template>

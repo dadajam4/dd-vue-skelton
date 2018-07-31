@@ -20,12 +20,12 @@ $html-base-font-size-per: ($html-base-font-size / 16px) * 100%;
 }
 
 $font-size: ();
-$font-size: map-set($font-size, base   , get-rem()     ); // 16px
-$font-size: map-set($font-size, xxs    , get-rem(.625) ); // 10px
-$font-size: map-set($font-size, xs     , get-rem(.75)  ); // 12px
-$font-size: map-set($font-size, sm     , get-rem(.875) ); // 14px
-$font-size: map-set($font-size, md     , get-rem()     ); // 16px
-$font-size: map-set($font-size, lg     , get-rem(1.125)); // 18px
+$font-size: map-set($font-size, base  , get-rem()      ); // 16px
+$font-size: map-set($font-size, xxs   , get-rem(.625)  ); // 10px
+$font-size: map-set($font-size, xs    , get-rem(.75)   ); // 12px
+$font-size: map-set($font-size, sm    , get-rem(.875)  ); // 14px
+$font-size: map-set($font-size, md    , get-rem()      ); // 16px
+$font-size: map-set($font-size, lg    , get-rem(1.125) ); // 18px
 $font-size: map-set($font-size, xl    , get-rem(1.25)  ); // 20px
 $font-size: map-set($font-size, xxl   , get-rem(1.625) ); // 26px
 $font-size: map-set($font-size, xxxl  , get-rem(2)     ); // 32px

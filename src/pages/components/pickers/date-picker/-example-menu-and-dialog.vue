@@ -13,29 +13,29 @@
       <code>persistent</code> 属性とdialogを併用する事で、値の入力を強制させる事が可能です。
     </template>
 
-    <vt@layout wrap row>
-      <vt@flex xs12 sm6 md4>
+    <vt@row>
+      <vt@col col-12 col-sm-6 col-md-4>
         <vt@date-picker-fragment cancellable>
           <vt@input v-model="picked">
             <vt@icon>calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
-      </vt@flex>
-      <vt@flex xs12 sm6 md4>
+      </vt@col>
+      <vt@col col-12 col-sm-6 col-md-4>
         <vt@date-picker-fragment cancellable dialog>
           <vt@input v-model="picked">
             <vt@icon>calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
-      </vt@flex>
-      <vt@flex xs12 sm6 md4>
+      </vt@col>
+      <vt@col col-12 col-sm-6 col-md-4>
         <vt@date-picker-fragment dialog persistent>
           <vt@input v-model="picked">
             <vt@icon>calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
-      </vt@flex>
-    </vt@layout>
+      </vt@col>
+    </vt@row>
   </docs-example>
 </template>
 

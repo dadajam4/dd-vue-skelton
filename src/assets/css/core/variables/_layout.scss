@@ -1,0 +1,14 @@
+//
+// Layout
+//
+
+$ui-horizontal-padding: 20px !default;
+$ui-num-of-columns: 12 !default;
+$ui-gutter-default: 8px;
+$ui-gutter-sizes: (
+  xs: $ui-gutter-default / 4,
+  sm: $ui-gutter-default / 2,
+  md: $ui-gutter-default,
+  lg: $ui-gutter-default * 2,
+  xl: $ui-gutter-default * 3,
+) !default;

@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <div class="vc@text--center">
+    <div class="vc@text-center">
       <vt@pagination :length="15" v-model="page"></vt@pagination>
     </div>
   </docs-example>

@@ -12,14 +12,14 @@
           :value="true"
         />
 
-        <vt@layout justify-space-around>
+        <vt@row nowrap justify-space-around>
           <vt@icon :rotate="rotate" sm>spinner</vt@icon>
           <vt@icon :rotate="rotate">spinner</vt@icon>
           <vt@icon :rotate="rotate" lg>spinner</vt@icon>
           <vt@icon :rotate="rotate" sm>home</vt@icon>
           <vt@icon :rotate="rotate">calendar-check-o</vt@icon>
           <vt@icon :rotate="rotate" lg>info-circle</vt@icon>
-        </vt@layout>
+        </vt@row>
       </vt@card-text>
     </vt@card>
 
@@ -32,14 +32,14 @@
           max="360"
         />
 
-        <vt@layout justify-space-around>
+        <vt@row nowrap justify-space-around>
           <vt@icon :rotate="deg" sm>spinner</vt@icon>
           <vt@icon :rotate="deg">spinner</vt@icon>
           <vt@icon :rotate="deg" lg>spinner</vt@icon>
           <vt@icon :rotate="deg" sm>home</vt@icon>
           <vt@icon :rotate="deg">calendar-check-o</vt@icon>
           <vt@icon :rotate="deg" lg>info-circle</vt@icon>
-        </vt@layout>
+        </vt@row>
       </vt@card-text>
     </vt@card>
 

@@ -14,11 +14,10 @@ $directions: (
 );
 
 @include mq-each() {
-  $mq-prefix: if($mq-each-target == xs, "", $mq-each-prefix);
   @each $property-cel, $property-name in $properties {
     @each $direction-cel, $direction-targets in $directions {
       @each $size-cel, $size-val in $space {
-        .#{$css-prefix}#{$mq-prefix}#{$property-cel}-#{$direction-cel}--#{$size-cel} {
+        .#{$css-prefix}#{$property-cel}#{$direction-cel}#{$mq-each-prefix}-#{$size-cel} {
           @each $direction-name in $direction-targets {
             #{$property-name}-#{$direction-name}: $size-val!important;
           }

@@ -1,4 +1,4 @@
-export default function Grid(name) {
+export default function layoutComponentFactory(name) {
   return {
     name: `vt@${name}`,
 

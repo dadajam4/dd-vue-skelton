@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <div class="vc@text--center">
+    <div class="vc@text-center">
       <vt@btn
         info
         @click="chip1 = true, chip2 = true, chip3 = true, chip4 = true"

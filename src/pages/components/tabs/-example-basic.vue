@@ -6,7 +6,7 @@
     <vt@tabs ref="tab">
       <vt@tabs-item v-for="n in 3" :key="n">
         <vt@tabs-trigger>Item {{n}}</vt@tabs-trigger>
-        <vt@tabs-content class="vc@text--center">
+        <vt@tabs-content class="vc@text-center">
           <p v-for="nn in n">これはタブ{{n}}です。</p>
         </vt@tabs-content>
       </vt@tabs-item>

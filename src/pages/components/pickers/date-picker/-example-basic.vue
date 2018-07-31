@@ -9,21 +9,21 @@
       週の始まりを変更する場合、 <code>first-day-of-week</code> で設定可能です。デフォルトは <var>0</var>（日曜） です。
     </template>
 
-    <vt@layout align-end wrap>
-      <vt@flex xs12 sm6>
+    <vt@row align-end>
+      <vt@col col-12 col-sm-6>
         <vt@select
           label="locale"
           autocomplete
           v-model="locale"
           :options="locales"
         />
-      </vt@flex>
-      <vt@flex xs12 sm6>
+      </vt@col>
+      <vt@col col-12 col-sm-6>
         <vt@input v-model="picked">
           <vt@icon>calendar</vt@icon>
         </vt@input>
-      </vt@flex>
-    </vt@layout>
+      </vt@col>
+    </vt@row>
 
     <vt@date-picker
       v-model="picked"

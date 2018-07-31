@@ -3,8 +3,8 @@ import {
 } from '~/util';
 
 import Container from './Container';
-import Flex from './Flex';
-import Layout from './Layout';
+import Col from './Col';
+import Row from './Row';
 
 
 
@@ -14,7 +14,7 @@ const Spacer = createSimpleFunctional('spacer');
 
 export default {
   Container,
-  Flex,
-  Layout,
+  Col,
+  Row,
   Spacer,
 }

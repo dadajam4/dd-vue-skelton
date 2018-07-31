@@ -9,8 +9,8 @@
       <code>ex. ['2018-3-1', '2018-1', ...] or info => (info.value === '2012-02-11')</code>
     </template>
 
-    <vt@layout wrap row>
-      <vt@flex v-bind="columnBinding">
+    <vt@row>
+      <vt@col v-bind="columnBinding">
         <vt@date-picker-fragment
           cancellable
           :allowed-dates="`${currentYear}-${currentMonth}`"
@@ -19,8 +19,8 @@
             <vt@icon>calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
-      </vt@flex>
-      <vt@flex v-bind="columnBinding">
+      </vt@col>
+      <vt@col v-bind="columnBinding">
         <vt@date-picker-fragment
           cancellable
           :allowed-dates="allowed2"
@@ -29,8 +29,8 @@
             <vt@icon>calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
-      </vt@flex>
-      <vt@flex v-bind="columnBinding">
+      </vt@col>
+      <vt@col v-bind="columnBinding">
         <vt@date-picker-fragment
           cancellable
           :allowed-dates="allowed3"
@@ -39,8 +39,8 @@
             <vt@icon>calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
-      </vt@flex>
-    </vt@layout>
+      </vt@col>
+    </vt@row>
   </docs-example>
 </template>
 
@@ -61,9 +61,9 @@ export default {
   computed: {
     columnBinding() {
       return {
-        xs12: true,
-        sm6: true,
-        md4: true,
+        'col-12': true,
+        'col-sm-6': true,
+        'col-md-4': true,
       }
     },
     allowed1() { return `${this.currentYear}-${this.currentMonth}` },

@@ -7,7 +7,7 @@ import Chip from './Chip';
 import DataTable from './DataTable';
 import Dialog from './Dialog';
 import Overlay from './Overlay';
-import Grid from './Grid';
+import Layout from './Layout';
 import Input from './Input';
 import Badge from './Badge';
 import Breadcrumb from './Breadcrumb';
@@ -40,7 +40,7 @@ export default Object.assign({},
   DataTable,
   Dialog,
   Overlay,
-  Grid,
+  Layout,
   Input,
   Badge,
   Breadcrumb,

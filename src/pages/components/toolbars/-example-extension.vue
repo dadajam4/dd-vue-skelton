@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <vt@toolbar class="vc@m-b--md" info>
+    <vt@toolbar class="vc@mb-md" info>
       <vt@toolbar-side-icon />
       <vt@spacer />
       <vt@btn flat icon>
@@ -23,7 +23,7 @@
       </vt@toolbar-extension>
     </vt@toolbar>
 
-    <vt@toolbar class="vc@m-b--md" info>
+    <vt@toolbar class="vc@mb-md" info>
       <vt@toolbar-side-icon />
       <vt@spacer />
       <vt@btn flat icon>
@@ -43,7 +43,7 @@
       </vt@toolbar-extension>
     </vt@toolbar>
 
-    <vt@toolbar class="vc@m-b--md" info>
+    <vt@toolbar class="vc@mb-md" info>
       <vt@toolbar-side-icon />
       <vt@spacer />
       <vt@btn flat icon>

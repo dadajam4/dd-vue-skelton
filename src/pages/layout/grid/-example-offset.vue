@@ -3,30 +3,28 @@
 
 <template>
   <docs-example>
-    <vt@container grid-list-xl text-xs-center>
-      <vt@layout row wrap text--center>
-        <vt@flex xs10 offset-xs1>
-          <vt@card dark primary>
-            <vt@card-text>xs10 offset-xs1</vt@card-text>
-          </vt@card>
-        </vt@flex>
-        <vt@flex xs7 offset-xs0 offset-md2 offset-lg5>
-          <vt@card dark success>
-            <vt@card-text>xs7 offset-xs5</vt@card-text>
-          </vt@card>
-        </vt@flex>
-        <vt@flex xs12 sm5 md2>
-          <vt@card dark info>
-            <vt@card-text>xs5</vt@card-text>
-          </vt@card>
-        </vt@flex>
-        <vt@flex xs12 sm5 md3 offset-xs2 offset-lg2>
-          <vt@card dark warning>
-            <vt@card-text>xs5 offset-xs2</vt@card-text>
-          </vt@card>
-        </vt@flex>
-      </vt@layout>
-    </vt@container>
+    <vt@row gutter-md text-center>
+      <vt@col col-10 offset-1>
+        <vt@card dark primary>
+          <vt@card-text>col-10 offset-1</vt@card-text>
+        </vt@card>
+      </vt@col>
+      <vt@col col-7 offset-0 offset-md-2 offset-lg-5>
+        <vt@card dark success>
+          <vt@card-text>col-7 offset-0 offset-md-2 offset-lg-5</vt@card-text>
+        </vt@card>
+      </vt@col>
+      <vt@col col-12 col-sm-5 col-md-2>
+        <vt@card dark info>
+          <vt@card-text>col-12 col-sm-5 col-md-2</vt@card-text>
+        </vt@card>
+      </vt@col>
+      <vt@col col-12 col-sm-5 col-md-3 offset-2>
+        <vt@card dark warning>
+          <vt@card-text>col-12 col-sm-5 col-md-3 offset-2</vt@card-text>
+        </vt@card>
+      </vt@col>
+    </vt@row>
   </docs-example>
 </template>
 

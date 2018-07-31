@@ -1,0 +1,20 @@
+//
+// Layout
+//
+
+@mixin container() {
+  width: 100%;
+  flex: 1 1 100%;
+  padding-left: $ui-horizontal-padding;
+  padding-right: $ui-horizontal-padding;
+  margin-left: auto;
+  margin-right: auto;
+
+  @each $define in $ui-break-points {
+    $key: map-get($define, key);
+    $width: map-get($define, content);
+    @include mq($key) {
+      max-width: $width;
+    }
+  }
+}

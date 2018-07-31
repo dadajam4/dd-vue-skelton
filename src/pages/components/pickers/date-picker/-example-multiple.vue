@@ -20,26 +20,26 @@
 
     <pre><code>{{ picked }}</code></pre>
 
-    <vt@layout align-end wrap>
-      <vt@flex xs12 sm6>
-      </vt@flex>
-      <vt@flex xs12 sm6>
-      </vt@flex>
-    </vt@layout>
+    <vt@row align-end>
+      <vt@col col-12 col-sm-6>
+      </vt@col>
+      <vt@col col-12 col-sm-6>
+      </vt@col>
+    </vt@row>
 
 
-    <vt@layout align-end wrap>
-      <vt@flex xs12 sm6>
+    <vt@row align-end>
+      <vt@col col-12 col-sm-6>
         <vt@input v-model="picked[0]">
           <vt@icon>calendar</vt@icon>
         </vt@input>
-      </vt@flex>
-      <vt@flex xs12 sm6>
+      </vt@col>
+      <vt@col col-12 col-sm-6>
         <vt@input v-model="picked[1]">
           <vt@icon>calendar</vt@icon>
         </vt@input>
-      </vt@flex>
-    </vt@layout>
+      </vt@col>
+    </vt@row>
 
     <vt@date-picker
       multiple

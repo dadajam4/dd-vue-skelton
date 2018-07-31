@@ -7,9 +7,9 @@
       img="/img/map/1.jpg"
       flat
       height="300px"
-      class="vc@p-a--md"
+      class="vc@pa-md"
     >
-      <vt@toolbar dense floating class="vc@m-t--none">
+      <vt@toolbar dense floating class="vc@mt-none">
         <vt@input
           type="search"
           flat

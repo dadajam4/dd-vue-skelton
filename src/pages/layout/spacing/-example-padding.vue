@@ -8,8 +8,8 @@
         <div
           v-for="space in SPACES"
           :key="space.key"
-          :class="`vc@p-${direction.key}--${space.key}`"
-        ><div class="my__div">{{`vc@p-${direction.key}--${space.key}`}}</div></div>
+          :class="`vc@p${direction.key}-${space.key}`"
+        ><div class="my__div">{{`vc@p${direction.key}-${space.key}`}}</div></div>
       </template>
     </div>
   </docs-example>

@@ -3,23 +3,21 @@
 
 <template>
   <docs-example>
-    <vt@container fluid class="vc@text--center">
-      <vt@layout flex wrap row justify-space-between>
-        <vt@flex xs12>
-          <vt@btn @click="show = !show">toggle</vt@btn>
-        </vt@flex>
-        <vt@flex xs12 class="vc@m-t--xl">
-          <vt@tooltip-fragment>
-            <vt@btn flat icon>
-              <vt@icon>shopping-cart</vt@icon>
-            </vt@btn>
-            <vt@tooltip v-model="show" top :open-on-click="false" :open-on-hover="false">
-              <span>Programmatic tooltip</span>
-            </vt@tooltip>
-          </vt@tooltip-fragment>
-        </vt@flex>
-      </vt@layout>
-    </vt@container>
+    <vt@row justify-space-between text-center>
+      <vt@col col-12>
+        <vt@btn @click="show = !show">toggle</vt@btn>
+      </vt@col>
+      <vt@col col-12 class="vc@mt-xl">
+        <vt@tooltip-fragment>
+          <vt@btn flat icon>
+            <vt@icon>shopping-cart</vt@icon>
+          </vt@btn>
+          <vt@tooltip v-model="show" top :open-on-click="false" :open-on-hover="false">
+            <span>Programmatic tooltip</span>
+          </vt@tooltip>
+        </vt@tooltip-fragment>
+      </vt@col>
+    </vt@row>
 
   </docs-example>
 </template>

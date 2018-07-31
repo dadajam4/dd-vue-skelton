@@ -35,7 +35,7 @@
 <div class="my">
   <h3 class="my__name">
     <span style="vertical-align: middle;">&lt;{{name}}&gt;</span>
-    <vt@btn sm primary class="vc@m-l--sm" v-if="source" @click="sourceActive = !sourceActive">
+    <vt@btn sm primary class="vc@ml-sm" v-if="source" @click="sourceActive = !sourceActive">
       {{sourceActive ? 'Hide' : 'View'}} Source
     </vt@btn>
   </h3>

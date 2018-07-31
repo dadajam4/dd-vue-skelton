@@ -25,7 +25,7 @@
   <vt@app-drawer right static="xl" v-model="isActive" ref="drawer">
     <div class="my-logo">
       <router-link class="vc@height--app-header" :to="{name: 'index'}">
-        <img class="vc@m-r--xs" src="img/logo/dd.svg" alt="" width="24">
+        <img class="vc@mr-xs" src="img/logo/dd.svg" alt="" width="24">
         DD Vue Skelton
       </router-link>
     </div>

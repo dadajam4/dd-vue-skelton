@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <div class="vc@text--center">
+    <div class="vc@text-center">
       <vt@badge overlap left success>
         <span slot="badge">1</span>
         <vt@icon xl>user-circle</vt@icon>

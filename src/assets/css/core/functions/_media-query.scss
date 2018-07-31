@@ -4,6 +4,7 @@
 
 $mq-each-target: null !global;
 $mq-each-prefix: null !global;
+$mq-each-prefix-org: null !global;
 
 // 複数指定可能
 @mixin mq($targets...) {
@@ -28,13 +29,16 @@ $mq-each-prefix: null !global;
 @mixin mq-each() {
   $mq-each-target: null !global;
   $mq-each-prefix: null !global;
+  $is-first: true;
 
   @each $define in $ui-media-match-each-targets {
     $target: map-get($define, key);
     $condition-target: map-get($define, condition);
 
     $mq-each-target: $target !global;
-    $mq-each-prefix: #{$target + "-"} !global;
+    $mq-each-prefix-org: #{$target + "-"} !global;
+    $mq-each-prefix: if($is-first, "", $mq-each-prefix-org) !global;
+    $is-first: false;
 
     @if $condition-target == null {
       @content;
