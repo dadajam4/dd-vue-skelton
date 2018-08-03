@@ -4,7 +4,7 @@ module.exports = {
   core: [
     'core.clean',
     [
-      'core.svgIcon',
+      // 'core.svgIcon',
       'core.sassValues',
     ],
     // 'core.sync',

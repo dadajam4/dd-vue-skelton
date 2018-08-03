@@ -17,21 +17,21 @@
       <vt@col col-12 col-sm-6 col-md-4>
         <vt@date-picker-fragment cancellable>
           <vt@input v-model="picked">
-            <vt@icon>calendar</vt@icon>
+            <vt@icon>$ui.icons.calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
       </vt@col>
       <vt@col col-12 col-sm-6 col-md-4>
         <vt@date-picker-fragment cancellable dialog>
           <vt@input v-model="picked">
-            <vt@icon>calendar</vt@icon>
+            <vt@icon>$ui.icons.calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
       </vt@col>
       <vt@col col-12 col-sm-6 col-md-4>
         <vt@date-picker-fragment dialog persistent>
           <vt@input v-model="picked">
-            <vt@icon>calendar</vt@icon>
+            <vt@icon>$ui.icons.calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
       </vt@col>

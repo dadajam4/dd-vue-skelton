@@ -8,7 +8,7 @@
       :to="{hash: item.id}"
       @click.native.stop="onItemClick(item)"
     >
-      <span class="vc@anchor-navi__icon"><vt@icon>angle-right</vt@icon></span>
+      <span class="vc@anchor-navi__icon"><vt@icon sm>$ui.icons.angleRight</vt@icon></span>
       <span class="vc@anchor-navi__label">{{item.label}}</span>
     </router-link>
   </nav>

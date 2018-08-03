@@ -1,6 +1,6 @@
-import fontInfo from '~/assets/css/.tmp/dd-icon/dd-icon.json';
+// import fontInfo from '~/assets/css/.tmp/dd-icon/dd-icon.json';
 import iconTypes from './types';
-
+const fontInfo = { glyphs: [] };
 
 const icons = [];
 const iconNames = fontInfo.glyphs.map(glyph => glyph.name);

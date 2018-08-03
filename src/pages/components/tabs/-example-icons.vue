@@ -20,8 +20,8 @@ export default {
     return {
       tabs: [
         {icon: 'phone', label: 'RECENTS'},
-        {icon: 'heart', label: 'FAVORITES'},
-        {icon: 'address-book', label: 'NEARBY'},
+        {icon: 'hearing', label: 'FAVORITES'},
+        {icon: 'add_alert', label: 'NEARBY'},
       ],
     }
   }

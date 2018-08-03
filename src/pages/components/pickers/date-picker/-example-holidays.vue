@@ -35,7 +35,7 @@
       :holidays="info => info.day > 25"
     >
       <vt@input v-model="picked">
-        <vt@icon>calendar</vt@icon>
+        <vt@icon>$ui.icons.calendar</vt@icon>
       </vt@input>
     </vt@date-picker-fragment>
   </docs-example>

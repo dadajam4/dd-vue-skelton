@@ -44,7 +44,7 @@
     <div class="my__source-container" v-show="sourceActive">
       <pre class="my__pre" v-highlightjs="source"><code class="my__code" :class="lang" ref="code"></code></pre>
       <vt@btn class="my__btn-source-copy" icon @click="copy">
-        <vt@icon>copy</vt@icon>
+        <vt@icon>file_copy</vt@icon>
       </vt@btn>
     </div>
   </vt@expand-transition>

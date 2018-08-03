@@ -20,6 +20,7 @@ const plugin = {
     this.installed = true;
 
     Vue.use(Ui, opt);
+    // Vue.use(Ui, { iconfont: 'mdi' });
 
     // utilities
     Vue.prototype.$util = util;

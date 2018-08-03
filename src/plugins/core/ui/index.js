@@ -1,4 +1,5 @@
 import Mq from './mixins/mq';
+import Icons from './mixins/icons';
 
 const Ui = {
   install(Vue, opts = {}) {
@@ -31,6 +32,7 @@ const Ui = {
 
       data: {
         hasWindow: typeof window !== 'undefined',
+        icons: Icons(opts.iconfont, opts.icons),
         ...uiValues,
       },
     });

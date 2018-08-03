@@ -6,7 +6,7 @@
     <div class="vc@text-center">
       <vt@badge @click-badge="clickCount = clickCount + 1">
         <span slot="badge">{{clickCount}}</span>
-        <vt@icon xl>shopping-cart</vt@icon>
+        <vt@icon md>fas fa-shopping-cart</vt@icon>
       </vt@badge>
     </div>
   </docs-example>

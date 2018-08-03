@@ -737,7 +737,7 @@ export default {
     if (this.isSelect && !positionables.icon.right) {
       positionables.icon.right = h('vt@icon', {
         staticClass: 'vt@icon--right vc@combobox__icon vc@combobox__icon--right',
-      }, 'sort');
+      }, '$ui.icons.dropdown');
 
       if (this.sm) positionables.icon.right.staticClass += ` vc@icon--sm`;
       if (this.md) positionables.icon.right.staticClass += ` vc@icon--md`;

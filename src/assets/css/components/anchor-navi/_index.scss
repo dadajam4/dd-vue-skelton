@@ -31,7 +31,9 @@
   }
 
   &__icon {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     transition: get-transition(primary);
 
@@ -41,7 +43,9 @@
   }
 
   &__label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: .5em;
 
     &:first-letter {

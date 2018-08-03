@@ -5,13 +5,13 @@
   <docs-example>
     <div class="vc@text-center">
       <vt@badge overlap left success>
-        <vt@icon slot="badge">check</vt@icon>
-        <vt@icon xl>user-circle</vt@icon>
+        <vt@icon slot="badge">fas fa-check</vt@icon>
+        <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>
 
       <vt@badge overlap right class="vc@ml-xl" layer-color="indigo">
-        <vt@icon slot="badge">bell</vt@icon>
-        <vt@icon xl>users</vt@icon>
+        <vt@icon slot="badge">fas fa-bell</vt@icon>
+        <vt@icon md>fas fa-users</vt@icon>
       </vt@badge>
     </div>
   </docs-example>

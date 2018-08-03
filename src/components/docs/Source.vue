@@ -42,7 +42,7 @@
       ><code class="my-code" :class="lang" ref="copy-source"></code></pre>
     </vt@scroller>
     <vt@btn class="my-btn-source-copy" icon @click="copy">
-      <vt@icon>copy</vt@icon>
+      <vt@icon>file_copy</vt@icon>
     </vt@btn>
     <div class="my-copied" :class="{'my-copied--active': !!copied}">Copied</div>
   </div>

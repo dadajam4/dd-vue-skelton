@@ -1,6 +1,6 @@
-export default function getObjectValueByPath(obj, path) {
+export default function getObjectValueByPath(obj, path, fallback) {
   // credit: http://stackoverflow.com/questions/6491463/accessing-nested-javascript-objects-with-string-key#comment55278413_6491621
-  if (!path || path.constructor !== String) return;
+  if (!path || path.constructor !== String) return fallback;
   path = path.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
   path = path.replace(/^\./, ''); // strip a leading dot
   const a = path.split('.');
@@ -9,7 +9,7 @@ export default function getObjectValueByPath(obj, path) {
     if (obj instanceof Object && k in obj) {
       obj = obj[k];
     } else {
-      return;
+      return fallback;
     }
   }
   return obj;

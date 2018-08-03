@@ -11,13 +11,13 @@
       label="Media volume"
       rules="max_value:75 | ボリュームが大きすぎるかもしれません"
     >
-      <vt@icon>volume-up</vt@icon>
+      <vt@icon>fas fa-volume-up</vt@icon>
     </vt@range>
 
     <vt@range
       label="Brightness"
     >
-      <vt@icon right>lightbulb-o</vt@icon>
+      <vt@icon right>settings_brightness</vt@icon>
     </vt@range>
   </docs-example>
 </template>

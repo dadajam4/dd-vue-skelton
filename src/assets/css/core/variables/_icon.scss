@@ -2,12 +2,11 @@
 // Icon
 //
 
-@function get-icon($key) {
-  @return map-get($icon, $key);
-}
-
-$icon: ();
-$icon: map-set($icon, size-sm, xs);
-$icon: map-set($icon, size-md, md);
-$icon: map-set($icon, size-lg, xl);
-$icon: map-set($icon, size-xl, xxl);
+$ui-icon-sizes: (
+  xs: 12px,
+  sm: 16px,
+  md: 24px,
+  lg: 28px,
+  xl: 36px,
+  xxl: 40px,
+);

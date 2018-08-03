@@ -20,7 +20,7 @@
     </vt@accordion>
 
     <vt@accordion styled>
-      <vt@accordion-title error icon="cube">Click here!!!</vt@accordion-title>
+      <vt@accordion-title error icon="menu">Click here!!!</vt@accordion-title>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>

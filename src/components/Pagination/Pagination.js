@@ -29,11 +29,11 @@ export default {
     totalVisible: [Number, String],
     nextIcon: {
       type: String,
-      default: 'chevron-right',
+      default: '$ui.icons.angleRight',
     },
     prevIcon: {
       type: String,
-      default: 'chevron-left',
+      default: '$ui.icons.angleLeft',
     },
     value: {
       type: Number,

@@ -33,8 +33,8 @@ for (const key of CALENDAR_PATH_PROPS) {
 const _props = { ...pathPropsDefine };
 
 const ACTION_TYPES = [
-  {name: 'today', label: 'Today', icon: 'reply', color: 'info', default: true },
-  {name: 'clear', label: 'Clear', icon: 'times', color: 'info', default: true },
+  {name: 'today', label: 'Today', icon: '$ui.icons.today', color: 'info', default: true },
+  {name: 'clear', label: 'Clear', icon: '$ui.icons.clear', color: 'info', default: true },
   {name: 'spacer'},
   {name: 'cancel', label: 'CANCEL', color: 'info', default() { return this.cancellable } },
   {name: 'ok', label: 'OK', color: 'info', default() { return this.cancellable } },

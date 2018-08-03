@@ -40,11 +40,11 @@
 
 <script>
 const navigatorSettings = [
-  {match: '/getting-started', order: 0, icon: 'cube'},
-  {match: /^\/layout$/, order: 1, icon: 'th-list'},
-  {match: /^\/components$/, order: 2, icon: 'th-large'},
-  {match: /^\/elements$/, order: 3, icon: 'truck'},
-  {match: /^\/style$/, order: 4, icon: 'columns'},
+  {match: '/getting-started', order: 0, icon: 'airport_shuttle'},
+  {match: /^\/layout$/, order: 1, icon: 'view_quilt'},
+  {match: /^\/components$/, order: 2, icon: 'view_module'},
+  {match: /^\/elements$/, order: 3, icon: 'hdr_weak'},
+  {match: /^\/style$/, order: 4, icon: 'text_format'},
 
   {match: /introduction/, order: 0},
 

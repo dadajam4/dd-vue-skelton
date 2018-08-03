@@ -19,7 +19,7 @@
       >
         <vt@card>
           <vt@toolbar info>
-            <vt@btn flat icon="close" @click.stop="$refs.dialog1.close" />
+            <vt@btn flat icon="$ui.icons.close" @click.stop="$refs.dialog1.close" />
             <vt@toolbar-title>Settings</vt@toolbar-title>
             <vt@spacer />
             <vt@toolbar-items>
@@ -104,7 +104,7 @@
             <span>Dialog 3</span>
             <vt@spacer />
             <vt@menu-fragment>
-              <vt@btn icon="ellipsis-v"></vt@btn>
+              <vt@btn icon="fas fa-ellipsis-v"></vt@btn>
               <vt@menu offset-y>
                 <vt@tile-group>
                   <vt@tile v-for="n in 3" :key="n" @click="">

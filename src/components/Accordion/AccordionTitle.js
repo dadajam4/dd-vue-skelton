@@ -47,7 +47,7 @@ export default {
     }, this.$slots.default)]);
     const $angle = h('vt@icon', {
       staticClass: 'vc@accordion__title__angle',
-    }, 'angle-down');
+    }, '$ui.icons.expand');
     const $angleAction = h('vt@tile-action', null, [$angle])
 
     const tileChildren = [$tileContent];

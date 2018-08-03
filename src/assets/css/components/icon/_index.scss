@@ -13,16 +13,28 @@
 
 .#{$css-prefix}icon {
   // vertical-align: middle;
-  display: inline-block;
+  // display: inline-block;
   // display: inline-block;
   // line-height: 1em;
+  align-items: center;
+  display: inline-flex;
+  font-feature-settings: 'liga';
+  // font-size: 24px;
+  justify-content: center;
+  line-height: 1;
+  // transition: $primary-transition;
+  vertical-align: text-bottom;
+  // font-size: 125%;
+  font-size: inherit;
+  // vertical-align: inherit;
 
-  &--loop-rotate {
+  &--spin {
+    animation: #{$css-prefix}icon-rotate 1s infinite;
 
-    &:before {
-      display: block;
-      animation: #{$css-prefix}icon-rotate 1s infinite;
-    }
+    // &:before {
+    //   display: block;
+    //   animation: #{$css-prefix}icon-rotate 1s infinite;
+    // }
   }
 
   &--rotate {
@@ -40,9 +52,9 @@
     cursor: pointer;
   }
 
-  @each $size in sm, md, lg, xl {
-    &--#{$size} {
-      @include font-size(get-icon(size-#{$size}));
+  @each $key, $size in $ui-icon-sizes {
+    &--#{$key} {
+      font-size: $size;
     }
   }
 }

@@ -34,10 +34,10 @@ export default {
       if (this.icon || !this.computedContextColor) return this.icon;
 
       switch (this.computedContextColor) {
-        case 'info': return 'info-circle'
-        case 'error': return 'warning'
-        case 'success': return 'check-circle'
-        case 'warning': return 'exclamation'
+        case 'info': return '$ui.icons.info'
+        case 'error': return '$ui.icons.error'
+        case 'success': return '$ui.icons.success'
+        case 'warning': return '$ui.icons.warning'
       }
     }
   },

@@ -16,7 +16,7 @@
           :allowed-dates="`${currentYear}-${currentMonth}`"
         >
           <vt@input v-model="picked1">
-            <vt@icon>calendar</vt@icon>
+            <vt@icon>$ui.icons.calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
       </vt@col>
@@ -26,7 +26,7 @@
           :allowed-dates="allowed2"
         >
           <vt@input v-model="picked2">
-            <vt@icon>calendar</vt@icon>
+            <vt@icon>$ui.icons.calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
       </vt@col>
@@ -36,7 +36,7 @@
           :allowed-dates="allowed3"
         >
           <vt@input v-model="picked3">
-            <vt@icon>calendar</vt@icon>
+            <vt@icon>$ui.icons.calendar</vt@icon>
           </vt@input>
         </vt@date-picker-fragment>
       </vt@col>

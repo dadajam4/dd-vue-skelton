@@ -86,7 +86,7 @@ export default {
         staticClass: 'vc@calendar__header__action',
         props: {
           flat: true,
-          icon: 'angle-' + (vec === -1 ? 'left' : 'right'),
+          icon: '$ui.icons.angle' + (vec === -1 ? 'Left' : 'Right'),
           disabled,
           hidden: disabled,
         },
@@ -220,7 +220,7 @@ export default {
         staticClass: 'vc@calendar__stack__close',
         props: {
           flat: true,
-          icon: 'close',
+          icon: '$ui.icons.close',
         },
         on: {
           click: e => {

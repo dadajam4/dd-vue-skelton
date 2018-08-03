@@ -202,7 +202,7 @@ export default {
               rotate: rotateAmmount,
             },
             key: 'sortIcon',
-          }, 'arrow-up');
+          }, '$ui.icons.sort');
           collapseChildren.push($icon);
           listeners.click = e => this.onHeaderCellClick(define);
         }

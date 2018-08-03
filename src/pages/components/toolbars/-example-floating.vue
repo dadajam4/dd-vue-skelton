@@ -18,10 +18,10 @@
           <vt@icon>search</vt@icon>
         </vt@input>
         <vt@btn flat icon>
-          <vt@icon>map-marker</vt@icon>
+          <vt@icon>my_location</vt@icon>
         </vt@btn>
         <vt@btn flat icon>
-          <vt@icon>ellipsis-v</vt@icon>
+          <vt@icon>more_vert</vt@icon>
         </vt@btn>
       </vt@toolbar>
     </vt@card>

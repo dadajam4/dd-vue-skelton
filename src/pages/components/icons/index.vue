@@ -10,7 +10,9 @@
 
     <dd-example is="sizing" />
     <dd-example is="rotation" />
+<!--
     <dd-example is="icons" />
+-->
   </vt@page>
 </template>
 
@@ -22,6 +24,10 @@ export default {
     return {
       title: 'Icons',
     }
+  },
+
+  mounted() {
+    // console.warn(this.$ui.hasWindow, this.$ui.icons);
   },
 }
 </script>

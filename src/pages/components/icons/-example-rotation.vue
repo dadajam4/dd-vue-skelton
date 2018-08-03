@@ -13,12 +13,12 @@
         />
 
         <vt@row nowrap justify-space-around>
-          <vt@icon :rotate="rotate" sm>spinner</vt@icon>
-          <vt@icon :rotate="rotate">spinner</vt@icon>
-          <vt@icon :rotate="rotate" lg>spinner</vt@icon>
+          <vt@icon :rotate="rotate" sm>autorenew</vt@icon>
+          <vt@icon :rotate="rotate">autorenew</vt@icon>
+          <vt@icon :rotate="rotate" lg>autorenew</vt@icon>
           <vt@icon :rotate="rotate" sm>home</vt@icon>
-          <vt@icon :rotate="rotate">calendar-check-o</vt@icon>
-          <vt@icon :rotate="rotate" lg>info-circle</vt@icon>
+          <vt@icon :rotate="rotate">fas fa-spinner</vt@icon>
+          <vt@icon :rotate="rotate" lg>fas fa-info-circle</vt@icon>
         </vt@row>
       </vt@card-text>
     </vt@card>
@@ -33,12 +33,12 @@
         />
 
         <vt@row nowrap justify-space-around>
-          <vt@icon :rotate="deg" sm>spinner</vt@icon>
-          <vt@icon :rotate="deg">spinner</vt@icon>
-          <vt@icon :rotate="deg" lg>spinner</vt@icon>
+          <vt@icon :rotate="deg" sm>autorenew</vt@icon>
+          <vt@icon :rotate="deg">autorenew</vt@icon>
+          <vt@icon :rotate="deg" lg>autorenew</vt@icon>
           <vt@icon :rotate="deg" sm>home</vt@icon>
-          <vt@icon :rotate="deg">calendar-check-o</vt@icon>
-          <vt@icon :rotate="deg" lg>info-circle</vt@icon>
+          <vt@icon :rotate="deg">fas fa-spinner</vt@icon>
+          <vt@icon :rotate="deg" lg>fas fa-info-circle</vt@icon>
         </vt@row>
       </vt@card-text>
     </vt@card>

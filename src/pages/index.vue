@@ -22,13 +22,16 @@
     <div class="vc@text-center">
       <vt@btn primary to="getting-started">Getting Started</vt@btn>
       <vt@btn secondary href="https://github.com/dadajam4/dd-vue-skelton" target="_blank">
-        <vt@icon left>github</vt@icon>
+        <vt@icon left>fab fa-github</vt@icon>
         github
       </vt@btn>
     </div>
 
     <div class="vc@text-center">
-      <p v-for="n in 20" :key="n">hogehoge - {{n}}</p>
+      <p v-for="n in 20" :key="n">
+        hogehoge - {{n}}
+        <vt@icon>fab fa-github</vt@icon>
+      </p>
     </div>
   </vt@page>
 </template>

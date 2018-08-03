@@ -1,7 +1,7 @@
 <script>
+import { getObjectValueByPath } from '~/util';
 
-
-
+const ICONS_PREFIX = '$ui.icons.';
 const ROTATE_AMMOUNT_CHECKER = /^\d+$/;
 
 export default {
@@ -10,10 +10,12 @@ export default {
   functional: true,
 
   props: {
+    xs: Boolean,
     sm: Boolean,
     md: Boolean,
     lg: Boolean,
     xl: Boolean,
+    xxl: Boolean,
     left: Boolean,
     right: Boolean,
     rotate: {
@@ -21,7 +23,8 @@ export default {
     },
   },
 
-  render(h, { props, data, children = [] }) {
+  render(h, { parent, props, data, children = [] }) {
+    const newChildren = [];
     let iconName = '';
     if (children.length) {
       iconName = children.pop().text;
@@ -33,10 +36,25 @@ export default {
       delete data.domProps.innerHTML;
     }
 
+    if (iconName.startsWith(ICONS_PREFIX)) {
+      iconName = getObjectValueByPath(parent, iconName, iconName);
+    }
+
+    if (/^mdi-/.test(iconName)) {
+      iconName = 'mdi ' + iconName;
+    }
+
+    let iconType = 'material-icons';
+    if (iconName.indexOf('-') > -1) {
+      iconType = iconName;
+    } else {
+      newChildren.push(iconName);
+    }
+
     const myClassName = 'vc@icon';
-    const hasLoopRotate = props.rotate === '' || props.rotate === true;
-    const hasAmmountRotate = !hasLoopRotate && props.rotate !== false;
-    if (hasAmmountRotate) {
+    const hasSpin = props.rotate === '' || props.rotate === true;
+    const hasRotate = !hasSpin && props.rotate !== false;
+    if (hasRotate) {
       const rotateAmmount = ROTATE_AMMOUNT_CHECKER.test(props.rotate) ? parseInt(props.rotate, 10) + 'deg' : props.rotate;
       data.style = {
         'transform': `rotate(${rotateAmmount})`,
@@ -45,15 +63,18 @@ export default {
 
     const classes = {
       [myClassName]: true,
-      [`${myClassName}-${iconName}`]: true,
+      'notranslate': true,
+      [iconType]: true,
+      [`${myClassName}--xs`]: props.xs,
       [`${myClassName}--sm`]: props.sm,
       [`${myClassName}--md`]: props.md,
       [`${myClassName}--lg`]: props.lg,
       [`${myClassName}--xl`]: props.xl,
+      [`${myClassName}--xxl`]: props.xxl,
       [`${myClassName}--left`]: props.left,
       [`${myClassName}--right`]: props.right,
-      [`${myClassName}--rotate`]: hasAmmountRotate,
-      [`${myClassName}--loop-rotate`]: hasLoopRotate,
+      [`${myClassName}--rotate`]: hasRotate,
+      [`${myClassName}--spin`]: hasSpin,
       [`${myClassName}--clickable`]: data.on && data.on.click,
     }
 
@@ -61,7 +82,7 @@ export default {
     const iconClasses = Object.keys(classes).filter(k => classes[k]).join(' ');
     iconClasses && (data.staticClass += ` ${iconClasses}`);
 
-    return h('i', data, children);
+    return h('i', data, newChildren);
   },
 }
 </script>

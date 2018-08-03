@@ -13,7 +13,7 @@
     <vt@btn
       icon
       disabled
-    ><vt@icon>bars</vt@icon></vt@btn>
+    ><vt@icon>menu</vt@icon></vt@btn>
   </docs-example>
 </template>
 
