@@ -1,4 +1,4 @@
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 import Toggleable from '~/mixins/toggleable';
 import Transitionable from '~/mixins/transitionable';
 
@@ -15,15 +15,19 @@ export default {
     value: {
       default: true,
     },
+    color: {
+      type: String,
+      default: 'error',
+    },
   },
 
-  data: () => ({
-    defaultContextColor: 'error',
-  }),
+  // data: () => ({
+  //   defaultContextColor: 'error',
+  // }),
 
   computed: {
     classes() {
-      const classes = this.addContextColorClasses({
+      const classes = this.addColorClasses({
         'vc@alert--dismissible': this.dismissible,
         'vc@alert--outline': this.outline,
       });
@@ -31,9 +35,9 @@ export default {
       return classes;
     },
     computedIcon() {
-      if (this.icon || !this.computedContextColor) return this.icon;
+      if (this.icon || !this.color) return this.icon;
 
-      switch (this.computedContextColor) {
+      switch (this.color) {
         case 'info': return '$ui.icons.info'
         case 'error': return '$ui.icons.error'
         case 'success': return '$ui.icons.success'

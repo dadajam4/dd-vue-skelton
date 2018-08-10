@@ -2,67 +2,39 @@
 // Input
 //
 
-@function get-input($key) {
-  @return map-get($input, $key);
-}
+// input group
+$ui-input-margin-vertical: get-space(md) !default;
+$ui-input-margin-horizintal: get-space(sm) !default;
 
-$input: ();
-$input: map-set($input, margin-vertical, get-space(md));
-$input: map-set($input, margin-horizintal, get-space(sm));
+// combobox
+$ui-combobox-radius: get-border-radius(field) !default;
+$ui-combobox-border-width: 1px !default;
+$ui-combobox-height-sm: map-get($ui-button-height, sm) !default;
+$ui-combobox-height-md: map-get($ui-button-height, md) !default;
+$ui-combobox-height-lg: map-get($ui-button-height, lg) !default;
+$ui-combobox-padding-horizontal: get-space(xs) !default;
 
+// checkbox & radio
+$ui-check-size: 32px !default;
+$ui-check-body-size: 18px !default;
 
+// switch
+$ui-switch-track-radius: 8px !default;
+$ui-switch-track-min-width: 30px !default;
+$ui-switch-track-height: 14px !default;
+$ui-switch-pointer-offset: 3px !default;
+$ui-switch-pointer-size: 20px !default;
+$ui-switch-pointer-assist-size: 6px !default;
 
-@function get-combobox($key) {
-  @return map-get($combobox, $key);
-}
-
-$combobox: ();
-$combobox: map-set($combobox, radius, get-border-radius(field));
-$combobox: map-set($combobox, border-width, 1px);
-$combobox: map-set($combobox, height-sm, get-button(height-sm));
-$combobox: map-set($combobox, height-md, get-button(height-md));
-$combobox: map-set($combobox, height-lg, get-button(height-lg));
-$combobox: map-set($combobox, padding-horizontal, get-space(xs));
-
-
-
-@function get-check($key) {
-  @return map-get($check, $key);
-}
-
-$check: ();
-$check: map-set($check, size, 32px);
-$check: map-set($check, body-size, 18px);
-
-
-
-@function get-switch($key) {
-  @return map-get($switch, $key);
-}
-
-$switch: ();
-$switch: map-set($switch, track-radius, 8px);
-$switch: map-set($switch, track-min-width, 30px);
-$switch: map-set($switch, track-height, 14px);
-$switch: map-set($switch, pointer-offset, 3px);
-$switch: map-set($switch, pointer-size, 20px);
-$switch: map-set($switch, pointer-assist-size, 6px);
-
-
-
-@function get-slider($key) {
-  @return map-get($slider, $key);
-}
-
-$slider: ();
-$slider: map-set($slider, height, 30px);
-$slider: map-set($slider, track-height, 2px);
-$slider: map-set($slider, thumb-pointer-body-size, 16px);
-$slider: map-set($slider, thumb-pointer-border-size, 3px);
-$slider: map-set($slider, thumb-pointer-padding, 5px);
-$slider: map-set($slider, thumb-pointer-size, get-slider(thumb-pointer-body-size) + get-slider(thumb-pointer-border-size) * 2);
-$slider: map-set($slider, thumb-pointer-full-size, get-slider(thumb-pointer-size) + get-slider(thumb-pointer-padding) * 2);
-$slider: map-set($slider, thumb-pointer-transition, .3s get-easing(swing));
-$slider: map-set($slider, thumb-pointer-body-size, 16px);
-$slider: map-set($slider, track-base-color, background-light);
-$slider: map-set($slider, track-focus-color, background-active);
+// slider
+$ui-slider-height: 30px !default;
+$ui-slider-track-height: 2px !default;
+$ui-slider-thumb-pointer-body-size: 16px !default;
+$ui-slider-thumb-pointer-border-size: 3px !default;
+$ui-slider-thumb-pointer-padding: 5px !default;
+$ui-slider-thumb-pointer-size: $ui-slider-thumb-pointer-body-size + $ui-slider-thumb-pointer-border-size * 2 !default;
+$ui-slider-thumb-pointer-full-size: $ui-slider-thumb-pointer-size + $ui-slider-thumb-pointer-padding * 2 !default;
+$ui-slider-thumb-pointer-transition: .3s get-easing(swing) !default;
+$ui-slider-thumb-pointer-body-size: 16px !default;
+$ui-slider-track-base-color: light-grey !default;
+$ui-slider-track-focus-color: grey !default;

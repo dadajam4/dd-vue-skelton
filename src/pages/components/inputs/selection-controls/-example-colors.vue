@@ -28,9 +28,9 @@ export default {
 
   computed: {
     colors: () => [
-      'indigo',
-      'red-darken-3',
+      'secondary',
       'warning',
+      'info',
     ],
   },
 }

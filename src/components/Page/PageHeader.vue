@@ -1,5 +1,5 @@
 <script>
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 
 
 
@@ -17,13 +17,14 @@ export default {
       type: String,
       default: 'h1',
     },
-  },
-
-  data() {
-    return {
-      defaultBackgroundColor: 'light',
-      defaultTextColor: 'socondary',
-    }
+    backgroundColor: {
+      type: String,
+      default: 'light-grey',
+    },
+    textColor: {
+      type: String,
+      default: 'socondary',
+    },
   },
 
   computed: {

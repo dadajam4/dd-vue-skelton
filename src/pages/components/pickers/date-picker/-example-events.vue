@@ -24,9 +24,9 @@
 
     <vt@date-picker-fragment
       cancellable
-      holiday-color="red"
+      holiday-color="warning"
       :events="myEvents"
-      event-color="indigo"
+      event-color="success"
     >
       <vt@input v-model="picked">
         <vt@icon>$ui.icons.calendar</vt@icon>
@@ -55,7 +55,7 @@ export default {
         `${this.currentYear}-${this.currentMonth}-3`,
         {
           value: `${this.currentYear}-${this.currentMonth}-15`,
-          color: 'green',
+          color: 'error',
         },
       ];
     },

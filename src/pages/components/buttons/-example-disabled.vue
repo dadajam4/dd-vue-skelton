@@ -7,10 +7,11 @@
       v-for="myType in ['flat', 'default', 'outline']"
       :key="myType"
       v-bind="{[myType]: myType !== 'default'}"
-      info
+      color="info"
       disabled
     >{{myType}}</vt@btn>
     <vt@btn
+      key="icon"
       icon
       disabled
     ><vt@icon>menu</vt@icon></vt@btn>

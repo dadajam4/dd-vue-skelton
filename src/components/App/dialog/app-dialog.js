@@ -68,7 +68,7 @@ export default {
       const h = this.$createElement;
       return h('vt@btn', {
         props: {
-          info: true,
+          color: 'info',
           flat: true,
         },
         on: {

@@ -88,7 +88,7 @@ export default {
     },
     holidayColor: {
       type: String,
-      // default: 'red-accent-1',
+      default: 'holiday',
     },
     currentColor: {
       type: String,

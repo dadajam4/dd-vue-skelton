@@ -4,15 +4,14 @@
 //
 .#{$css-prefix}optgroup {
   margin: 8px 0;
-  @include theme-color(background, background);
+  @include ui-theme-background(plain);
 
   &__label {
     display: flex;
     align-items: center;
     @include font-size(sm);
-    @include theme-color(color, text-sub);
+    @include ui-theme-text(caption);
     margin-top: get-space(md);
-    // margin-bottom: get-space(xs);
     padding: 0 get-space(sm);
 
     .#{$css-prefix}checkbox-element {

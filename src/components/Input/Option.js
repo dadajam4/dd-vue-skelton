@@ -101,7 +101,7 @@ export default {
               match: this.searchRegExp,
               value: this.$combobox.innerValue,
               highlightTag: 'span',
-              highlightClass: 'vc@text-color--primary',
+              highlightClass: 'vc@primary--text',
             },
           }, c.text);
         } else {

@@ -4,23 +4,19 @@
 <template>
   <docs-example>
     <div class="vc@text-center">
-      <vt@badge overlap left success>
+      <vt@badge overlap left color="success">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>
-      <vt@badge overlap left warning>
+      <vt@badge overlap left color="warning">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>
-      <vt@badge overlap left error>
+      <vt@badge overlap left color="error">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>
-      <vt@badge overlap left layer-color="indigo">
-        <span slot="badge">1</span>
-        <vt@icon md>fas fa-user-circle</vt@icon>
-      </vt@badge>
-      <vt@badge overlap left background-color="shades-white" border-color="purple" text-color="lime">
+      <vt@badge overlap left background-color="shades-white" color="secondary" text-color="warning">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>

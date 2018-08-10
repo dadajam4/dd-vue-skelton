@@ -17,8 +17,8 @@
       1 Year
       <vt@icon right>fas fa-birthday-cake</vt@icon>
     </vt@chip>
-    <vt@chip background-color="green" text-color="shades-white" sm>
-      <vt@avatar background-color="green-darken-4">1</vt@avatar>
+    <vt@chip color="primary" sm>
+      <vt@avatar background-color="darken">1</vt@avatar>
       Year
     </vt@chip>
     <vt@chip close sm>

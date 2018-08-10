@@ -7,8 +7,8 @@
       <code>vm.$prompt</code> メソッドをコールする事でプログラムから入力ダイアログを表示できます。
     </template>
 
-    <vt@btn info @click.stop="$prompt()">入力</vt@btn>
-    <vt@btn info @click.stop="click2">Promise</vt@btn>
+    <vt@btn color="info" @click.stop="$prompt()">入力</vt@btn>
+    <vt@btn color="info" @click.stop="click2">Promise</vt@btn>
   </docs-example>
 </template>
 

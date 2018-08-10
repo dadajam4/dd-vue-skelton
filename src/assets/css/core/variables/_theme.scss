@@ -13,3 +13,124 @@ $theme-default: get-default-theme();
   $theme-vars: map-set($theme-vars, $name, $theme-values);
 }
 
+$ui-theme-default: light;
+
+$ui-theme: (
+  light: (
+    // background: #fff,
+    backdrop: rgba(0, 0, 0, .4),
+    divider: rgba(0, 0, 0, .12),
+    form-divider: rgba(0, 0, 0, .22),
+    switch-track: rgba(0, 0, 0, .38),
+    switch-pointer: #fafafa,
+    spinner-underlay-stroke: rgba(#000, 0.1),
+    highlight: ui-get-palette(yellow),
+    context: (
+      plain: (
+        base: #fff,
+        doc: rgba(0, 0, 0, .87),
+        link: #42b983,
+
+        // text: テキスト色を baseじゃない色にしたい時
+      ),
+      // touch: (
+      //   base: rgba(0, 0, 0, .05),
+      //   doc: rgba(0, 0, 0, .87),
+      //   link: #42b983,
+      // ),
+      // press: (
+      //   base: rgba(0, 0, 0, .15),
+      //   doc: rgba(0, 0, 0, .87),
+      //   link: #42b983,
+      // ),
+      light-grey: (
+        base: ui-get-palette(grey-lighten-3),
+        doc: rgba(0, 0, 0, .87),
+        link: rgba(0, 0, 0, .87),
+      ),
+      "grey": (
+        base: ui-get-palette(grey),
+        doc: #fff,
+        link: #fff,
+      ),
+      dark: (
+        base: ui-get-palette(grey-darken-2),
+        doc: #fff,
+        link: #fff,
+      ),
+      darken: (
+        base: ui-get-palette(grey-darken-4),
+        doc: #fff,
+        link: #fff,
+      ),
+      primary: (
+        base: #42b983,
+        doc: #fff,
+        link: #fff,
+      ),
+      secondary: (
+        base: #2c3e50,
+        doc: #fff,
+        link: #fff,
+      ),
+      caption: (
+        base: #2c3e50,
+        doc: #fff,
+        link: #fff,
+      ),
+      info: (
+        base: #2196f3,
+        doc: #fff,
+        link: #fff,
+      ),
+      success: (
+        base: #4caf50,
+        doc: #fff,
+        link: #fff,
+      ),
+      warning: (
+        base: #ffc107,
+        doc: #fff,
+        link: #fff,
+      ),
+      error: (
+        base: #ff5252,
+        doc: #fff,
+        link: #fff,
+      ),
+      disabled: (
+        base: rgba(0, 0, 0, .12),
+        doc: #fff,
+        link: #fff,
+      ),
+      sub: (
+        base: ui-get-palette(grey),
+        doc: #fff,
+        link: #fff,
+      ),
+      holiday: (
+        base: ui-get-palette(red-accent-1),
+        doc: #fff,
+        link: #fff,
+      ),
+    ),
+  ),
+) !default;
+
+@each $theme-key, $theme in $ui-theme {
+  $contexts: map-get($theme, context);
+  @each $context-key, $context in $contexts {
+    @if map-has-key($context, text) == false {
+      $context: map-set($context, text, map-get($context, base));
+    }
+    $contexts: map-set($contexts, $context-key, $context);
+  }
+  $theme: map-set($theme, context, $contexts);
+  $ui-theme: map-set($ui-theme, $theme-key, $theme);
+}
+
+$ui-theme-default-map: map-get($ui-theme, $ui-theme-default);
+$ui-theme-contexts: ();
+@each $key, $context in map-get($ui-theme-default-map, context) {
+  $ui-theme-contexts: append($ui-theme-contexts, $key);
+}

@@ -1,7 +1,3 @@
-import Inputable from './inputable';
-
-
-
 export default function(type) {
   return {
     props: {
@@ -31,19 +27,16 @@ export default function(type) {
           [`vc@${type}-element--indeterminate`]: !!this.indeterminate,
           [`vc@${type}-element--disabled`]: !!this.disabled,
           [`vc@${type}-element--error`]: this.error,
-          'vc@text-color--grey': this.disabled,
-          'vc@text-color--error': this.error && !this.disabled,
+          'vc@disabled--text': this.disabled,
+          'vc@error--text': this.error && !this.disabled,
         };
 
-        if (!classes[`vc@text-color--${this.color}`]) classes[`vc@text-color--${this.color}`] = !this.disabled && !this.error && (!!this.checked || this.indeterminate);
+        if (!classes[`vc@${this.color}--text`]) {
+          classes[`vc@${this.color}--text`] = !this.disabled && !this.error && (!!this.checked || this.indeterminate);
+        }
+
         return classes;
       },
-      // bodyClasses() {
-      //   return {
-      //     [`vc@text-color--disabled`]: this.disabled,
-      //     [`vc@text-color--error`]: this.error,
-      //   }
-      // },
     },
 
     render(h) {

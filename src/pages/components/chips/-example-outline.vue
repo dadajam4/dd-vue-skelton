@@ -4,10 +4,10 @@
 <template>
   <docs-example>
     <vt@chip close outline>Outline</vt@chip>
-    <vt@chip close outline primary>Colored</vt@chip>
-    <vt@chip close outline warning>
+    <vt@chip close outline color="primary">Colored</vt@chip>
+    <vt@chip close outline color="warning">
       <vt@avatar>
-        <vt@icon>user-circle</vt@icon>
+        <vt@icon>supervised_user_circle</vt@icon>
       </vt@avatar>
       Icon
     </vt@chip>

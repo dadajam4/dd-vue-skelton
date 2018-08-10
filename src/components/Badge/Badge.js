@@ -1,5 +1,5 @@
 // Mixins
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 import Toggleable from '~/mixins/toggleable';
 
 
@@ -11,7 +11,7 @@ export default {
 
   props: {
     bottom: Boolean,
-    contextColor: {
+    color: {
       type: String,
       default: 'primary',
     },

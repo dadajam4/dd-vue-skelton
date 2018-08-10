@@ -3,5 +3,5 @@
 //
 
 body {
-  @include theme;
+  @include ui-theme-context(plain);
 }

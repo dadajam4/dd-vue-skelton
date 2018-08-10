@@ -45,12 +45,12 @@ export default {
         if (child.children) {
           const $accordionTitle = h('vt@accordion-title', {
             class: {
-              'vc@text-color--primary': isActive,
+              'vc@primary--text': isActive,
             },
             props: {
               icon: child.icon,
               to: child.to,
-              activeIconClass: 'vc@text-color--primary',
+              activeIconClass: 'vc@primary--text',
               // linkActiveClass: 'vc@text-color--primary',
               // contentClass: isActive && 'vc@text-color--primary',
               dense: true,
@@ -69,7 +69,7 @@ export default {
           const $content = h('vt@tile-content', null, [h('vt@tile-title', null, child.capitalizedLabel)]);
           const $tile = h('vt@tile', {
             class: {
-              'vc@text-color--primary': isActive,
+              'vc@primary--text': isActive,
             },
             props: {to: child.to, dense: true},
             key: child.path,

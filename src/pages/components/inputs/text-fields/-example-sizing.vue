@@ -18,7 +18,7 @@
       v-model="input1"
     >
       <vt@icon right>address-book</vt@icon>
-      <vt@btn info icon="search" />
+      <vt@btn color="info" icon="search" />
     </vt@input>
 
     <vt@input
@@ -32,7 +32,7 @@
       v-model="input1"
     >
       <vt@icon right>address-book</vt@icon>
-      <vt@btn info icon="search" />
+      <vt@btn color="info" icon="search" />
     </vt@input>
 
     <vt@input
@@ -46,7 +46,7 @@
       v-model="input1"
     >
       <vt@icon right>address-book</vt@icon>
-      <vt@btn info icon="search" />
+      <vt@btn color="info" icon="search" />
     </vt@input>
 
     <vt@textarea
@@ -58,7 +58,7 @@
       rules="max:20|入力文字数が多すぎます"
       v-model="input2"
     >
-      <vt@btn info icon="search" />
+      <vt@btn color="info" icon="search" />
     </vt@textarea>
 
     <vt@textarea
@@ -70,7 +70,7 @@
       rules="max:20|入力文字数が多すぎます"
       v-model="input2"
     >
-      <vt@btn info icon="search" />
+      <vt@btn color="info" icon="search" />
     </vt@textarea>
 
     <vt@textarea
@@ -82,7 +82,7 @@
       rules="max:20|入力文字数が多すぎます"
       v-model="input2"
     >
-      <vt@btn info icon="search" />
+      <vt@btn color="info" icon="search" />
     </vt@textarea>
   </docs-example>
 </template>

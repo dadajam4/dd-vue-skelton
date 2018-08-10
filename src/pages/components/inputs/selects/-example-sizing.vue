@@ -14,7 +14,7 @@
       :options="options"
     >
       <vt@icon>address-book</vt@icon>
-      <vt@btn right info icon="search" />
+      <vt@btn right color="info" icon="search" />
     </vt@select>
 
     <vt@select
@@ -24,7 +24,7 @@
       :options="options"
     >
       <vt@icon>address-book</vt@icon>
-      <vt@btn right info icon="search" />
+      <vt@btn right color="info" icon="search" />
     </vt@select>
 
     <vt@select
@@ -34,7 +34,7 @@
       :options="options"
     >
       <vt@icon>address-book</vt@icon>
-      <vt@btn right info icon="search" />
+      <vt@btn right color="info" icon="search" />
     </vt@select>
 
   </docs-example>

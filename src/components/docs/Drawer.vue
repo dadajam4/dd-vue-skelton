@@ -3,7 +3,7 @@
 
 .my-logo {
   border-bottom: solid 1px;
-  @include theme-color(border-color, form-divider);
+  @include ui-theme-color(border-color, divider);
 
   & > a {
     color: inherit;
@@ -11,12 +11,7 @@
     display: flex;
     padding-left: 20px;
     align-items: center;
-    transition: get-transition(primary);
-
-    &:hover,
-    &:focus {
-      background: rgba(0, 0, 0, .1);
-    }
+    @include ui-pressable-effect;
   }
 }
 </style>

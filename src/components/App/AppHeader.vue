@@ -1,5 +1,10 @@
 <template>
-  <vt@toolbar :class="classes" :style="styles" @update-height="onUpdateHeight">
+  <vt@toolbar
+    :class="classes"
+    :style="styles"
+    :color="color"
+    @update-height="onUpdateHeight"
+  >
     <slot />
     <style v-if="customStyles" v-html="customStyles"></style>
   </vt@toolbar>
@@ -24,6 +29,7 @@ export default {
   props: {
     fixed: Boolean,
     hidden: Boolean,
+    color: true,
     scrollOff: {
       type: [Boolean, Object],
     },

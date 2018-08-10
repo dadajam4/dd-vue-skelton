@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <vt@tabs center fixed background-color="cyan" text-color="shades-white">
+    <vt@tabs center fixed color="info">
       <vt@tabs-item v-for="tab in tabs" :key="tab.label">
         <vt@tabs-trigger :icon="tab.icon">{{tab.label}}</vt@tabs-trigger>
         <vt@tabs-content>

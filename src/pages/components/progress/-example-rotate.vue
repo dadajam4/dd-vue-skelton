@@ -8,7 +8,7 @@
       v-for="define in rotateDefines"
       :key="define.color"
       :rotate="define.rotate"
-      :text-color="define.color"
+      :color="define.color"
       size="100"
       width="15"
       :value="rotateValue"
@@ -24,7 +24,7 @@ export default {
       rotateInterval: {},
       rotateValue: 0,
       rotateDefines: [
-        {color: 'base', rotate: 360},
+        {color: 'disabled', rotate: 360},
         {color: 'primary', rotate: -90},
         {color: 'warning', rotate: 90},
         {color: 'error', rotate: 180},

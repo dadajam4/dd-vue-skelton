@@ -13,7 +13,7 @@
     >
       <template slot="selection" slot-scope="option">
         <vt@chip
-          info
+          color="info"
           :close="option.deselect"
           :key="option.value"
         >

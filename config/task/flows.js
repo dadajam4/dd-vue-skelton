@@ -1,14 +1,14 @@
 module.exports = {
 
-  // core
-  core: [
-    'core.clean',
-    [
-      // 'core.svgIcon',
-      'core.sassValues',
-    ],
-    // 'core.sync',
-  ],
+  // // core
+  // core: [
+  //   'core.clean',
+  //   // [
+  //   //   // 'core.svgIcon',
+  //   //   'core.sassValues',
+  //   // ],
+  //   // 'core.sync',
+  // ],
 
   // static
   static: [
@@ -18,18 +18,18 @@ module.exports = {
   ],
 
   'develop:static': [
-    '@core',
+    // '@core',
     '@static',
   ],
 
   develop: [
-    '@core',
+    // '@core',
     '@static',
     'global.nuxt',
   ],
 
   generate: [
-    '@core',
+    // '@core',
     '@static',
     {name: 'global.nuxt', options: {command: 'generate'}},
     'global.nuxtDistPathResolve',

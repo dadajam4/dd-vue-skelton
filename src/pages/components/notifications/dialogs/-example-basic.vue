@@ -9,7 +9,7 @@
 
     <!-- dialog1 -->
     <vt@dialog-fragment>
-      <vt@btn primary>Dialog 1</vt@btn>
+      <vt@btn color="primary">Dialog 1</vt@btn>
       <vt@dialog
         ref="dialog1"
         fullscreen
@@ -18,7 +18,7 @@
         transition="vc@dialog-bottom-transition"
       >
         <vt@card>
-          <vt@toolbar info>
+          <vt@toolbar color="info">
             <vt@btn flat icon="$ui.icons.close" @click.stop="$refs.dialog1.close" />
             <vt@toolbar-title>Settings</vt@toolbar-title>
             <vt@spacer />
@@ -38,9 +38,9 @@
           </vt@toolbar>
           <vt@card-text>
             <div>
-              <vt@btn info @click.stop="$refs.dialog2.show">Dialog 2</vt@btn>
-              <vt@btn info @click.stop="$refs.dialog3.show">Dialog 3</vt@btn>
-              <vt@btn info @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
+              <vt@btn color="info" @click.stop="$refs.dialog2.show">Dialog 2</vt@btn>
+              <vt@btn color="info" @click.stop="$refs.dialog3.show">Dialog 3</vt@btn>
+              <vt@btn color="info" @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
               <vt@tooltip-fragment>
                 <vt@btn secondary>ツールチップ</vt@btn>
                 <vt@tooltip>あいうえお</vt@tooltip>
@@ -55,7 +55,7 @@
 
     <!-- dialog2 -->
     <vt@dialog-fragment>
-      <vt@btn primary>Dialog 2</vt@btn>
+      <vt@btn color="primary">Dialog 2</vt@btn>
       <vt@dialog
         ref="dialog2"
       >
@@ -66,16 +66,16 @@
           <vt@card-text>
             <p>このダイアログはscrollable設定されていないので、ウィンドウをはみ出してスクロールします</p>
             <vt@menu-fragment>
-              <vt@btn info>子メニュー</vt@btn>
+              <vt@btn color="info">子メニュー</vt@btn>
               <vt@menu offset-y>
                 <vt@card>
                   <vt@card-text>メニューです</vt@card-text>
                 </vt@card>
               </vt@menu>
             </vt@menu-fragment>
-            <vt@btn info @click.stop="$refs.dialog1.show">Dialog 1</vt@btn>
-            <vt@btn info @click.stop="$refs.dialog3.show">Dialog 3</vt@btn>
-            <vt@btn info @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
+            <vt@btn color="info" @click.stop="$refs.dialog1.show">Dialog 1</vt@btn>
+            <vt@btn color="info" @click.stop="$refs.dialog3.show">Dialog 3</vt@btn>
+            <vt@btn color="info" @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
 
             <vt@select>
               <vt@option value="1">選択肢1</vt@option>
@@ -86,7 +86,7 @@
             <p v-for="n in 20" :key="n">これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。これはダイアログ2です。</p>
           </vt@card-text>
           <vt@card-actions>
-            <vt@btn info flat @click.stop="$refs.dialog2.close">CLOSE</vt@btn>
+            <vt@btn color="info" flat @click.stop="$refs.dialog2.close">CLOSE</vt@btn>
           </vt@card-actions>
         </vt@card>
       </vt@dialog>
@@ -94,7 +94,7 @@
 
     <!-- dialog3 -->
     <vt@dialog-fragment>
-      <vt@btn primary>Dialog 3</vt@btn>
+      <vt@btn color="primary">Dialog 3</vt@btn>
       <vt@dialog
         ref="dialog3"
         max-width="500"
@@ -115,10 +115,10 @@
             </vt@menu-fragment>
           </vt@card-title>
           <vt@card-text>
-            <vt@btn info @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
+            <vt@btn color="info" @click.stop="$refs.dialog4.show">Dialog 4</vt@btn>
           </vt@card-text>
           <vt@card-actions>
-            <vt@btn info flat @click.stop="$refs.dialog3.close">CLOSE</vt@btn>
+            <vt@btn color="info" flat @click.stop="$refs.dialog3.close">CLOSE</vt@btn>
           </vt@card-actions>
         </vt@card>
       </vt@dialog>
@@ -126,7 +126,7 @@
 
     <!-- dialog4 -->
     <vt@dialog-fragment>
-      <vt@btn primary>Dialog 4</vt@btn>
+      <vt@btn color="primary">Dialog 4</vt@btn>
       <vt@dialog
         ref="dialog4"
         max-width="500"
@@ -143,8 +143,8 @@
           </vt@card-text>
           <vt@card-actions divider>
             <vt@spacer />
-            <vt@btn info flat @click.stop="$refs.dialog4.close">キャンセル</vt@btn>
-            <vt@btn info flat @click.stop="$refs.dialog4.close">OK</vt@btn>
+            <vt@btn color="info" flat @click.stop="$refs.dialog4.close">キャンセル</vt@btn>
+            <vt@btn color="info" flat @click.stop="$refs.dialog4.close">OK</vt@btn>
           </vt@card-actions>
         </vt@card>
       </vt@dialog>

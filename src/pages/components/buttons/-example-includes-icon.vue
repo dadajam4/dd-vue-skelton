@@ -4,21 +4,21 @@
 <template>
   <docs-example>
     <vt@btn
-      primary
+      color="primary"
     >
       <vt@icon left>supervisor_account</vt@icon>
       left
     </vt@btn>
 
     <vt@btn
-      info
+      color="info"
     >
       right
       <vt@icon right>cloud_upload</vt@icon>
     </vt@btn>
 
     <vt@btn
-      info
+      color="info"
     >
       <vt@icon left>code</vt@icon>
       both

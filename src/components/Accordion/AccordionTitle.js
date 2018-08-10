@@ -1,4 +1,4 @@
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 
 
 

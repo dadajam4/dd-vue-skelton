@@ -30,7 +30,7 @@
 
     <vt@date-picker-fragment
       cancellable
-      holiday-color="red"
+      holiday-color="warning"
       :holiday-weeks="[0, 6]"
       :holidays="info => info.day > 25"
     >

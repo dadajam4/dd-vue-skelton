@@ -4,7 +4,7 @@
 <template>
   <docs-example>
     <vt@card>
-      <vt@toolbar color="cyan" dark>
+      <vt@toolbar color="info" dark>
         <vt@toolbar-side-icon></vt@toolbar-side-icon>
         <vt@toolbar-title>これはツールバーです。これはツールバーです。これはツールバーです。</vt@toolbar-title>
         <vt@spacer></vt@spacer>

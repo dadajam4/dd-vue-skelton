@@ -5,7 +5,7 @@
   <docs-example>
     <p>
       アクティブなタブのIDは「{{selected}}」です。
-      <vt@btn info @click="next">Next</vt@btn>
+      <vt@btn color="info" @click="next">Next</vt@btn>
     </p>
     <vt@tabs v-model="selected">
       <vt@tabs-item v-for="id in tabs" :key="id" :id="id">

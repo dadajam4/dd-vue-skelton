@@ -33,19 +33,19 @@ export default {
     toThumbLabelColor() { return this.getThumbLabelColor('to') },
 
     computedTrackFillColor() {
-      if (this.disabled) return 'muted';
+      if (this.disabled) return 'disabled';
       if (this.error) return 'error';
       return this.trackFillColor;
     },
 
     computedTickColor() {
-      if (this.disabled) return 'muted';
+      if (this.disabled) return 'disabled';
       if (this.error) return 'error';
       return this.tickColor;
     },
 
     computedIconColor() {
-      if (this.disabled) return 'muted';
+      if (this.disabled) return 'disabled';
       if (this.error) return 'error';
       if (this.isActive) return this.iconActiveColor;
     },
@@ -118,7 +118,7 @@ export default {
       }
     },
     getThumbColor(type) {
-      if (this.disabled) return 'muted';
+      if (this.disabled) return 'disabled';
       if (this.error) return 'error';
       if (this.valueIsEmpty) return this.isActive ? 'active' : 'light';
       let color = this.thumbColor;
@@ -126,7 +126,7 @@ export default {
       return color;
     },
     getThumbLabelColor(type) {
-      if (this.disabled) return 'muted';
+      if (this.disabled) return 'disabled';
       if (this.error) return 'error';
 
       let color = this.thumbLabelColor;
@@ -142,7 +142,7 @@ export default {
           <div
             staticClass="vc@slider__track vc@slider__track--fill"
             class={{
-              [`vc@layer-color--${this.computedTrackFillColor}`]: this.computedTrackFillColor,
+              [`vc@${this.computedTrackFillColor}`]: this.computedTrackFillColor,
             }}
             style={this.trackStyles}
           ></div>
@@ -156,7 +156,7 @@ export default {
           key: i,
           staticClass: 'vc@slider__tick',
           class: {
-            [`vc@layer-color--${this.computedTickColor}`]: this.computedTickColor,
+            [`vc@${this.computedTickColor}`]: this.computedTickColor,
           },
           style: {
             left: `${i * (100 / this.numTicks)}%`,
@@ -277,7 +277,7 @@ export default {
       }
 
       const color = this[`${type}ThumbLabelColor`];
-      const colorClasses = color && {[`vc@layer-color--${color}`]: true};
+      const colorClasses = color && {[`vc@${color}`]: true};
 
       return h('vt@scale-transition', {
         props: { origin: 'bottom center' },
@@ -313,7 +313,7 @@ export default {
       }
 
       const color = this[`${type}ThumbColor`];
-      const colorClasses = color && {[`vc@layer-color--${color}`]: true};
+      const colorClasses = color && {[`vc@${color}`]: true};
 
       return (
         <div
@@ -346,7 +346,7 @@ export default {
   },
 
   render(h) {
-    const iconColorAddClass = this.computedIconColor ? ` vc@text-color--${this.computedIconColor}` : '';
+    const iconColorAddClass = this.computedIconColor ? ` vc@${this.computedIconColor}--text` : '';
     const icons = {};
     this.$slots.default && this.$slots.default.forEach(vnode => {
       if (vnode.data && /(^|\s)vt@icon/.test(vnode.data.staticClass || '')) {

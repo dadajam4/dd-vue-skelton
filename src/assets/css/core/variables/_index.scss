@@ -4,8 +4,9 @@
 
 $basic-direction-keys: all, vertical, horizontal, top, right, bottom, left;
 
-@import "./layout";
+@import "./palette";
 @import "./theme";
+@import "./layout";
 @import "./color";
 @import "./duration";
 @import "./easing";
@@ -44,4 +45,7 @@ $ui-values: (
   mediaMatches: $ui-media-matches,
   mediaMatchAliases: $ui-media-match-aliases,
   toolbarHeights: $ui-toolbar-heights,
+  theme: (
+    contexts: $ui-theme-contexts,
+  ),
 );

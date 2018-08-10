@@ -23,15 +23,11 @@
     display: flex;
     flex: 1 1 100%;
     align-items: center;
-    border-radius: get-combobox(radius);
-    @include theme-color(border-color, form-divider);
-    border-width: get-combobox(border-width);
+    border-radius: $ui-combobox-radius;
+    @include ui-theme-color(border-color, form-divider);
+    border-width: $ui-combobox-border-width;
     border-style: solid;
     transition: get-duration(promptly);
-
-    // #{$my}--focused & {
-    //   @include theme-color(border-color, context-primary);
-    // }
 
     #{$my}--flat & {
       border-top-color: transparent !important;
@@ -65,12 +61,12 @@
     background: transparent;
     border-radius: 0;
     margin: 0;
-    padding: 0 get-combobox(padding-horizontal);
-    min-height: get-combobox(height-md);
+    padding: 0 $ui-combobox-padding-horizontal;
+    min-height: $ui-combobox-height-md;
 
-    #{$my}--sm & { min-height: get-combobox(height-sm); }
-    #{$my}--md & { min-height: get-combobox(height-md); }
-    #{$my}--lg & { min-height: get-combobox(height-lg); }
+    #{$my}--sm & { min-height: $ui-combobox-height-sm; }
+    #{$my}--md & { min-height: $ui-combobox-height-md; }
+    #{$my}--lg & { min-height: $ui-combobox-height-lg; }
 
     #{$my}--multiline & {
       padding-top: 6px;
@@ -87,7 +83,6 @@
     #{$my}--multiline.#{$my}--md & { min-height: 6.8em; }
     #{$my}--multiline.#{$my}--lg & { min-height: 8.3em; }
 
-    // @include theme-color(caret-color, context-primary);
     @include ellipsis;
     transition:
       color get-duration(promptly),
@@ -128,32 +123,23 @@
 
 
   &__icon {
-    @include theme-color(color, text-secondary);
+    @include ui-theme-text(caption);
     align-items: center;
     display: inline-flex;
     transition: get-duration(promptly);
     flex: 0 0 auto;
 
     &--left {
-      margin-left: get-combobox(padding-horizontal);
+      margin-left: $ui-combobox-padding-horizontal;
     }
 
     &--right {
-      margin-right: get-combobox(padding-horizontal);
+      margin-right: $ui-combobox-padding-horizontal;
     }
-
-    // &--clickable {
-    //   pointer-events: auto;
-    //   cursor: pointer;
-    // }
-
-    // #{$my}--focused & {
-    //   @include theme-color(color, text-primary);
-    // }
   }
 
   &__fix {
-    @include theme-color(color, text-secondary);
+    @include ui-theme-text(caption);
     align-items: center;
     display: inline-flex;
     pointer-events: none;
@@ -161,20 +147,16 @@
     flex: 0 0 auto;
 
     &--pre {
-      margin-left: get-combobox(padding-horizontal);
+      margin-left: $ui-combobox-padding-horizontal;
     }
 
     &--suf {
-      margin-right: get-combobox(padding-horizontal);
+      margin-right: $ui-combobox-padding-horizontal;
     }
-
-    // #{$my}--focused & {
-    //   @include theme-color(color, text-primary, true);
-    // }
   }
 
   &__menu {
-    @include theme-color(background, background);
+    @include ui-theme-background(plain);
 
     &--hide {
       pointer-events: none !important;
@@ -182,7 +164,7 @@
     }
 
     &__no-data {
-      @include theme-color(color, text-muted);
+      @include ui-theme-text(disabled);
       padding: get-space(md);
     }
   }
@@ -192,13 +174,12 @@
     align-items: center;
     flex: 0 1 auto;
     font-size: inherit;
-    padding: 0 get-combobox(padding-horizontal);
-    min-height: get-combobox(height-md);
-    // flex-wrap: wrap;
+    padding: 0 $ui-combobox-padding-horizontal;
+    min-height: $ui-combobox-height-md;
 
-    #{$my}--sm & { min-height: get-combobox(height-sm); }
-    #{$my}--md & { min-height: get-combobox(height-md); }
-    #{$my}--lg & { min-height: get-combobox(height-lg); }
+    #{$my}--sm & { min-height: $ui-combobox-height-sm; }
+    #{$my}--md & { min-height: $ui-combobox-height-md; }
+    #{$my}--lg & { min-height: $ui-combobox-height-lg; }
 
     &__item {
       display: block;
@@ -215,33 +196,33 @@
   &--error {
     // #{$my}__body,
     #{$my}__body {
-      @include theme-color(border-color, background-error);
+      @include ui-theme-border-color(error);
     }
 
     #{$my}__fix,
     #{$my}__icon,
     #{$my}__input {
-      @include theme-color(color, text-error);
+      @include ui-theme-text(error);
     }
   }
 
   &--disabled {
     #{$my}__body {
-      @include theme-color(border-color, background-muted);
+      @include ui-theme-border-color(disabled);
     }
 
     // #{$my}__body,
     #{$my}__fix,
     #{$my}__icon,
     #{$my}__input {
-      @include theme-color(color, text-muted, true);
+      @include ui-theme-text(disabled, $important: true);
       pointer-events: none;
     }
 
     #{$my}__selection {
       &__item,
       &__divider {
-        @include theme-color(color, text-muted, true);
+        @include ui-theme-text(disabled, $important: true);
         opacity: 1;
       }
 

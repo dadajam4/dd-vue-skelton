@@ -11,16 +11,16 @@
     </template>
 
     <vt@select label="デフォルト（right）" :options="options">
-      <vt@btn info @click.stop="onClick">ボタン</vt@btn>
+      <vt@btn color="info" @click.stop="onClick">ボタン</vt@btn>
     </vt@select>
 
     <vt@select label="left" :options="options">
-      <vt@btn primary icon="search" left @click.stop="onClick" />
+      <vt@btn color="primary" icon="search" left @click.stop="onClick" />
     </vt@select>
 
     <vt@select label="with menu" :options="options">
       <vt@menu-fragment>
-        <vt@btn secondary>Menu</vt@btn>
+        <vt@btn color="secondary">Menu</vt@btn>
         <vt@menu offset-y>
           <vt@tile-group>
             <vt@tile @click>
@@ -35,7 +35,7 @@
 
     <vt@select label="left &amp; tooltip" :options="options">
       <vt@tooltip-fragment>
-        <vt@btn primary icon="search" left @click.stop="onClick" />
+        <vt@btn color="primary" icon="search" left @click.stop="onClick" />
         <vt@tooltip top>
           Tooltip!
         </vt@tooltip>

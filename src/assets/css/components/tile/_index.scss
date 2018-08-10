@@ -40,7 +40,6 @@
     height: 1px;
     background: currentColor;
     opacity: 0.14;
-    // @include theme-color(background, divider);
   }
 
   &--divider-pull:after {
@@ -49,12 +48,6 @@
 
   &--dense#{&}--divider-pull:after {
     left: calc(44px + #{get-space(xs)});
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: inherit;
   }
 
   &--focused {
@@ -100,7 +93,7 @@
     padding-bottom: calc(#{get-space(xs)} - 1px);
 
     .#{$css-prefix}tile--disabled & {
-      @include theme-color(color, text-muted, true);
+      @include ui-theme-text(disabled, $important: true);
     }
 
     .#{$css-prefix}tile--dense & {
@@ -174,7 +167,7 @@
 
     &-text {
       @include font-size(xs);
-      @include theme-color(color, text-sub);
+      @include ui-theme-text(caption);
 
       .#{$css-prefix}tile--dense & {
         @include font-size(xss);
@@ -207,7 +200,7 @@
   @mixin my-nested-children {
     transition: get-duration(promptly);
     .#{$css-prefix}tile--disabled & {
-      @include theme-color(color, text-muted, true);
+      @include ui-theme-text(disabled, $important: true);
     }
   }
 
@@ -228,7 +221,7 @@
 
   &__sub-title {
     @include my-nested-children;
-    @include theme-color(color, text-secondary);
+    @include ui-theme-text(caption);
     @include font-size(xs);
     @include ellipsis;
 
@@ -273,8 +266,7 @@
 // grouping
 .#{$css-prefix}tile-group {
   padding: get-space(xs) 0;
-  // transition: height .4s cubic-bezier(.4, 0, .2, 1);
-  @include theme-color(background-color, background);
+  @include ui-theme-background(plain);
   margin: 0;
 
   &,

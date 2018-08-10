@@ -51,9 +51,13 @@ export default {
   },
 
   render(h) {
+    const classes = this.activeColor ? {
+      [`vc@${this.activeColor}--background`]: true,
+    } : void(0);
+
     const $bar = h('span', {
       staticClass: 'vc@tabs__trigger__bar',
-      class: this.getBackgroundColorClasses('activeColor'),
+      class: classes,
       ref: 'bar',
     });
 

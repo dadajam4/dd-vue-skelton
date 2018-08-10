@@ -30,7 +30,6 @@
         bottom: 0;
         will-change: left, right;
         width: auto;
-        // background-color: inherit;
       }
 
       &--active .#{$css-prefix}progress-bar__long {

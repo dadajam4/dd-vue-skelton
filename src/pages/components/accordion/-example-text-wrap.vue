@@ -8,7 +8,7 @@
     </template>
 
     <vt@accordion styled>
-      <vt@accordion-title :wrap="false" info>長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。</vt@accordion-title>
+      <vt@accordion-title :wrap="false" color="info">長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。長いテキストが入ります。</vt@accordion-title>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>

@@ -26,7 +26,7 @@
         v-for="n in 3"
         :key="n"
       >
-        <vt@accordion-title primary>Accordion {{n}}</vt@accordion-title>
+        <vt@accordion-title color="primary">Accordion {{n}}</vt@accordion-title>
         <p>This is {{n}}.</p>
       </vt@accordion>
     </vt@accordion-group>

@@ -45,8 +45,7 @@
     width: 34px;
     margin: .3rem;
     transition: .3s get-easing(linear-out-slow-in);
-    @include theme-color(background, background);
-    @include theme-color(color, text);
+    @include ui-theme-context(plain);
     padding-top: 1px;
 
     &--active {
@@ -54,14 +53,14 @@
       pointer-events: none;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: inherit;
-    }
+    // &:hover,
+    // &:focus,
+    // &:active {
+    //   color: inherit;
+    // }
 
-    &:focus {
-    }
+    // &:focus {
+    // }
   }
 
   &__navigation {
@@ -76,8 +75,7 @@
     margin: .3rem 10px;
     padding-top: 1px;
 
-    @include theme-color(background, background);
-    @include theme-color(color, text);
+    @include ui-theme-context(plain);
 
     .#{$css-prefix}icon {
       // font-size: 2rem;
@@ -103,11 +101,11 @@
       pointer-events: none;
     }
 
-    &:hover,
-    &:focus,
-    &:active {
-      color: inherit;
-    }
+    // &:hover,
+    // &:focus,
+    // &:active {
+    //   color: inherit;
+    // }
   }
 
   &__more {

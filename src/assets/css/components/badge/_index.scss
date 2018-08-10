@@ -28,7 +28,7 @@
     top: -($my-min-size / 2);
     right: -($my-min-size);
     transition: get-transition(primary);
-    @include theme-color(color, text-inverted);
+    @include ui-theme-color(color, "context.plain.base");
 
     &--clickable {
       cursor: pointer;

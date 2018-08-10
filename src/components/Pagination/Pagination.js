@@ -1,4 +1,5 @@
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
+import isPromise from 'is-promise';
 
 
 
@@ -7,13 +8,11 @@ export default {
 
   mixins: [Colorable],
 
-  // directives: { Resize },
-
   data() {
     return {
       lazyValue: this.value || 1,
       maxButtons: 0,
-      defaultContextColor: 'primary',
+      // defaultContextColor: 'primary',
       requestId: 0,
     }
   },
@@ -45,6 +44,10 @@ export default {
     },
     beforeChange: {
       type: Function,
+    },
+    color: {
+      type: String,
+      default: 'primary',
     },
   },
 
@@ -94,7 +97,7 @@ export default {
           return this.lazyValue;
         }
       },
-      set(page) {
+      async set(page) {
         this.requestId = this.requestId + 1;
         const requestId = this.requestId;
 
@@ -108,15 +111,12 @@ export default {
         if (typeof this.beforeChange === 'function') {
           pass = this.beforeChange(page);
         }
-        if (!!pass && (typeof pass === 'object' || typeof pass === 'function') && typeof pass.then === 'function') {
-          pass.then(result => {
-            if (result !== false) {
-              exec();
-            }
-          });
-        } else if (pass !== false) {
-          exec();
+
+        if (isPromise(pass)) {
+          pass = await pass;
         }
+
+        if (pass) exec();
       },
     },
 

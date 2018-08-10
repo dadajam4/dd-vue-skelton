@@ -76,7 +76,7 @@ export default {
     genWeeks() {
       return this.computedWeeks.map(w => {
         const options = w.isHoliday && this.holidayColor ? {
-          staticClass: 'vc@text-color--' + this.holidayColor,
+          staticClass: `vc@${this.holidayColor}--text`,
         } : null;
         return this.$createElement('th', options, w.label);
       });

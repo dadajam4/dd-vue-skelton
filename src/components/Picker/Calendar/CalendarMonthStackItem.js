@@ -24,7 +24,7 @@ export default {
         flat: !isActive,
         depressed: isActive,
         outline: this.isDisplayCurrent && !isActive,
-        primary: this.isDisplayCurrent || isActive,
+        color: this.isDisplayCurrent || isActive ? 'primary' : void(0),
         disabled: !this.isAllowed,
       },
       on: {

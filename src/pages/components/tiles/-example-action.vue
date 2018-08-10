@@ -30,7 +30,7 @@
         <vt@tile-text>今日僕は仲の良い友達たちと市民プールに行きました。 僕は泳ぐのは得意だったはずなのですが、友達たちがなんでか僕より泳ぐのが上手でとても悔しかったです。</vt@tile-text>
       </vt@tile-content>
       <vt@tile-action>
-        <vt@btn info>編集</vt@btn>
+        <vt@btn color="info">編集</vt@btn>
       </vt@tile-action>
     </vt@tile>
 

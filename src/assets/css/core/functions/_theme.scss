@@ -1,72 +1,133 @@
 //
 // Theme Variables
 //
+$ui-theme-key: null !global;
+$ui-theme-target: null !global;
+$ui-context-key: null !global;
+$ui-context-target: null !global;
 
-@function get-themes() {
-  @return map-get($themes, themes);
-}
-
-@function get-theme($name) {
-  @return map-get(get-themes(), $name);
-}
-
-@function get-default-theme() {
-  @return get-theme(map-get($themes, default));
-}
-
-@function get-color-keys($type) {
-  @return map-get(map-get($themes, color-keys), $type);
-}
-
-@function get-default-theme-var($key) {
-  $color: map-get($theme-default, $key);
-  @if $color == null {
-    @warn "#{$key} は定義されていません。";
+@mixin ui-theme($key: $ui-theme-default) {
+  $ui-theme-key: $key !global;
+  $ui-theme-target: map-get($ui-theme, $key) !global;
+  @if & == null {
+    .#{$css-prefix}theme--#{$key} {
+      @content;
+    }
+  } @else {
+    .#{$css-prefix}theme--#{$key} & {
+      @content;
+    }
   }
-  @return $color;
+  $ui-theme-key: null !global;
+  $ui-theme-target: null !global;
 }
 
-@function get-default-theme-color($key) {
-  @return get-default-theme-var(#{$key}-color);
-}
-
-@mixin set-theme-vars($name) {
-  @each $key, $val in get-theme($name) {
-    --#{$key}: $val;
+@mixin ui-each-themes($at-root: false) {
+  @each $key, $theme in $ui-theme {
+    $ui-theme-key: $key !global;
+    $ui-theme-target: $theme !global;
+    @if $key == $ui-theme-default {
+      @content;
+    } @else {
+      @if & == null or $at-root {
+        .#{$css-prefix}theme--#{$key} {
+          @content;
+        }
+      } @else {
+        .#{$css-prefix}theme--#{$key} & {
+          @content;
+        }
+      }
+    }
   }
+  $ui-theme-key: null !global;
+  $ui-theme-target: null !global;
 }
 
-@mixin set-theme-props() {
-  @include theme-color(color, text);
-  @include theme-color(background-color, background);
-  @include theme-color(border-color, divider);
-
-  a {
-    @include theme-color(color, link);
-
-    &:hover,
-    &:focus,
-    &:active {
-      @include theme-color(color, link-hover);
+@mixin ui-theme-color($prop, $key-map, $prefix: "", $suffix: "") {
+  @include ui-each-themes {
+    $color: map-deep-get($ui-theme-target, $key-map);
+    @if $color == null {
+      @warn "[ui-theme-color] #{$key-map} is not defined.";
+    } @else {
+      #{$prop}: #{$prefix}$color#{$suffix};
     }
   }
 }
 
-@mixin theme($name: map-get($themes, default)) {
-  @include set-theme-vars($name);
-  @include set-theme-props;
+@function ui-get-mixin-child-base($base: &) {
+  $for-root: false;
+  @if $base == null {
+    $for-root: true;
+  } @else {
+    @if length($base) == 1 {
+      $tmp: nth($base, 1);
+      @if ($tmp == body) {
+        $for-root: true;
+      } @else {
+        @if type-of($tmp == list and length($tmp) == 1 and nth($tmp, 1) == body) {
+          $for-root: true;
+        }
+      }
+    }
+  }
+
+  @return if($for-root, "", $base);
 }
 
-
-@mixin theme-color($props, $key, $important: false, $suffix: null) {
-  @each $prop in $props {
-    #{$prop}: $suffix get-default-theme-color($key) if($important, !important, null);
-    #{$prop}: $suffix var(--#{$key}-color) if($important, !important, null);
+@mixin ui-theme-text($key, $important: false) {
+  $child-base: ui-get-mixin-child-base();
+  @include ui-each-themes {
+    $context: map-deep-get($ui-theme-target, "context." + $key);
+    color: map-get($context, text) if($important, !important, null);
   }
 }
 
-@mixin dump-default-theme() {
-  @each $key, $val in $theme-default {
-    --#{$key}: $val;
+@mixin ui-theme-background($key, $important: false) {
+  $child-base: ui-get-mixin-child-base();
+  @include ui-each-themes {
+    $context: map-deep-get($ui-theme-target, "context." + $key);
+    background: map-get($context, base) if($important, !important, null);
+  }
+}
+
+@mixin ui-theme-border-color($key, $important: false) {
+  $child-base: ui-get-mixin-child-base();
+  @include ui-each-themes {
+    $context: map-deep-get($ui-theme-target, "context." + $key);
+    border-color: map-get($context, base) if($important, !important, null);
+  }
+}
+
+@mixin ui-theme-context($key, $flat: false, $outline: false) {
+  $fill: $flat == false and $outline == false;
+  $child-base: ui-get-mixin-child-base();
+
+  @include ui-each-themes {
+    $context: map-deep-get($ui-theme-target, "context." + $key);
+
+    @if $fill {
+      background: map-get($context, base);
+      border-color: map-get($context, base);
+      color: map-get($context, doc);
+
+      @at-root #{$child-base} a {
+        // &,
+        // &:hover,
+        // &:focus,
+        // &:active {}
+        // @debug $context;
+        color: map-get($context, link);
+      }
+    }
+
+    @if $flat {
+      color: map-get($context, text);
+    }
+
+    @if $outline {
+      color: map-get($context, base);
+      border-color: map-get($context, base);
+    }
   }
 }

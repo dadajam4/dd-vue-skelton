@@ -20,8 +20,8 @@
     <h1 class="my-title">DD Vue Skelton</h1>
     <p class="vc@text-center">Hear is sample text. hear is sample text. </p>
     <div class="vc@text-center">
-      <vt@btn primary to="getting-started">Getting Started</vt@btn>
-      <vt@btn secondary href="https://github.com/dadajam4/dd-vue-skelton" target="_blank">
+      <vt@btn color="primary" to="getting-started">Getting Started</vt@btn>
+      <vt@btn color="secondary" href="https://github.com/dadajam4/dd-vue-skelton" target="_blank">
         <vt@icon left>fab fa-github</vt@icon>
         github
       </vt@btn>

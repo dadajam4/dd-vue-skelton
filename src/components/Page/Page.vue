@@ -17,18 +17,6 @@ export default {
     },
   },
 
-  // created() {
-  //   // console.warn(this.$options);
-  //   // console.warn(this.$parent.$options.head());
-  //   // console.warn(Object.keys(this.$vnode));
-  //   console.warn(this.$vnode.children);
-  //   console.log(this.$children);
-  // },
-
-  // destroyed() {
-  //   console.warn(this.$parent.$options.head());
-  // },
-
   render(h) {
     const tag = this.tag;
 

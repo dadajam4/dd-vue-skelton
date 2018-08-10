@@ -43,8 +43,8 @@
 
     </vt@form>
 
-    <vt@btn secondary @click="$refs.form.validate()">バリデート</vt@btn>
-    <vt@btn warning @click="$refs.form.reset()">リセット</vt@btn>
+    <vt@btn color="secondary" @click="$refs.form.validate()">バリデート</vt@btn>
+    <vt@btn color="warning" @click="$refs.form.reset()">リセット</vt@btn>
 
   </docs-example>
 </template>

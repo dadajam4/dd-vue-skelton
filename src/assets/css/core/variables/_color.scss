@@ -4,3 +4,36 @@
 
 $text-color-keys: map-get(map-get($themes, color-keys), text);
 $background-color-keys: map-get(map-get($themes, color-keys), background);
+
+
+// .ui-hoge {
+//   // @include ui-color(divider);
+//   // @include ui-color(color, "contexts.base");
+// }
+
+// .ui-color-primary {
+//   // @include ui-context-color(primary);
+// }
+
+// @mixin ui-theme-each {
+//   @each $theme-name, $theme in $ui-theme {}
+// }
+
+// @mixin ui-context-color($name) {
+//   @each $theme-name, $theme in $ui-theme {
+//     .ui-theme--#{$theme-name} & {
+//       $context: map-get($theme, $name);
+//       background: map-get($context, base);
+//       color: map-get($context, text);
+
+//       a,
+//       a:hover,
+//       a:focus,
+//       a:active {
+//         color: map-get($context, link);
+//       }
+//     }
+//   }
+// }
+
+

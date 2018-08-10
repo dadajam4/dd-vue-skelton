@@ -9,7 +9,7 @@
   position: relative;
   text-decoration: none;
 
-  @include theme-color(background, background);
+  @include ui-theme-background(plain);
   @include elevation(2);
 
   & > * {
@@ -126,7 +126,7 @@
   &__title,
   &__actions {
     &--divider {
-      @include theme-color(border-color, divider-light);
+      @include ui-theme-color(border-color, divider);
     }
   }
 }

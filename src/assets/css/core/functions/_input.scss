@@ -3,7 +3,7 @@
 //
 
 @mixin checkable-core {
-  height: get-check(size);
+  height: $ui-check-size;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
 
 @mixin checkable-base {
   @include checkable-core;
-  width: get-check(size);
+  width: $ui-check-size;
 
   &:before {
     content: "";
@@ -45,7 +45,7 @@
 
   &__body {
     display: block;
-    @include square(get-check(body-size));
+    @include square($ui-check-body-size);
     position: relative;
     z-index: 1;
     border: solid 1px currentColor;

@@ -12,22 +12,14 @@
     align-items: center;
     justify-content: flex-end;
     transition: get-transition(primary);
+    @include ui-pressable-effect;
 
     &,
     &:hover,
     &:focus,
     &:active {
-      @include theme-color(color, text);
+      color: inherit;
     }
-
-    &:hover,
-    &:focus {
-      @include theme-color(background-color, background-light);
-    }
-
-    // &--current {
-    //   background: #f00!important;
-    // }
   }
 
   &__icon {
@@ -55,6 +47,6 @@
 
   .#{$css-prefix}app-drawer & {
     border-right: solid 4px;
-    @include theme-border-color(context-primary);
+    @include ui-theme-border-color(primary);
   }
 }

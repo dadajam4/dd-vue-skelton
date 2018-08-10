@@ -1,5 +1,5 @@
 <script>
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 import { snake2camel } from '~/helpers';
 
 

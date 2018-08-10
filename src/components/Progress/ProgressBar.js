@@ -1,4 +1,4 @@
-import Colorable from '~/mixins/color/colorable';
+import Colorable from '~/mixins/colorable';
 
 
 
@@ -12,7 +12,10 @@ export default {
       type: Boolean,
       default: true,
     },
-    color: String,
+    color: {
+      type: String,
+      default: 'primary',
+    },
     backgroundOpacity: {
       type: [Number, String],
       default: null,
@@ -30,12 +33,6 @@ export default {
     value: {
       type: [Number, String],
       default: 0,
-    }
-  },
-
-  data() {
-    return {
-      defaultContextColor: 'primary',
     }
   },
 
@@ -75,7 +72,7 @@ export default {
 
   methods: {
     genDeterminate(h) {
-      const classes = this.color ? {[`vc@background-color--${this.color}`]: true} : this.addColorClasses();
+      const classes = this.color ? {[`vc@${this.color}--background`]: true} : this.addColorClasses();
       return h('div', {
         ref: 'front',
         staticClass: `vc@progress-bar__bar__determinate`,
@@ -86,7 +83,7 @@ export default {
       })
     },
     genBar(h, name) {
-      const classes = this.color ? {[`vc@background-color--${this.color}`]: true} : this.addColorClasses();
+      const classes = this.color ? {[`vc@${this.color}--background`]: true} : this.addColorClasses();
       return h('div', {
         staticClass: 'vc@progress-bar__bar__indeterminate ' + name,
         class: classes,

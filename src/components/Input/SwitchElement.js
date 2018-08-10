@@ -16,12 +16,11 @@ export default {
   computed: {
     bodyClasses() {
       const classes = {
-        'vc@text-color--error': !!(!this.disabled && this.error),
-        'vc@text-color--grey': this.disabled,
+        'vc@error--text': !!(!this.disabled && this.error),
+        'vc@disabled--text': this.disabled,
       };
 
-      if (!classes[`vc@text-color--${this.color}`]) classes[`vc@text-color--${this.color}`] = !this.disabled && !this.error && !!this.checked;
-
+      if (!classes[`vc@${this.color}--text`]) classes[`vc@${this.color}--text`] = !this.disabled && !this.error && !!this.checked;
       return classes;
     },
   },

@@ -1,11 +1,7 @@
-import TextColorable from '~/mixins/color/textColorable';
-
-
-
 export default {
   name: 'vt@spinner',
 
-  mixins: [TextColorable],
+  // mixins: [TextColorable],
 
   props: {
     button: Boolean,
@@ -14,6 +10,8 @@ export default {
       type: String,
       default() { return this.indeterminate ? 'none' : 'transparent' },
     },
+
+    color: String,
 
     indeterminate: Boolean,
 
@@ -40,11 +38,14 @@ export default {
 
   computed: {
     classes() {
-      return this.addTextColorClasses({
+      const classes = {
         'vc@spinner': true,
         'vc@spinner--indeterminate': this.indeterminate,
         'vc@spinner--button': this.button,
-      })
+      };
+
+      if (this.color) classes[`vc@${this.color}--text`] = true;
+      return classes;
     },
 
 

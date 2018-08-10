@@ -4,7 +4,7 @@
 <template>
   <docs-example>
     <vt@menu-fragment>
-      <vt@btn primary dark>Dropdown</vt@btn>
+      <vt@btn color="primary">Dropdown</vt@btn>
       <vt@menu offset-y open-on-hover>
         <vt@tile-group>
           <vt@tile v-for="item in items" :key="item.title" @click="">

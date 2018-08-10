@@ -20,12 +20,11 @@
 
   &__divider {
     margin: 0 1em;
-    @include theme-color(color, text-muted);
+    @include ui-theme-text(sub);
   }
 
   &__item {
-    &--disabled {
-      @include theme-color(color, text-muted, true);
+    &--active {
       pointer-events: none;
     }
   }

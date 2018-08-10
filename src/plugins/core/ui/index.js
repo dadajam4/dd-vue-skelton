@@ -11,6 +11,9 @@ const Ui = {
       mediaMatches: [],
       mediaMatchAliases: {},
       toolbarHeights: {},
+      theme: {
+        contexts: [],
+      },
     };
 
     if (typeof window !== 'undefined') {
@@ -28,11 +31,13 @@ const Ui = {
     }
 
     const $ui = new Vue({
-      mixins: [Mq],
+      mixins: [
+        Mq,
+        Icons(opts.iconfont, opts.icons),
+      ],
 
       data: {
         hasWindow: typeof window !== 'undefined',
-        icons: Icons(opts.iconfont, opts.icons),
         ...uiValues,
       },
     });

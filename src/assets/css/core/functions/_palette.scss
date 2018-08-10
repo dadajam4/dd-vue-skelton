@@ -1,0 +1,10 @@
+//
+// Palette
+//
+
+@function ui-get-palette($key) {
+  @if map-has-key($ui-palette, $key) == false {
+    @warn "Palette color #{$key} is not defined.";
+  }
+  @return map-get($ui-palette, $key);
+}

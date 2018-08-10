@@ -12,7 +12,7 @@
           :key="`${col}-${n}`"
           v-bind="{[`col-${col}`]: true}"
         >
-          <vt@card v-bind="{[index % 2 === 0 ? 'primary' : 'secondary']: true}">
+          <vt@card :color="index % 2 === 0 ? 'primary' : 'secondary'">
             <vt@card-text class="vc@ph-none">{{col}}</vt@card-text>
           </vt@card>
         </vt@col>

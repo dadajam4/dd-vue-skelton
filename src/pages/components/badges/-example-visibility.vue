@@ -4,7 +4,7 @@
 <template>
   <docs-example>
     <div class="vc@text-center vc@mb-lg" @click="visible = !visible">
-      <vt@btn secondary>toggle</vt@btn>
+      <vt@btn color="secondary">toggle</vt@btn>
     </div>
 
     <div class="vc@text-center">

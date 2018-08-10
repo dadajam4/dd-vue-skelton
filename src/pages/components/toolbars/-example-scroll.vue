@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <vt@toolbar error scroll>
+    <vt@toolbar color="error" scroll>
       <vt@toolbar-title>長いタイトルが入ります。長いタイトルが入ります。</vt@toolbar-title>
       <vt@spacer />
       <vt@toolbar-items>

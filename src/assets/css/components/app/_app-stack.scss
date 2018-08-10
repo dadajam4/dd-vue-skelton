@@ -22,7 +22,7 @@
     right: -$my-overflow-size;
     bottom: -$my-overflow-size;
 
-    @include theme-color(background-color, backdrop);
+    @include ui-theme-color(background, backdrop);
     transition: opacity .5s;
   }
 

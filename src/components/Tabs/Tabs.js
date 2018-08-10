@@ -1,4 +1,4 @@
-import Colorable from '~/mixins/color/colorable';
+import Colorable from '~/mixins/colorable';
 
 
 
@@ -30,7 +30,6 @@ export default {
     return {
       lazyValue: null,
       items: [],
-      // defaultContextColor: 'primary',
     }
   },
 

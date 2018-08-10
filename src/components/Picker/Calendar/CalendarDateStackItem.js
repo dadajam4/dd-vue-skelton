@@ -56,7 +56,7 @@ export default {
       const h = this.$createElement;
       const children = this.events.map((event, index) => h('i', {
         staticClass: 'vc@calendar__table__event',
-        class: event.color && {[`vc@text-color--${event.color}`]: true},
+        class: event.color && {[`vc@${event.color}--text`]: true},
         key: event.value + '-' + index,
       }));
 
@@ -68,7 +68,7 @@ export default {
     genRangeGuide(type) {
       const h = this.$createElement;
       return h('i', {
-        staticClass: `vc@calendar__table__cell__range-guide vc@calendar__table__cell__range-guide--${type} vc@context-color--${this.$context.pickedColor}`,
+        staticClass: `vc@calendar__table__cell__range-guide vc@calendar__table__cell__range-guide--${type} vc@${this.$context.pickedColor}`,
         key: type,
       });
     },
@@ -84,7 +84,7 @@ export default {
           disabled: !this.isAllowed,
           textColor: !this.isPicked && this.textColor,
           noaction: !this.picker,
-          [this.$context.pickedColor]: this.isPicked,
+          color: this.isPicked ? this.$context.pickedColor : void(0),
           depressed: this.isPicked,
         },
         on: {

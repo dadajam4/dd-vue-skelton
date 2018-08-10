@@ -11,7 +11,7 @@
   position: relative;
   overflow: hidden;
   border-radius: inherit;
-  @include theme-color(background, background);
+  @include ui-theme-background(plain);
 
   &__stack {
     position: absolute;
@@ -22,11 +22,9 @@
     height: 100%;
     overflow: hidden;
     border-radius: inherit;
-    @include theme-color(background, background);
-    // transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+    @include ui-theme-background(plain);
 
     &-enter-active, &-leave-active {
-      // transition: get-transition(primary);
       transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
     }
 
@@ -82,7 +80,7 @@
 
       &:hover,
       &:focus {
-        @include theme-color(color, text-primary);
+        @include ui-theme-text(primary);
       }
     }
 
@@ -165,7 +163,7 @@
     }
 
     th {
-      @include theme-color(color, text-sub);
+      @include ui-theme-text(caption);
       width: get-calendar(cell-size);
       height: get-calendar(week-height);
       padding: 0;
@@ -273,40 +271,29 @@
 
       & > li {
         list-style-type: none;
-      }
-
-      & > li {
         position: relative;
         cursor: pointer;
         user-select: none;
         @include user-drag(none);
+        @include ui-pressable-effect;
         padding: get-space(xs);
         text-align: center;
         transition: get-transition(primary);
 
-        &:hover,
-        &:focus {
-          @include theme-color(background, background-light);
-        }
-
-        &:active {
-          @include theme-color(background, background-active);
-        }
-
         &.#{$css-prefix}calendar__year--current {
           font-size: 140%;
           @include font-weight(bold);
-          @include theme-color(color, text-sub);
+          @include ui-theme-text(sub);
         }
 
         &.#{$css-prefix}calendar__year--active {
           font-size: 160%;
           @include font-weight(bold);
-          @include theme-color(color, text-primary);
+          @include ui-theme-text(primary);
         }
 
         &.#{$css-prefix}calendar__year--disabled {
-          @include theme-color(color, text-muted);
+          @include ui-theme-text(disabled);
           cursor: default;
           pointer-events: none;
         }

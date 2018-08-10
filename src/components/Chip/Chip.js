@@ -1,4 +1,4 @@
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 import Toggleable from '~/mixins/toggleable';
 
 export default {
@@ -8,6 +8,10 @@ export default {
 
   props: {
     close: [Boolean, Function],
+    color: {
+      type: String,
+      default: 'light-grey',
+    },
     disabled: Boolean,
     label: Boolean,
     outline: Boolean,
@@ -15,18 +19,17 @@ export default {
     // Used for selects/tagging
     selected: Boolean,
     sm: Boolean,
-    textColor: String,
     value: {
       type: Boolean,
       default: true
     }
   },
 
-  data() {
-    return {
-      defaultContextColor: this.outline ? void(0) : 'light',
-    }
-  },
+  // data() {
+  //   return {
+  //     defaultContextColor: this.outline ? void(0) : 'light',
+  //   }
+  // },
 
   computed: {
     classes() {
@@ -63,7 +66,7 @@ export default {
       };
 
       return h('div', data, [
-        h('vc@icon', 'times-circle')
+        h('vc@icon', '$ui.icons.close')
       ])
     },
     genContent(h) {

@@ -136,7 +136,7 @@ export default {
     bodyClasses() {
       return {
         'vc@combobox__body': true,
-        [`vc@border-color--${this.color}`]: !this.error && !this.disabled && this.focused,
+        [`vc@${this.color}--border`]: !this.error && !this.disabled && this.focused,
       }
     },
     searchValue() { return (this.innerValue || '') },
@@ -490,7 +490,7 @@ export default {
             match: this.searchRegExp,
             value: this.searchValue,
             highlightTag: 'span',
-            highlightClass: 'vc@text-color--primary',
+            highlightClass: 'vc@primary--text',
           },
         }, suggest);
 
@@ -704,8 +704,12 @@ export default {
         if (this.md) vnode.data.staticClass += ` vc@icon--md`;
         if (this.lg) vnode.data.staticClass += ` vc@icon--lg`;
 
-        vnode.data.staticClass = vnode.data.staticClass.split(' ').filter(c => !!c).filter((a, b, self) => (self.indexOf(a) === b && a.indexOf('vc@text-color--') !== 0)).join(' ');
-        if (this.focused && !this.disabled && !this.error) vnode.data.staticClass += ` vc@text-color--${this.color}`;
+        vnode.data.staticClass = vnode.data.staticClass.split(' ')
+          .filter(c => !!c)
+          .filter((a, b, self) => (self.indexOf(a) === b && !/--text$/.test(a)))
+          .join(' ');
+
+        if (this.focused && !this.disabled && !this.error) vnode.data.staticClass += ` vc@${this.color}--text`;
 
         vnode.data.on = vnode.data.on || {};
         if (typeof vnode.data.on.click !== 'function') {

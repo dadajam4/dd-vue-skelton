@@ -7,7 +7,6 @@
       v-for="size in ['sm', 'default', 'lg']"
       :key="size"
       v-bind="{[size]: size !== 'default'}"
-      info
     >{{size}}</vt@btn>
   </docs-example>
 </template>

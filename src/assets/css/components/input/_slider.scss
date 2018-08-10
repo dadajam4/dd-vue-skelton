@@ -43,7 +43,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    height: get-slider(height);
+    height: $ui-slider-height;
     flex: 1 1 auto;
   }
 
@@ -53,7 +53,7 @@
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      height: get-slider(track-height);
+      height: $ui-slider-track-height;
       width: 100%;
       overflow: hidden;
       pointer-events: none;
@@ -62,20 +62,20 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    transition: get-slider(thumb-pointer-transition);
+    transition: $ui-slider-thumb-pointer-transition;
 
     &--base {
       left: 6px;
       right: 6px;
 
-      @include theme-color(background, get-slider(track-base-color));
+      @include ui-theme-background($ui-slider-track-base-color);
 
       @include my-focus {
-        @include theme-color(background, get-slider(track-focus-color));
+        @include ui-theme-background($ui-slider-track-focus-color);
       }
     }
 
-    &--fill {}
+    // &--fill {}
   }
 
   &__tick {
@@ -84,7 +84,7 @@
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      height: get-slider(track-height);
+      height: $ui-slider-track-height;
       width: 100%;
       overflow: hidden;
     }
@@ -106,31 +106,31 @@
       position: absolute;
       left: 0;
       width: 100%;
-      height: get-slider(height);
+      height: $ui-slider-height;
       overflow: visible;
       cursor: pointer;
       @include remove-tap-highlight;
     }
 
     position: absolute;
-    top: get-slider(height) * .5 - get-slider(track-height) * .5;
-    transition: left get-slider(thumb-pointer-transition);
+    top: $ui-slider-height * .5 - $ui-slider-track-height * .5;
+    transition: left $ui-slider-thumb-pointer-transition;
 
     &__pointer {
       @include btn-base($display: flex);
       position: absolute;
       align-items: center;
       justify-content: center;
-      @include square(get-slider(thumb-pointer-full-size));
-      top: get-slider(thumb-pointer-full-size) * -.5 + get-slider(track-height) * .5;
-      margin-left: get-slider(thumb-pointer-full-size) * -.5;
+      @include square($ui-slider-thumb-pointer-full-size);
+      top: $ui-slider-thumb-pointer-full-size * -.5 + $ui-slider-track-height * .5;
+      margin-left: $ui-slider-thumb-pointer-full-size * -.5;
 
       &__body {
         pointer-events: none;
-        @include square(get-slider(thumb-pointer-body-size));
-        border: solid get-slider(thumb-pointer-border-size);
+        @include square($ui-slider-thumb-pointer-body-size);
+        border: solid $ui-slider-thumb-pointer-border-size;
         border-radius: 50%;
-        transition: get-slider(thumb-pointer-transition);
+        transition: $ui-slider-thumb-pointer-transition;
         transform: scale(.8);
 
         @include my-active {

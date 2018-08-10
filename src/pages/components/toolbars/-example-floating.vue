@@ -9,7 +9,7 @@
       height="300px"
       class="vc@pa-md"
     >
-      <vt@toolbar dense floating class="vc@mt-none">
+      <vt@toolbar color="plain" dense floating class="vc@mt-none">
         <vt@input
           type="search"
           flat

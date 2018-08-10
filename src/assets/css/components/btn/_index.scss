@@ -3,22 +3,22 @@
 //
 
 .#{$css-prefix}btn {
-  $my-border-width: get-button(border-width);
+  $my-border-width: $ui-button-border-width;
 
   @mixin my-size($size) {
-    min-width: get-button(min-width- + $size);
-    @include font-size(get-button(font-size- + $size));
-    $my-height: get-button(height- + $size);
+    min-width: map-get($ui-button-min-width, $size);
+    @include font-size(map-get($ui-button-font-size, $size));
+    $my-height: map-get($ui-button-height, $size);
     height: $my-height;
     line-height: $my-height - $my-border-width;
   }
 
   @mixin my-icon-size($size) {
-    $my-size: get-button(height- + $size);
+    $my-size: map-get($ui-button-height, $size);
     width: $my-size;
     height: $my-size;
     line-height: $my-size - $my-border-width * 2;
-    @include font-size(get-button(font-size- + $my-size));
+    @include font-size(map-get($ui-button-font-size, $my-size));
   }
 
   @include btn-base($display: inline-flex);
@@ -26,20 +26,18 @@
   justify-content: center;
   flex: 0 1 auto;
   @include font-weight(regular);
-  margin: get-button(margin-vertical) get-button(margin-horizontal);
-  border-radius: get-button(radius);
+  margin: $ui-button-margin-vertical $ui-button-margin-horizontal;
+  border-radius: $ui-button-radius;
   border: $my-border-width solid transparent;
   position: relative;
   transition: box-shadow get-transition(primary);
-  // text-transform: uppercase;
-  // @include theme-color(color, text-inverted);
 
   &:not(.#{$css-prefix}btn--depressed) {
     will-change: box-shadow;
-    @include elevation(get-button(elevation));
+    @include elevation($ui-button-elevation);
 
     &:active {
-      @include elevation(get-button(active-elevation));
+      @include elevation($ui-button-active-elevation);
     }
   }
 
@@ -52,19 +50,15 @@
     &-wrapper {
       display: block;
       position: relative;
-      // width: calc(100% - #{$my-border-width * 2});
-      // height: calc(100% - #{$my-border-width * 2});
       width: 100%;
-      // height: 100%;
       border-radius: inherit;
     }
 
     display: flex;
     align-items: center;
     justify-content: center;
-    // display: block;
     border-radius: inherit;
-    padding: 0 get-button(padding-horizontal);
+    padding: 0 $ui-button-padding-horizontal;
     white-space: nowrap;
     transition: get-transition(primary);
     user-select: none;
@@ -122,14 +116,11 @@
   &--block {
     display: flex;
     width: 100%;
-    // max-width: calc(100% - #{get-button(margin-horizontal) * 2});
     margin-left: 0;
     margin-right: 0;
   }
 
   &--icon {
-    // background: transparent;
-    // box-shadow: none!important;
     border-radius: 50%;
     justify-content: center;
     min-width: 0 !important;
@@ -161,11 +152,11 @@
     // vertical-align: bottom;
 
     &--left {
-      margin-right: get-button(icon-margin);
+      margin-right: $ui-button-icon-margin;
     }
 
     &--right {
-      margin-left: get-button(icon-margin);
+      margin-left: $ui-button-icon-margin;
     }
   }
 
@@ -176,12 +167,7 @@
   }
 
   &#{&}--disabled {
-    @include theme-color(color, context-muted-text, true);
-
-    // &:not(.#{$css-prefix}btn--icon) {
-    //   @include theme-color(background-color, context-muted, true);
-    //   @include theme-color(border-color, context-muted-border, true);
-    // }
+    @include ui-theme-text(disabled, $important: true);
   }
 
   &--hidden {
@@ -194,22 +180,17 @@
   }
 
   &--left {
-    border-radius: get-button(radius) 0 0 get-button(radius);
-    // border-top-right-radius: 0;
-    // border-bottom-right-radius: 0;
+    border-radius: $ui-button-radius 0 0 $ui-button-radius;
   }
 
   &--right {
-    border-radius: 0 get-button(radius) get-button(radius) 0;
-    // border-top-left-radius: 0;
-    // border-bottom-left-radius: 0;
+    border-radius: 0 $ui-button-radius $ui-button-radius 0;
   }
 
 
 
   // loader
   &--loading {
-    // pointer-events: none;
 
     .#{$css-prefix}btn__content {
       opacity: 0;

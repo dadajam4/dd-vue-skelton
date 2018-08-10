@@ -12,6 +12,7 @@
   &__source-container {
     position: relative;
     transition: get-transition(primary);
+    will-change: height;
   }
 
   &__pre {
@@ -35,14 +36,18 @@
 <div class="my">
   <h3 class="my__name">
     <span style="vertical-align: middle;">&lt;{{name}}&gt;</span>
-    <vt@btn sm primary class="vc@ml-sm" v-if="source" @click="sourceActive = !sourceActive">
+    <vt@btn sm color="primary" class="vc@ml-sm" v-if="source" @click="sourceActive = !sourceActive">
       {{sourceActive ? 'Hide' : 'View'}} Source
     </vt@btn>
   </h3>
 
   <vt@expand-transition v-if="source">
     <div class="my__source-container" v-show="sourceActive">
-      <pre class="my__pre" v-highlightjs="source"><code class="my__code" :class="lang" ref="code"></code></pre>
+      <pre
+        class="my__pre"
+        v-highlightjs="source"
+      ><code class="my__code" :class="lang" ref="code"></code></pre>
+
       <vt@btn class="my__btn-source-copy" icon @click="copy">
         <vt@icon>file_copy</vt@icon>
       </vt@btn>

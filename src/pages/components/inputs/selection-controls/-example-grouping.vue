@@ -27,7 +27,7 @@
       label="Radio 2 (props &amp; color)"
       :items="items"
       v-model="radioInput"
-      color="indigo"
+      color="info"
       block
       :rules="{handler: val => (val !== 100), message: '100円はダメなんだ'}"
     />
@@ -51,7 +51,7 @@
       label="Checkbox 2 (props &amp; color)"
       :items="items"
       v-model="checkboxInput"
-      color="indigo"
+      color="info"
       block
       :rules="{handler: values => (!values || !values.find(val => val === 100)), message: '100円はダメなんだ'}"
     />
@@ -77,7 +77,7 @@
       multiple
       :items="items"
       v-model="switchInput"
-      color="indigo"
+      color="info"
       block
       :rules="{handler: values => (!values || !values.find(val => val === 100)), message: '100円はダメなんだ'}"
     />

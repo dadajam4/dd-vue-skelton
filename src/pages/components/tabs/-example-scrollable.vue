@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <vt@tabs primary>
+    <vt@tabs color="primary">
       <vt@tabs-item v-for="n in 20" :key="n">
         <vt@tabs-trigger>Item {{n}}</vt@tabs-trigger>
         <vt@tabs-content>

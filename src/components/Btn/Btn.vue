@@ -1,5 +1,5 @@
 <script>
-import Colorable from '~/mixins/color';
+import Colorable from '~/mixins/colorable';
 import Routable from '~/mixins/routable';
 
 
@@ -54,7 +54,7 @@ export default {
 
     classes() {
       const classes = this.addColorClasses({
-        [this.$options.name]: true,
+        'vc@btn': true,
 
         // size
         'vc@btn--sm': this.sm,

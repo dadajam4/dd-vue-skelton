@@ -6,19 +6,19 @@
   $my: &;
 
   @include checkable-core;
-  min-width: get-switch(track-min-width) * 1.5;
+  min-width: $ui-switch-track-min-width * 1.5;
 
-  $my-size: get-switch(pointer-size) + get-switch(pointer-assist-size) * 2;
-  $my-offset-x: -(get-switch(pointer-offset) + get-switch(pointer-assist-size));
-  $my-offset-x-active: get-switch(track-min-width) - $my-size - $my-offset-x;
-  $my-offset-y: -$my-size / 2 + get-switch(track-height) / 2;
+  $my-size: $ui-switch-pointer-size + $ui-switch-pointer-assist-size * 2;
+  $my-offset-x: -($ui-switch-pointer-offset + $ui-switch-pointer-assist-size);
+  $my-offset-x-active: $ui-switch-track-min-width - $my-size - $my-offset-x;
+  $my-offset-y: -$my-size / 2 + $ui-switch-track-height / 2;
 
   &__body {
     position: relative;
     display: block;
-    min-width: get-switch(track-min-width);
-    min-height: get-switch(track-height);
-    border-radius: get-switch(track-radius);
+    min-width: $ui-switch-track-min-width;
+    min-height: $ui-switch-track-height;
+    border-radius: $ui-switch-track-radius;
     @include btn-action-reset;
     cursor: pointer;
 
@@ -72,9 +72,9 @@
       content: "";
       position: absolute;
       display: block;
-      @include square(get-switch(pointer-size));
-      top: $my-size / 2 - get-switch(pointer-size) / 2;
-      left: $my-size / 2 - get-switch(pointer-size) / 2;
+      @include square($ui-switch-pointer-size);
+      top: $my-size / 2 - $ui-switch-pointer-size / 2;
+      left: $my-size / 2 - $ui-switch-pointer-size / 2;
       border-radius: 100%;
       @include elevation(4);
       background-color: currentColor;
@@ -83,21 +83,17 @@
 
   &:not(&--checked):not(&--error):not(&--disabled) {
     #{$my}__body:before {
-      @include theme-color(background-color, switch-track);
+      @include ui-theme-color(background, switch-track);
     }
 
     #{$my}__inner {
       &:after {
-        @include theme-color(background-color, switch-pointer);
+        @include ui-theme-color(background, switch-pointer);
       }
     }
   }
 
   &--checked {
-    // #{$my}__body {
-    //   @include theme-color(color, context-primary);
-    // }
-
     #{$my}__inner {
       transform: translate(#{$my-offset-x-active}, #{$my-offset-y});
     }

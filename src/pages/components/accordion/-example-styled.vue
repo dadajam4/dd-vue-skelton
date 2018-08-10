@@ -11,7 +11,7 @@
     </template>
 
     <vt@accordion styled>
-      <vt@accordion-title info>Click here!!!</vt@accordion-title>
+      <vt@accordion-title color="info">Click here!!!</vt@accordion-title>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>
@@ -20,7 +20,7 @@
     </vt@accordion>
 
     <vt@accordion styled>
-      <vt@accordion-title error icon="menu">Click here!!!</vt@accordion-title>
+      <vt@accordion-title color="error" icon="menu">Click here!!!</vt@accordion-title>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>
       <p>これはアコーディオンです。</p>

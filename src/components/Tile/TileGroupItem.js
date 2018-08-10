@@ -1,7 +1,3 @@
-import Routable from '~/mixins/routable';
-
-
-
 export default {
   name: 'vt@tile-group-item',
 
@@ -14,7 +10,7 @@ export default {
     },
   },
 
-  render(h, { children, data, parent, props }) {
+  render(h, { children, props }) {
     return h(props.tag, {
       staticClass: 'vc@tile-group__item',
     }, children);

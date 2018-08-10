@@ -2,6 +2,9 @@
 // Utilitiy
 //
 
+//
+// type checkers
+//
 @function is-number($value) {
   @return type-of($value) == 'number';
 }
@@ -62,6 +65,11 @@
   @return type-of($value) == 'list';
 }
 
+
+//
+// etc
+//
+
 @function nounit($value) {
   $_nounit_divisor: (floor($value) * 2) % 2 + 1;
   @return ($value / $_nounit_divisor);
@@ -89,10 +97,22 @@
   @return $result;
 }
 
-// a map-set function (not included with Sass)
-@function map-set($map, $key, $value) {
-  $new: ($key: $value);
-  @return map-merge($map, $new);
+
+
+//
+// string functions
+//
+@function str-split($string, $separator) {
+  $split-arr: ();
+  $index: str-index($string, $separator);
+  @while $index != null {
+    $item: str-slice($string, 1, $index - 1);
+    $split-arr: append($split-arr, $item);
+    $string: str-slice($string, $index + 1);
+    $index: str-index($string, $separator);
+  }
+  $split-arr: append($split-arr, $string);
+  @return $split-arr;
 }
 
 // str-replace() - Replace in a string
@@ -121,6 +141,31 @@
   @return $string;
 }
 
+
+
+//
+// map functions
+//
+
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+/// Map deep get
+@function map-deep-get($map, $key-map, $default: null) {
+  $keys: str-split($key-map, ".");
+  @each $key in $keys {
+    @if map-has-key($map, $key) == false {
+      @return $default;
+    }
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+
 @function get-maps-by-search-key($search-key, $map) {
   $result: ();
   @each $key, $val in $map {
@@ -136,50 +181,6 @@
   @return $result;
 }
 
-// @function get-map-fields-by-search-key($search-key, $map) {
-//   $result: null;
-//   @each $key, $val in $map {
-//     @if str-index($key, $search-key + "-") == 1 {
-//       @if $result == null {
-//         $result: $key;
-//       } @else {
-//         $result: append($result, $key);
-//       }
-//     }
-//   }
-//   @return $result;
-// }
-
-
-// $lists: ();
-// append($lists, aaa);
-
-// $_key: null !global;
-// $_val: null !global;
-// @mixin each-maps-by-search-key($search-key, $map) {
-// }
-
-// @mixin class-start($classname) {
-//   [class^="#{$classname}"], [class*=" #{$classname}"] {
-//     @content;
-//   }
-// }
-
-// @mixin class-links() {
-//   $all: ();
-
-//   @each $one in selector-parse(&) {
-//     $lastValue: nth($one, -1);
-//     $lastIndex: length($one);
-
-//     $all: append($all, set-nth($one, $lastIndex, a#{$lastValue}), comma);
-//     $all: append($all, set-nth($one, $lastIndex, button#{$lastValue}), comma);
-//   }
-
-//   @at-root #{$all} {
-//     @content;
-//   }
-// }
 
 // Clearfix
 @mixin clearfix() {
@@ -228,22 +229,8 @@
   }
 }
 
-// $default-vars: ();
-// // @function set-var($key, $val) {
-// //   $default-vars: map-set($default-vars, $key, $val);
-// //   @debug $default-vars;
-// //   @return $default-vars;
-// // }
 
-// @function get-var($key) {
-//   @return map-get($default-vars, $key);
-// }
 
-// @mixin var($prop, $key, $important: false) {
-//   $_important: if($important, "!important", "");
-//   #{$prop}: get-var($key)#{$_important};
-//   #{$prop}: var(--#{$key})#{$_important};
-// }
 
 @function map-to-json($map) {
   $str: "{";
@@ -296,4 +283,48 @@
 
 @mixin dump-ui-values() {
   content: to-json($ui-values);
+}
+
+@mixin ui-pressable-effect(
+  $position: relative,
+  $pseudo: before,
+  $touch: 0.07,
+  $press: 0.14
+) {
+  @if $position {
+    position: $position;
+  }
+
+  &:#{$pseudo} {
+    content: "";
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: get-duration(promptly);
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus {
+    &:before {
+      opacity: $touch;
+    }
+  }
+
+  &:active {
+    &:before {
+      opacity: $press;
+    }
+  }
 }

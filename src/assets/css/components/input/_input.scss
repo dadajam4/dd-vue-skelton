@@ -19,7 +19,7 @@
   $my: &;
 
   display: block;
-  margin: get-input(margin-vertical) get-input(margin-horizintal);
+  margin: $ui-input-margin-vertical $ui-input-margin-horizintal;
 
   &__label {
     display: inline-block;
@@ -29,10 +29,10 @@
 
     @include font-size(xs);
     transition: get-duration(promptly);
-    @include theme-color(color, text-secondary);
+    @include ui-theme-text(caption);
 
     #{$my}--focused & {
-      @include theme-color(color, text-primary);
+      @include ui-theme-text(primary);
     }
   }
 
@@ -48,7 +48,7 @@
   &--inline {
     display: inline-table;
     width: 100%;
-    max-width: calc(100% - #{get-input(margin-horizintal) * 2});
+    max-width: calc(100% - #{$ui-input-margin-horizintal * 2});
 
     #{$my}__body,
     #{$my}__details {
@@ -94,10 +94,8 @@
 
     &#{$my}--inline {
       display: inline-table;
-      margin-right: get-input(margin-horizintal) * 2;
+      margin-right: $ui-input-margin-horizintal * 2;
     }
-    // margin-right: get-input(margin-horizintal) * 2;
-    // max-width: calc(100% - #{get-input(margin-horizintal) * 2});
 
     #{$my}__label {
       cursor: pointer;
@@ -108,10 +106,6 @@
     #{$my}__control {
       width: auto;
     }
-
-    // .#{$css-prefix}checkable-element {
-    //   display: block;
-    // }
   }
 
 
@@ -121,7 +115,8 @@
     display: block;
     white-space: nowrap;
     text-align: right;
-    @include theme-color(color, text-secondary);
+
+    @include ui-theme-text(caption);
     @include font-size(xs);
 
     #{$my}--sm & { @include font-size(xxs); }
@@ -129,23 +124,16 @@
     #{$my}--lg & { @include font-size(sm); }
 
     &--error {
-      @include theme-color(color, text-error, true);
+      @include ui-theme-text(error, $important: true);
     }
   }
 
   &__messages {
-    // transition: get-transition(primary);
-
-    // display: flex;
-    // flex: 1 0 100%;
     display: block;
-
-    // min-height: 26px;
-    // overflow: hidden;
     position: relative;
     width: 100%;
     @include font-size(xs);
-    @include theme-color(color, text-secondary);
+    @include ui-theme-text(caption);
 
     .#{my}--sm & { @include font-size(xxs); padding-top: 2px; }
     .#{my}--md & { @include font-size(xs); padding-top: 4px; }
@@ -169,7 +157,6 @@
   }
 
   &__message {
-    // transition: 2s;
     transition: get-transition(primary);
   }
 
@@ -177,7 +164,7 @@
     #{$my}__label,
     #{$my}__details,
     #{$my}__messages {
-      @include theme-color(color, text-error);
+      @include ui-theme-text(error, $important: true);
     }
   }
 
@@ -188,7 +175,7 @@
     #{$my}__details,
     #{$my}__counter,
     #{$my}__messages {
-      @include theme-color(color, text-muted, true);
+      @include ui-theme-text(disabled, $important: true);
       pointer-events: none;
     }
   }

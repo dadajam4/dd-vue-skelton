@@ -11,7 +11,6 @@
     <dd-example is="flat" />
     <dd-example is="fill" />
     <dd-example is="outline" />
-    <dd-example is="color" />
     <dd-example is="block" />
     <dd-example is="size" />
     <dd-example is="icon" />

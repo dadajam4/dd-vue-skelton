@@ -17,8 +17,7 @@
     <vt@card>
       <vt@toolbar
         class="vc@elevation--0"
-        background-color="light"
-        text-color="grey-darken-1"
+        color="secondary"
         dense
       >
 <!--

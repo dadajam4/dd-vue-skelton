@@ -4,7 +4,7 @@
 <template>
   <docs-example>
     <vt@btn
-      secondary
+      color="secondary"
       :loading="loading1"
       :disabled="loading1"
       @click="startLoading('loading1')"
@@ -13,7 +13,7 @@
     </vt@btn>
 
     <vt@btn
-      primary
+      color="primary"
       :loading="loading2"
       :disabled="loading2"
       @click="startLoading('loading2')"
@@ -23,7 +23,7 @@
     </vt@btn>
 
     <vt@btn
-      info
+      color="info"
       :loading="loading3"
       :disabled="loading3"
       @click="startLoading('loading3')"
@@ -33,7 +33,7 @@
     </vt@btn>
 
     <vt@btn
-      warning
+      color="warning"
       :loading="loading4"
       :disabled="loading4"
       @click="startLoading('loading4')"

@@ -1,21 +1,11 @@
 @charset "utf-8";
 
-
-
-// Ready Styles
-// @import "./.tmp/dd-icon/dd-icon";
-// @import "dd-sprite";
-
 // Core
 @import "./core/index";
 
 // dump for JavaScript
 .#{$css-prefix}css-values {
   @include dump-ui-values;
-}
-
-:root {
-  @include dump-default-theme;
 }
 
 // Basis

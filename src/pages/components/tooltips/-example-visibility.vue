@@ -5,7 +5,7 @@
   <docs-example>
     <vt@row justify-space-between text-center>
       <vt@col col-12>
-        <vt@btn @click="show = !show">toggle</vt@btn>
+        <vt@btn color="info" @click="show = !show">toggle</vt@btn>
       </vt@col>
       <vt@col col-12 class="vc@mt-xl">
         <vt@tooltip-fragment>

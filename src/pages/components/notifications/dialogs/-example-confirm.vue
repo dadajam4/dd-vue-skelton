@@ -7,8 +7,8 @@
       <code>vm.$confirm</code> メソッドをコールする事でプログラムから確認ダイアログを表示できます。
     </template>
 
-    <vt@btn info @click.stop="$confirm('This is alert!')">Confirm!!!</vt@btn>
-    <vt@btn info @click.stop="click2">Promise</vt@btn>
+    <vt@btn color="info" @click.stop="$confirm('This is alert!')">Confirm!!!</vt@btn>
+    <vt@btn color="info" @click.stop="click2">Promise</vt@btn>
   </docs-example>
 </template>
 

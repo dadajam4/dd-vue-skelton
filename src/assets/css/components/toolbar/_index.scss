@@ -4,7 +4,7 @@
 
 .#{$css-prefix}toolbar {
   position: relative;
-  @include theme-color(background-color, background);
+  // @include ui-theme-background(plain);
   transition: padding get-duration(slowly) get-easing(drawer);
   @include elevation(4);
 
@@ -103,36 +103,4 @@
     }
   }
 
-  // @mixin set-height($key: hoge) {
-  //   .#{$css-prefix}toolbar__body,
-  //   .#{$css-prefix}toolbar__extension {
-  //     min-height: get-toolbar(row-height);
-
-  //     &:before,
-  //     &:after {
-  //       height: get-toolbar(row-height);
-  //     }
-  //   }
-
-  //   .#{$css-prefix}__items {
-  //     height: get-toolbar(row-height);
-  //   }
-  // }
-
-  // @include set-height;
-  // &--dense {}
-
-  // &__trigger {
-  //   display: inline-block;
-  //   vertical-align: middle;
-  //   color: inherit;
-  //   padding: 0 .6em;
-  //   border-bottom: solid 2px transparent;
-
-  //   &--active,
-  //   &:hover,
-  //   &:focus {
-  //     @include theme-color(border-color, context-primary);
-  //   }
-  // }
 }

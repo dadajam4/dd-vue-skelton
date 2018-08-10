@@ -4,15 +4,15 @@
 <template>
   <docs-example>
     <div class="vc@text-center">
-      <vt@badge outline overlap left success>
+      <vt@badge outline overlap left color="success">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>
-      <vt@badge outline overlap left warning>
+      <vt@badge outline overlap left color="warning">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>
-      <vt@badge outline overlap left error>
+      <vt@badge outline overlap left color="error">
         <span slot="badge">1</span>
         <vt@icon md>fas fa-user-circle</vt@icon>
       </vt@badge>

@@ -13,7 +13,7 @@ export default {
     // active item should be dimmed
     activeClass: {
       type: String,
-      default: 'vc@breadcrumb__item--disabled'
+      default: 'vc@disabled--text',
     },
 
     hasDivider: Boolean,
@@ -23,6 +23,7 @@ export default {
     classes() {
       return {
         'vc@breadcrumb__item': true,
+        'vc@breadcrumb__item--active': this.disabled,
         [this.activeClass]: this.disabled,
       }
     }

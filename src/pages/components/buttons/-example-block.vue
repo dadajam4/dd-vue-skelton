@@ -3,7 +3,7 @@
 
 <template>
   <docs-example>
-    <vt@btn primary block>Block</vt@btn>
+    <vt@btn block>Block</vt@btn>
   </docs-example>
 </template>
 

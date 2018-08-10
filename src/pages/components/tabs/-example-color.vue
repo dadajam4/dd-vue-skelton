@@ -3,29 +3,29 @@
 
 <template>
   <docs-example>
-    <vt@tabs primary>
+    <vt@tabs color="primary">
       <vt@tabs-item v-for="n in 3" :key="n">
         <vt@tabs-trigger>Item {{n}}</vt@tabs-trigger>
         <vt@tabs-content>
-          <p v-for="nn in n">これはタブ{{n}}です。</p>
+          <p v-for="nn in n" :key="nn">これはタブ{{n}}です。</p>
         </vt@tabs-content>
       </vt@tabs-item>
     </vt@tabs>
 
-    <vt@tabs background-color="indigo" text-color="shades-white">
+    <vt@tabs background-color="secondary" text-color="plain">
       <vt@tabs-item v-for="n in 3" :key="n">
         <vt@tabs-trigger>Item {{n}}</vt@tabs-trigger>
         <vt@tabs-content>
-          <p v-for="nn in n">これはタブ{{n}}です。</p>
+          <p v-for="nn in n" :key="nn">これはタブ{{n}}です。</p>
         </vt@tabs-content>
       </vt@tabs-item>
     </vt@tabs>
 
-    <vt@tabs warning active-color="shades-black">
+    <vt@tabs color="warning" active-color="dark">
       <vt@tabs-item v-for="n in 3" :key="n">
         <vt@tabs-trigger>Item {{n}}</vt@tabs-trigger>
         <vt@tabs-content>
-          <p v-for="nn in n">これはタブ{{n}}です。</p>
+          <p v-for="nn in n" :key="nn">これはタブ{{n}}です。</p>
         </vt@tabs-content>
       </vt@tabs-item>
     </vt@tabs>

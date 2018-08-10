@@ -22,7 +22,7 @@
       :key="size"
       v-bind="{[size]: size !== 'default'}"
       icon
-      primary
+      color="primary"
       :disabled="disabled"
     ><vt@icon>menu</vt@icon></vt@btn>
 
@@ -32,7 +32,7 @@
       v-bind="{[size]: size !== 'default'}"
       icon
       outline
-      info
+      color="info"
       :disabled="disabled"
     ><vt@icon>menu</vt@icon></vt@btn>
   </docs-example>

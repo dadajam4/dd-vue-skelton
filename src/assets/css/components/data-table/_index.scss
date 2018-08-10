@@ -29,7 +29,7 @@
       th,
       td {
         transition: get-transition(primary);
-        @include theme-color(color, text-sub);
+        @include ui-theme-text(caption);
 
         &.#{$css-prefix}sortable {
           cursor: pointer;
@@ -38,12 +38,12 @@
           .#{$css-prefix}data-table__sort-icon {
             pointer-events: none;
             opacity: 0;
-            @include theme-color(color, text-sub);
+            @include ui-theme-text(sub);
           }
 
           &.#{$css-prefix}active,
           &:hover {
-            @include theme-color(color, text);
+            @include ui-theme-color(color, "context.plain.doc");
 
             .#{$css-prefix}data-table__sort-icon {
               opacity: 1;
@@ -52,7 +52,7 @@
 
           &.#{$css-prefix}active {
             .#{$css-prefix}data-table__sort-icon {
-              @include theme-color(color, text);
+              @include ui-theme-color(color, "context.plain.doc");
             }
           }
         }
@@ -64,7 +64,7 @@
         transition: get-transition(primary);
 
         &:hover {
-          @include theme-color(background-color, background-light);
+          @include ui-theme-background(light-grey);
         }
       }
     }

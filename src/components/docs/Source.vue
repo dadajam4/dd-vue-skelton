@@ -14,8 +14,8 @@
 
 .my-copied {
   position: absolute;
-  @include theme-color(background, background-darken);
-  @include theme-color(color, text-inverted);
+  @include ui-theme-background(dark);
+  @include ui-theme-text(plain);
   @include elevation(2);
   @include font-size(xs);
   border-radius: 2px;

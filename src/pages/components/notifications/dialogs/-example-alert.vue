@@ -7,8 +7,8 @@
       <code>vm.$alert</code> メソッドをコールする事でプログラムからアラートダイアログを表示できます。
     </template>
 
-    <vt@btn info @click.stop="$alert('This is alert!')">Alert!!!</vt@btn>
-    <vt@btn info @click.stop="click2">Promise</vt@btn>
+    <vt@btn color="info" @click.stop="$alert('This is alert!')">Alert!!!</vt@btn>
+    <vt@btn color="info" @click.stop="click2">Promise</vt@btn>
   </docs-example>
 </template>
 

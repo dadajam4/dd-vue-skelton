@@ -9,18 +9,18 @@
     </template>
 
     <p>
-      This is calendar_today
-      <vt@icon>calendar_today</vt@icon>
+      {{ $ui.icons.calendarToday }}
+      <vt@icon>$ui.icons.calendarToday</vt@icon>
     </p>
 
     <p>
-      This is mdi mdi-format-align-left
-      <vt@icon>mdi mdi-format-align-left</vt@icon>
+      {{ $ui.icons.menu }}
+      <vt@icon>$ui.icons.menu</vt@icon>
     </p>
 
     <p>
-      This is mdi mdi-format-align-left
-      <vt@icon>fas fa-info-circle</vt@icon>
+      {{ $ui.icons.info }}
+      <vt@icon>$ui.icons.info</vt@icon>
     </p>
 
     <vt@row
@@ -33,9 +33,9 @@
         <vt@card>
           <vt@card-text>
             <vt@row nowrap justify-space-around>
-              <vt@icon v-bind="{[size.key]: true}">calendar_today</vt@icon>
-              <vt@icon v-bind="{[size.key]: true}">mdi mdi-format-align-left</vt@icon>
-              <vt@icon v-bind="{[size.key]: true}">fas fa-info-circle</vt@icon>
+              <vt@icon v-bind="{[size.key]: true}">$ui.icons.calendarToday</vt@icon>
+              <vt@icon v-bind="{[size.key]: true}">$ui.icons.menu</vt@icon>
+              <vt@icon v-bind="{[size.key]: true}">$ui.icons.info</vt@icon>
             </vt@row>
           </vt@card-text>
         </vt@card>
@@ -44,9 +44,9 @@
         <vt@card primary>
           <vt@card-text>
             <vt@row nowrap justify-space-around>
-              <vt@icon v-bind="{[size.key]: true}">folder_open</vt@icon>
-              <vt@icon v-bind="{[size.key]: true}">mdi mdi-account</vt@icon>
-              <vt@icon v-bind="{[size.key]: true}">fas fa-th-list</vt@icon>
+              <vt@icon v-bind="{[size.key]: true}">$ui.icons.error</vt@icon>
+              <vt@icon v-bind="{[size.key]: true}">$ui.icons.warning</vt@icon>
+              <vt@icon v-bind="{[size.key]: true}">$ui.icons.delimiter</vt@icon>
             </vt@row>
           </vt@card-text>
         </vt@card>

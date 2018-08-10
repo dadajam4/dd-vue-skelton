@@ -4,6 +4,11 @@ import { getObjectValueByPath } from '~/util';
 const ICONS_PREFIX = '$ui.icons.';
 const ROTATE_AMMOUNT_CHECKER = /^\d+$/;
 
+const FA5_PREFIXES = ['fas', 'far', 'fal', 'fab'];
+function isFontAwesome5(iconType) {
+  return FA5_PREFIXES.some(val => iconType.includes(val))
+}
+
 export default {
   name: 'vt@icon',
 
@@ -25,7 +30,7 @@ export default {
 
   render(h, { parent, props, data, children = [] }) {
     const newChildren = [];
-    let iconName = '';
+    let iconType, iconName = '';
     if (children.length) {
       iconName = children.pop().text;
     } else if (data.domProps && data.domProps.textContent) {
@@ -40,14 +45,13 @@ export default {
       iconName = getObjectValueByPath(parent, iconName, iconName);
     }
 
-    if (/^mdi-/.test(iconName)) {
-      iconName = 'mdi ' + iconName;
-    }
-
-    let iconType = 'material-icons';
-    if (iconName.indexOf('-') > -1) {
-      iconType = iconName;
+    const delimiterIndex = iconName.indexOf('-');
+    const isCustomIcon = delimiterIndex > -1;
+    if (isCustomIcon) {
+      iconType = iconName.slice(0, delimiterIndex);
+      if (isFontAwesome5(iconType)) iconType = '';
     } else {
+      iconType = 'material-icons';
       newChildren.push(iconName);
     }
 
@@ -64,6 +68,7 @@ export default {
     const classes = {
       [myClassName]: true,
       'notranslate': true,
+      [iconName]: isCustomIcon,
       [iconType]: true,
       [`${myClassName}--xs`]: props.xs,
       [`${myClassName}--sm`]: props.sm,

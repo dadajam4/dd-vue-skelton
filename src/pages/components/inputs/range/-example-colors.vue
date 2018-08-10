@@ -22,14 +22,14 @@
     <vt@range
       value="50"
       thumb-color="info"
-      track-fill-color="red"
-      tick-color="green"
+      track-fill-color="error"
+      tick-color="primary"
       ticks
       persistent-ticks
       thumb-label
       thumb-label-color="secondary"
       persistent-thumb-label
-      icon-active-color="blue"
+      icon-active-color="secondary"
       step="10"
     >
       <vt@icon>volume-up</vt@icon>

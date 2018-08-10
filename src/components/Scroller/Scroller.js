@@ -1,6 +1,4 @@
 import Mountable from '~/mixins/mountable';
-import TextColorable from '~/mixins/color/textColorable';
-import BackgroundColorable from '~/mixins/color/backgroundColorable';
 
 
 
@@ -13,7 +11,7 @@ const getSanitizedPropSize = size => {
 export default {
   name: 'vt@scroller',
 
-  mixins: [Mountable, BackgroundColorable, TextColorable],
+  mixins: [Mountable],
 
   props: {
     tag: {
@@ -76,7 +74,6 @@ export default {
       containerHeight: 0,
       scrollWidth: 0,
       scrollHeight: 0,
-      defaultTextColor: this.layerColor,
     };
   },
 
@@ -176,12 +173,13 @@ export default {
 
     const $layerContainer = h('div', {
       staticClass: 'vc@scroller__layer-container',
-      class: this.addTextColorClasses(),
+      class: {
+        [`vc@${this.layerColor}--text`]: true,
+      },
     }, $layers);
 
     const $scroller = h('div', {
       staticClass: 'vc@scroller__context',
-      class: this.addBackgroundColorClasses(),
       style: {
         'overflow-x': !this.horizontalScroll && 'hidden' || 'auto',
         'overflow-y': !this.verticalScroll && 'hidden' || 'auto',

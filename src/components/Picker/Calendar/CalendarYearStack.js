@@ -63,7 +63,7 @@ export default {
         staticClass: 'vc@calendar__year-scroller',
         props: {
           contentTag: 'ul',
-          layerColor: 'inverted',
+          layerColor: 'plain',
           layerActiveOpacity: 0.8,
         },
         ref: 'scroller',
