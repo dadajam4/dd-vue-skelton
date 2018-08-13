@@ -9,7 +9,6 @@ import RouterHelper from './router-helper';
 import Living from './living';
 import Scroll from './scroll';
 import Notifications from './notifications';
-import Theme from './theme';
 import Validator   from './validator';
 
 
@@ -20,7 +19,6 @@ const plugin = {
     this.installed = true;
 
     Vue.use(Ui, opt);
-    // Vue.use(Ui, { iconfont: 'mdi' });
 
     // utilities
     Vue.prototype.$util = util;
@@ -34,7 +32,6 @@ const plugin = {
     Vue.use(Scroll, opt);
     Vue.use(Notifications, opt);
     Vue.use(Validator, opt);
-    Vue.use(Theme, opt);
 
     // Directives
     Object.keys(directives).forEach(key => {

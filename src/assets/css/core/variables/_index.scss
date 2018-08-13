@@ -47,5 +47,8 @@ $ui-values: (
   toolbarHeights: $ui-toolbar-heights,
   theme: (
     contexts: $ui-theme-contexts,
+    contextMapping: $ui-theme-context-mapping,
+    default: $ui-theme-default,
+    keys: $ui-theme-keys,
   ),
 );

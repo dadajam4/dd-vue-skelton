@@ -29,7 +29,7 @@
       th,
       td {
         transition: get-transition(primary);
-        @include ui-theme-text(caption);
+        @include ui-theme-context-mapping-text(caption);
 
         &.#{$css-prefix}sortable {
           cursor: pointer;
@@ -38,7 +38,7 @@
           .#{$css-prefix}data-table__sort-icon {
             pointer-events: none;
             opacity: 0;
-            @include ui-theme-text(sub);
+            @include ui-theme-context-mapping-text(sub);
           }
 
           &.#{$css-prefix}active,
@@ -64,7 +64,7 @@
         transition: get-transition(primary);
 
         &:hover {
-          @include ui-theme-background(light-grey);
+          @include ui-theme-context-mapping-background(soft);
         }
       }
     }

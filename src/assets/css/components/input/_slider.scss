@@ -68,10 +68,10 @@
       left: 6px;
       right: 6px;
 
-      @include ui-theme-background($ui-slider-track-base-color);
+      @include ui-theme-context-mapping-background(track);
 
       @include my-focus {
-        @include ui-theme-background($ui-slider-track-focus-color);
+        @include ui-theme-context-mapping-background(track-active);
       }
     }
 

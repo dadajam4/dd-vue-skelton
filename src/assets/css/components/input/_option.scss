@@ -4,13 +4,13 @@
 //
 .#{$css-prefix}optgroup {
   margin: 8px 0;
-  @include ui-theme-background(plain);
+  @include ui-theme-context-mapping-background(default);
 
   &__label {
     display: flex;
     align-items: center;
     @include font-size(sm);
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
     margin-top: get-space(md);
     padding: 0 get-space(sm);
 

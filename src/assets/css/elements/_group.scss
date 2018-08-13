@@ -65,7 +65,7 @@ dt {
   letter-spacing: normal;
   margin-top: get-space(sm);
   margin-bottom: get-space(xxs);
-  @include ui-theme-text(caption);
+  @include ui-theme-context-mapping-text(caption);
 
   & + & {
     margin-top: get-space(xxxs);
@@ -84,7 +84,7 @@ blockquote {
   margin: get-space(xl) 0 get-space(lg);
   padding: get-space(sm) 0 get-space(sm) get-space(sm);
   border-left: solid 5px;
-  @include ui-theme-border-color(primary);
+  @include ui-theme-context-mapping-border-color(primary);
   @include font-weight(regular);
 
   & > * {
@@ -100,7 +100,7 @@ blockquote {
   footer {
     font-size: 80%;
 
-    @include ui-theme-text(sub);
+    @include ui-theme-context-mapping-text(sub);
     @include line-height(md);
 
     &:before {
@@ -127,7 +127,7 @@ figcaption {
   @include line-height(md);
   margin-top: get-space(xxs);
   margin-bottom: get-space(xxs);
-  @include ui-theme-text(caption);
+  @include ui-theme-context-mapping-text(caption);
 }
 
 // address
@@ -138,7 +138,7 @@ address {
 // table
 table {
   display: table;
-  @include ui-theme-background(plain);
+  @include ui-theme-context-mapping-background(default);
   border-radius: 2px;
   border-collapse: collapse;
   max-width: 100%;
@@ -154,7 +154,7 @@ caption {
   @include line-height(md);
   margin-top: get-space(xxs);
   margin-bottom: get-space(xxs);
-  @include ui-theme-text(caption);
+  @include ui-theme-context-mapping-text(caption);
 }
 
 tr {}

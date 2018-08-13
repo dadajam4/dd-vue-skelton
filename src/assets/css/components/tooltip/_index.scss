@@ -4,7 +4,7 @@
 
 .#{$css-prefix}tooltip {
 
-  @include ui-theme-background(darken);
+  @include ui-theme-context-mapping-background(deep);
   @include ui-theme-color(color, "context.plain.base");
   border-radius: 2px;
   @include font-size(xs);

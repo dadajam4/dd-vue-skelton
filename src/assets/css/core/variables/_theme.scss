@@ -2,22 +2,40 @@
 // Theme Variables
 //
 
-$theme-vars: ();
-$theme-default: get-default-theme();
+$ui-theme-base: light !default;
+$ui-theme-default: light !default;
 
-@each $name, $theme in get-themes() {
-  $theme-values: ();
-  @each $key, $val in $theme {
-    $theme-values: map-set($theme-values, $key, $val);
-  }
-  $theme-vars: map-set($theme-vars, $name, $theme-values);
-}
+$ui-theme-context-mapping-default: plain !default;
+$ui-theme-context-mapping-primary: primary !default;
+$ui-theme-context-mapping-error: error !default;
+// $ui-theme-context-mapping-warning: warning !default;
+$ui-theme-context-mapping-disabled: disabled !default;
+$ui-theme-context-mapping-soft: light-grey !default;
+$ui-theme-context-mapping-touch: grey !default;
+$ui-theme-context-mapping-deep: darken !default;
+$ui-theme-context-mapping-caption: caption !default;
+$ui-theme-context-mapping-sub: grey !default;
+$ui-theme-context-mapping-track: light-mask !default;
+$ui-theme-context-mapping-track-active: mask !default;
 
-$ui-theme-default: light;
+$ui-theme-context-mapping: (
+  default: $ui-theme-context-mapping-default,
+  primary: $ui-theme-context-mapping-primary,
+  error: $ui-theme-context-mapping-error,
+  // warning: $ui-theme-context-mapping-warning,
+  disabled: $ui-theme-context-mapping-disabled,
+  soft: $ui-theme-context-mapping-soft,
+  touch: $ui-theme-context-mapping-touch,
+  deep: $ui-theme-context-mapping-deep,
+  caption: $ui-theme-context-mapping-caption,
+  sub: $ui-theme-context-mapping-sub,
+  track: $ui-theme-context-mapping-track,
+  track-active: $ui-theme-context-mapping-track-active,
+);
 
 $ui-theme: (
   light: (
-    // background: #fff,
+    background: rgba(250, 250, 250, 1),
     backdrop: rgba(0, 0, 0, .4),
     divider: rgba(0, 0, 0, .12),
     form-divider: rgba(0, 0, 0, .22),
@@ -25,112 +43,186 @@ $ui-theme: (
     switch-pointer: #fafafa,
     spinner-underlay-stroke: rgba(#000, 0.1),
     highlight: ui-get-palette(yellow),
+    context-doc-dark: rgba(0, 0, 0, .87),
+    context-doc-light: #fff,
+    context-autodoc-threshold: 70%,
     context: (
       plain: (
         base: #fff,
-        doc: rgba(0, 0, 0, .87),
         link: #42b983,
-
-        // text: テキスト色を baseじゃない色にしたい時
       ),
-      // touch: (
-      //   base: rgba(0, 0, 0, .05),
-      //   doc: rgba(0, 0, 0, .87),
-      //   link: #42b983,
-      // ),
-      // press: (
-      //   base: rgba(0, 0, 0, .15),
-      //   doc: rgba(0, 0, 0, .87),
-      //   link: #42b983,
-      // ),
       light-grey: (
         base: ui-get-palette(grey-lighten-3),
-        doc: rgba(0, 0, 0, .87),
-        link: rgba(0, 0, 0, .87),
       ),
       "grey": (
         base: ui-get-palette(grey),
-        doc: #fff,
-        link: #fff,
       ),
       dark: (
         base: ui-get-palette(grey-darken-2),
-        doc: #fff,
-        link: #fff,
       ),
       darken: (
         base: ui-get-palette(grey-darken-4),
-        doc: #fff,
-        link: #fff,
       ),
       primary: (
         base: #42b983,
-        doc: #fff,
-        link: #fff,
       ),
       secondary: (
         base: #2c3e50,
-        doc: #fff,
-        link: #fff,
       ),
       caption: (
         base: #2c3e50,
-        doc: #fff,
-        link: #fff,
       ),
       info: (
         base: #2196f3,
-        doc: #fff,
-        link: #fff,
       ),
       success: (
         base: #4caf50,
-        doc: #fff,
-        link: #fff,
       ),
       warning: (
         base: #ffc107,
-        doc: #fff,
-        link: #fff,
       ),
       error: (
         base: #ff5252,
-        doc: #fff,
-        link: #fff,
       ),
       disabled: (
         base: rgba(0, 0, 0, .12),
-        doc: #fff,
-        link: #fff,
       ),
       sub: (
         base: ui-get-palette(grey),
-        doc: #fff,
-        link: #fff,
       ),
       holiday: (
         base: ui-get-palette(red-accent-1),
-        doc: #fff,
-        link: #fff,
+      ),
+      light-mask: (
+        base: rgba(0, 0, 0, .12),
+      ),
+      mask: (
+        base: rgba(0, 0, 0, .2),
+      ),
+      deep-mask: (
+        base: rgba(0, 0, 0, .7),
+      ),
+    ),
+  ),
+  dark: (
+    background: rgba(19, 19, 19, 1),
+    // backdrop: rgba(0, 0, 0, .4),
+    divider: rgba(255, 255, 255, .12),
+    form-divider: rgba(255, 255, 255, .22),
+    switch-track: rgba(255, 255, 255, .38),
+    // switch-pointer: #fafafa,
+    spinner-underlay-stroke: rgba(#fff, 0.1),
+    // highlight: ui-get-palette(yellow),
+    // context-doc-dark: rgba(0, 0, 0, .87),
+    // context-doc-light: #fff,
+    // context-autodoc-threshold: 70%,
+    context: (
+      plain: (
+        base: rgba(35, 35, 35, 1),
+        link: #42b983,
+      ),
+      light-grey: (
+        base: #313131,
+      ),
+      "grey": (
+        base: ui-get-palette(grey-darken-2),
+      ),
+      dark: (
+        base: ui-get-palette(grey),
+      ),
+      darken: (
+        base: ui-get-palette(grey-lighten-3),
+      ),
+      secondary: (
+        base: #2c3e50,
+      ),
+      disabled: (
+        base: rgba(255, 255, 255, .24),
+      ),
+      caption: (
+        base: ui-get-palette(grey-lighten-2),
+      ),
+      light-mask: (
+        base: rgba(255, 255, 255, .12),
+      ),
+      mask: (
+        base: rgba(255, 255, 255, .2),
+      ),
+      deep-mask: (
+        base: rgba(255, 255, 255, .7),
       ),
     ),
   ),
 ) !default;
 
+// デフォルト以外の全てのテーマで未設定のキーをベーステーマで埋める
+$ui-theme-base-map: map-get($ui-theme, $ui-theme-base);
+$ui-theme-base-contexts: map-get($ui-theme-base-map, context);
+@each $theme-key, $theme in $ui-theme {
+  @if $theme-key != $ui-theme-base {
+    @each $key, $value in $ui-theme-base-map {
+      @if map-has-key($theme, $key) == false {
+        $theme: map-set($theme, $key, $value);
+      } @else if $key == context {
+        $my-contexts: map-get($theme, context);
+        @each $context-key, $context in $ui-theme-base-contexts {
+          @if map-has-key($my-contexts, $context-key) == false {
+            $my-contexts: map-set($my-contexts, $context-key, $context);
+          }
+        }
+        $theme: map-set($theme, context, $my-contexts);
+      }
+    }
+  }
+  $ui-theme: map-set($ui-theme, $theme-key, $theme);
+}
+
+// テーマ色の未設定valueのデフォルト値を設定
 @each $theme-key, $theme in $ui-theme {
   $contexts: map-get($theme, context);
+
   @each $context-key, $context in $contexts {
-    @if map-has-key($context, text) == false {
-      $context: map-set($context, text, map-get($context, base));
+    $base-color: map-get($context, base);
+
+    @if map-has-key($context, doc) == false {
+      $base-lightness: lightness($base-color);
+      $auto-color: if(
+        $base-lightness < map-get($theme, context-autodoc-threshold),
+        map-get($theme, context-doc-light),
+        map-get($theme, context-doc-dark)
+      );
+      $context: map-set($context, doc, $auto-color);
     }
+
+    @if map-has-key($context, link) == false {
+      $context: map-set($context, link, map-get($context, doc));
+    }
+
+    @if map-has-key($context, link-hover-color) == false {
+      $context: map-set($context, linkHoverColor, map-get($context, link));
+    }
+
+    @if map-has-key($context, link-decoration) == false {
+      $context: map-set($context, linkDecoration, null);
+    }
+
+    @if map-has-key($context, link-hover-decoration) == false {
+      $context: map-set($context, linkHoverDecoration, null);
+    }
+
+    @if map-has-key($context, link-weight) == false {
+      $context: map-set($context, linkWeight, null);
+    }
+
+    @if map-has-key($context, text) == false {
+      $context: map-set($context, text, $base-color);
+    }
+
     $contexts: map-set($contexts, $context-key, $context);
   }
   $theme: map-set($theme, context, $contexts);
   $ui-theme: map-set($ui-theme, $theme-key, $theme);
 }
 
-$ui-theme-default-map: map-get($ui-theme, $ui-theme-default);
-$ui-theme-contexts: ();
-@each $key, $context in map-get($ui-theme-default-map, context) {
-  $ui-theme-contexts: append($ui-theme-contexts, $key);
-}
+$ui-theme-keys: map-keys($ui-theme);
+$ui-theme-contexts: map-keys(map-get($ui-theme-base-map, context));

@@ -3,12 +3,12 @@
 
 <template>
   <docs-example>
-    <div class="vc@context-color--secondary">
+    <div class="vc@secondary">
       <template v-for="direction in DIRECTIONS">
         <div
           v-for="space in SPACES"
           :key="space.key"
-          :class="`vc@context-color--primary vc@m${direction.key}-${space.key}`"
+          :class="`vc@primary vc@m${direction.key}-${space.key}`"
         >{{`vc@m${direction.key}-${space.key}`}}</div>
       </template>
     </div>

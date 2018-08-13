@@ -93,7 +93,7 @@
     padding-bottom: calc(#{get-space(xs)} - 1px);
 
     .#{$css-prefix}tile--disabled & {
-      @include ui-theme-text(disabled, $important: true);
+      @include ui-theme-context-mapping-text(disabled, $important: true);
     }
 
     .#{$css-prefix}tile--dense & {
@@ -167,7 +167,7 @@
 
     &-text {
       @include font-size(xs);
-      @include ui-theme-text(caption);
+      @include ui-theme-context-mapping-text(caption);
 
       .#{$css-prefix}tile--dense & {
         @include font-size(xss);
@@ -200,7 +200,7 @@
   @mixin my-nested-children {
     transition: get-duration(promptly);
     .#{$css-prefix}tile--disabled & {
-      @include ui-theme-text(disabled, $important: true);
+      @include ui-theme-context-mapping-text(disabled, $important: true);
     }
   }
 
@@ -221,7 +221,7 @@
 
   &__sub-title {
     @include my-nested-children;
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
     @include font-size(xs);
     @include ellipsis;
 
@@ -266,7 +266,7 @@
 // grouping
 .#{$css-prefix}tile-group {
   padding: get-space(xs) 0;
-  @include ui-theme-background(plain);
+  @include ui-theme-context-mapping-background(default);
   margin: 0;
 
   &,

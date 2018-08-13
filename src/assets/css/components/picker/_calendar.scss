@@ -11,7 +11,7 @@
   position: relative;
   overflow: hidden;
   border-radius: inherit;
-  @include ui-theme-background(plain);
+  @include ui-theme-context-mapping-background(default);
 
   &__stack {
     position: absolute;
@@ -22,7 +22,7 @@
     height: 100%;
     overflow: hidden;
     border-radius: inherit;
-    @include ui-theme-background(plain);
+    @include ui-theme-context-mapping-background(default);
 
     &-enter-active, &-leave-active {
       transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
@@ -80,7 +80,7 @@
 
       &:hover,
       &:focus {
-        @include ui-theme-text(primary);
+        @include ui-theme-context-mapping-text(primary);
       }
     }
 
@@ -163,7 +163,7 @@
     }
 
     th {
-      @include ui-theme-text(caption);
+      @include ui-theme-context-mapping-text(caption);
       width: get-calendar(cell-size);
       height: get-calendar(week-height);
       padding: 0;
@@ -283,17 +283,17 @@
         &.#{$css-prefix}calendar__year--current {
           font-size: 140%;
           @include font-weight(bold);
-          @include ui-theme-text(sub);
+          @include ui-theme-context-mapping-text(sub);
         }
 
         &.#{$css-prefix}calendar__year--active {
           font-size: 160%;
           @include font-weight(bold);
-          @include ui-theme-text(primary);
+          @include ui-theme-context-mapping-text(primary);
         }
 
         &.#{$css-prefix}calendar__year--disabled {
-          @include ui-theme-text(disabled);
+          @include ui-theme-context-mapping-text(disabled);
           cursor: default;
           pointer-events: none;
         }

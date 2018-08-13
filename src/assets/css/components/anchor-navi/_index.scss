@@ -47,6 +47,6 @@
 
   .#{$css-prefix}app-drawer & {
     border-right: solid 4px;
-    @include ui-theme-border-color(primary);
+    @include ui-theme-context-mapping-border-color(primary);
   }
 }

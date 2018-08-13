@@ -1,5 +1,5 @@
 export default {
-  name: 'vt@mq',
+  name: 'vt@ui-mq',
 
   data() {
     return {

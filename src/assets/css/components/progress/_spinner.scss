@@ -31,7 +31,8 @@
   }
 
   &__underlay {
-    @include ui-theme-color(stroke, spinner-underlay-stroke);
+    @include ui-theme-context-mapping-text(track);
+    stroke: currentColor;
     z-index: 1;
   }
 

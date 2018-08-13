@@ -107,6 +107,8 @@ export default function Icons(iconfont = 'md', customIcons = {}) {
   }
 
   return {
+    name: 'vt@ui-icons',
+
     data() {
       return {
         iconfont,
@@ -124,7 +126,3 @@ export default function Icons(iconfont = 'md', customIcons = {}) {
     },
   }
 }
-
-// export default function icons(iconfont = 'md', icons = {}) {
-//   return Object.assign({}, iconSets[iconfont] || iconSets.md, icons)
-// }

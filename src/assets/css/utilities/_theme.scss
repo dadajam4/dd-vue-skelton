@@ -2,8 +2,13 @@
 // Theme
 //
 
+// themes
+@include ui-each-themes {
+  @include ui-theme($ui-theme-key);
+}
+
+// contexts
 @each $key in $ui-theme-contexts {
-  // @include ui-theme-context($key);
   .#{$css-prefix}#{$key} {
     @include ui-theme-context($key);
   }
@@ -15,15 +20,24 @@
   .#{$css-prefix}#{$key}--outline {
     @include ui-theme-context($key, $outline: true);
   }
+}
 
+// background
+@each $key in $ui-theme-contexts {
   .#{$css-prefix}#{$key}--background {
     @include ui-theme-background($key, $important: true);
   }
+}
 
+// border
+@each $key in $ui-theme-contexts {
   .#{$css-prefix}#{$key}--border {
     @include ui-theme-border-color($key, $important: true);
   }
+}
 
+// text
+@each $key in $ui-theme-contexts {
   .#{$css-prefix}#{$key}--text {
     @include ui-theme-text($key, $important: true);
   }

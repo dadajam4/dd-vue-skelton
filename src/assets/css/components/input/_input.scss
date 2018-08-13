@@ -29,10 +29,10 @@
 
     @include font-size(xs);
     transition: get-duration(promptly);
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
 
     #{$my}--focused & {
-      @include ui-theme-text(primary);
+      @include ui-theme-context-mapping-text(primary);
     }
   }
 
@@ -116,7 +116,7 @@
     white-space: nowrap;
     text-align: right;
 
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
     @include font-size(xs);
 
     #{$my}--sm & { @include font-size(xxs); }
@@ -124,7 +124,7 @@
     #{$my}--lg & { @include font-size(sm); }
 
     &--error {
-      @include ui-theme-text(error, $important: true);
+      @include ui-theme-context-mapping-text(error, $important: true);
     }
   }
 
@@ -133,7 +133,7 @@
     position: relative;
     width: 100%;
     @include font-size(xs);
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
 
     .#{my}--sm & { @include font-size(xxs); padding-top: 2px; }
     .#{my}--md & { @include font-size(xs); padding-top: 4px; }
@@ -164,7 +164,7 @@
     #{$my}__label,
     #{$my}__details,
     #{$my}__messages {
-      @include ui-theme-text(error, $important: true);
+      @include ui-theme-context-mapping-text(error, $important: true);
     }
   }
 
@@ -175,7 +175,7 @@
     #{$my}__details,
     #{$my}__counter,
     #{$my}__messages {
-      @include ui-theme-text(disabled, $important: true);
+      @include ui-theme-context-mapping-text(disabled, $important: true);
       pointer-events: none;
     }
   }

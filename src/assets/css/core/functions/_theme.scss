@@ -7,19 +7,20 @@ $ui-context-key: null !global;
 $ui-context-target: null !global;
 
 @mixin ui-theme($key: $ui-theme-default) {
-  $ui-theme-key: $key !global;
-  $ui-theme-target: map-get($ui-theme, $key) !global;
-  @if & == null {
-    .#{$css-prefix}theme--#{$key} {
-      @content;
-    }
-  } @else {
-    .#{$css-prefix}theme--#{$key} & {
-      @content;
+  $theme: map-get($ui-theme, $key);
+  $context: map-deep-get($theme, "context." + $ui-theme-context-mapping-default);
+  $selector: if(& == null, html, &);
+
+  @at-root #{$selector} {
+    background: map-get($theme, background);
+    color: map-get($context, doc);
+
+    $child-base: ui-get-mixin-child-base();
+
+    @at-root #{$child-base} a {
+      @include ui-theme-context-link-setting($context);
     }
   }
-  $ui-theme-key: null !global;
-  $ui-theme-target: null !global;
 }
 
 @mixin ui-each-themes($at-root: false) {
@@ -57,15 +58,16 @@ $ui-context-target: null !global;
 
 @function ui-get-mixin-child-base($base: &) {
   $for-root: false;
+
   @if $base == null {
     $for-root: true;
   } @else {
     @if length($base) == 1 {
       $tmp: nth($base, 1);
-      @if ($tmp == body) {
+      @if ($tmp == body or $tmp == html) {
         $for-root: true;
       } @else {
-        @if type-of($tmp == list and length($tmp) == 1 and nth($tmp, 1) == body) {
+        @if type-of($tmp == list) and length($tmp) == 1 and (nth($tmp, 1) == body or nth($tmp, 1) == html) {
           $for-root: true;
         }
       }
@@ -76,7 +78,6 @@ $ui-context-target: null !global;
 }
 
 @mixin ui-theme-text($key, $important: false) {
-  $child-base: ui-get-mixin-child-base();
   @include ui-each-themes {
     $context: map-deep-get($ui-theme-target, "context." + $key);
     color: map-get($context, text) if($important, !important, null);
@@ -84,7 +85,6 @@ $ui-context-target: null !global;
 }
 
 @mixin ui-theme-background($key, $important: false) {
-  $child-base: ui-get-mixin-child-base();
   @include ui-each-themes {
     $context: map-deep-get($ui-theme-target, "context." + $key);
     background: map-get($context, base) if($important, !important, null);
@@ -92,42 +92,99 @@ $ui-context-target: null !global;
 }
 
 @mixin ui-theme-border-color($key, $important: false) {
-  $child-base: ui-get-mixin-child-base();
   @include ui-each-themes {
     $context: map-deep-get($ui-theme-target, "context." + $key);
     border-color: map-get($context, base) if($important, !important, null);
   }
 }
 
+@mixin ui-theme-context-link-setting($context, $flat: false, $outline: false) {
+  $fill: $flat == false and $outline == false;
+  $color: map-get($context, link);
+  $hover-color: map-get($context, link-hover-color);
+  $decoration: map-get($context, link-decoration);
+  $hover-decoration: map-get($context, link-hover-decoration);
+  $weight: map-get($context, link-weight);
+
+  @if $decoration != null {
+    text-decoration: $decoration;
+  }
+
+  @if $weight != null {
+    @include font-weight($weight);
+  }
+
+  @if $hover-decoration != null {
+    &:hover {
+      text-decoration: $hover-decoration;
+    }
+  }
+
+  @if $fill {
+    color: $color;
+
+    @if $hover-color != null {
+      &:hover {
+        color: $hover-color;
+      }
+    }
+
+  } @else if $flat {
+    color: map-get($context, text);
+  } @else if $outline {
+    color: map-get($context, base);
+  }
+}
+
 @mixin ui-theme-context($key, $flat: false, $outline: false) {
   $fill: $flat == false and $outline == false;
-  $child-base: ui-get-mixin-child-base();
+
 
   @include ui-each-themes {
+    $child-base: ui-get-mixin-child-base();
     $context: map-deep-get($ui-theme-target, "context." + $key);
 
     @if $fill {
       background: map-get($context, base);
       border-color: map-get($context, base);
       color: map-get($context, doc);
-
-      @at-root #{$child-base} a {
-        // &,
-        // &:hover,
-        // &:focus,
-        // &:active {}
-        // @debug $context;
-        color: map-get($context, link);
-      }
-    }
-
-    @if $flat {
+    } @else if $flat {
       color: map-get($context, text);
-    }
-
-    @if $outline {
+    } @else if $outline {
       color: map-get($context, base);
       border-color: map-get($context, base);
     }
+
+    @at-root #{$child-base} a {
+      @include ui-theme-context-link-setting($context, $flat: $flat, $outline: $outline);
+    }
   }
+}
+
+@function ui-get-context-mapping($key) {
+  @if map-has-key($ui-theme-context-mapping, $key) == false {
+    @warn "[ui-get-context-mapping] #{$key} is not defined.";
+    @return null;
+  }
+  @return map-get($ui-theme-context-mapping, $key);
+}
+
+@mixin ui-theme-context-mapping($key, $flat: false, $outline: false) {
+  $context: ui-get-context-mapping($key);
+  @include ui-theme-context($context, $flat: $flat, $outline: $outline);
+}
+
+@mixin ui-theme-context-mapping-background($key, $important: false) {
+  $context: ui-get-context-mapping($key);
+  @include ui-theme-background($context, $important: $important);
+}
+
+@mixin ui-theme-context-mapping-border-color($key, $important: false) {
+  $context: ui-get-context-mapping($key);
+  @include ui-theme-border-color($context, $important: $important);
+}
+
+@mixin ui-theme-context-mapping-text($key, $important: false) {
+  $context: ui-get-context-mapping($key);
+  @include ui-theme-text($context, $important: $important);
 }

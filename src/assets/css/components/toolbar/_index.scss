@@ -4,7 +4,7 @@
 
 .#{$css-prefix}toolbar {
   position: relative;
-  // @include ui-theme-background(plain);
+  // @include ui-theme-context-mapping-background(default);
   transition: padding get-duration(slowly) get-easing(drawer);
   @include elevation(4);
 

@@ -123,7 +123,7 @@
 
 
   &__icon {
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
     align-items: center;
     display: inline-flex;
     transition: get-duration(promptly);
@@ -139,7 +139,7 @@
   }
 
   &__fix {
-    @include ui-theme-text(caption);
+    @include ui-theme-context-mapping-text(caption);
     align-items: center;
     display: inline-flex;
     pointer-events: none;
@@ -156,7 +156,7 @@
   }
 
   &__menu {
-    @include ui-theme-background(plain);
+    @include ui-theme-context-mapping-background(default);
 
     &--hide {
       pointer-events: none !important;
@@ -164,7 +164,7 @@
     }
 
     &__no-data {
-      @include ui-theme-text(disabled);
+      @include ui-theme-context-mapping-text(disabled);
       padding: get-space(md);
     }
   }
@@ -196,33 +196,33 @@
   &--error {
     // #{$my}__body,
     #{$my}__body {
-      @include ui-theme-border-color(error);
+      @include ui-theme-context-mapping-border-color(error);
     }
 
     #{$my}__fix,
     #{$my}__icon,
     #{$my}__input {
-      @include ui-theme-text(error);
+      @include ui-theme-context-mapping-text(error);
     }
   }
 
   &--disabled {
     #{$my}__body {
-      @include ui-theme-border-color(disabled);
+      @include ui-theme-context-mapping-border-color(disabled);
     }
 
     // #{$my}__body,
     #{$my}__fix,
     #{$my}__icon,
     #{$my}__input {
-      @include ui-theme-text(disabled, $important: true);
+      @include ui-theme-context-mapping-text(disabled, $important: true);
       pointer-events: none;
     }
 
     #{$my}__selection {
       &__item,
       &__divider {
-        @include ui-theme-text(disabled, $important: true);
+        @include ui-theme-context-mapping-text(disabled, $important: true);
         opacity: 1;
       }
 

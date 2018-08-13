@@ -20,7 +20,7 @@
 
   &__divider {
     margin: 0 1em;
-    @include ui-theme-text(sub);
+    @include ui-theme-context-mapping-text(sub);
   }
 
   &__item {

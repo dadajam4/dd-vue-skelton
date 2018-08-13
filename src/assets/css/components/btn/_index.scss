@@ -167,7 +167,7 @@
   }
 
   &#{&}--disabled {
-    @include ui-theme-text(disabled, $important: true);
+    @include ui-theme-context-mapping-text(disabled, $important: true);
   }
 
   &--hidden {

@@ -14,7 +14,7 @@
       :height="containerSize"
       background-color="light"
     >
-      <div class="inner vc@border-color--indigo vc@background-color--pink-lighten-4" :style="innerStyle">
+      <div class="inner vc@light-mask--border vc@mask--background" :style="innerStyle">
         Try scroll and resize.
       </div>
     </vt@scroller>

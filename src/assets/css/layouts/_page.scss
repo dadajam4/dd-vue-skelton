@@ -29,7 +29,7 @@
   }
 
   &__intro {
-    @include ui-theme-text(secondary);
+    @include ui-theme-context-mapping-text(caption);
     margin-top: 2rem;
     @include font-size(sm);
     @include container;
@@ -42,7 +42,7 @@
     &-header {
       @include font-size(xxl);
       @include font-weight(bold);
-      @include ui-theme-text(secondary);
+      @include ui-theme-context-mapping-text(caption);
       margin-bottom: 1rem;
 
       &:first-child {

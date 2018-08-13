@@ -40,7 +40,7 @@
   }
 
   &--styled > &__body {
-    @include ui-theme-background(plain);
+    @include ui-theme-context-mapping-background(default);
   }
 
   &--styled > &__body > &__body__inner {

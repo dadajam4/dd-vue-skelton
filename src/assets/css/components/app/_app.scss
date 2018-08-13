@@ -5,6 +5,7 @@
 .#{$css-prefix}app {
   position: relative;
   transition-property: none;
+  min-height: 100vh;
   // transition-duration: get-duration(slowly);
   // transition-timing-function: get-easing(drawer);
 
