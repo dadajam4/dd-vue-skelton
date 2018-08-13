@@ -4,10 +4,10 @@
 <template>
   <docs-example>
     <template slot="description">
-      <code>vm.$alert</code> メソッドをコールする事でプログラムからアラートダイアログを表示できます。
+      <code>vm.$ui.alert</code> メソッドをコールする事でプログラムからアラートダイアログを表示できます。
     </template>
 
-    <vt@btn color="info" @click.stop="$alert('This is alert!')">Alert!!!</vt@btn>
+    <vt@btn color="info" @click.stop="$ui.alert('This is alert!')">Alert!!!</vt@btn>
     <vt@btn color="info" @click.stop="click2">Promise</vt@btn>
   </docs-example>
 </template>
@@ -16,13 +16,13 @@
 export default {
   methods: {
     async click2() {
-      const result = await this.$alert('This is alert!');
+      const result = await this.$ui.alert('This is alert!');
       const body = (
         <div>
           payload: <code>{JSON.stringify(result)}</code>
         </div>
       );
-      this.$alert(body);
+      this.$ui.alert(body);
     },
   },
 }

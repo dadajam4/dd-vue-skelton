@@ -41,7 +41,7 @@
 export default {
   methods: {
     onClick(e) {
-      this.$alert('click!');
+      this.$ui.alert('click!');
     },
   },
 }

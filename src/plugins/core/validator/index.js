@@ -8,10 +8,6 @@ const Validator = {
     this.installed = true;
 
     Vue.prototype.$rules = rules;
-
-    Vue.mixin({
-      $errors() {},
-    });
   },
 };
 

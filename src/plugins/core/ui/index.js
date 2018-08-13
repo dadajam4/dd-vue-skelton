@@ -4,6 +4,7 @@ import Theme from './mixins/theme';
 import Scroll from './mixins/scroll';
 import Header from './mixins/header';
 import Drawer from './mixins/drawer';
+import Notifications from './mixins/notifications';
 import VueScrollTo from 'vue-scrollto';
 import values from './values';
 
@@ -19,6 +20,7 @@ const Ui = {
         Mq,
         Icons(opts.iconfont, opts.icons),
         Theme(uiValues.theme),
+        Notifications,
       ],
 
       data: {

@@ -20,11 +20,11 @@ export default {
   methods: {
     guard(page) {
       if (page === 2) {
-        return this.$confirm('2ページに移動していいですか？');
+        return this.$ui.confirm('2ページに移動していいですか？');
       } else if (page === 3) {
         return new Promise(resolve => setTimeout(resolve, 2000))
           .then(() => {
-            return this.$confirm('※ちょっとウェイトしました。3ページに移動していいですか？');
+            return this.$ui.confirm('※ちょっとウェイトしました。3ページに移動していいですか？');
           });
       }
     },
