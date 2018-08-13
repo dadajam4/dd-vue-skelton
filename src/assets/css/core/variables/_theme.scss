@@ -53,54 +53,70 @@ $ui-theme: (
       ),
       light-grey: (
         base: ui-get-palette(grey-lighten-3),
+        link-weight: bold,
       ),
       "grey": (
         base: ui-get-palette(grey),
+        link-weight: bold,
       ),
       dark: (
         base: ui-get-palette(grey-darken-2),
+        link-weight: bold,
       ),
       darken: (
         base: ui-get-palette(grey-darken-4),
+        link-weight: bold,
       ),
       primary: (
         base: #42b983,
+        link-weight: bold,
       ),
       secondary: (
         base: #2c3e50,
+        link-weight: bold,
       ),
       caption: (
         base: #2c3e50,
+        link-weight: bold,
       ),
       info: (
         base: #2196f3,
+        link-weight: bold,
       ),
       success: (
         base: #4caf50,
+        link-weight: bold,
       ),
       warning: (
         base: #ffc107,
+        link-weight: bold,
       ),
       error: (
         base: #ff5252,
+        link-weight: bold,
       ),
       disabled: (
         base: rgba(0, 0, 0, .12),
       ),
       sub: (
         base: ui-get-palette(grey),
+        link-weight: bold,
       ),
       holiday: (
         base: ui-get-palette(red-accent-1),
+        link-weight: bold,
       ),
       light-mask: (
         base: rgba(0, 0, 0, .12),
+        link-weight: bold,
       ),
       mask: (
         base: rgba(0, 0, 0, .2),
+        link-weight: bold,
       ),
       deep-mask: (
         base: rgba(0, 0, 0, .7),
+        link-weight: bold,
       ),
     ),
   ),
@@ -123,33 +139,42 @@ $ui-theme: (
       ),
       light-grey: (
         base: #313131,
+        link-weight: bold,
       ),
       "grey": (
         base: ui-get-palette(grey-darken-2),
+        link-weight: bold,
       ),
       dark: (
         base: ui-get-palette(grey),
+        link-weight: bold,
       ),
       darken: (
         base: ui-get-palette(grey-lighten-3),
+        link-weight: bold,
       ),
       secondary: (
         base: #2c3e50,
+        link-weight: bold,
       ),
       disabled: (
         base: rgba(255, 255, 255, .24),
       ),
       caption: (
         base: ui-get-palette(grey-lighten-2),
+        link-weight: bold,
       ),
       light-mask: (
         base: rgba(255, 255, 255, .12),
+        link-weight: bold,
       ),
       mask: (
         base: rgba(255, 255, 255, .2),
+        link-weight: bold,
       ),
       deep-mask: (
         base: rgba(255, 255, 255, .7),
+        link-weight: bold,
       ),
     ),
   ),

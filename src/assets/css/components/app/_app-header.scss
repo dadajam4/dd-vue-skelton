@@ -18,11 +18,11 @@
     // transition-property: top;
   }
 
-  .#{$css-prefix}app--drawer-left-active & {
+  .#{$css-prefix}app--drawer-left-active.#{$css-prefix}app--drawer-left-static & {
     padding-left: $navigation-drawer-width;
   }
 
-  .#{$css-prefix}app--drawer-right-active & {
+  .#{$css-prefix}app--drawer-right-active.#{$css-prefix}app--drawer-right-static & {
     padding-right: $navigation-drawer-width;
   }
 

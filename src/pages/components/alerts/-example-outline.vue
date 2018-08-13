@@ -10,7 +10,7 @@
       value="true"
       outline
       dismissible
-    >This is a {{myType}} alert.</vt@alert>
+    >This is a {{myType}} alert. See more <a href="javascript:void(0);">info</a>.</vt@alert>
   </docs-example>
 </template>
 
