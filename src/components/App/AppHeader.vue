@@ -13,18 +13,12 @@
 
 
 <script>
-import AppScrollDetect from '~/mixins/app-scroll-detect';
-
-
-
 const SCROLL_JUDGE_AMMOUNT = 64;
 
 
 
 export default {
   name: 'vt@app-header',
-
-  mixins: [AppScrollDetect],
 
   props: {
     fixed: Boolean,
@@ -72,7 +66,7 @@ export default {
 
       if (
         !params.enabled
-        || (!this.lastVerticalIsBottom && this.appScrollLastAmmountTop <= -SCROLL_JUDGE_AMMOUNT)
+        || (!this.$ui.scroll.lastVerticalIsBottom && this.$ui.scroll.lastAmmountTop <= -SCROLL_JUDGE_AMMOUNT)
       ) return false;
       let threshold;
       if (params.threshold === 'auto') {
@@ -83,7 +77,7 @@ export default {
         threshold = params.threshold;
       }
 
-      return this.appScrollTop >= threshold;
+      return this.$ui.scroll.top >= threshold;
     },
     autoScrollOffThreshold() {
       // return this.innerHeight
@@ -100,10 +94,10 @@ export default {
   },
 
   watch: {
-    fixed() { this.$store.commit('ui/header/setFixed', this.fixed) },
-    isHidden() { this.$store.commit('ui/header/setHidden', this.isHidden) },
+    fixed(val) { this.$ui.header.fixed = val; },
+    isHidden(val) { this.$ui.header.hidden = val; },
     innerHeight(val) {
-      this.$store.commit('ui/header/setHeight', val);
+      this.$ui.header.height = val;
     },
   },
 
@@ -114,16 +108,16 @@ export default {
   },
 
   created() {
-    this.$store.commit('ui/header/set');
-    this.$store.commit('ui/header/setFixed', this.fixed);
-    this.$store.commit('ui/header/setHidden', this.isHidden);
+    this.$ui.header.use = true;
+    this.$ui.header.fixed = this.fixed;
+    this.$ui.header.hidden = this.isHidden;
   },
 
   beforeDestroy() {
   },
 
   destroyed() {
-    this.$store.commit('ui/header/release');
+    this.$ui.header.release();
   },
 }
 </script>

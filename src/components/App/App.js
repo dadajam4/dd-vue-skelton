@@ -49,24 +49,24 @@ export default {
   computed: {
     transitionPropNames() {
       const names = [];
-      this.$store.state.ui.header.fixed && names.push('top');
-      this.$store.state.ui.leftDrawer.use && names.push('left');
-      this.$store.state.ui.rightDrawer.use && names.push('right');
+      this.$ui.header.fixed && names.push('top');
+      this.$ui.drawer.left.use && names.push('left');
+      this.$ui.drawer.right.use && names.push('right');
       return names;
     },
 
     classes() {
       return Object.assign({
         'vc@app': true,
-        'vc@app--has-header': this.$store.state.ui.header.use,
-        'vc@app--has-drawer-left': this.$store.state.ui.leftDrawer.use,
-        'vc@app--has-drawer-right': this.$store.state.ui.rightDrawer.use,
+        'vc@app--has-header': this.$ui.header.use,
+        'vc@app--has-drawer-left': this.$ui.drawer.left.use,
+        'vc@app--has-drawer-right': this.$ui.drawer.right.use,
         // [`vc@app--transition-${this.transitionPropNames.join('-')}`]: this.transitionPropNames.length,
-        'vc@app--header-fixed': this.$store.state.ui.header.fixed,
-        'vc@app--drawer-left-active': this.$store.state.ui.leftDrawer.active,
-        'vc@app--drawer-right-active': this.$store.state.ui.rightDrawer.active,
-        'vc@app--drawer-left-static': this.$store.state.ui.leftDrawer.active && this.$store.state.ui.leftDrawer.static,
-        'vc@app--drawer-right-static': this.$store.state.ui.rightDrawer.active && this.$store.state.ui.rightDrawer.static,
+        'vc@app--header-fixed': this.$ui.header.fixed,
+        'vc@app--drawer-left-active': this.$ui.drawer.left.active,
+        'vc@app--drawer-right-active': this.$ui.drawer.right.active,
+        'vc@app--drawer-left-static': this.$ui.drawer.left.active && this.$ui.drawer.left.static,
+        'vc@app--drawer-right-static': this.$ui.drawer.right.active && this.$ui.drawer.right.static,
       }, this.themeClasses)
     },
 
@@ -77,15 +77,9 @@ export default {
       }
     },
 
-    // styles() {
-    //   if (!this.$store.state.ui.header.fixed) return;
-    //   const headerHeight = this.$store.state.ui.header.height;
-    //   if (headerHeight) return {paddingTop: `${headerHeight}px`};
-    // },
-
     bodyStyles() {
-      if (!this.$store.state.ui.header.fixed) return;
-      const headerHeight = this.$store.state.ui.header.height;
+      if (!this.$ui.header.fixed) return;
+      const headerHeight = this.$ui.header.height;
       if (headerHeight) return {paddingTop: `${headerHeight}px`};
     },
 

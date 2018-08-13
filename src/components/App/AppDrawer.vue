@@ -55,18 +55,16 @@ export default {
     },
 
     vec() { return this.left ? 'left' : 'right' },
+    state() { return this.$ui.drawer[this.vec] },
 
     isActive: {
       get() { return this.state.active },
-      set(val) { this.$store.commit(`${this.storePath}setActive`, val) },
+      set(val) { this.state.active = val },
     },
 
     isStatic() {
       return this.static && this.$ui.mq[this.static];
     },
-
-    state() { return this.$store.state.ui[`${this.vec}Drawer`] },
-    storePath() { return `ui/${this.vec}Drawer/` },
   },
 
   watch: {
@@ -100,18 +98,18 @@ export default {
       } else {
         this.isActive = false;
       }
-      this.$store.commit(`${this.storePath}setStatic`, this.isStatic);
+      this.state.static = this.isStatic;
     },
   },
 
   created() {
     this.checkStatic();
     this.$emit('input', this.isActive);
-    this.$store.commit(`${this.storePath}set`);
+    this.state.use = true;
   },
 
   destroyed() {
-    this.$store.commit(`${this.storePath}release`);
+    this.state.release();
     this.lastRequested = null;
   },
 }

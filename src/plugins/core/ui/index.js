@@ -1,6 +1,10 @@
 import Mq from './mixins/mq';
 import Icons from './mixins/icons';
 import Theme from './mixins/theme';
+import Scroll from './mixins/scroll';
+import Header from './mixins/header';
+import Drawer from './mixins/drawer';
+import VueScrollTo from 'vue-scrollto';
 import values from './values';
 
 const Ui = {
@@ -24,6 +28,15 @@ const Ui = {
     });
 
     Vue.prototype.$ui = $ui;
+
+    Vue.use(VueScrollTo);
+    $ui.scroll = new Vue(Scroll($ui));
+
+    $ui.header = new Vue(Header($ui));
+    $ui.drawer = {
+      left: new Vue(Drawer($ui, 'left')),
+      right: new Vue(Drawer($ui, 'right')),
+    };
   },
 };
 

@@ -6,7 +6,7 @@
       v-for="item in computedItems"
       :key="item.id"
       :to="{hash: item.id}"
-      @click.native.stop="onItemClick(item)"
+      @click.native.prevent="onItemClick(item)"
     >
       <span class="vc@anchor-navi__icon"><vt@icon sm>$ui.icons.angleRight</vt@icon></span>
       <span class="vc@anchor-navi__label">{{item.label}}</span>
@@ -62,28 +62,28 @@ export default {
     $route() {
       this.update();
     },
-    '$store.state.scroll.top'() {
+    '$ui.scroll.top'() {
       this.updateCurrentId();
     },
-    '$store.state.scroll.height'() {
+    '$ui.scroll.height'() {
       this.updateCurrentId();
     },
   },
 
   methods: {
     update() {
-      if (!this.$appIsScrolling()) {
+      if (!this.$ui.scroll.animating) {
         this.updateCurrentId();
       }
       this.updateRouteItems();
     },
 
     updateCurrentId() {
-      if (typeof window === 'undefined' || !this.$store.state.scroll.loaded || this.$appIsScrolling()) return;
+      if (!this.$ui.hasWindow || !this.$ui.scroll.loaded || this.$ui.scroll.animating) return;
 
-      const headerHeight = this.$store.getters['ui/header/fixedHeight'];
-      const scrollTop = this.$store.state.scroll.top;
-      const scrollHeight = this.$store.state.scroll.height;
+      const headerHeight = this.$ui.header.fixedHeight;
+      const scrollTop = this.$ui.scroll.top;
+      const scrollHeight = this.$ui.scroll.height;
       const visibleJudgeAmmount = (scrollHeight - headerHeight) * VISIBLE_PER_AMMOUNT;
       const items = this.computedItems;
 
@@ -118,6 +118,7 @@ export default {
     onItemClick(item) {
       this.$util.blurActiveElement();
       this.currentId = item.id;
+      this.$ui.scroll.to('#' + item.id);
     },
   },
 

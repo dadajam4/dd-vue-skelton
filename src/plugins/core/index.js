@@ -7,7 +7,6 @@ import Ui from './ui';
 import NuxtResolver from './nuxt-resolver';
 import RouterHelper from './router-helper';
 import Living from './living';
-import Scroll from './scroll';
 import Notifications from './notifications';
 import Validator   from './validator';
 
@@ -29,7 +28,6 @@ const plugin = {
     Vue.use(NuxtResolver, opt);
     Vue.use(RouterHelper, opt);
     Vue.use(Living, opt);
-    Vue.use(Scroll, opt);
     Vue.use(Notifications, opt);
     Vue.use(Validator, opt);
 

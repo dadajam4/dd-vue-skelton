@@ -81,7 +81,7 @@ export default {
     scrollToFirstError() {
       const $vm = this.inputs.find($vm => $vm.invalid);
       if (!$vm) return;
-      this.$appScrollTo($vm);
+      this.$ui.scroll.to($vm);
     },
 
     validate({ autoScroll = this.autoScroll } = {}) {

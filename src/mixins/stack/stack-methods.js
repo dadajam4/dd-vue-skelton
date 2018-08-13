@@ -340,7 +340,7 @@ export default Object.assign({
       cb && cb();
       return;
     }
-    this.pageYOffset = this.$store.state.scroll.top;
+    this.pageYOffset = this.$ui.scroll.top;
     this.updateActivatorDimension();
     this.updateContentDimension(cb);
   },
