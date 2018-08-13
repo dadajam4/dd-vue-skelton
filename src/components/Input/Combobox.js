@@ -700,9 +700,9 @@ export default {
         }
         vnode.data.staticClass += ` vc@combobox__icon--${position}`;
 
-        if (this.sm) vnode.data.staticClass += ` vc@icon--sm`;
-        if (this.md) vnode.data.staticClass += ` vc@icon--md`;
-        if (this.lg) vnode.data.staticClass += ` vc@icon--lg`;
+        // if (this.sm) vnode.data.staticClass += ` vc@icon--sm`;
+        // if (this.md) vnode.data.staticClass += ` vc@icon--md`;
+        // if (this.lg) vnode.data.staticClass += ` vc@icon--lg`;
 
         vnode.data.staticClass = vnode.data.staticClass.split(' ')
           .filter(c => !!c)

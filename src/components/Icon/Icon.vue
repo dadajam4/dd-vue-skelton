@@ -30,7 +30,7 @@ export default {
 
   render(h, { parent, props, data, children = [] }) {
     const newChildren = [];
-    let iconType, iconName = '';
+    let iconType, typedClass = 'vc@icon--type-', iconName = '';
     if (children.length) {
       iconName = children.pop().text;
     } else if (data.domProps && data.domProps.textContent) {
@@ -49,8 +49,14 @@ export default {
     const isCustomIcon = delimiterIndex > -1;
     if (isCustomIcon) {
       iconType = iconName.slice(0, delimiterIndex);
-      if (isFontAwesome5(iconType)) iconType = '';
+      if (isFontAwesome5(iconType)) {
+        iconType = '';
+        typedClass += 'fa';
+      } else {
+        typedClass += iconType;
+      }
     } else {
+      typedClass += 'material-icons';
       iconType = 'material-icons';
       newChildren.push(iconName);
     }
@@ -70,6 +76,7 @@ export default {
       'notranslate': true,
       [iconName]: isCustomIcon,
       [iconType]: true,
+      [typedClass]: true,
       [`${myClassName}--xs`]: props.xs,
       [`${myClassName}--sm`]: props.sm,
       [`${myClassName}--md`]: props.md,

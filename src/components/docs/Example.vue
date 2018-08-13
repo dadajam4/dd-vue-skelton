@@ -10,7 +10,7 @@
 <template>
   <vt@page-section :id="id">
     <h2 class="vc@page__section-header">
-      <vt@icon>link</vt@icon>
+      <vt@icon>$ui.icons.link</vt@icon>
       {{computedTitle}}
     </h2>
     <div v-if="$slots.description" class="my-description"><slot name="description" /></div>

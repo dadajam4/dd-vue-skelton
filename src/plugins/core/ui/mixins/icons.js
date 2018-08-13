@@ -51,6 +51,7 @@ const CREATE_DEFAULT_SETS = function() {
         'dotsVertical': 'more_vert',
         'phone': 'phone',
         'location': 'my_location',
+        'link': 'link',
       },
     },
     mdi: {
@@ -104,6 +105,7 @@ const CREATE_DEFAULT_SETS = function() {
         'dotsVertical': 'dots-vertical',
         'phone': 'mdi-phone',
         'location': 'mdi-crosshairs-gps',
+        'link': 'mdi-link',
       },
     },
     fa: {
@@ -157,6 +159,7 @@ const CREATE_DEFAULT_SETS = function() {
         'dotsVertical': 'fas fa-ellipsis-v',
         'phone': 'fas fa-phone',
         'location': 'fas fa-map-marked-alt',
+        'link': 'fas fa-link',
       },
     },
 
@@ -164,6 +167,8 @@ const CREATE_DEFAULT_SETS = function() {
 }
 
 export default function Icons(iconfont = 'md', customIcons = {}) {
+  // iconfont = 'mdi';
+  // iconfont = 'fa';
   const iconSets = CREATE_DEFAULT_SETS();
   for (const key in customIcons) {
     iconSets[key] = customIcons[key];
