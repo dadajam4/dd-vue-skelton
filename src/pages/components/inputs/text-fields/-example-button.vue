@@ -15,7 +15,7 @@
     </vt@input>
 
     <vt@input label="left">
-      <vt@btn color="primary" icon="search" left @click="onClick" />
+      <vt@btn color="primary" icon="$ui.icons.search" left @click="onClick" />
     </vt@input>
 
     <vt@input label="with menu">
@@ -35,7 +35,7 @@
 
     <vt@input label="left &amp; tooltip">
       <vt@tooltip-fragment>
-        <vt@btn color="primary" icon="search" left @click="onClick" />
+        <vt@btn color="primary" icon="$ui.icons.search" left @click="onClick" />
         <vt@tooltip top>
           Tooltip!
         </vt@tooltip>

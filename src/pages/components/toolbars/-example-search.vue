@@ -9,17 +9,17 @@
         type="search"
         flat
       >
-        <vt@icon>search</vt@icon>
+        <vt@icon>$ui.icons.search</vt@icon>
       </vt@input>
       <vt@spacer />
       <vt@btn flat icon>
-        <vt@icon>notifications</vt@icon>
+        <vt@icon>$ui.icons.notification</vt@icon>
       </vt@btn>
       <vt@btn flat icon>
-        <vt@icon>refresh</vt@icon>
+        <vt@icon>$ui.icons.refresh</vt@icon>
       </vt@btn>
       <vt@btn flat icon>
-        <vt@icon>more_vert</vt@icon>
+        <vt@icon>$ui.icons.dotsVertical</vt@icon>
       </vt@btn>
     </vt@toolbar>
   </docs-example>

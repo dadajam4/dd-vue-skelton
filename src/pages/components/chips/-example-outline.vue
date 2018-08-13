@@ -7,7 +7,7 @@
     <vt@chip close outline color="primary">Colored</vt@chip>
     <vt@chip close outline color="warning">
       <vt@avatar>
-        <vt@icon>supervised_user_circle</vt@icon>
+        <vt@icon>$ui.icons.user</vt@icon>
       </vt@avatar>
       Icon
     </vt@chip>

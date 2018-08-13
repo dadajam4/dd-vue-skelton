@@ -104,7 +104,7 @@
             <span>Dialog 3</span>
             <vt@spacer />
             <vt@menu-fragment>
-              <vt@btn icon="fas fa-ellipsis-v"></vt@btn>
+              <vt@btn flat icon="$ui.icons.dotsVertical"></vt@btn>
               <vt@menu offset-y>
                 <vt@tile-group>
                   <vt@tile v-for="n in 3" :key="n" @click="">

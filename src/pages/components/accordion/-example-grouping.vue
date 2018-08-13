@@ -33,7 +33,7 @@
 
     <vt@accordion-group title-nowrap>
       <vt@accordion>
-        <vt@accordion-title icon="fas fa-cube">What is a dog?</vt@accordion-title>
+        <vt@accordion-title icon="$ui.icons.warning">What is a dog?</vt@accordion-title>
         <p>A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
       </vt@accordion>
       <vt@tile>

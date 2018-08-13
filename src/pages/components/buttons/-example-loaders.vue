@@ -18,7 +18,7 @@
       :disabled="loading2"
       @click="startLoading('loading2')"
     >
-      <vt@icon left>address-book</vt@icon>
+      <vt@icon left>$ui.icons.userAddress</vt@icon>
       left
     </vt@btn>
 
@@ -40,7 +40,7 @@
     >
       Icon Loader
       <span slot="loader">
-        <vt@icon rotate>refresh</vt@icon>
+        <vt@icon rotate>$ui.icons.refresh</vt@icon>
       </span>
     </vt@btn>
   </docs-example>

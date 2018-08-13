@@ -10,7 +10,7 @@
       </vt@badge>
 
       <vt@badge right class="vc@ml-xl" color="error">
-        <vt@icon slot="badge">fas fa-bell</vt@icon>
+        <vt@icon slot="badge">$ui.icons.notification</vt@icon>
         <span>2 Messages</span>
       </vt@badge>
     </div>

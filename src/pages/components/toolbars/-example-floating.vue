@@ -15,13 +15,13 @@
           flat
           sm
         >
-          <vt@icon>search</vt@icon>
+          <vt@icon>$ui.icons.search</vt@icon>
         </vt@input>
         <vt@btn flat icon>
-          <vt@icon>my_location</vt@icon>
+          <vt@icon>$ui.icons.location</vt@icon>
         </vt@btn>
         <vt@btn flat icon>
-          <vt@icon>more_vert</vt@icon>
+          <vt@icon>$ui.icons.dotsVertical</vt@icon>
         </vt@btn>
       </vt@toolbar>
     </vt@card>

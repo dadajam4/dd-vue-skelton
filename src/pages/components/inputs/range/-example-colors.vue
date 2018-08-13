@@ -32,7 +32,7 @@
       icon-active-color="secondary"
       step="10"
     >
-      <vt@icon>volume-up</vt@icon>
+      <vt@icon>$ui.icons.user</vt@icon>
     </vt@range>
   </docs-example>
 </template>

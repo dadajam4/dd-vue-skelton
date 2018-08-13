@@ -15,7 +15,7 @@
     </vt@select>
 
     <vt@select label="left" :options="options">
-      <vt@btn color="primary" icon="search" left @click.stop="onClick" />
+      <vt@btn color="primary" icon="$ui.icons.search" left @click.stop="onClick" />
     </vt@select>
 
     <vt@select label="with menu" :options="options">
@@ -35,7 +35,7 @@
 
     <vt@select label="left &amp; tooltip" :options="options">
       <vt@tooltip-fragment>
-        <vt@btn color="primary" icon="search" left @click.stop="onClick" />
+        <vt@btn color="primary" icon="$ui.icons.search" left @click.stop="onClick" />
         <vt@tooltip top>
           Tooltip!
         </vt@tooltip>

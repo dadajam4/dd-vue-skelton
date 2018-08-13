@@ -17,8 +17,8 @@
       prefix="私は、、、"
       v-model="input1"
     >
-      <vt@icon right>address-book</vt@icon>
-      <vt@btn color="info" icon="search" />
+      <vt@icon right>$ui.icons.user</vt@icon>
+      <vt@btn color="info" icon="$ui.icons.search" />
     </vt@input>
 
     <vt@input
@@ -31,8 +31,8 @@
       prefix="私は、、、"
       v-model="input1"
     >
-      <vt@icon right>address-book</vt@icon>
-      <vt@btn color="info" icon="search" />
+      <vt@icon right>$ui.icons.user</vt@icon>
+      <vt@btn color="info" icon="$ui.icons.search" />
     </vt@input>
 
     <vt@input
@@ -45,8 +45,8 @@
       prefix="私は、、、"
       v-model="input1"
     >
-      <vt@icon right>address-book</vt@icon>
-      <vt@btn color="info" icon="search" />
+      <vt@icon right>$ui.icons.user</vt@icon>
+      <vt@btn color="info" icon="$ui.icons.search" />
     </vt@input>
 
     <vt@textarea
@@ -58,7 +58,7 @@
       rules="max:20|入力文字数が多すぎます"
       v-model="input2"
     >
-      <vt@btn color="info" icon="search" />
+      <vt@btn color="info" icon="$ui.icons.search" />
     </vt@textarea>
 
     <vt@textarea
@@ -70,7 +70,7 @@
       rules="max:20|入力文字数が多すぎます"
       v-model="input2"
     >
-      <vt@btn color="info" icon="search" />
+      <vt@btn color="info" icon="$ui.icons.search" />
     </vt@textarea>
 
     <vt@textarea
@@ -82,7 +82,7 @@
       rules="max:20|入力文字数が多すぎます"
       v-model="input2"
     >
-      <vt@btn color="info" icon="search" />
+      <vt@btn color="info" icon="$ui.icons.search" />
     </vt@textarea>
   </docs-example>
 </template>

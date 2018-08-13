@@ -14,7 +14,7 @@
       key="icon"
       icon
       disabled
-    ><vt@icon>menu</vt@icon></vt@btn>
+    ><vt@icon>$ui.icons.menu</vt@icon></vt@btn>
   </docs-example>
 </template>
 

@@ -13,8 +13,8 @@
       prefix="私は、、、"
       :options="options"
     >
-      <vt@icon>address-book</vt@icon>
-      <vt@btn right color="info" icon="search" />
+      <vt@icon>$ui.icons.user</vt@icon>
+      <vt@btn right color="info" icon="$ui.icons.search" />
     </vt@select>
 
     <vt@select
@@ -23,8 +23,8 @@
       prefix="私は、、、"
       :options="options"
     >
-      <vt@icon>address-book</vt@icon>
-      <vt@btn right color="info" icon="search" />
+      <vt@icon>$ui.icons.user</vt@icon>
+      <vt@btn right color="info" icon="$ui.icons.search" />
     </vt@select>
 
     <vt@select
@@ -33,8 +33,8 @@
       prefix="私は、、、"
       :options="options"
     >
-      <vt@icon>address-book</vt@icon>
-      <vt@btn right color="info" icon="search" />
+      <vt@icon>$ui.icons.user</vt@icon>
+      <vt@btn right color="info" icon="$ui.icons.search" />
     </vt@select>
 
   </docs-example>

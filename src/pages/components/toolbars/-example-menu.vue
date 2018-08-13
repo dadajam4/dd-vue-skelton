@@ -8,7 +8,7 @@
       <vt@menu-fragment>
         <vt@toolbar-title>
           <span>{{selected}}</span>
-          <vt@icon dark>caret-down</vt@icon>
+          <vt@icon dark>$ui.icons.dropdown</vt@icon>
         </vt@toolbar-title>
         <vt@menu :nudge-width="100">
           <vt@tile-group>
@@ -22,16 +22,16 @@
       </vt@menu-fragment>
       <vt@spacer />
       <vt@btn flat icon>
-        <vt@icon>search</vt@icon>
+        <vt@icon>$ui.icons.search</vt@icon>
       </vt@btn>
       <vt@btn flat icon>
-        <vt@icon>notifications</vt@icon>
+        <vt@icon>$ui.icons.notification</vt@icon>
       </vt@btn>
       <vt@btn flat icon>
-        <vt@icon>refresh</vt@icon>
+        <vt@icon>$ui.icons.refresh</vt@icon>
       </vt@btn>
       <vt@btn flat icon>
-        <vt@icon>more_vert</vt@icon>
+        <vt@icon>$ui.icons.dotsVertical</vt@icon>
       </vt@btn>
     </vt@toolbar>
   </docs-example>

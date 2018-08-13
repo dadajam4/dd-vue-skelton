@@ -5,17 +5,17 @@
   <docs-example>
     <vt@chip sm>
       <vt@avatar>
-        <vt@icon>fas fa-user-circle</vt@icon>
+        <vt@icon>$ui.icons.user</vt@icon>
       </vt@avatar>
       Ranee
     </vt@chip>
     <vt@chip sm>
       Premium
-      <vt@icon right>fas fa-star</vt@icon>
+      <vt@icon right>$ui.icons.ratingFull</vt@icon>
     </vt@chip>
     <vt@chip sm>
       1 Year
-      <vt@icon right>fas fa-birthday-cake</vt@icon>
+      <vt@icon right>$ui.icons.calendar</vt@icon>
     </vt@chip>
     <vt@chip color="primary" sm>
       <vt@avatar background-color="darken">1</vt@avatar>
@@ -23,7 +23,7 @@
     </vt@chip>
     <vt@chip close sm>
       <vt@avatar>
-        <vt@icon>fas fa-check-circle</vt@icon>
+        <vt@icon>$ui.icons.check</vt@icon>
       </vt@avatar>
       Ranee
     </vt@chip>

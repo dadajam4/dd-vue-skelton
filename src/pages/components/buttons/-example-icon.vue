@@ -15,7 +15,7 @@
       v-bind="{[size]: size !== 'default'}"
       icon
       :disabled="disabled"
-    ><vt@icon>menu</vt@icon></vt@btn>
+    ><vt@icon>$ui.icons.menu</vt@icon></vt@btn>
 
     <vt@btn
       v-for="size in ['sm', 'default', 'lg']"
@@ -24,7 +24,7 @@
       icon
       color="primary"
       :disabled="disabled"
-    ><vt@icon>menu</vt@icon></vt@btn>
+    ><vt@icon>$ui.icons.menu</vt@icon></vt@btn>
 
     <vt@btn
       v-for="size in ['sm', 'default', 'lg']"
@@ -34,7 +34,7 @@
       outline
       color="info"
       :disabled="disabled"
-    ><vt@icon>menu</vt@icon></vt@btn>
+    ><vt@icon>$ui.icons.menu</vt@icon></vt@btn>
   </docs-example>
 </template>
 

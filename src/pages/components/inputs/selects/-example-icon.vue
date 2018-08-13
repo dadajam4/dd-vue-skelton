@@ -10,27 +10,27 @@
     </template>
 
     <vt@select label="デフォルト（left）" :options="options">
-      <vt@icon>search</vt@icon>
+      <vt@icon>$ui.icons.search</vt@icon>
     </vt@select>
 
     <vt@select label="right（デフォルトのアイコンが上書きされます）" :options="options">
-      <vt@icon right>search</vt@icon>
+      <vt@icon right>$ui.icons.search</vt@icon>
     </vt@select>
 
     <vt@select label="リスナー登録" :options="options">
-      <vt@icon @click.stop="onClick">search</vt@icon>
+      <vt@icon @click.stop="onClick">$ui.icons.search</vt@icon>
     </vt@select>
 
     <vt@select label="ツールチップ" :options="options">
       <vt@tooltip-fragment>
-        <vt@icon>search</vt@icon>
+        <vt@icon>$ui.icons.search</vt@icon>
         <vt@tooltip>ツールチップ</vt@tooltip>
       </vt@tooltip-fragment>
     </vt@select>
 
     <vt@select label="ツールチップ &amp; position" :options="options">
       <vt@tooltip-fragment>
-        <vt@icon right>search</vt@icon>
+        <vt@icon right>$ui.icons.search</vt@icon>
         <vt@tooltip>ツールチップ</vt@tooltip>
       </vt@tooltip-fragment>
     </vt@select>

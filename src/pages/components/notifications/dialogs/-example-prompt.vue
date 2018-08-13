@@ -24,7 +24,7 @@ export default {
             placeholder: 'うまいボー',
           },
           children: [
-            h('vt@icon', null, 'search'),
+            h('vt@icon', null, '$ui.icons.search'),
           ],
         },
       });

@@ -10,7 +10,7 @@
       <vt@col col-12 class="vc@mt-xl">
         <vt@tooltip-fragment>
           <vt@btn flat icon>
-            <vt@icon>shopping_cart</vt@icon>
+            <vt@icon>$ui.icons.cart</vt@icon>
           </vt@btn>
           <vt@tooltip v-model="show" top :open-on-click="false" :open-on-hover="false">
             <span>Programmatic tooltip</span>

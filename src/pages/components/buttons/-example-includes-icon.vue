@@ -6,7 +6,7 @@
     <vt@btn
       color="primary"
     >
-      <vt@icon left>supervisor_account</vt@icon>
+      <vt@icon left>$ui.icons.user</vt@icon>
       left
     </vt@btn>
 
@@ -14,15 +14,15 @@
       color="info"
     >
       right
-      <vt@icon right>cloud_upload</vt@icon>
+      <vt@icon right>$ui.icons.search</vt@icon>
     </vt@btn>
 
     <vt@btn
       color="info"
     >
-      <vt@icon left>code</vt@icon>
+      <vt@icon left>$ui.icons.code</vt@icon>
       both
-      <vt@icon right>comment</vt@icon>
+      <vt@icon right>$ui.icons.comment</vt@icon>
     </vt@btn>
   </docs-example>
 </template>

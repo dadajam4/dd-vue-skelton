@@ -19,9 +19,9 @@ export default {
   data() {
     return {
       tabs: [
-        {icon: 'phone', label: 'RECENTS'},
-        {icon: 'hearing', label: 'FAVORITES'},
-        {icon: 'add_alert', label: 'NEARBY'},
+        {icon: '$ui.icons.phone', label: 'RECENTS'},
+        {icon: '$ui.icons.home', label: 'HOME'},
+        {icon: '$ui.icons.info', label: 'INFORMATION'},
       ],
     }
   }
