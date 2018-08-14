@@ -27,8 +27,8 @@
   &__body {
     display: inline-block;
     text-align: left;
-    margin: get-dialog(margin);
-    width: calc(100% - #{get-dialog(margin) * 2});
+    margin: $ui-dialog-margin;
+    width: calc(100% - #{$ui-dialog-margin * 2});
     text-align: center;
   }
 
@@ -45,7 +45,7 @@
     // justify-content: center;
 
     & > .#{$css-prefix}card {
-      @include elevation(24);
+      @include ui-elevation(24);
     }
   }
 
@@ -72,7 +72,7 @@
       align-items: center;
       justify-content: center;
       height: 100%;
-      max-height: calc(100% - #{get-dialog(margin) * 2});
+      max-height: calc(100% - #{$ui-dialog-margin * 2});
     }
 
     .#{$css-prefix}dialog__element {

@@ -2,14 +2,8 @@
 // Avatar
 //
 
-@function get-avatar($key) {
-  @return map-get($avatar, $key);
-}
-
-$avatar: ();
-$avatar: map-set($avatar, size-xs, 1rem);
-$avatar: map-set($avatar, size-sm, 2rem);
-$avatar: map-set($avatar, size-md, 2.8125rem);
-$avatar: map-set($avatar, size-lg, 4rem);
-$avatar: map-set($avatar, size-xl, 7rem);
-
+$ui-avatar-size-xs: 1rem !default;
+$ui-avatar-size-sm: 2rem !default;
+$ui-avatar-size-md: 2.8125rem !default;
+$ui-avatar-size-lg: 4rem !default;
+$ui-avatar-size-xl: 7rem !default;

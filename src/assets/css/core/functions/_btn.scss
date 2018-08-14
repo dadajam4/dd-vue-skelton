@@ -3,16 +3,15 @@
 //
 
 
-@mixin btn-action-reset() {
-  @include user-drag(none);
+@mixin ui-btn-action-reset() {
+  @include ui-user-drag(none);
   user-select: none;
   -webkit-touch-callout: none;
-  @include remove-tap-highlight;
+  @include ui-remove-tap-highlight;
 }
 
-
-@mixin btn-style-reset($display: inline-block) {
-  @include btn-action-reset;
+@mixin ui-btn-style-reset($display: inline-block) {
+  @include ui-btn-action-reset;
   appearance: none;
   position: relative;
   border: 0;
@@ -34,6 +33,6 @@
 }
 
 // Button Base
-@mixin btn-base($display: inline-block) {
-  @include btn-style-reset($display: $display);
+@mixin ui-btn-base($display: inline-block) {
+  @include ui-btn-style-reset($display: $display);
 }

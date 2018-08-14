@@ -13,11 +13,11 @@ $directions: (
   a: (top, right, bottom, left),
 );
 
-@include mq-each() {
+@include ui-mq-each() {
   @each $property-cel, $property-name in $properties {
     @each $direction-cel, $direction-targets in $directions {
-      @each $size-cel, $size-val in $space {
-        .#{$css-prefix}#{$property-cel}#{$direction-cel}#{$mq-each-prefix}-#{$size-cel} {
+      @each $size-cel, $size-val in $ui-space {
+        .#{$css-prefix}#{$property-cel}#{$direction-cel}-#{$mq-each-prefix}#{$size-cel} {
           @each $direction-name in $direction-targets {
             #{$property-name}-#{$direction-name}: $size-val!important;
           }

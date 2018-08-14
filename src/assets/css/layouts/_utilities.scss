@@ -3,14 +3,14 @@
 //
 
 .#{$css-prefix}container {
-  @include container;
+  @include ui-container;
 }
 
 .#{$css-prefix}col {
   flex: 1 1 auto;
 }
 
-@include mq-each() {
+@include ui-mq-each() {
 
   // row
   .#{$css-prefix}#{$mq-each-prefix}row {
@@ -37,10 +37,10 @@
   }
 
   // gutter
-  .#{$css-prefix}gutter#{$mq-each-prefix} {
+  .#{$css-prefix}gutter-#{$mq-each-prefix} {
     @each $size, $gutter in $ui-gutter-sizes {
       $half-ammount: $gutter / 2;
-      &-#{$size} {
+      &#{$size} {
         margin: -$half-ammount;
 
         & > * {
@@ -81,74 +81,74 @@
   }
 
   // alignment(container)
-  .#{$css-prefix}align#{$mq-each-prefix} {
-    &-start {
+  .#{$css-prefix}align-#{$mq-each-prefix} {
+    &start {
       align-items: flex-start;
     }
 
-    &-end {
+    &end {
       align-items: flex-end;
     }
 
-    &-center {
+    &center {
       align-items: center;
     }
 
-    &-baseline {
+    &baseline {
       align-items: baseline;
     }
 
-    &-stretch {
+    &stretch {
       align-items: stretch;
     }
   }
 
   // alignment(item)
-  .#{$css-prefix}align-content#{$mq-each-prefix} {
-    &-start {
+  .#{$css-prefix}align-content-#{$mq-each-prefix} {
+    &start {
       align-content: flex-start;
     }
 
-    &-end {
+    &end {
       align-content: flex-end;
     }
 
-    &-center {
+    &center {
       align-content: center;
     }
 
-    &-stretch {
+    &stretch {
       align-content: stretch;
     }
 
-    &-space-between {
+    &space-between {
       align-content: space-between;
     }
 
-    &-space-around {
+    &space-around {
       align-content: space-around;
     }
   }
 
   // justify
-  .#{$css-prefix}justify#{$mq-each-prefix} {
-    &-start {
+  .#{$css-prefix}justify-#{$mq-each-prefix} {
+    &start {
       justify-content: flex-start;
     }
 
-    &-end {
+    &end {
       justify-content: flex-end;
     }
 
-    &-center {
+    &center {
       justify-content: center;
     }
 
-    &-space-around {
+    &space-around {
       justify-content: space-around;
     }
 
-    &-space-between {
+    &space-between {
       justify-content: space-between;
     }
   }

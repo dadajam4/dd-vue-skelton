@@ -6,53 +6,14 @@
   position: relative;
   transition-property: none;
   min-height: 100vh;
-  // transition-duration: get-duration(slowly);
-  // transition-timing-function: get-easing(drawer);
 
-
-  // &--transition-top {
-  //   transition-property: padding-top;
-  // }
-
-  // &--transition-left {
-  //   transition-property: padding-left;
-  // }
-
-  // &--transition-right {
-  //   transition-property: padding-right;
-  // }
-
-  // &--transition-top-left {
-  //   transition-property: padding-top;
-  //   transition-property: padding-left;
-  // }
-
-  // &--transition-top-right {
-  //   transition-property: padding-top;
-  //   transition-property: padding-right;
-  // }
-
-  // &--transition-left-right {
-  //   transition-property: padding-left;
-  //   transition-property: padding-right;
-  // }
-
-  // &--transition-top-left-right {
-  //   transition-property: padding-top;
-  //   transition-property: padding-left;
-  //   transition-property: padding-right;
-  // }
-
-  // // &--header-fixed {
-  // //   padding-top: get-toolbar(row-height);
-  // // }
 
   &--drawer-left-static &-body {
-    padding-left: $navigation-drawer-width;
+    padding-left: $ui-navigation-drawer-width;
   }
 
   &--drawer-right-static &-body {
-    padding-right: $navigation-drawer-width;
+    padding-right: $ui-navigation-drawer-width;
   }
 }
 
@@ -60,8 +21,8 @@
   width: 100%;
   overflow: visible;
 
-  transition-duration: get-duration(slowly);
-  transition-timing-function: get-easing(drawer);
+  transition-duration: $ui-duration-slowly;
+  transition-timing-function: $ui-easing-drawer;
 
   &--transition-top {
     transition-property: padding-top;
@@ -95,26 +56,6 @@
     transition-property: padding-left;
     transition-property: padding-right;
   }
-
-  // &--header-fixed {
-  //   padding-top: get-toolbar(row-height);
-  // }
-
-  // &--drawer-left-static {
-  //   padding-left: $navigation-drawer-width;
-  // }
-
-  // &--drawer-right-static {
-  //   padding-right: $navigation-drawer-width;
-  // }
-
-  // flex-grow: 10;
-  // flex-shrink: 1;
-  // overflow: auto;
-  // // overflow-x: hidden;
-  // // overflow-y: auto;
-
-  // -webkit-overflow-scrolling: touch;
 }
 
 .#{$css-prefix}app-dialog-container {

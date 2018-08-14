@@ -3,16 +3,16 @@
 //
 
 // input group
-$ui-input-margin-vertical: get-space(md) !default;
-$ui-input-margin-horizintal: get-space(sm) !default;
+$ui-input-margin-vertical: ui-get-space(md) !default;
+$ui-input-margin-horizintal: ui-get-space(sm) !default;
 
 // combobox
-$ui-combobox-radius: get-border-radius(field) !default;
+$ui-combobox-radius: $ui-border-radius-field !default;
 $ui-combobox-border-width: 1px !default;
 $ui-combobox-height-sm: map-get($ui-button-height, sm) !default;
 $ui-combobox-height-md: map-get($ui-button-height, md) !default;
 $ui-combobox-height-lg: map-get($ui-button-height, lg) !default;
-$ui-combobox-padding-horizontal: get-space(xs) !default;
+$ui-combobox-padding-horizontal: ui-get-space(xs) !default;
 
 // checkbox & radio
 $ui-check-size: 32px !default;
@@ -34,5 +34,5 @@ $ui-slider-thumb-pointer-border-size: 3px !default;
 $ui-slider-thumb-pointer-padding: 5px !default;
 $ui-slider-thumb-pointer-size: $ui-slider-thumb-pointer-body-size + $ui-slider-thumb-pointer-border-size * 2 !default;
 $ui-slider-thumb-pointer-full-size: $ui-slider-thumb-pointer-size + $ui-slider-thumb-pointer-padding * 2 !default;
-$ui-slider-thumb-pointer-transition: .3s get-easing(swing) !default;
+$ui-slider-thumb-pointer-transition: .3s $ui-easing-swing !default;
 $ui-slider-thumb-pointer-body-size: 16px !default;

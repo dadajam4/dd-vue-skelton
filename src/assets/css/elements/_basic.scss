@@ -13,16 +13,16 @@ strong,
 em,
 b,
 .#{$css-prefix}strong {
-  @include font-size(md);
-  @include font-weight(bold);
-  @include line-height(md);
+  @include ui-font-size(md);
+  @include ui-font-weight(bold);
+  @include ui-line-height(md);
   letter-spacing: normal;
 }
 
 // small
 small,
 .#{$css-prefix}small {
-  @include font-size(xs);
+  @include ui-font-size(xs);
 }
 
 // strike
@@ -78,7 +78,7 @@ kbd {
   border-radius: 3px;
   white-space: pre-wrap;
   font-size: 85%;
-  font-weight: get-font-weight(bold);
+  font-weight: ui-get-font-weight(bold);
 
   &:after,
   &:before {
@@ -90,7 +90,7 @@ kbd {
 code {
   @include ui-theme-context-mapping-background(soft);
   color: #bd4147;
-  @include elevation(1);
+  @include ui-elevation(1);
 }
 
 kbd {

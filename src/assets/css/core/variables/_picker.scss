@@ -2,17 +2,12 @@
 // Picker
 //
 
-@function get-calendar($key) {
-  @return map-get($calendar, $key);
-}
-
-$calendar: ();
-$calendar: map-set($calendar, header-height, 48px);
-$calendar: map-set($calendar, cell-size, 36px);
-$calendar: map-set($calendar, cell-btn-size, get-calendar(cell-size) - 2px);
-$calendar: map-set($calendar, week-height, 28px);
-$calendar: map-set($calendar, body-padding, 14px);
-$calendar: map-set($calendar, body-width, get-calendar(cell-size) * 7 + get-calendar(body-padding) * 2);
-$calendar: map-set($calendar, body-height, get-calendar(cell-size) * 5 + get-calendar(week-height) + get-calendar(body-padding));
-$calendar: map-set($calendar, width, get-calendar(body-width));
-$calendar: map-set($calendar, height, get-calendar(header-height) + get-calendar(body-height));
+$ui-calendar-header-height: 48px !default;
+$ui-calendar-cell-size: 36px !default;
+$ui-calendar-cell-btn-size: $ui-calendar-cell-size - 2px !default;
+$ui-calendar-week-height: 28px !default;
+$ui-calendar-body-padding: 14px !default;
+$ui-calendar-body-width: $ui-calendar-cell-size * 7 + $ui-calendar-body-padding * 2 !default;
+$ui-calendar-body-height: $ui-calendar-cell-size * 5 + $ui-calendar-week-height + $ui-calendar-body-padding !default;
+$ui-calendar-width: $ui-calendar-body-width !default;
+$ui-calendar-height: $ui-calendar-header-height + $ui-calendar-body-height !default;

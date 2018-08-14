@@ -3,7 +3,7 @@
 //
 
 .#{$css-prefix}radio-element {
-  @include checkable-base;
+  @include ui-checkable-base;
 
   &__body {
     border-radius: 50%;
@@ -18,7 +18,7 @@
     border-radius: 50%;
     background: currentColor;
     transform-origin: center center;
-    transition: get-duration(immediately);
+    transition: $ui-duration-immediately;
     transform: scale(0);
   }
 

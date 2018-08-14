@@ -6,8 +6,8 @@
   display: inline-flex;
   vertical-align: bottom;
   flex-direction: column;
-  width: get-calendar(width);
-  height: get-calendar(height);
+  width: $ui-calendar-width;
+  height: $ui-calendar-height;
   position: relative;
   overflow: hidden;
   border-radius: inherit;
@@ -30,11 +30,11 @@
 
     &-enter, &-leave-to {
       // opacity: 0;
-      transform: translateY(get-calendar(height));
+      transform: translateY($ui-calendar-height);
     }
 
     // &:not(.#{$css-prefix}calendar__stack--base) {
-    //   transform: translateY(get-calendar(height));
+    //   transform: translateY($ui-calendar-height);
     // }
 
     // &--active {
@@ -62,21 +62,21 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: get-calendar(header-height);
+    height: $ui-calendar-header-height;
     margin: 0 auto;
 
     &__values {
       display: flex;
       margin: 0 auto;
-      // padding: 0 get-space(xs);
+      // padding: 0 ui-get-space(xs);
       padding: 0;
-      @include font-size(sm);
+      @include ui-font-size(sm);
     }
 
     &__value {
-      @include btn-base($display: inline-block);
-      margin: 0 get-space(xxs);
-      transition: get-transition(primary);
+      @include ui-btn-base($display: inline-block);
+      margin: 0 ui-get-space(xxs);
+      transition: $ui-transition-primary;
 
       &:hover,
       &:focus {
@@ -88,7 +88,7 @@
       justify-content: center;
 
       &__values {
-        // margin: 0 get-space(xs);
+        // margin: 0 ui-get-space(xs);
         margin: 0;
       }
     }
@@ -96,8 +96,8 @@
 
   &__body {
     position: relative;
-    width: get-calendar(body-width);
-    height: get-calendar(body-height);
+    width: $ui-calendar-body-width;
+    height: $ui-calendar-body-height;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,34 +111,34 @@
       }
 
       &--at-left {
-        left: -#{get-calendar(width)};
+        left: -#{$ui-calendar-width};
       }
 
       &--at-right {
-        left: get-calendar(width);
+        left: $ui-calendar-width;
       }
 
       &--to-left {
-        transform: translateX(-#{get-calendar(width)});
+        transform: translateX(-#{$ui-calendar-width});
       }
 
       &--to-right {
-        transform: translateX(get-calendar(width));
+        transform: translateX($ui-calendar-width);
       }
       // &--left {
-      //   left: -#{get-calendar(width)};
+      //   left: -#{$ui-calendar-width};
       // }
 
       // &--right {
-      //   left: get-calendar(width);
+      //   left: $ui-calendar-width;
       // }
 
       // &--slide-left {
-      //   transform: translateX(-#{get-calendar(width)});
+      //   transform: translateX(-#{$ui-calendar-width});
       // }
 
       // &--slide-right {
-      //   transform: translateX(get-calendar(width));
+      //   transform: translateX($ui-calendar-width);
       // }
     }
   }
@@ -147,7 +147,7 @@
     &-wrapper {
       top: 0;
       width: 100%;
-      padding: 0 get-calendar(body-padding);
+      padding: 0 $ui-calendar-body-padding;
     }
 
     // remove divider
@@ -164,23 +164,23 @@
 
     th {
       @include ui-theme-context-mapping-text(caption);
-      width: get-calendar(cell-size);
-      height: get-calendar(week-height);
+      width: $ui-calendar-cell-size;
+      height: $ui-calendar-week-height;
       padding: 0;
       user-select: none;
-      @include font-size(xxs);
+      @include ui-font-size(xxs);
     }
 
     &__cell {
       position: relative;
       padding: 0;
-      @include square(get-calendar(cell-size));
+      @include ui-square($ui-calendar-cell-size);
 
       .#{$css-prefix}btn {
         margin: 0;
-        @include square(get-calendar(cell-btn-size));
+        @include ui-square($ui-calendar-cell-btn-size);
         line-height: 1;
-        @include font-size(sm);
+        @include ui-font-size(sm);
       }
 
       // &--picked {
@@ -222,7 +222,7 @@
     &__event {
       display: inline-block;
       vertical-align: bottom;
-      @include square(5px);
+      @include ui-square(5px);
       background: currentColor;
       border-radius: 50%;
 
@@ -233,13 +233,13 @@
   }
 
   &__month-list {
-    // margin: 0 get-space(sm);
+    // margin: 0 ui-get-space(sm);
     margin: 0;
-    padding: 0 get-space(sm);
+    padding: 0 ui-get-space(sm);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    // width: get-calendar(body-width) - get-space(sm) * 2;
+    // width: $ui-calendar-body-width - ui-get-space(sm) * 2;
     width: 100%;
 
     &,
@@ -248,7 +248,7 @@
     }
 
     & > li {
-      padding: get-space(xs) 0;
+      padding: ui-get-space(xs) 0;
 
       .#{$css-prefix}btn {
         min-width: 80px;
@@ -267,28 +267,28 @@
     .#{$css-prefix}scroller__content {
       padding: 0;
       margin: 0;
-      @include font-size(sm, $tweak: 1px);
+      @include ui-font-size(sm, $tweak: 1px);
 
       & > li {
         list-style-type: none;
         position: relative;
         cursor: pointer;
         user-select: none;
-        @include user-drag(none);
+        @include ui-user-drag(none);
         @include ui-pressable-effect;
-        padding: get-space(xs);
+        padding: ui-get-space(xs);
         text-align: center;
-        transition: get-transition(primary);
+        transition: $ui-transition-primary;
 
         &.#{$css-prefix}calendar__year--current {
           font-size: 140%;
-          @include font-weight(bold);
+          @include ui-font-weight(bold);
           @include ui-theme-context-mapping-text(sub);
         }
 
         &.#{$css-prefix}calendar__year--active {
           font-size: 160%;
-          @include font-weight(bold);
+          @include ui-font-weight(bold);
           @include ui-theme-context-mapping-text(primary);
         }
 

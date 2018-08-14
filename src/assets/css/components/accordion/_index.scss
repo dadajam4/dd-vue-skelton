@@ -9,7 +9,7 @@
 
   &__title {
     .#{$css-prefix}tile__title {
-      @include font-weight-bolder;
+      @include ui-font-weight-bolder;
     }
   }
 
@@ -31,7 +31,7 @@
       height: 1px;
       background: currentColor;
       opacity: 0;
-      transition: get-transition(primary);
+      transition: $ui-transition-primary;
     }
   }
 
@@ -44,7 +44,7 @@
   }
 
   &--styled > &__body > &__body__inner {
-    margin: get-space(md);
+    margin: ui-get-space(md);
   }
 }
 
@@ -52,12 +52,12 @@
 .#{$css-prefix}accordion-group {
   list-style-type: none;
   padding: 0;
-  margin: get-space(sm) 0;
+  margin: ui-get-space(sm) 0;
   overflow: hidden;
 
   &--styled {
-    @include elevation(2);
-    border-radius: get-card(border-radius);
+    @include ui-elevation(2);
+    border-radius: $ui-card-border-radius;
   }
 
   & > .#{$css-prefix}accordion {

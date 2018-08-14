@@ -1,7 +1,0 @@
-//
-// Z Index
-//
-
-@mixin z-index($key) {
-  z-index: get-z-index($key);
-}

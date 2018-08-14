@@ -2,12 +2,12 @@
 // Button
 //
 
-$ui-button-radius: get-border-radius(field) !default;
+$ui-button-radius: $ui-border-radius-field !default;
 $ui-button-border-width: 1px !default;
 $ui-button-margin-vertical: 6px !default;
 $ui-button-margin-horizontal: 8px !default;
 $ui-button-padding-horizontal: 16px !default;
-$ui-button-icon-margin: get-space(xs) !default;
+$ui-button-icon-margin: ui-get-space(xs) !default;
 $ui-button-elevation: 2 !default;
 $ui-button-active-elevation: 8 !default;
 $ui-button-height: (

@@ -5,10 +5,17 @@
 $ui-horizontal-padding: 20px !default;
 $ui-num-of-columns: 12 !default;
 $ui-gutter-default: 8px;
+
+$ui-gutter-size-xs: $ui-gutter-default / 4 !default;
+$ui-gutter-size-sm: $ui-gutter-default / 2 !default;
+$ui-gutter-size-md: $ui-gutter-default     !default;
+$ui-gutter-size-lg: $ui-gutter-default * 2 !default;
+$ui-gutter-size-xl: $ui-gutter-default * 3 !default;
+
 $ui-gutter-sizes: (
-  xs: $ui-gutter-default / 4,
-  sm: $ui-gutter-default / 2,
-  md: $ui-gutter-default,
-  lg: $ui-gutter-default * 2,
-  xl: $ui-gutter-default * 3,
-) !default;
+  xs: $ui-gutter-size-xs,
+  sm: $ui-gutter-size-sm,
+  md: $ui-gutter-size-md,
+  lg: $ui-gutter-size-lg,
+  xl: $ui-gutter-size-xl,
+);

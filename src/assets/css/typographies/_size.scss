@@ -3,14 +3,14 @@
 //
 
 // // size
-// @each $key, $map in $font-size {
+// @each $key, $map in $ui-font-size {
 //   .#{$css-prefix}text--#{$key} {
-//     @include font-size($key);
+//     @include ui-font-size($key);
 //   }
 // }
 
 // line heights
-@each $key, $height in $line-height {
+@each $key, $height in $ui-line-height {
   .#{$css-prefix}line-height--#{$key} {
     line-height: $height;
   }

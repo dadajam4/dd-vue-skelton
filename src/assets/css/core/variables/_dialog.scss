@@ -1,10 +1,5 @@
 //
-// Chip
+// Dialog
 //
 
-@function get-dialog($key) {
-  @return map-get($dialog, $key);
-}
-
-$dialog: ();
-$dialog: map-set($dialog, margin, get-space(lg));
+$ui-dialog-margin: ui-get-space(lg) !default;

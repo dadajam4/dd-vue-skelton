@@ -2,15 +2,9 @@
 // Border Radius
 //
 
-@function get-border-radius($key) {
-  @return map-get($border-radius, $key);
-}
-
-$border-radius: ();
-$border-radius: map-set($border-radius, sm    , .125rem);
-$border-radius: map-set($border-radius, md    , .25rem );
-$border-radius: map-set($border-radius, lg    , .5rem  );
-$border-radius: map-set($border-radius, pill  , .15rem );
-$border-radius: map-set($border-radius, circle, 50%    );
-$border-radius: map-set($border-radius, field , get-border-radius(md));
-$border-radius: map-set($border-radius, navbar, get-border-radius(field));
+$ui-border-radius-sm: .125rem !default;
+$ui-border-radius-md: .25rem !default;
+$ui-border-radius-lg: .5rem !default;
+$ui-border-radius-pill: .15rem !default;
+$ui-border-radius-circle: 50% !default;
+$ui-border-radius-field: $ui-border-radius-md !default;

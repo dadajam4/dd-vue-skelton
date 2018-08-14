@@ -2,7 +2,7 @@
 // Layout
 //
 
-@mixin container() {
+@mixin ui-container() {
   width: 100%;
   flex: 1 1 100%;
   padding-left: $ui-horizontal-padding;
@@ -13,7 +13,7 @@
   @each $define in $ui-break-points {
     $key: map-get($define, key);
     $width: map-get($define, content);
-    @include mq($key) {
+    @include ui-mq($key) {
       max-width: $width;
     }
   }

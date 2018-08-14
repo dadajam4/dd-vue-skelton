@@ -15,9 +15,9 @@
     margin: 0;
   }
 
-  &--sm { @include font-size(sm); }
-  &--md { @include font-size(md); }
-  &--lg { @include font-size(lg); }
+  &--sm { @include ui-font-size(sm); }
+  &--md { @include ui-font-size(md); }
+  &--lg { @include ui-font-size(lg); }
 
   &__body {
     display: flex;
@@ -27,7 +27,7 @@
     @include ui-theme-color(border-color, form-divider);
     border-width: $ui-combobox-border-width;
     border-style: solid;
-    transition: get-duration(promptly);
+    transition: $ui-duration-promptly;
 
     #{$my}--flat & {
       border-top-color: transparent !important;
@@ -83,11 +83,11 @@
     #{$my}--multiline.#{$my}--md & { min-height: 6.8em; }
     #{$my}--multiline.#{$my}--lg & { min-height: 8.3em; }
 
-    @include ellipsis;
+    @include ui-ellipsis;
     transition:
-      color get-duration(promptly),
-      border-color get-duration(promptly),
-      background-color get-duration(promptly);
+      color $ui-duration-promptly,
+      border-color $ui-duration-promptly,
+      background-color $ui-duration-promptly;
 
     &[type="password"] {
       font-family: Verdana, sans-serif;
@@ -105,7 +105,7 @@
     &::placeholder {
       color: inherit;
       opacity: .5;
-      transition: opacity get-duration(promptly);
+      transition: opacity $ui-duration-promptly;
       letter-spacing: normal;
       font-size: 90%;
     }
@@ -126,7 +126,7 @@
     @include ui-theme-context-mapping-text(caption);
     align-items: center;
     display: inline-flex;
-    transition: get-duration(promptly);
+    transition: $ui-duration-promptly;
     flex: 0 0 auto;
 
     &--left {
@@ -165,7 +165,7 @@
 
     &__no-data {
       @include ui-theme-context-mapping-text(disabled);
-      padding: get-space(md);
+      padding: ui-get-space(md);
     }
   }
 

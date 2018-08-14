@@ -5,7 +5,7 @@
 
 // dump for JavaScript
 .#{$css-prefix}css-values {
-  @include dump-ui-values;
+  @include ui-dump-ui-values;
 }
 
 // Basis

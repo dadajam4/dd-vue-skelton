@@ -4,16 +4,16 @@
 
 // Set Root Font Size
 html {
-  font-size: $html-base-font-size-per;
+  font-size: $ui-html-base-font-size-per;
 }
 
 // @fix
 //   for chrome bug
 body {
-  @include font-size(base);
-  @include font-weight(regular);
-  @include line-height(md);
-  @include font-family(base);
+  @include ui-font-size(base);
+  @include ui-font-weight(regular);
+  @include ui-line-height(md);
+  @include ui-font-family(base);
   overflow-wrap: break-word;
 }
 

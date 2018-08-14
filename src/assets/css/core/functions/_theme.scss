@@ -8,7 +8,7 @@ $ui-context-target: null !global;
 
 @mixin ui-theme($key: $ui-theme-default) {
   $theme: map-get($ui-theme, $key);
-  $context: map-deep-get($theme, "context." + $ui-theme-context-mapping-default);
+  $context: ui-map-deep-get($theme, "context." + $ui-theme-context-mapping-default);
   $selector: if(& == null, html, &);
 
   @at-root #{$selector} {
@@ -47,7 +47,7 @@ $ui-context-target: null !global;
 
 @mixin ui-theme-color($prop, $key-map, $prefix: "", $suffix: "") {
   @include ui-each-themes {
-    $color: map-deep-get($ui-theme-target, $key-map);
+    $color: ui-map-deep-get($ui-theme-target, $key-map);
     @if $color == null {
       @warn "[ui-theme-color] #{$key-map} is not defined.";
     } @else {
@@ -79,21 +79,21 @@ $ui-context-target: null !global;
 
 @mixin ui-theme-text($key, $important: false) {
   @include ui-each-themes {
-    $context: map-deep-get($ui-theme-target, "context." + $key);
+    $context: ui-map-deep-get($ui-theme-target, "context." + $key);
     color: map-get($context, text) if($important, !important, null);
   }
 }
 
 @mixin ui-theme-background($key, $important: false) {
   @include ui-each-themes {
-    $context: map-deep-get($ui-theme-target, "context." + $key);
+    $context: ui-map-deep-get($ui-theme-target, "context." + $key);
     background: map-get($context, base) if($important, !important, null);
   }
 }
 
 @mixin ui-theme-border-color($key, $important: false) {
   @include ui-each-themes {
-    $context: map-deep-get($ui-theme-target, "context." + $key);
+    $context: ui-map-deep-get($ui-theme-target, "context." + $key);
     border-color: map-get($context, base) if($important, !important, null);
   }
 }
@@ -111,7 +111,7 @@ $ui-context-target: null !global;
   }
 
   @if $weight != null {
-    @include font-weight($weight);
+    @include ui-font-weight($weight);
   }
 
   @if $hover-decoration != null {
@@ -142,7 +142,7 @@ $ui-context-target: null !global;
 
   @include ui-each-themes {
     $child-base: ui-get-mixin-child-base();
-    $context: map-deep-get($ui-theme-target, "context." + $key);
+    $context: ui-map-deep-get($ui-theme-target, "context." + $key);
 
     @if $fill {
       background: map-get($context, base);

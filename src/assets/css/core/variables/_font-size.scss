@@ -2,16 +2,15 @@
 // Font Size
 //
 
+$ui-html-base-font-size: 16px !default;
+$ui-html-base-font-size-per: ($ui-html-base-font-size / 16px) * 100%;
 
-$html-base-font-size: 16px;
-$html-base-font-size-per: ($html-base-font-size / 16px) * 100%;
-
-@function get-rem($ammount: 1) {
-  @return $html-base-font-size * $ammount;
+@function ui-rem($ammount: 1) {
+  @return $ui-html-base-font-size * $ammount;
 }
 
-@function get-font-size($key, $unit: null) {
-  $value: map-get($font-size, $key);
+@function ui-get-font-size($key, $unit: null) {
+  $value: map-get($ui-font-size, $key);
   @if $unit != null {
     @return #{nounit($value)}#{$unit};
   } @else {
@@ -19,15 +18,28 @@ $html-base-font-size-per: ($html-base-font-size / 16px) * 100%;
   }
 }
 
-$font-size: ();
-$font-size: map-set($font-size, base  , get-rem()      ); // 16px
-$font-size: map-set($font-size, xxs   , get-rem(.625)  ); // 10px
-$font-size: map-set($font-size, xs    , get-rem(.75)   ); // 12px
-$font-size: map-set($font-size, sm    , get-rem(.875)  ); // 14px
-$font-size: map-set($font-size, md    , get-rem()      ); // 16px
-$font-size: map-set($font-size, lg    , get-rem(1.125) ); // 18px
-$font-size: map-set($font-size, xl    , get-rem(1.25)  ); // 20px
-$font-size: map-set($font-size, xxl   , get-rem(1.625) ); // 26px
-$font-size: map-set($font-size, xxxl  , get-rem(2)     ); // 32px
-$font-size: map-set($font-size, xxxxl , get-rem(2.8125)); // 45px
-$font-size: map-set($font-size, xxxxxl, get-rem(7)     ); // 112px
+$ui-font-size-base  : ui-rem()       !default; // 16px
+$ui-font-size-xxs   : ui-rem(.625)   !default; // 10px
+$ui-font-size-xs    : ui-rem(.75)    !default; // 12px
+$ui-font-size-sm    : ui-rem(.875)   !default; // 14px
+$ui-font-size-md    : ui-rem()       !default; // 16px
+$ui-font-size-lg    : ui-rem(1.125)  !default; // 18px
+$ui-font-size-xl    : ui-rem(1.25)   !default; // 20px
+$ui-font-size-xxl   : ui-rem(1.625)  !default; // 26px
+$ui-font-size-xxxl  : ui-rem(2)      !default; // 32px
+$ui-font-size-xxxxl : ui-rem(2.8125) !default; // 45px
+$ui-font-size-xxxxxl: ui-rem(7)      !default; // 112px
+
+$ui-font-size: (
+  base  : $ui-font-size-base  ,
+  xxs   : $ui-font-size-xxs   ,
+  xs    : $ui-font-size-xs    ,
+  sm    : $ui-font-size-sm    ,
+  md    : $ui-font-size-md    ,
+  lg    : $ui-font-size-lg    ,
+  xl    : $ui-font-size-xl    ,
+  xxl   : $ui-font-size-xxl   ,
+  xxxl  : $ui-font-size-xxxl  ,
+  xxxxl : $ui-font-size-xxxxl ,
+  xxxxxl: $ui-font-size-xxxxxl,
+);

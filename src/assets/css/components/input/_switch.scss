@@ -5,7 +5,7 @@
 .#{$css-prefix}switch-element {
   $my: &;
 
-  @include checkable-core;
+  @include ui-checkable-core;
   min-width: $ui-switch-track-min-width * 1.5;
 
   $my-size: $ui-switch-pointer-size + $ui-switch-pointer-assist-size * 2;
@@ -19,7 +19,7 @@
     min-width: $ui-switch-track-min-width;
     min-height: $ui-switch-track-height;
     border-radius: $ui-switch-track-radius;
-    @include btn-action-reset;
+    @include ui-btn-action-reset;
     cursor: pointer;
 
     &:before {
@@ -32,19 +32,19 @@
       border-radius: inherit;
       opacity: .5;
       background-color: currentColor;
-      transition: .3s get-easing(fast-in-fast-out);
+      transition: .3s $ui-easing-fast-in-fast-out;
     }
   }
 
   &__inner {
-    @include btn-action-reset;
+    @include ui-btn-action-reset;
     position: absolute;
     display: block;
-    @include square($my-size);
+    @include ui-square($my-size);
     top: 0;
     left: 0;
     transform: translate(#{$my-offset-x}, #{$my-offset-y});
-    transition: .3s get-easing(fast-in-fast-out);
+    transition: .3s $ui-easing-fast-in-fast-out;
 
     &:before {
       content: "";
@@ -56,7 +56,7 @@
       bottom: 0;
       opacity: .12;
       border-radius: 50%;
-      transition: get-duration(promptly);
+      transition: $ui-duration-promptly;
 
       #{$my}:hover &,
       #{$my}:focus & {
@@ -72,11 +72,11 @@
       content: "";
       position: absolute;
       display: block;
-      @include square($ui-switch-pointer-size);
+      @include ui-square($ui-switch-pointer-size);
       top: $my-size / 2 - $ui-switch-pointer-size / 2;
       left: $my-size / 2 - $ui-switch-pointer-size / 2;
       border-radius: 100%;
-      @include elevation(4);
+      @include ui-elevation(4);
       background-color: currentColor;
     }
   }

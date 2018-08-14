@@ -22,8 +22,8 @@
       h4,
       h5,
       h6 {
-        @include font-size(xxxl);
-        @include font-weight(regular);
+        @include ui-font-size(xxxl);
+        @include ui-font-weight(regular);
       }
     }
   }
@@ -31,17 +31,17 @@
   &__intro {
     @include ui-theme-context-mapping-text(caption);
     margin-top: 2rem;
-    @include font-size(sm);
-    @include container;
+    @include ui-font-size(sm);
+    @include ui-container;
   }
 
   &__section {
     margin-top: 4rem;
-    @include container;
+    @include ui-container;
 
     &-header {
-      @include font-size(xxl);
-      @include font-weight(bold);
+      @include ui-font-size(xxl);
+      @include ui-font-weight(bold);
       @include ui-theme-context-mapping-text(caption);
       margin-bottom: 1rem;
 
@@ -52,6 +52,6 @@
   }
 
   &__container {
-    @include container;
+    @include ui-container;
   }
 }

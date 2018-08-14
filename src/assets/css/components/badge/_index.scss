@@ -3,7 +3,7 @@
 //
 
 .#{$css-prefix}badge {
-  $my-min-size: get-badge(min-size);
+  $my-min-size: $ui-badge-min-size;
   $my-overlap-offset: $my-min-size / 2;
 
   display: inline-block;
@@ -11,7 +11,7 @@
 
 
   &__badge {
-    @include btn-action-reset;
+    @include ui-btn-action-reset;
     appearance: none;
     border: 1px solid;
     outline: 0;
@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    @include font-size(get-badge(font-size));
+    @include ui-font-size($ui-badge-font-size);
     line-height: 1;
     border-radius: 100%;
     min-width: $my-min-size;
@@ -27,16 +27,16 @@
     padding: 2px;
     top: -($my-min-size / 2);
     right: -($my-min-size);
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
     @include ui-theme-color(color, "context.plain.base");
 
     &--clickable {
       cursor: pointer;
     }
 
-    .#{$css-prefix}icon {
-      @include font-size(get-badge(icon-font-size));
-    }
+    // .#{$css-prefix}icon {
+    //   @include ui-font-size($ui-badge-icon-font-size);
+    // }
   }
 
   &--overlap {

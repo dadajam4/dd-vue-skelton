@@ -2,8 +2,8 @@
 // Line Height
 //
 
-@function get-line-height($key, $unit: null) {
-  $value: map-get($line-height, $key);
+@function ui-get-line-height($key, $unit: null) {
+  $value: map-get($ui-line-height, $key);
   @if $unit != null {
     @return #{nounit($value)}#{$unit};
   } @else {
@@ -11,13 +11,24 @@
   }
 }
 
-$line-height: ();
-$line-height: map-set($line-height, reset  , 1   );
-$line-height: map-set($line-height, icon   , 1   );
-$line-height: map-set($line-height, heading, 1.25);
-$line-height: map-set($line-height, xxs    , 1   );
-$line-height: map-set($line-height, xs     , 1.2 );
-$line-height: map-set($line-height, sm     , 1.45);
-$line-height: map-set($line-height, md     , 1.73);
-$line-height: map-set($line-height, lg     , 1.8 );
-$line-height: map-set($line-height, xl     , 2   );
+$ui-line-height-reset  : 1    !default;
+$ui-line-height-icon   : 1    !default;
+$ui-line-height-heading: 1.25 !default;
+$ui-line-height-xxs    : 1    !default;
+$ui-line-height-xs     : 1.2  !default;
+$ui-line-height-sm     : 1.45 !default;
+$ui-line-height-md     : 1.73 !default;
+$ui-line-height-lg     : 1.8  !default;
+$ui-line-height-xl     : 2    !default;
+
+$ui-line-height: (
+  reset  : $ui-line-height-reset,
+  icon   : $ui-line-height-icon,
+  heading: $ui-line-height-heading,
+  xxs    : $ui-line-height-xxs,
+  xs     : $ui-line-height-xs,
+  sm     : $ui-line-height-sm,
+  md     : $ui-line-height-md,
+  lg     : $ui-line-height-lg,
+  xl     : $ui-line-height-xl,
+);

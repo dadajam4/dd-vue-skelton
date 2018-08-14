@@ -16,8 +16,8 @@
   position: absolute;
   @include ui-theme-background(dark);
   @include ui-theme-text(plain);
-  @include elevation(2);
-  @include font-size(xs);
+  @include ui-elevation(2);
+  @include ui-font-size(xs);
   border-radius: 2px;
   right: 50px;
   top: 14px;

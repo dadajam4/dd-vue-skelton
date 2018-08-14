@@ -37,7 +37,7 @@
     z-index: 1;
     pointer-events: none;
     opacity: 0;
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
 
     &--active {
       opacity: 0.25;

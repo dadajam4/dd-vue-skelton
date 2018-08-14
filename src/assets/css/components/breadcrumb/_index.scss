@@ -7,15 +7,15 @@
   align-items: center;
   flex-wrap: wrap;
   list-style-type: none;
-  margin: get-space(md) get-space(sm);
+  margin: ui-get-space(md) ui-get-space(sm);
   padding: 0;
-  @include font-size(sm);
+  @include ui-font-size(sm);
 
   & > li {
     list-style-type: none;
     display: flex;
     align-items: center;
-    line-height: get-line-height(xl);
+    line-height: ui-get-line-height(xl);
   }
 
   &__divider {
@@ -34,6 +34,6 @@
   &--right { justify-content: flex-end; }
 
   &--lg {
-    @include font-size(lg);
+    @include ui-font-size(lg);
   }
 }

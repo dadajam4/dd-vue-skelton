@@ -2,17 +2,17 @@
 // Transition
 //
 
-.#{$css-prefix}bottom-sheet-transition { @include transition-slide-y; }
-.#{$css-prefix}carousel-transition { @include transition-carousel; }
-.#{$css-prefix}carousel-reverse { @include transition-carousel-reverse; }
-.#{$css-prefix}dialog-transition { @include transition-dialog; }
-.#{$css-prefix}dialog-bottom-transition { @include transition-dialog-bottom; }
-.#{$css-prefix}tab-transition { @include transition-tab; }
-.#{$css-prefix}tab-reverse-transition { @include transition-tab-reverse; }
-.#{$css-prefix}scale-transition { @include transition-scale; }
-.#{$css-prefix}slide-y-transition { @include transition-slide-y; }
-.#{$css-prefix}slide-y-reverse-transition { @include transition-slide-y-reverse; }
-.#{$css-prefix}slide-x-transition { @include transition-slide-x; }
-.#{$css-prefix}slide-x-reverse-transition { @include transition-slide-x-reverse; }
-.#{$css-prefix}fade-transition { @include transition-fade; }
-.#{$css-prefix}fab-transition { @include transition-fab; }
+.#{$css-prefix}bottom-sheet-transition { @include ui-transition-slide-y; }
+.#{$css-prefix}carousel-transition { @include ui-transition-carousel; }
+.#{$css-prefix}carousel-reverse { @include ui-transition-carousel-reverse; }
+.#{$css-prefix}dialog-transition { @include ui-transition-dialog; }
+.#{$css-prefix}dialog-bottom-transition { @include ui-transition-dialog-bottom; }
+.#{$css-prefix}tab-transition { @include ui-transition-tab; }
+.#{$css-prefix}tab-reverse-transition { @include ui-transition-tab-reverse; }
+.#{$css-prefix}scale-transition { @include ui-transition-scale; }
+.#{$css-prefix}slide-y-transition { @include ui-transition-slide-y; }
+.#{$css-prefix}slide-y-reverse-transition { @include ui-transition-slide-y-reverse; }
+.#{$css-prefix}slide-x-transition { @include ui-transition-slide-x; }
+.#{$css-prefix}slide-x-reverse-transition { @include ui-transition-slide-x-reverse; }
+.#{$css-prefix}fade-transition { @include ui-transition-fade; }
+.#{$css-prefix}fab-transition { @include ui-transition-fab; }

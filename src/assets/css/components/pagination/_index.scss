@@ -33,23 +33,23 @@
   }
 
   &__item {
-    @include btn-style-reset($display: inline-flex);
-    @include elevation(2);
+    @include ui-btn-style-reset($display: inline-flex);
+    @include ui-elevation(2);
     border-radius: 4px;
     justify-content: center;
     align-items: center;
     // font-size: $button-font-size;
-    @include font-size(sm);
+    @include ui-font-size(sm);
     background: transparent;
     height: 34px;
     width: 34px;
     margin: .3rem;
-    transition: .3s get-easing(linear-out-slow-in);
+    transition: .3s $ui-easing-linear-out-slow-in;
     @include ui-theme-context-mapping(default);
     padding-top: 1px;
 
     &--active {
-      @include elevation(4);
+      @include ui-elevation(4);
       pointer-events: none;
     }
 
@@ -64,8 +64,8 @@
   }
 
   &__navigation {
-    @include btn-style-reset($display: inline-flex);
-    @include elevation(2);
+    @include ui-btn-style-reset($display: inline-flex);
+    @include ui-elevation(2);
     justify-content: center;
     align-items: center;
     height: 2rem;
@@ -79,8 +79,8 @@
 
     .#{$css-prefix}icon {
       // font-size: 2rem;
-      @include font-size(sm);
-      transition: get-transition(secondary);
+      @include ui-font-size(sm);
+      transition: $ui-transition-secondary;
       vertical-align: middle;
     }
 

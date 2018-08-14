@@ -4,13 +4,13 @@
 
 .#{$css-prefix}card {
   display: block;
-  border-radius: get-card(border-radius);
+  border-radius: $ui-card-border-radius;
   min-width: 0;
   position: relative;
   text-decoration: none;
 
   @include ui-theme-context-mapping-background(default);
-  @include elevation(2);
+  @include ui-elevation(2);
 
   & > * {
     &:first-child {
@@ -30,7 +30,7 @@
   }
 
   &--raised {
-    @include elevation(3);
+    @include ui-elevation(3);
   }
 
   &--tile {
@@ -38,7 +38,7 @@
   }
 
   &--flat {
-    @include elevation(0);
+    @include ui-elevation(0);
   }
 
   &--hover {
@@ -47,7 +47,7 @@
     transition-property: box-shadow;
 
     &:hover {
-      @include elevation(8);
+      @include ui-elevation(8);
     }
   }
 

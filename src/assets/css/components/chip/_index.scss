@@ -4,25 +4,25 @@
 
 .#{$css-prefix}chip {
   align-items: center;
-  border-radius: get-chip(border-radius);
+  border-radius: $ui-chip-border-radius;
   // border: 1px solid transparent;
   border: solid 1px;
   display: inline-flex;
-  font-size: get-chip(font-size);
-  margin: get-chip(margin);
+  font-size: $ui-chip-font-size;
+  margin: $ui-chip-margin;
   outline: none;
   position: relative;
-  transition: get-transition(primary);
+  transition: $ui-transition-primary;
   vertical-align: middle;
 
   &__content {
     align-items: center;
-    border-radius: get-chip(border-radius);
+    border-radius: $ui-chip-border-radius;
     cursor: default;
     display: inline-flex;
-    height: get-chip(height);
+    height: $ui-chip-height;
     justify-content: space-between;
-    padding: get-chip(padding);
+    padding: $ui-chip-padding;
     vertical-align: middle;
     white-space: nowrap;
     z-index: 1;
@@ -30,18 +30,18 @@
 
   &--removable {
     .#{$css-prefix}chip__content {
-      padding: get-chip(removeable-padding);
+      padding: $ui-chip-removeable-padding;
     }
   }
 
   .#{$css-prefix}avatar {
 
     // Important is needed to account for new avatar structure
-    height: get-chip(height) !important;
+    height: $ui-chip-height !important;
     margin-left: -12px;
     margin-right: 8px;
-    min-width: get-chip(height);
-    width: get-chip(height) !important;
+    min-width: $ui-chip-height;
+    width: $ui-chip-height !important;
 
     img {
       height: 100%;
@@ -54,7 +54,7 @@
   &--selected {
     &:not(.#{$css-prefix}chip--disabled) {
       border-color: rgba(#000, .13);
-      @include elevation(2);
+      @include ui-elevation(2);
 
       &:after {
         background: currentColor;
@@ -73,10 +73,10 @@
   }
 
   &--label {
-    border-radius: get-chip(label-border-radius);
+    border-radius: $ui-chip-label-border-radius;
 
     .#{$css-prefix}chip__content {
-      border-radius: get-chip(label-border-radius);
+      border-radius: $ui-chip-label-border-radius;
     }
   }
 
@@ -88,19 +88,19 @@
   // }
 
   &__close {
-    @include btn-style-reset($display: flex);
+    @include ui-btn-style-reset($display: flex);
     align-items: center;
     color: inherit;
     cursor: pointer;
     display: flex;
-    font-size: get-chip(icon-font-size);
-    margin: get-chip(close-margin);
+    font-size: $ui-chip-icon-font-size;
+    margin: $ui-chip-close-margin;
     text-decoration: none;
     user-select: none;
 
     & > .#{$css-prefix}icon {
       color: inherit !important;
-      @include font-size(lg);
+      @include ui-font-size(lg);
       opacity: .5;
 
       &:hover {
@@ -110,41 +110,41 @@
   }
 
   &--select-multi {
-    margin: get-chip(margin) get-chip(margin) get-chip(margin) 0;
+    margin: $ui-chip-margin $ui-chip-margin $ui-chip-margin 0;
   }
 
   .#{$css-prefix}icon {
     color: inherit;
 
     &--right {
-      margin-left: get-chip(icon-offset);
-      margin-right: get-chip(icon-negative-offset);
+      margin-left: $ui-chip-icon-offset;
+      margin-right: $ui-chip-icon-negative-offset;
     }
 
     &--left {
-      margin-left: get-chip(icon-negative-offset);
-      margin-right: get-chip(icon-offset);
+      margin-left: $ui-chip-icon-negative-offset;
+      margin-right: $ui-chip-icon-offset;
     }
   }
 
   &--sm {
-    font-size: get-chip(small-font-size);
+    font-size: $ui-chip-small-font-size;
 
     .#{$css-prefix}chip__content {
-      height: get-chip(small-height);
+      height: $ui-chip-small-height;
     }
 
     .#{$css-prefix}avatar {
-      height: get-chip(small-height) !important;
-      min-width: get-chip(small-height);
-      width: get-chip(small-height) !important;
+      height: $ui-chip-small-height !important;
+      min-width: $ui-chip-small-height;
+      width: $ui-chip-small-height !important;
     }
 
     .#{$css-prefix}chip__close {
-      font-size: get-chip(small-icon-font-size);
+      font-size: $ui-chip-small-icon-font-size;
 
       & > .#{$css-prefix}icon {
-        @include font-size(md);
+        @include ui-font-size(md);
       }
     }
   }

@@ -2,7 +2,7 @@
 // Scroll
 //
 
-@mixin scrollbar($size: 10px) {
+@mixin ui-scrollbar($size: 10px) {
 
   &::-webkit-scrollbar {
     width: $size;
@@ -24,28 +24,28 @@
   }
 }
 
-@mixin enable-ios-momentum-scrolling {
+@mixin ui-enable-ios-momentum-scrolling {
   -webkit-overflow-scrolling: touch;
 }
 
-@mixin scrollable {
-  @include scrollbar;
-  @include enable-ios-momentum-scrolling;
+@mixin ui-scrollable {
+  @include ui-scrollbar;
+  @include ui-enable-ios-momentum-scrolling;
   overflow: auto;
 }
 
-@mixin scrollable--x($max-width: 100%) {
-  @include scrollbar;
-  @include enable-ios-momentum-scrolling;
+@mixin ui-scrollable--x($max-width: 100%) {
+  @include ui-scrollbar;
+  @include ui-enable-ios-momentum-scrolling;
   max-width: $max-width;
   overflow: hidden {
     x: auto;
   };
 }
 
-@mixin scrollable--y($max-height: 100%) {
-  @include scrollbar;
-  @include enable-ios-momentum-scrolling;
+@mixin ui-scrollable--y($max-height: 100%) {
+  @include ui-scrollbar;
+  @include ui-enable-ios-momentum-scrolling;
   max-height: $max-height;
   overflow: hidden {
     y: auto;

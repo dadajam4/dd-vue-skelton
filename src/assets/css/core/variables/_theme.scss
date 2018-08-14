@@ -187,19 +187,19 @@ $ui-theme-base-contexts: map-get($ui-theme-base-map, context);
   @if $theme-key != $ui-theme-base {
     @each $key, $value in $ui-theme-base-map {
       @if map-has-key($theme, $key) == false {
-        $theme: map-set($theme, $key, $value);
+        $theme: ui-map-set($theme, $key, $value);
       } @else if $key == context {
         $my-contexts: map-get($theme, context);
         @each $context-key, $context in $ui-theme-base-contexts {
           @if map-has-key($my-contexts, $context-key) == false {
-            $my-contexts: map-set($my-contexts, $context-key, $context);
+            $my-contexts: ui-map-set($my-contexts, $context-key, $context);
           }
         }
-        $theme: map-set($theme, context, $my-contexts);
+        $theme: ui-map-set($theme, context, $my-contexts);
       }
     }
   }
-  $ui-theme: map-set($ui-theme, $theme-key, $theme);
+  $ui-theme: ui-map-set($ui-theme, $theme-key, $theme);
 }
 
 // テーマ色の未設定valueのデフォルト値を設定
@@ -216,37 +216,37 @@ $ui-theme-base-contexts: map-get($ui-theme-base-map, context);
         map-get($theme, context-doc-light),
         map-get($theme, context-doc-dark)
       );
-      $context: map-set($context, doc, $auto-color);
+      $context: ui-map-set($context, doc, $auto-color);
     }
 
     @if map-has-key($context, link) == false {
-      $context: map-set($context, link, map-get($context, doc));
+      $context: ui-map-set($context, link, map-get($context, doc));
     }
 
     @if map-has-key($context, link-hover-color) == false {
-      $context: map-set($context, linkHoverColor, map-get($context, link));
+      $context: ui-map-set($context, linkHoverColor, map-get($context, link));
     }
 
     @if map-has-key($context, link-decoration) == false {
-      $context: map-set($context, linkDecoration, null);
+      $context: ui-map-set($context, linkDecoration, null);
     }
 
     @if map-has-key($context, link-hover-decoration) == false {
-      $context: map-set($context, linkHoverDecoration, null);
+      $context: ui-map-set($context, linkHoverDecoration, null);
     }
 
     @if map-has-key($context, link-weight) == false {
-      $context: map-set($context, linkWeight, null);
+      $context: ui-map-set($context, linkWeight, null);
     }
 
     @if map-has-key($context, text) == false {
-      $context: map-set($context, text, $base-color);
+      $context: ui-map-set($context, text, $base-color);
     }
 
-    $contexts: map-set($contexts, $context-key, $context);
+    $contexts: ui-map-set($contexts, $context-key, $context);
   }
-  $theme: map-set($theme, context, $contexts);
-  $ui-theme: map-set($ui-theme, $theme-key, $theme);
+  $theme: ui-map-set($theme, context, $contexts);
+  $ui-theme: ui-map-set($ui-theme, $theme-key, $theme);
 }
 
 $ui-theme-keys: map-keys($ui-theme);

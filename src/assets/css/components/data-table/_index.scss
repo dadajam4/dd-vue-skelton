@@ -28,7 +28,7 @@
 
       th,
       td {
-        transition: get-transition(primary);
+        transition: $ui-transition-primary;
         @include ui-theme-context-mapping-text(caption);
 
         &.#{$css-prefix}sortable {
@@ -61,7 +61,7 @@
 
     tbody {
       tr {
-        transition: get-transition(primary);
+        transition: $ui-transition-primary;
 
         &:hover {
           @include ui-theme-context-mapping-background(soft);

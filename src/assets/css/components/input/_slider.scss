@@ -32,8 +32,8 @@
   align-items: center;
 
   &__icon {
-    margin: 0 get-space(lg);
-    transition: get-transition(primary);
+    margin: 0 ui-get-space(lg);
+    transition: $ui-transition-primary;
     flex: 0 0 auto;
     &--left { margin-left: 0; }
     &--right { margin-right: 0; }
@@ -109,7 +109,7 @@
       height: $ui-slider-height;
       overflow: visible;
       cursor: pointer;
-      @include remove-tap-highlight;
+      @include ui-remove-tap-highlight;
     }
 
     position: absolute;
@@ -117,17 +117,17 @@
     transition: left $ui-slider-thumb-pointer-transition;
 
     &__pointer {
-      @include btn-base($display: flex);
+      @include ui-btn-base($display: flex);
       position: absolute;
       align-items: center;
       justify-content: center;
-      @include square($ui-slider-thumb-pointer-full-size);
+      @include ui-square($ui-slider-thumb-pointer-full-size);
       top: $ui-slider-thumb-pointer-full-size * -.5 + $ui-slider-track-height * .5;
       margin-left: $ui-slider-thumb-pointer-full-size * -.5;
 
       &__body {
         pointer-events: none;
-        @include square($ui-slider-thumb-pointer-body-size);
+        @include ui-square($ui-slider-thumb-pointer-body-size);
         border: solid $ui-slider-thumb-pointer-border-size;
         border-radius: 50%;
         transition: $ui-slider-thumb-pointer-transition;
@@ -155,11 +155,11 @@
     &__label {
       position: absolute;
       transition: .3s ease-in-out;
-      @include user-drag(none);
+      @include ui-user-drag(none);
       user-select: none;
 
       &__body {
-        @include elevation(1);
+        @include ui-elevation(1);
 
         display: flex;
         align-items: center;
@@ -170,8 +170,8 @@
         transform: translateX(-50%);
         left: 0;
         bottom: calc(100% + 6px);
-        padding: get-space(xxs) get-space(xs);
-        border-radius: get-space(sm);
+        padding: ui-get-space(xxs) ui-get-space(xs);
+        border-radius: ui-get-space(sm);
         cursor: pointer;
 
         &:before {

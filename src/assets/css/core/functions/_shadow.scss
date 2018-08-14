@@ -2,6 +2,6 @@
 // Shadow
 //
 
-@mixin shadow($key) {
-  box-shadow: get-shadow($key);
+@mixin ui-shadow($key) {
+  box-shadow: ui-get-shadow($key);
 }

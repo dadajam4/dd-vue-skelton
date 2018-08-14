@@ -2,8 +2,8 @@
 // Font Family
 //
 
-@function get-font-family($key) {
-  @return map-get($font-family, $key);
+@function ui-get-font-family($key) {
+  @return map-get($ui-font-family, $key);
 }
 
 // 游系はIEでline-height効かないので使わない
@@ -12,7 +12,7 @@
 // 游ゴシック体,
 // 游ゴシック,
 
-$font-family-sans-serif:
+$ui-font-family-sans-serif:
   Linotte,
   'ヒラギノ角ゴ Pro W3',
   'Hiragino Kaku Gothic Pro',
@@ -25,19 +25,24 @@ $font-family-sans-serif:
   Arial,
   Helvetica,
   Verdana,
-  sans-serif;
+  sans-serif !default;
 
 // 游系はIEでline-height効かないので使わない
 // "游明朝",
 // YuMincho,
-$font-family-serif:
+$ui-font-family-serif:
   "Hiragino Mincho ProN",
   "Hiragino Mincho Pro",
   "ＭＳ 明朝",
-  serif;
+  serif !default;
 
-$font-family: ();
-$font-family: map-set($font-family, sans-serif, $font-family-sans-serif);
-$font-family: map-set($font-family, serif     , $font-family-serif);
-$font-family: map-set($font-family, base      , get-font-family(sans-serif));
-$font-family: map-set($font-family, accent    , get-font-family(serif));
+$ui-font-family-base: $ui-font-family-sans-serif !default;
+$ui-font-family-accent: $ui-font-family-serif !default;
+
+$ui-font-family: (
+  sans-serif: $ui-font-family-sans-serif,
+  serif: $ui-font-family-serif,
+  base: $ui-font-family-base,
+  accent: $ui-font-family-accent,
+);
+

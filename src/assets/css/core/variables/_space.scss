@@ -2,17 +2,28 @@
 // Space
 //
 
-@function get-space($key) {
-  @return map-get($space, $key);
+@function ui-get-space($key) {
+  @return map-get($ui-space, $key);
 }
 
-$space: ();
-$space: map-set($space, none, 0      );
-$space: map-set($space, xxxs, get-rem(.125));
-$space: map-set($space, xxs , get-rem(.25));
-$space: map-set($space, xs  , get-rem(.5));
-$space: map-set($space, sm  , get-rem(.75));
-$space: map-set($space, md  , get-rem());
-$space: map-set($space, lg  , get-rem(1.5));
-$space: map-set($space, xl  , get-rem(2));
-$space: map-set($space, xxl , get-rem(3));
+$ui-space-none: 0            !default;
+$ui-space-xxxs: ui-rem(.125) !default;
+$ui-space-xxs : ui-rem(.25)  !default;
+$ui-space-xs  : ui-rem(.5)   !default;
+$ui-space-sm  : ui-rem(.75)  !default;
+$ui-space-md  : ui-rem()     !default;
+$ui-space-lg  : ui-rem(1.5)  !default;
+$ui-space-xl  : ui-rem(2)    !default;
+$ui-space-xxl : ui-rem(3)    !default;
+
+$ui-space: (
+  none: $ui-space-none,
+  xxxs: $ui-space-xxxs,
+  xxs : $ui-space-xxs,
+  xs  : $ui-space-xs,
+  sm  : $ui-space-sm,
+  md  : $ui-space-md,
+  lg  : $ui-space-lg,
+  xl  : $ui-space-xl,
+  xxl : $ui-space-xxl,
+);

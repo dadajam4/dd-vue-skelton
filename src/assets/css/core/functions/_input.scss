@@ -2,18 +2,18 @@
 // Input
 //
 
-@mixin checkable-core {
+@mixin ui-checkable-core {
   height: $ui-check-size;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   position: relative;
-  @include remove-tap-highlight;
+  @include ui-remove-tap-highlight;
 }
 
-@mixin checkable-base {
-  @include checkable-core;
+@mixin ui-checkable-base {
+  @include ui-checkable-core;
   width: $ui-check-size;
 
   &:before {
@@ -27,7 +27,7 @@
     right: 0;
     bottom: 0;
     opacity: .12;
-    transition: get-duration(promptly);
+    transition: $ui-duration-promptly;
   }
 
   &:hover,
@@ -45,7 +45,7 @@
 
   &__body {
     display: block;
-    @include square($ui-check-body-size);
+    @include ui-square($ui-check-body-size);
     position: relative;
     z-index: 1;
     border: solid 1px currentColor;

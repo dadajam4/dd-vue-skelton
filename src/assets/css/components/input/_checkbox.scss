@@ -23,7 +23,7 @@
 }
 
 .#{$css-prefix}checkbox-element {
-  @include checkable-base;
+  @include ui-checkable-base;
 
   &__body {
     border-radius: 2px;

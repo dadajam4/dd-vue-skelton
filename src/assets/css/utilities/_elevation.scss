@@ -3,9 +3,9 @@
 //
 
 .#{$css-prefix}elevation {
-  @each $key, $val in $elevation {
+  @each $key, $val in $ui-elevation {
     &--#{$key} {
-      @include elevation($key);
+      @include ui-elevation($key);
     }
   }
 }

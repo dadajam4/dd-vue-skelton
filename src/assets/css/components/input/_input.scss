@@ -24,11 +24,11 @@
   &__label {
     display: inline-block;
     vertical-align: bottom;
-    @include remove-tap-highlight;
+    @include ui-remove-tap-highlight;
     // cursor: pointer;
 
-    @include font-size(xs);
-    transition: get-duration(promptly);
+    @include ui-font-size(xs);
+    transition: $ui-duration-promptly;
     @include ui-theme-context-mapping-text(caption);
 
     #{$my}--focused & {
@@ -36,13 +36,13 @@
     }
   }
 
-  &--sm { @include font-size(sm); }
-  &--md { @include font-size(md); }
-  &--lg { @include font-size(lg); }
+  &--sm { @include ui-font-size(sm); }
+  &--md { @include ui-font-size(md); }
+  &--lg { @include ui-font-size(lg); }
 
-  &--sm &__label { @include font-size(xxs); }
-  &--md &__label { @include font-size(xs); }
-  &--lg &__label { @include font-size(sm); }
+  &--sm &__label { @include ui-font-size(xxs); }
+  &--md &__label { @include ui-font-size(xs); }
+  &--lg &__label { @include ui-font-size(sm); }
 
   &--selection,
   &--inline {
@@ -117,11 +117,11 @@
     text-align: right;
 
     @include ui-theme-context-mapping-text(caption);
-    @include font-size(xs);
+    @include ui-font-size(xs);
 
-    #{$my}--sm & { @include font-size(xxs); }
-    #{$my}--md & { @include font-size(xs); }
-    #{$my}--lg & { @include font-size(sm); }
+    #{$my}--sm & { @include ui-font-size(xxs); }
+    #{$my}--md & { @include ui-font-size(xs); }
+    #{$my}--lg & { @include ui-font-size(sm); }
 
     &--error {
       @include ui-theme-context-mapping-text(error, $important: true);
@@ -132,12 +132,12 @@
     display: block;
     position: relative;
     width: 100%;
-    @include font-size(xs);
+    @include ui-font-size(xs);
     @include ui-theme-context-mapping-text(caption);
 
-    .#{my}--sm & { @include font-size(xxs); padding-top: 2px; }
-    .#{my}--md & { @include font-size(xs); padding-top: 4px; }
-    .#{my}--lg & { @include font-size(sm); padding-top: 6px; }
+    .#{my}--sm & { @include ui-font-size(xxs); padding-top: 2px; }
+    .#{my}--md & { @include ui-font-size(xs); padding-top: 4px; }
+    .#{my}--lg & { @include ui-font-size(sm); padding-top: 6px; }
 
     #{$my}__counter + & {
       margin-top: -1.2em;
@@ -157,7 +157,7 @@
   }
 
   &__message {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &--error {

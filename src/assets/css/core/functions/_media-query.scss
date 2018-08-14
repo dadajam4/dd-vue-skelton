@@ -7,7 +7,7 @@ $mq-each-prefix: null !global;
 $mq-each-prefix-org: null !global;
 
 // 複数指定可能
-@mixin mq($targets...) {
+@mixin ui-mq($targets...) {
   $conditions: ();
   $len: length($targets);
   @for $i from 1 through $len {
@@ -22,11 +22,11 @@ $mq-each-prefix-org: null !global;
     $conditions: append($conditions, $condition);
   }
 
-  $conditionsStr: to-string($conditions, ", ");
+  $conditionsStr: ui-to-string($conditions, ", ");
   @media #{$conditionsStr} { @content; }
 }
 
-@mixin mq-each() {
+@mixin ui-mq-each() {
   $mq-each-target: null !global;
   $mq-each-prefix: null !global;
   $is-first: true;
@@ -43,7 +43,7 @@ $mq-each-prefix-org: null !global;
     @if $condition-target == null {
       @content;
     } @else {
-      @include mq($condition-target) { @content; }
+      @include ui-mq($condition-target) { @content; }
     }
   }
 }

@@ -16,14 +16,14 @@
   // margin: $alert-margin
   // padding: $alert-padding
   position: relative;
-  transition: get-transition(primary);
-  @include font-size(sm);
+  transition: $ui-transition-primary;
+  @include ui-font-size(sm);
   margin: 4px auto;
   padding: 16px;
 
   &__icon {
     align-self: center;
-    @include font-size(lg);
+    @include ui-font-size(lg);
     margin-right: 16px;
   }
 
@@ -37,10 +37,10 @@
     cursor: pointer;
     align-self: flex-start;
     text-decoration: none;
-    @include remove-tap-highlight;
-    @include user-drag(none);
+    @include ui-remove-tap-highlight;
+    @include ui-user-drag(none);
     user-select: none;
-    @include font-size(lg);
+    @include ui-font-size(lg);
     margin-left: 16px;
     color: inherit!important;
   }

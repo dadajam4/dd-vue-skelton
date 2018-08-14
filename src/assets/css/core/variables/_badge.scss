@@ -2,12 +2,6 @@
 // Badge
 //
 
-
-@function get-badge($key) {
-  @return map-get($badge, $key);
-}
-
-$badge: ();
-$badge: map-set($badge, font-size, xs);
-$badge: map-set($badge, icon-font-size, xxs);
-$badge: map-set($badge, min-size, 22px);
+$ui-badge-font-size: xs !default;
+// $ui-badge-icon-font-size: xxs !default;
+$ui-badge-min-size: min-size !default;

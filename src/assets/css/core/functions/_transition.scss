@@ -3,7 +3,7 @@
 //
 
 // Component specific transitions
-@mixin transition-bottom-sheet {
+@mixin ui-transition-bottom-sheet {
   &-enter {
     transform: translateY(100%);
   }
@@ -13,7 +13,7 @@
   }
 }
 
-@mixin transition-carousel {
+@mixin ui-transition-carousel {
   &-enter {
     transform: translate3d(100%, 0, 0);
   }
@@ -25,7 +25,7 @@
   }
 }
 
-@mixin transition-carousel-reverse {
+@mixin ui-transition-carousel-reverse {
   &-enter {
     transform: translate3d(-100%, 0, 0);
   }
@@ -37,7 +37,7 @@
   }
 }
 
-@mixin transition-dialog {
+@mixin ui-transition-dialog {
   &-enter, &-leave-to {
     transform: scale(0.5);
     opacity: 0;
@@ -48,13 +48,13 @@
   }
 }
 
-@mixin transition-dialog-bottom {
+@mixin ui-transition-dialog-bottom {
   &-enter, &-leave-to {
     transform: translateY(100%);
   }
 }
 
-@mixin transition-tab {
+@mixin ui-transition-tab {
   &-enter {
     transform: translate(100%, 0);
   }
@@ -74,7 +74,7 @@
   }
 }
 
-@mixin transition-tab-reverse {
+@mixin ui-transition-tab-reverse {
   &-enter {
     transform: translate(-100%, 0);
   }
@@ -87,9 +87,9 @@
 }
 
 // Generic transitions
-@mixin transition-scale {
+@mixin ui-transition-scale {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave, &-leave-to {
@@ -98,9 +98,9 @@
   }
 }
 
-@mixin transition-slide-y {
+@mixin ui-transition-slide-y {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave-to {
@@ -109,9 +109,9 @@
   }
 }
 
-@mixin transition-slide-y-reverse {
+@mixin ui-transition-slide-y-reverse {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave-to {
@@ -120,9 +120,9 @@
   }
 }
 
-@mixin transition-slide-x {
+@mixin ui-transition-slide-x {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave-to {
@@ -131,9 +131,9 @@
   }
 }
 
-@mixin transition-slide-x-reverse {
+@mixin ui-transition-slide-x-reverse {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave-to {
@@ -142,9 +142,9 @@
   }
 }
 
-@mixin transition-fade {
+@mixin ui-transition-fade {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave-to {
@@ -152,9 +152,9 @@
   }
 }
 
-@mixin transition-fab {
+@mixin ui-transition-fab {
   &-enter-active, &-leave-active {
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
   }
 
   &-enter, &-leave-to {

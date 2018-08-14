@@ -4,14 +4,14 @@
 
 .#{$css-prefix}anchor-navi {
   display: block;
-  @include font-size(xs);
+  @include ui-font-size(xs);
 
   &__item {
     display: flex;
     padding: .5rem 1rem;
     align-items: center;
     justify-content: flex-end;
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
     @include ui-pressable-effect;
 
     &,
@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
 
     .#{$css-prefix}anchor-navi__item--current & {
       opacity: 1;

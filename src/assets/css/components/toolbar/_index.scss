@@ -5,8 +5,8 @@
 .#{$css-prefix}toolbar {
   position: relative;
   // @include ui-theme-context-mapping-background(default);
-  transition: padding get-duration(slowly) get-easing(drawer);
-  @include elevation(4);
+  transition: padding $ui-duration-slowly $ui-easing-drawer;
+  @include ui-elevation(4);
 
   &--floating {
     display: inline-flex;
@@ -38,8 +38,8 @@
 
     & > * {
       margin: {
-        left: get-toolbar(content-margin);
-        right: get-toolbar(content-margin);
+        left: $ui-toolbar-content-margin;
+        right: $ui-toolbar-content-margin;
       }
     }
 
@@ -74,14 +74,14 @@
       bottom: 0;
       left: $ui-horizontal-padding;
     }
-    // @include font-weight(regular);
-    @include font-weight-bolder;
-    @include font-size(lg);
-    @include ellipsis;
+    // @include ui-font-weight(regular);
+    @include ui-font-weight-bolder;
+    @include ui-font-size(lg);
+    @include ui-ellipsis;
     min-width: 3em;
 
     &:not(:first-child) {
-      margin-left: get-toolbar(content-margin);
+      margin-left: $ui-toolbar-content-margin;
     }
 
     .#{$css-prefix}toolbar__extension & {

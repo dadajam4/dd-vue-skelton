@@ -8,7 +8,7 @@
 // truncation
 //
 .#{$css-prefix}truncate {
-  @include truncate;
+  @include ui-truncate;
 }
 
 
@@ -32,6 +32,6 @@
 //
 // text link reset
 //
-.#{$css-prefix}text-link--reset {
-  @include text-link--reset;
+.#{$css-prefix}ui-text-link--reset {
+  @include ui-text-link--reset;
 }

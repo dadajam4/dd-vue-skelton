@@ -13,12 +13,12 @@
     width: 100%;
     height: inherit;
     position: relative;
-    transition: .2s get-easing(fast-in-slow-out);
+    transition: .2s $ui-easing-fast-in-slow-out;
     z-index: 1;
 
     &__determinate {
       height: inherit;
-      transition: .2s get-easing(fast-in-slow-out);
+      transition: .2s $ui-easing-fast-in-slow-out;
     }
 
     &__indeterminate {

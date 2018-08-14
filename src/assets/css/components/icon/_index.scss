@@ -54,7 +54,7 @@
 
   &--rotate {
     // display: inline-flex;
-    transition: get-transition(primary);
+    transition: $ui-transition-primary;
     &:before {
       display: block;
     }

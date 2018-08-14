@@ -2,7 +2,7 @@
 @import "core/index";
 
 .my-description {
-  @include font-size(sm);
+  @include ui-font-size(sm);
   margin: get-space(md) 0;
 }
 </style>

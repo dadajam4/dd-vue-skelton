@@ -1,12 +1,7 @@
 //
-// Easing
+// Transition
 //
 
-@function get-transition($key) {
-  @return map-get($transition, $key);
-}
-
-$transition: ();
-$transition: map-set($transition, primary, get-duration(showup) get-easing(swing));
-$transition: map-set($transition, secondary, get-duration(promptly) get-easing(ease-in-out));
-$transition: map-set($transition, drawer, get-duration(slowly) get-easing(drawer));
+$ui-transition-primary: $ui-duration-showup $ui-easing-swing !default;
+$ui-transition-secondary: $ui-duration-promptly $ui-easing-ease-in-out !default;
+$ui-transition-drawer: $ui-duration-slowly $ui-easing-drawer !default;

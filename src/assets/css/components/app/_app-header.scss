@@ -4,26 +4,26 @@
 
 .#{$css-prefix}app-header {
   transition-property: all;
-  transition-duration: get-duration(slowly);
-  transition-timing-function: get-easing(drawer);
+  transition-duration: $ui-duration-slowly;
+  transition-timing-function: $ui-easing-drawer;
   will-change: transform, box-shadow, padding;
 
   &--fixed {
     position: fixed;
-    @include z-index(app-header);
+    z-index: $ui-z-index-app-header;
     top: 0;
     left: 0;
     width: 100%;
-    @include shadow(floating);
+    @include ui-shadow(floating);
     // transition-property: top;
   }
 
   .#{$css-prefix}app--drawer-left-active.#{$css-prefix}app--drawer-left-static & {
-    padding-left: $navigation-drawer-width;
+    padding-left: $ui-navigation-drawer-width;
   }
 
   .#{$css-prefix}app--drawer-right-active.#{$css-prefix}app--drawer-right-static & {
-    padding-right: $navigation-drawer-width;
+    padding-right: $ui-navigation-drawer-width;
   }
 
   &--hidden {

@@ -2,27 +2,27 @@
 // Text
 //
 
-@mixin font-family($key) {
-  font-family: get-font-family($key);
+@mixin ui-font-family($key) {
+  font-family: ui-get-font-family($key);
 }
 
-@mixin font-size($key, $unit: null, $tweak: null) {
+@mixin ui-font-size($key, $unit: null, $tweak: null) {
   @if $tweak == null {
-    font-size: get-font-size($key, $unit);
+    font-size: ui-get-font-size($key, $unit);
   } @else {
     font-size: calc(#{get-font-size($key, $unit)} + #{$tweak});
   }
 }
 
-@mixin line-height($key, $unit: null) {
-  line-height: get-line-height($key, $unit);
+@mixin ui-line-height($key, $unit: null) {
+  line-height: ui-get-line-height($key, $unit);
 }
 
-@mixin font-weight($key) {
-  font-weight: get-font-weight($key);
+@mixin ui-font-weight($key) {
+  font-weight: ui-get-font-weight($key);
 }
 
-@mixin text-link--reset($cursor: pointer) {
+@mixin ui-text-link--reset($cursor: pointer) {
   @if $cursor != null {
     cursor: $cursor;
   }
@@ -40,14 +40,14 @@
 }
 
 // Hyphenate
-@mixin hyphenate {
+@mixin ui-hyphenate {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
 }
 
-// Hyphenate
-@mixin ellipsis {
+// Ellipsis
+@mixin ui-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -2,7 +2,7 @@
 // Alignment
 //
 
-@include mq-each() {
+@include ui-mq-each() {
   .#{$css-prefix}#{$mq-each-prefix}text-left   { text-align: left; }
   .#{$css-prefix}#{$mq-each-prefix}text-center { text-align: center; }
   .#{$css-prefix}#{$mq-each-prefix}text-right  { text-align: right; }

@@ -10,9 +10,9 @@
   // max-width: 80%;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: .3s get-transition(swing);
+  transition: .3s $ui-easing-swing;
   // contain: content;
-  @include elevation(8);
+  @include ui-elevation(8);
 
   &-transition {
     &-enter {
@@ -54,7 +54,7 @@
     }
 
     &-enter-active, &-leave-active {
-      transition: all .5s get-transition(swing);
+      transition: all .5s $ui-easing-swing;
     }
   }
 }

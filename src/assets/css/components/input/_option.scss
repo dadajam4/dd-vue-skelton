@@ -9,10 +9,10 @@
   &__label {
     display: flex;
     align-items: center;
-    @include font-size(sm);
+    @include ui-font-size(sm);
     @include ui-theme-context-mapping-text(caption);
-    margin-top: get-space(md);
-    padding: 0 get-space(sm);
+    margin-top: ui-get-space(md);
+    padding: 0 ui-get-space(sm);
 
     .#{$css-prefix}checkbox-element {
       margin-right: .5em;

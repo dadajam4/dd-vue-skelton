@@ -8,11 +8,11 @@
   display: flex;
   text-decoration: none;
   align-items: stretch;
-  padding: 0 get-space(md) 1px;
+  padding: 0 ui-get-space(md) 1px;
   margin: 0;
   position: relative;
   color: inherit;
-  transition: get-duration(promptly);
+  transition: $ui-duration-promptly;
   cursor: default;
   min-height: 48px;
 
@@ -27,7 +27,7 @@
     bottom: 0;
     background: currentColor;
     opacity: 0;
-    transition: get-duration(promptly);
+    transition: $ui-duration-promptly;
   }
 
   &--has-divider:after {
@@ -59,7 +59,7 @@
   &--clickable {
     cursor: pointer;
     user-select: none;
-    @include user-drag(none);
+    @include ui-user-drag(none);
 
     &:focus,
     &:hover {
@@ -81,7 +81,7 @@
       pointer-events: none !important;
       cursor: default !important;
       user-select: none;
-      @include user-drag(none);
+      @include ui-user-drag(none);
     }
   }
 
@@ -89,7 +89,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
-    padding-top: get-space(xs);
+    padding-top: ui-get-space(xs);
     padding-bottom: calc(#{get-space(xs)} - 1px);
 
     .#{$css-prefix}tile--disabled & {
@@ -97,7 +97,7 @@
     }
 
     .#{$css-prefix}tile--dense & {
-      padding-top: get-space(xxs);
+      padding-top: ui-get-space(xxs);
       padding-bottom: calc(#{get-space(xxs)} - 1px);
     }
   }
@@ -109,14 +109,14 @@
     align-items: center;
     justify-content: flex-start;
     min-width: 56px;
-    padding-right: get-space(sm);
+    padding-right: ui-get-space(sm);
 
     .#{$css-prefix}tile--dense & {
       min-width: 44px;
     }
 
     .#{$css-prefix}icon {
-      transition: get-transition(primary);
+      transition: $ui-transition-primary;
     }
   }
 
@@ -128,10 +128,10 @@
     }
 
     .#{$css-prefix}avatar {
-      @include square(get-avatar(size-md));
+      @include ui-square($ui-avatar-size-md);
 
       .#{$css-prefix}tile--dense & {
-        @include square(get-avatar(size-sm));
+        @include ui-square($ui-avatar-size-sm);
       }
     }
   }
@@ -166,11 +166,11 @@
     }
 
     &-text {
-      @include font-size(xs);
+      @include ui-font-size(xs);
       @include ui-theme-context-mapping-text(caption);
 
       .#{$css-prefix}tile--dense & {
-        @include font-size(xss);
+        @include ui-font-size(xss);
       }
     }
   }
@@ -185,7 +185,7 @@
 
     & ~ #{$my}__avatar,
     & ~ #{$my}__action {
-      padding-left: get-space(sm);
+      padding-left: ui-get-space(sm);
       padding-right: 0;
 
       &:not(#{$my}__tile__action--stack) {
@@ -198,7 +198,7 @@
 
 
   @mixin my-nested-children {
-    transition: get-duration(promptly);
+    transition: $ui-duration-promptly;
     .#{$css-prefix}tile--disabled & {
       @include ui-theme-context-mapping-text(disabled, $important: true);
     }
@@ -206,47 +206,47 @@
 
   &__title {
     @include my-nested-children;
-    @include font-size(md);
+    @include ui-font-size(md);
     line-height: inherit;
     margin: 0;
     font-weight: inherit;
     // display: flex;
     // align-items: center;
-    @include ellipsis;
+    @include ui-ellipsis;
 
     .#{$css-prefix}tile--dense & {
-      @include font-size(md, $tweak: -1px);
+      @include ui-font-size(md, $tweak: -1px);
     }
   }
 
   &__sub-title {
     @include my-nested-children;
     @include ui-theme-context-mapping-text(caption);
-    @include font-size(xs);
-    @include ellipsis;
+    @include ui-font-size(xs);
+    @include ui-ellipsis;
 
     .#{$css-prefix}tile--dense & {
-      @include font-size(sm, $tweak: -1px);
+      @include ui-font-size(sm, $tweak: -1px);
     }
   }
 
   &__text {
     @include my-nested-children;
-    @include font-size(sm);
+    @include ui-font-size(sm);
     margin-bottom: 0;
-    margin-top: get-space(xs);
-    @include ellipsis;
+    margin-top: ui-get-space(xs);
+    @include ui-ellipsis;
 
     .#{$css-prefix}tile--dense & {
-      @include font-size(sm, $tweak: -1px);
-      margin-top: get-space(xxs);
+      @include ui-font-size(sm, $tweak: -1px);
+      margin-top: ui-get-space(xxs);
     }
   }
 
   &--dense {
-    // padding-left: get-space(xs);
-    // padding-right: get-space(xs);
-    @include font-size(md, $tweak: -1px);
+    // padding-left: ui-get-space(xs);
+    // padding-right: ui-get-space(xs);
+    @include ui-font-size(md, $tweak: -1px);
     min-height: 40px;
   }
 
@@ -265,7 +265,7 @@
 
 // grouping
 .#{$css-prefix}tile-group {
-  padding: get-space(xs) 0;
+  padding: ui-get-space(xs) 0;
   @include ui-theme-context-mapping-background(default);
   margin: 0;
 

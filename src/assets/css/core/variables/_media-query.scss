@@ -24,7 +24,7 @@ $ui-media-match-aliases: (
 
 
 
-@function my-create-condition($output: all, $min: null, $max: null, $more: null) {
+@function ui-my-create-condition($output: all, $min: null, $max: null, $more: null) {
   $condition: $output;
   @if $min != null and $min > 0px {
     $condition: $condition + " and (min-width:" + $min + ")";
@@ -80,21 +80,21 @@ $ui-media-match-each-targets: ();
 
   @if $before-define != null and $next-define != null {
     $down-key: $key + "AndDown";
-    $down-condition: my-create-condition($max: $max);
-    $ui-media-match-maps: map-set($ui-media-match-maps, $down-key, $down-condition);
+    $down-condition: ui-my-create-condition($max: $max);
+    $ui-media-match-maps: ui-map-set($ui-media-match-maps, $down-key, $down-condition);
 
     $up-key: $key + "AndUp";
-    $up-condition: my-create-condition($min: $min);
-    $ui-media-match-maps: map-set($ui-media-match-maps, $up-key, $up-condition);
+    $up-condition: ui-my-create-condition($min: $min);
+    $ui-media-match-maps: ui-map-set($ui-media-match-maps, $up-key, $up-condition);
   }
 
-  $condition: my-create-condition($min: $min, $max: $max);
-  $ui-media-match-maps: map-set($ui-media-match-maps, $key, $condition);
+  $condition: ui-my-create-condition($min: $min, $max: $max);
+  $ui-media-match-maps: ui-map-set($ui-media-match-maps, $key, $condition);
 }
 
 @each $define in $ui-media-match-customs {
-  $condition: my-create-condition($more: map-get($define, condition));
-  $ui-media-match-maps: map-set($ui-media-match-maps, map-get($define, key), $condition);
+  $condition: ui-my-create-condition($more: map-get($define, condition));
+  $ui-media-match-maps: ui-map-set($ui-media-match-maps, map-get($define, key), $condition);
 }
 
 @each $key, $condition in $ui-media-match-maps {

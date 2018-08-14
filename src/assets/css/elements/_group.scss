@@ -6,14 +6,14 @@
 // paragraphs
 .#{$css-prefix}paragraph,
 p {
-  margin-top: get-space(md);
-  margin-bottom: get-space(md);
+  margin-top: ui-get-space(md);
+  margin-bottom: ui-get-space(md);
 }
 
 // divider
 hr {
   height: 1px;
-  margin: get-space(md) 0;
+  margin: ui-get-space(md) 0;
   border-top: solid 1px;
   @include ui-theme-color(border-color, divider);
   padding: 0;
@@ -37,7 +37,7 @@ pre {
 ol,
 ul {
   padding-left: 2em;
-  margin: get-space(md) 0;
+  margin: ui-get-space(md) 0;
 }
 
 ol {
@@ -54,21 +54,21 @@ ul {
 
 dl {
   display: block;
-  margin: get-space(md) 0;
+  margin: ui-get-space(md) 0;
 }
 
 dt {
   display: block;
-  @include font-size(xs);
-  @include font-weight(regular);
-  @include line-height(md);
+  @include ui-font-size(xs);
+  @include ui-font-weight(regular);
+  @include ui-line-height(md);
   letter-spacing: normal;
-  margin-top: get-space(sm);
-  margin-bottom: get-space(xxs);
+  margin-top: ui-get-space(sm);
+  margin-bottom: ui-get-space(xxs);
   @include ui-theme-context-mapping-text(caption);
 
   & + & {
-    margin-top: get-space(xxxs);
+    margin-top: ui-get-space(xxxs);
   }
 }
 
@@ -80,12 +80,12 @@ dd {
 // blockquote
 //
 blockquote {
-  @include font-size(lg);
-  margin: get-space(xl) 0 get-space(lg);
-  padding: get-space(sm) 0 get-space(sm) get-space(sm);
+  @include ui-font-size(lg);
+  margin: ui-get-space(xl) 0 ui-get-space(lg);
+  padding: ui-get-space(sm) 0 ui-get-space(sm) ui-get-space(sm);
   border-left: solid 5px;
   @include ui-theme-context-mapping-border-color(primary);
-  @include font-weight(regular);
+  @include ui-font-weight(regular);
 
   & > * {
     &:first-child {
@@ -101,7 +101,7 @@ blockquote {
     font-size: 80%;
 
     @include ui-theme-context-mapping-text(sub);
-    @include line-height(md);
+    @include ui-line-height(md);
 
     &:before {
       content: '\2014 \00A0';
@@ -112,7 +112,7 @@ blockquote {
 // figure
 figure {
   display: inline-block;
-  margin: get-space(lg) 0;
+  margin: ui-get-space(lg) 0;
   text-align: center;
   img {
     display: inline-block;
@@ -122,11 +122,11 @@ figure {
 
 figcaption {
   display: block;
-  @include font-size(xs);
-  @include font-weight(regular);
-  @include line-height(md);
-  margin-top: get-space(xxs);
-  margin-bottom: get-space(xxs);
+  @include ui-font-size(xs);
+  @include ui-font-weight(regular);
+  @include ui-line-height(md);
+  margin-top: ui-get-space(xxs);
+  margin-bottom: ui-get-space(xxs);
   @include ui-theme-context-mapping-text(caption);
 }
 
@@ -144,16 +144,16 @@ table {
   max-width: 100%;
   border: 0;
 
-  @include font-size(xs);
+  @include ui-font-size(xs);
 }
 
 caption {
   display: table-caption;
-  @include font-size(xs);
-  @include font-weight(regular);
-  @include line-height(md);
-  margin-top: get-space(xxs);
-  margin-bottom: get-space(xxs);
+  @include ui-font-size(xs);
+  @include ui-font-weight(regular);
+  @include ui-line-height(md);
+  margin-top: ui-get-space(xxs);
+  margin-bottom: ui-get-space(xxs);
   @include ui-theme-context-mapping-text(caption);
 }
 
@@ -163,7 +163,7 @@ th,
 td {
   border: 0;
   text-align: left;
-  padding: get-space(sm) get-space(md);
+  padding: ui-get-space(sm) ui-get-space(md);
 }
 
 th {
